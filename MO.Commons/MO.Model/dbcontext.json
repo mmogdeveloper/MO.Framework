@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "MOData": "Data Source=127.0.0.1;Database=MOData;Uid=root;Pwd=;charset=utf8",
+    "MORecord": "Data Source=127.0.0.1;Database=MORecord;Uid=root;Pwd=;charset=utf8"
+  }
+}

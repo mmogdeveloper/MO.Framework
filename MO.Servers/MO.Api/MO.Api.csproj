@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Orleans.Client" Version="3.3.0" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="3.3.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansGoogleUtils" Version="3.3.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.3.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.21" />
+    <PackageReference Include="NLog.Config" Version="4.7.4" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.6.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MO.Commons\MO.Algorithm\MO.Algorithm.csproj" />
+    <ProjectReference Include="..\MO.GrainInterfaces\MO.GrainInterfaces.csproj" />
+  </ItemGroup>
+
+</Project>

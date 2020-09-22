@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CSRedisCore" Version="3.6.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MO.Common\MO.Common.csproj" />
+    <ProjectReference Include="..\MO.Model\MO.Model.csproj" />
+    <ProjectReference Include="..\MO.Protocol\MO.Protocol.csproj" />
+  </ItemGroup>
+
+</Project>

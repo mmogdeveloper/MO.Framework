@@ -1,0 +1,59 @@
+syntax = "proto3";
+package ProtoMessage;
+
+message MOPoint{
+	int64 X = 1;
+	int64 Y = 2;
+}
+
+//心跳
+message C2S1{
+
+}
+
+//连接网关
+message C2S100000{
+
+}
+
+//加入频道
+message C2S100001{
+	int32 RoomId = 1;
+}
+
+message UserPoint{
+	int64 UserId = 1;
+	MOPoint Point = 2;
+}
+message S2C100001{
+	int32 RoomId = 1;
+	repeated UserPoint UserPoints = 2;
+}
+
+//通知加入频道
+message S2C100002{
+	int64 UserId = 1;
+	int32 RoomId = 2;
+}
+
+//移动
+message C2S100003{
+	MOPoint Point = 1;
+}
+
+//通知移动
+message S2C100004{
+	int64 UserId = 1;
+	MOPoint Point = 2;
+}
+
+//离开频道
+message C2S100005{
+	int32 RoomId = 1;
+}
+
+//通知离开频道
+message S2C100006{
+	int64 UserId = 1;
+	int32 RoomId = 2;
+}

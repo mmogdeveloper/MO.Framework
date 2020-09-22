@@ -1,0 +1,8 @@
+syntax = "proto3";
+package ProtoMessage;
+
+message Contacts{
+	string WeiXinCode = 1;
+	string QQGroup = 2;
+	string WeiXinGroup = 3;
+}

@@ -1,0 +1,27 @@
+{
+  "MD5Key": "8B203C98ADD54BACA9857C5DC4DFF603",
+  "DESKey": "",
+  "ClusterConfig": {
+    "ClusterId": "MOCluster",
+    "ServiceId": "MOService",
+    "Invariant": "MySql.Data.MySqlClient",
+    "ConnectionString": "Data Source=127.0.0.1;Database=orleans;Uid=root;Pwd=;charset=utf8",
+    "HostName": "127.0.0.1",
+    "SiloPort": 11111,
+    "GatewayPort": 30000
+  },
+  "StorageConfig": {
+    "Invariant": "MySql.Data.MySqlClient",
+    "ConnectionString": "Data Source=127.0.0.1;Database=orleans;Uid=root;Pwd=;charset=utf8"
+  },
+  "ReminderConfig": {
+    "Invariant": "MySql.Data.MySqlClient",
+    "ConnectionString": "Data Source=127.0.0.1;Database=orleans;Uid=root;Pwd=;charset=utf8"
+  },
+  "ConnectionStrings": {
+    "MOData": "Data Source=127.0.0.1;Database=MOData;Uid=root;Pwd=;charset=utf8",
+    "MORecord": "Data Source=127.0.0.1;Database=MORecord;Uid=root;Pwd=;charset=utf8",
+    "DataRedis": "127.0.0.1:6379,defaultDatabase=0",
+    "TokenRedis": "127.0.0.1:6379,defaultDatabase=10"
+  }
+}

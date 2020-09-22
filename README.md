@@ -4,7 +4,7 @@
 可承载百万人同时在线的分布式游戏框架  
 
 #### 软件架构
-基于Orleans,Dotnetty跨平台的分布式游戏框架  
+基于dotnetcore3.1,Orleans,Dotnetty跨平台的分布式游戏框架  
 模块分为:  
 Login:登录服务器  
 Api:http服务器  

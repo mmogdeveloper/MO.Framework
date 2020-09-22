@@ -40,8 +40,8 @@ Redis 默认 DB0 用来存储基本业务数据  (自定义存储格式)
 启动顺序  
 1.Silo  
 2.Gate  
-3.Login  
-4.Api  
+3.Api  
+4.Login  
 先检查json文件配置是否正确  
 
 #### 参与贡献

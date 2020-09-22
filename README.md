@@ -1,7 +1,7 @@
 # MO.Framework
 
 #### 介绍
-基于Orleans,Dotnetty的分布式游戏框架
+基于Orleans,Dotnetty跨平台的分布式游戏框架
 模块分为:
 Login:登录服务器
 Api:http服务器

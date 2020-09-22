@@ -1,11 +1,6 @@
 syntax = "proto3";
 package ProtoMessage;
 
-message MOPoint{
-	int64 X = 1;
-	int64 Y = 2;
-}
-
 //心跳
 message C2S1{
 
@@ -23,7 +18,8 @@ message C2S100001{
 
 message UserPoint{
 	int64 UserId = 1;
-	MOPoint Point = 2;
+	int64 X = 2;
+	int64 Y = 3;
 }
 message S2C100001{
 	int32 RoomId = 1;
@@ -38,13 +34,15 @@ message S2C100002{
 
 //移动
 message C2S100003{
-	MOPoint Point = 1;
+	int64 X = 2;
+	int64 Y = 3;
 }
 
 //通知移动
 message S2C100004{
 	int64 UserId = 1;
-	MOPoint Point = 2;
+	int64 X = 2;
+	int64 Y = 3;
 }
 
 //离开频道

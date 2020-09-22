@@ -22,30 +22,27 @@ namespace ProtoMessage {
     static MessageGameGateReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChdtZXNzYWdlX2dhbWVfZ2F0ZS5wcm90bxIMUHJvdG9NZXNzYWdlIh8KB01P",
-            "UG9pbnQSCQoBWBgBIAEoAxIJCgFZGAIgASgDIgYKBEMyUzEiCwoJQzJTMTAw",
-            "MDAwIhsKCUMyUzEwMDAwMRIOCgZSb29tSWQYASABKAUiQQoJVXNlclBvaW50",
-            "Eg4KBlVzZXJJZBgBIAEoAxIkCgVQb2ludBgCIAEoCzIVLlByb3RvTWVzc2Fn",
-            "ZS5NT1BvaW50IkgKCVMyQzEwMDAwMRIOCgZSb29tSWQYASABKAUSKwoKVXNl",
-            "clBvaW50cxgCIAMoCzIXLlByb3RvTWVzc2FnZS5Vc2VyUG9pbnQiKwoJUzJD",
-            "MTAwMDAyEg4KBlVzZXJJZBgBIAEoAxIOCgZSb29tSWQYAiABKAUiMQoJQzJT",
-            "MTAwMDAzEiQKBVBvaW50GAEgASgLMhUuUHJvdG9NZXNzYWdlLk1PUG9pbnQi",
-            "QQoJUzJDMTAwMDA0Eg4KBlVzZXJJZBgBIAEoAxIkCgVQb2ludBgCIAEoCzIV",
-            "LlByb3RvTWVzc2FnZS5NT1BvaW50IhsKCUMyUzEwMDAwNRIOCgZSb29tSWQY",
-            "ASABKAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIOCgZSb29tSWQY",
-            "AiABKAViBnByb3RvMw=="));
+            "ChdtZXNzYWdlX2dhbWVfZ2F0ZS5wcm90bxIMUHJvdG9NZXNzYWdlIgYKBEMy",
+            "UzEiCwoJQzJTMTAwMDAwIhsKCUMyUzEwMDAwMRIOCgZSb29tSWQYASABKAUi",
+            "MQoJVXNlclBvaW50Eg4KBlVzZXJJZBgBIAEoAxIJCgFYGAIgASgDEgkKAVkY",
+            "AyABKAMiSAoJUzJDMTAwMDAxEg4KBlJvb21JZBgBIAEoBRIrCgpVc2VyUG9p",
+            "bnRzGAIgAygLMhcuUHJvdG9NZXNzYWdlLlVzZXJQb2ludCIrCglTMkMxMDAw",
+            "MDISDgoGVXNlcklkGAEgASgDEg4KBlJvb21JZBgCIAEoBSIhCglDMlMxMDAw",
+            "MDMSCQoBWBgCIAEoAxIJCgFZGAMgASgDIjEKCVMyQzEwMDAwNBIOCgZVc2Vy",
+            "SWQYASABKAMSCQoBWBgCIAEoAxIJCgFZGAMgASgDIhsKCUMyUzEwMDAwNRIO",
+            "CgZSb29tSWQYASABKAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIO",
+            "CgZSb29tSWQYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.MOPoint), global::ProtoMessage.MOPoint.Parser, new[]{ "X", "Y" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S1), global::ProtoMessage.C2S1.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S100000), global::ProtoMessage.C2S100000.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S100001), global::ProtoMessage.C2S100001.Parser, new[]{ "RoomId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.UserPoint), global::ProtoMessage.UserPoint.Parser, new[]{ "UserId", "Point" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.UserPoint), global::ProtoMessage.UserPoint.Parser, new[]{ "UserId", "X", "Y" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.S2C100001), global::ProtoMessage.S2C100001.Parser, new[]{ "RoomId", "UserPoints" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.S2C100002), global::ProtoMessage.S2C100002.Parser, new[]{ "UserId", "RoomId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S100003), global::ProtoMessage.C2S100003.Parser, new[]{ "Point" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.S2C100004), global::ProtoMessage.S2C100004.Parser, new[]{ "UserId", "Point" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S100003), global::ProtoMessage.C2S100003.Parser, new[]{ "X", "Y" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.S2C100004), global::ProtoMessage.S2C100004.Parser, new[]{ "UserId", "X", "Y" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S100005), global::ProtoMessage.C2S100005.Parser, new[]{ "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.S2C100006), global::ProtoMessage.S2C100006.Parser, new[]{ "UserId", "RoomId" }, null, null, null)
           }));
@@ -54,151 +51,6 @@ namespace ProtoMessage {
 
   }
   #region Messages
-  public sealed partial class MOPoint : pb::IMessage<MOPoint> {
-    private static readonly pb::MessageParser<MOPoint> _parser = new pb::MessageParser<MOPoint>(() => new MOPoint());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<MOPoint> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[0]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MOPoint() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MOPoint(MOPoint other) : this() {
-      x_ = other.x_;
-      y_ = other.y_;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MOPoint Clone() {
-      return new MOPoint(this);
-    }
-
-    /// <summary>Field number for the "X" field.</summary>
-    public const int XFieldNumber = 1;
-    private long x_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long X {
-      get { return x_; }
-      set {
-        x_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Y" field.</summary>
-    public const int YFieldNumber = 2;
-    private long y_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Y {
-      get { return y_; }
-      set {
-        y_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as MOPoint);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(MOPoint other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (X != other.X) return false;
-      if (Y != other.Y) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (X != 0L) hash ^= X.GetHashCode();
-      if (Y != 0L) hash ^= Y.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (X != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(X);
-      }
-      if (Y != 0L) {
-        output.WriteRawTag(16);
-        output.WriteInt64(Y);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (X != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(X);
-      }
-      if (Y != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Y);
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(MOPoint other) {
-      if (other == null) {
-        return;
-      }
-      if (other.X != 0L) {
-        X = other.X;
-      }
-      if (other.Y != 0L) {
-        Y = other.Y;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 8: {
-            X = input.ReadInt64();
-            break;
-          }
-          case 16: {
-            Y = input.ReadInt64();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
   /// <summary>
   ///ÐÄÌø
   /// </summary>
@@ -209,7 +61,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[1]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -301,7 +153,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[2]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -393,7 +245,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[3]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -510,7 +362,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[4]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -528,7 +380,8 @@ namespace ProtoMessage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UserPoint(UserPoint other) : this() {
       userId_ = other.userId_;
-      Point = other.point_ != null ? other.Point.Clone() : null;
+      x_ = other.x_;
+      y_ = other.y_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -547,14 +400,25 @@ namespace ProtoMessage {
       }
     }
 
-    /// <summary>Field number for the "Point" field.</summary>
-    public const int PointFieldNumber = 2;
-    private global::ProtoMessage.MOPoint point_;
+    /// <summary>Field number for the "X" field.</summary>
+    public const int XFieldNumber = 2;
+    private long x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ProtoMessage.MOPoint Point {
-      get { return point_; }
+    public long X {
+      get { return x_; }
       set {
-        point_ = value;
+        x_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Y" field.</summary>
+    public const int YFieldNumber = 3;
+    private long y_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Y {
+      get { return y_; }
+      set {
+        y_ = value;
       }
     }
 
@@ -572,7 +436,8 @@ namespace ProtoMessage {
         return true;
       }
       if (UserId != other.UserId) return false;
-      if (!object.Equals(Point, other.Point)) return false;
+      if (X != other.X) return false;
+      if (Y != other.Y) return false;
       return true;
     }
 
@@ -580,7 +445,8 @@ namespace ProtoMessage {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
-      if (point_ != null) hash ^= Point.GetHashCode();
+      if (X != 0L) hash ^= X.GetHashCode();
+      if (Y != 0L) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -595,9 +461,13 @@ namespace ProtoMessage {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
-      if (point_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Point);
+      if (X != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(X);
+      }
+      if (Y != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(Y);
       }
     }
 
@@ -607,8 +477,11 @@ namespace ProtoMessage {
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
       }
-      if (point_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Point);
+      if (X != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(X);
+      }
+      if (Y != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Y);
       }
       return size;
     }
@@ -621,11 +494,11 @@ namespace ProtoMessage {
       if (other.UserId != 0L) {
         UserId = other.UserId;
       }
-      if (other.point_ != null) {
-        if (point_ == null) {
-          point_ = new global::ProtoMessage.MOPoint();
-        }
-        Point.MergeFrom(other.Point);
+      if (other.X != 0L) {
+        X = other.X;
+      }
+      if (other.Y != 0L) {
+        Y = other.Y;
       }
     }
 
@@ -641,11 +514,12 @@ namespace ProtoMessage {
             UserId = input.ReadInt64();
             break;
           }
-          case 18: {
-            if (point_ == null) {
-              point_ = new global::ProtoMessage.MOPoint();
-            }
-            input.ReadMessage(point_);
+          case 16: {
+            X = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            Y = input.ReadInt64();
             break;
           }
         }
@@ -661,7 +535,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[5]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -801,7 +675,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[6]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -949,7 +823,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[7]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -966,7 +840,8 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public C2S100003(C2S100003 other) : this() {
-      Point = other.point_ != null ? other.Point.Clone() : null;
+      x_ = other.x_;
+      y_ = other.y_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -974,14 +849,25 @@ namespace ProtoMessage {
       return new C2S100003(this);
     }
 
-    /// <summary>Field number for the "Point" field.</summary>
-    public const int PointFieldNumber = 1;
-    private global::ProtoMessage.MOPoint point_;
+    /// <summary>Field number for the "X" field.</summary>
+    public const int XFieldNumber = 2;
+    private long x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ProtoMessage.MOPoint Point {
-      get { return point_; }
+    public long X {
+      get { return x_; }
       set {
-        point_ = value;
+        x_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Y" field.</summary>
+    public const int YFieldNumber = 3;
+    private long y_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Y {
+      get { return y_; }
+      set {
+        y_ = value;
       }
     }
 
@@ -998,14 +884,16 @@ namespace ProtoMessage {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Point, other.Point)) return false;
+      if (X != other.X) return false;
+      if (Y != other.Y) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (point_ != null) hash ^= Point.GetHashCode();
+      if (X != 0L) hash ^= X.GetHashCode();
+      if (Y != 0L) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -1016,17 +904,24 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (point_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Point);
+      if (X != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(X);
+      }
+      if (Y != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(Y);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (point_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Point);
+      if (X != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(X);
+      }
+      if (Y != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Y);
       }
       return size;
     }
@@ -1036,11 +931,11 @@ namespace ProtoMessage {
       if (other == null) {
         return;
       }
-      if (other.point_ != null) {
-        if (point_ == null) {
-          point_ = new global::ProtoMessage.MOPoint();
-        }
-        Point.MergeFrom(other.Point);
+      if (other.X != 0L) {
+        X = other.X;
+      }
+      if (other.Y != 0L) {
+        Y = other.Y;
       }
     }
 
@@ -1052,11 +947,12 @@ namespace ProtoMessage {
           default:
             input.SkipLastField();
             break;
-          case 10: {
-            if (point_ == null) {
-              point_ = new global::ProtoMessage.MOPoint();
-            }
-            input.ReadMessage(point_);
+          case 16: {
+            X = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            Y = input.ReadInt64();
             break;
           }
         }
@@ -1075,7 +971,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[8]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1093,7 +989,8 @@ namespace ProtoMessage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S2C100004(S2C100004 other) : this() {
       userId_ = other.userId_;
-      Point = other.point_ != null ? other.Point.Clone() : null;
+      x_ = other.x_;
+      y_ = other.y_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1112,14 +1009,25 @@ namespace ProtoMessage {
       }
     }
 
-    /// <summary>Field number for the "Point" field.</summary>
-    public const int PointFieldNumber = 2;
-    private global::ProtoMessage.MOPoint point_;
+    /// <summary>Field number for the "X" field.</summary>
+    public const int XFieldNumber = 2;
+    private long x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ProtoMessage.MOPoint Point {
-      get { return point_; }
+    public long X {
+      get { return x_; }
       set {
-        point_ = value;
+        x_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Y" field.</summary>
+    public const int YFieldNumber = 3;
+    private long y_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Y {
+      get { return y_; }
+      set {
+        y_ = value;
       }
     }
 
@@ -1137,7 +1045,8 @@ namespace ProtoMessage {
         return true;
       }
       if (UserId != other.UserId) return false;
-      if (!object.Equals(Point, other.Point)) return false;
+      if (X != other.X) return false;
+      if (Y != other.Y) return false;
       return true;
     }
 
@@ -1145,7 +1054,8 @@ namespace ProtoMessage {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
-      if (point_ != null) hash ^= Point.GetHashCode();
+      if (X != 0L) hash ^= X.GetHashCode();
+      if (Y != 0L) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -1160,9 +1070,13 @@ namespace ProtoMessage {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
-      if (point_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Point);
+      if (X != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(X);
+      }
+      if (Y != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(Y);
       }
     }
 
@@ -1172,8 +1086,11 @@ namespace ProtoMessage {
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
       }
-      if (point_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Point);
+      if (X != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(X);
+      }
+      if (Y != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Y);
       }
       return size;
     }
@@ -1186,11 +1103,11 @@ namespace ProtoMessage {
       if (other.UserId != 0L) {
         UserId = other.UserId;
       }
-      if (other.point_ != null) {
-        if (point_ == null) {
-          point_ = new global::ProtoMessage.MOPoint();
-        }
-        Point.MergeFrom(other.Point);
+      if (other.X != 0L) {
+        X = other.X;
+      }
+      if (other.Y != 0L) {
+        Y = other.Y;
       }
     }
 
@@ -1206,11 +1123,12 @@ namespace ProtoMessage {
             UserId = input.ReadInt64();
             break;
           }
-          case 18: {
-            if (point_ == null) {
-              point_ = new global::ProtoMessage.MOPoint();
-            }
-            input.ReadMessage(point_);
+          case 16: {
+            X = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            Y = input.ReadInt64();
             break;
           }
         }
@@ -1229,7 +1147,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[9]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1349,7 +1267,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[10]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

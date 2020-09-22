@@ -1,7 +1,5 @@
-﻿using ProtoMessage;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -12,7 +10,9 @@ namespace MO.WpfTest.Game
     {
         public Rectangle Rect_Player { get; }
 
-        public MOPoint CurPoint { get; private set; }
+        public Int64 X { get; private set; }
+
+        public Int64 Y { get; private set; }
 
         public long UserId { get; }
 
@@ -27,19 +27,19 @@ namespace MO.WpfTest.Game
             Canvas.SetTop(Rect_Player, 0);
             Canvas.SetRight(Rect_Player, 0);
             Canvas.SetBottom(Rect_Player, 0);
-            CurPoint = new MOPoint();
         }
 
-        public MOPoint GetPoint()
+        public (Int64, Int64) GetPoint()
         {
-            return CurPoint;
+            return (X, Y);
         }
 
-        public void SetPoint(MOPoint point)
+        public void SetPoint(Int64 x, Int64 y)
         {
-            CurPoint = point;
-            Canvas.SetTop(Rect_Player, point.Y);
-            Canvas.SetLeft(Rect_Player, point.X);
+            X = x;
+            Y = y;
+            Canvas.SetLeft(Rect_Player, x);
+            Canvas.SetTop(Rect_Player, y);
         }
     }
 }

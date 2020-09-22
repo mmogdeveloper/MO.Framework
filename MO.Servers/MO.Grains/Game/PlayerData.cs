@@ -2,6 +2,7 @@
 using ProtoMessage;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace MO.Grains.Game
@@ -9,21 +10,17 @@ namespace MO.Grains.Game
     public class PlayerData
     {
         private IUser _user;
-        private MOPoint _point;
+        public Int64 X { get; private set; }
+        public Int64 Y { get; private set; }
         public PlayerData(IUser user)
         {
             _user = user;
-            _point = new MOPoint();
         }
 
-        public void SetPoint(MOPoint point)
+        public void SetPoint(Int64 x, Int64 y)
         {
-            _point = point.Clone();
-        }
-
-        public MOPoint GetPoint()
-        {
-            return _point.Clone();
+            X = x;
+            Y = y;
         }
     }
 }

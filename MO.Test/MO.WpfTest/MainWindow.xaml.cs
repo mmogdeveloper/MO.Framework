@@ -26,7 +26,8 @@ namespace MO.WpfTest
         private Dictionary<long, GamePlayer> _totalPlayer;
         private GamePlayer curPlayer;
         private MOClient client;
-        private MOPoint oldPoint;
+        private Int64 oldX;
+        private Int64 oldY;
         private Timer timer;
         private int lockedNum;
         public MainWindow()
@@ -40,7 +41,6 @@ namespace MO.WpfTest
                 client.ConnectGate();
                 curPlayer = new GamePlayer(client.UserId);
                 root.Children.Add(curPlayer.Rect_Player);
-                oldPoint = new MOPoint();
                 timer = new Timer(TimerCallback, null, 50, 50);
             }
             catch (Exception)
@@ -54,10 +54,11 @@ namespace MO.WpfTest
             if (Interlocked.CompareExchange(ref lockedNum, 1, 0) == 0)
             {
                 var curPoint = curPlayer.GetPoint();
-                if (curPoint.X != oldPoint.X || curPoint.Y != oldPoint.Y)
+                if (curPoint.Item1 != oldX || curPoint.Item2 != oldY)
                 {
-                    client.UploadPoint(curPoint);
-                    oldPoint = curPoint.Clone();
+                    oldX = curPoint.Item1;
+                    oldY = curPoint.Item2;
+                    client.UploadPoint(curPoint.Item1, curPoint.Item2);
                 }
                 Interlocked.Exchange(ref lockedNum, 0);
             }
@@ -85,7 +86,7 @@ namespace MO.WpfTest
                             var newPlayer = new GamePlayer(item.UserId);
                             root.Children.Add(newPlayer.Rect_Player);
                             _totalPlayer.Add(item.UserId, newPlayer);
-                            newPlayer.SetPoint(item.Point);
+                            newPlayer.SetPoint(item.X, item.Y);
                         }
                     }
                 }
@@ -111,7 +112,7 @@ namespace MO.WpfTest
                     GamePlayer gamePlayer;
                     if (_totalPlayer.TryGetValue(rep.UserId, out gamePlayer))
                     {
-                        gamePlayer.SetPoint(rep.Point);
+                        gamePlayer.SetPoint(rep.X, rep.Y);
                     }
                 }
                 else if (msg.ActionId == 100006)
@@ -135,19 +136,19 @@ namespace MO.WpfTest
             switch (e.Key)
             {
                 case Key.Up:
-                    point.Y -= step;
+                    point.Item2 -= step;
                     break;
                 case Key.Down:
-                    point.Y += step;
+                    point.Item2 += step;
                     break;
                 case Key.Left:
-                    point.X -= step;
+                    point.Item1 -= step;
                     break;
                 case Key.Right:
-                    point.X += step;
+                    point.Item1 += step;
                     break;
             }
-            curPlayer.SetPoint(point);
+            curPlayer.SetPoint(point.Item1, point.Item2);
             //client.UploadPoint(curPlayer.GetPoint());
         }
 

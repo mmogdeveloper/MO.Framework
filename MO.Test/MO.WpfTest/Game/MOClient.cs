@@ -118,10 +118,11 @@ namespace MO.WpfTest.Game
             SendPacket(content);
         }
 
-        public void UploadPoint(MOPoint point)
+        public void UploadPoint(Int64 x, Int64 y)
         {
             C2S100003 content = new C2S100003();
-            content.Point = point;
+            content.X = x;
+            content.Y = y;
             SendPacket(content);
         }
 

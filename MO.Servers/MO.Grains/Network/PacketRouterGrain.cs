@@ -53,8 +53,8 @@ namespace MO.Grains.Network
 
         public async Task SendPacket(MOMsg packet)
         {
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
+            //Stopwatch watch = new Stopwatch();
+            //watch.Start();
             if (packet.ActionId == 100000)
             {
                 //登录绑定
@@ -98,8 +98,8 @@ namespace MO.Grains.Network
                         break;
                 }
             }
-            watch.Stop();
-            Console.WriteLine($"执行时间：{watch.ElapsedMilliseconds} ms");
+            //watch.Stop();
+            //Console.WriteLine($"执行时间：{watch.ElapsedMilliseconds} ms");
         }
 
         public async Task Disconnect()

@@ -63,6 +63,7 @@ namespace MO.Login
             });
 
             TokenRedis.Initialization(_configuration.GetConnectionString("TokenRedis"));
+            DataRedis.Initialization(_configuration.GetConnectionString("DataRedis"));
         }
     }
 }

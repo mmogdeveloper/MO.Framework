@@ -30,14 +30,14 @@ namespace MO.Grains.Game
             _stream = streamProvider.GetStream<MOMsg>(Guid.NewGuid(), StreamProviders.Namespaces.ChunkSender);
         }
 
-        public override async Task OnActivateAsync()
+        public override Task OnActivateAsync()
         {
-            await base.OnActivateAsync();
+            return base.OnActivateAsync();
         }
 
-        public override async Task OnDeactivateAsync()
+        public override Task OnDeactivateAsync()
         {
-            await base.OnDeactivateAsync();
+            return base.OnDeactivateAsync();
         }
 
         public Task<Guid> JoinHall(IUser user)

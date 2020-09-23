@@ -23,16 +23,16 @@ namespace MO.Grains.User
             _logger = logger;
         }
 
-        public override async Task OnActivateAsync()
+        public override Task OnActivateAsync()
         {
             _logger.LogInformation($"{this.GetPrimaryKeyLong()} 加载数据");
-            await base.OnActivateAsync();
+            return base.OnActivateAsync();
         }
 
-        public override async Task OnDeactivateAsync()
+        public override Task OnDeactivateAsync()
         {
             _logger.LogInformation($"{this.GetPrimaryKeyLong()} 回写数据");
-            await base.OnDeactivateAsync();
+            return base.OnDeactivateAsync();
         }
 
         #region 订阅消息

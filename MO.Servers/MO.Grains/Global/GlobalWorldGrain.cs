@@ -27,11 +27,11 @@ namespace MO.Grains.Global
             _userDict = new Dictionary<long, IUser>();
         }
 
-        public override async Task OnActivateAsync()
+        public override Task OnActivateAsync()
         {
-            await base.OnActivateAsync();
             var streamProvider = this.GetStreamProvider(StreamProviders.JobsProvider);
             _stream = streamProvider.GetStream<MOMsg>(Guid.NewGuid(), StreamProviders.Namespaces.ChunkSender);
+            return base.OnActivateAsync();
         }
 
         public Task Notify(MOMsg msg)

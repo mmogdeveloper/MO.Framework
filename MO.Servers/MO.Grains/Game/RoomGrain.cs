@@ -30,10 +30,8 @@ namespace MO.Grains.Game
             _playerDict = new Dictionary<long, PlayerData>();
         }
 
-        public override async Task OnActivateAsync()
+        public override Task OnActivateAsync()
         {
-            await base.OnActivateAsync();
-
             //间隔1秒执行一次
             _reminder = RegisterTimer(
                 OnTimerCallback,
@@ -50,14 +48,15 @@ namespace MO.Grains.Game
             //{
             //    _seatDatas.Add(new SeatData(i));
             //}
+            return base.OnActivateAsync();
         }
 
-        public override async Task OnDeactivateAsync()
+        public override Task OnDeactivateAsync()
         {
             if (_reminder != null)
                 _reminder.Dispose();
 
-            await base.OnActivateAsync();
+            return base.OnActivateAsync();
         }
 
         private async Task OnTimerCallback(object obj)

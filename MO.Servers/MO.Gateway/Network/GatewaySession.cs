@@ -43,7 +43,8 @@ namespace MO.Gateway.Network
 
         public async Task Disconnect()
         {
-            await _router.Disconnect();
+            if (_router != null)
+                await _router.Disconnect();
         }
 
         public async Task DispatchIncomingPacket(MOMsg packet)

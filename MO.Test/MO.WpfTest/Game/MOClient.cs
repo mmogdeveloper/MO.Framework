@@ -13,10 +13,11 @@ namespace MO.WpfTest.Game
 {
     public class MOClient : IDisposable
     {
-        private readonly string deviceId = Guid.NewGuid().ToString("N");
+        private readonly string _deviceId = Guid.NewGuid().ToString("N");
         public long UserId { get; private set; }
         private string _token;
 
+        private byte[] _recBuffer;
         private TcpClient _tcpClient;
         private NetworkStream _networkStream;
         private HttpClient _httpClient;
@@ -25,6 +26,7 @@ namespace MO.WpfTest.Game
 
         public MOClient(Action<MOMsg> callback)
         {
+            _recBuffer = new byte[UInt16.MaxValue];
             _tcpClient = new TcpClient();
             _httpClient = new HttpClient();
             _callback = callback;
@@ -61,10 +63,9 @@ namespace MO.WpfTest.Game
             {
                 try
                 {
-                    var recBuffer = new byte[2048];
-                    var recLen = await _networkStream.ReadAsync(recBuffer);
+                    var recLen = await _networkStream.ReadAsync(_recBuffer);
                     var buffer = new byte[recLen - 2];
-                    Array.Copy(recBuffer, 2, buffer, 0, buffer.Length);
+                    Array.Copy(_recBuffer, 2, buffer, 0, buffer.Length);
                     var msg = MOMsg.Parser.ParseFrom(buffer);
                     if (msg != null)
                     {
@@ -100,7 +101,7 @@ namespace MO.WpfTest.Game
         public void Login()
         {
             C2S_1003 content = new C2S_1003();
-            content.DeviceId = deviceId;
+            content.DeviceId = _deviceId;
             content.MobileType = 1;
             var url = $"http://localhost:8001/api/c2s1003?data={content.ToByteString().ToBase64()}";
             var result = _httpClient.GetAsync(url).Result;

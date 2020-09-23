@@ -10,14 +10,14 @@ namespace MO.Grains.Game
     public class PlayerData
     {
         private IUser _user;
-        public Int64 X { get; private set; }
-        public Int64 Y { get; private set; }
+        public double X { get; private set; }
+        public double Y { get; private set; }
         public PlayerData(IUser user)
         {
             _user = user;
         }
 
-        public void SetPoint(Int64 x, Int64 y)
+        public void SetPoint(double x, double y)
         {
             X = x;
             Y = y;

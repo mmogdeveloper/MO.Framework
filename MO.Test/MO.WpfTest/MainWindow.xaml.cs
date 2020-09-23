@@ -26,8 +26,8 @@ namespace MO.WpfTest
         private Dictionary<long, GamePlayer> _totalPlayer;
         private GamePlayer curPlayer;
         private MOClient client;
-        private Int64 oldX;
-        private Int64 oldY;
+        private double oldX;
+        private double oldY;
         private Timer timer;
         private int lockedNum;
         public MainWindow()

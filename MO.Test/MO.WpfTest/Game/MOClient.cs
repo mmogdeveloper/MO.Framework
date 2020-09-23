@@ -124,7 +124,7 @@ namespace MO.WpfTest.Game
             SendPacket(content);
         }
 
-        public void UploadPoint(Int64 x, Int64 y)
+        public void UploadPoint(double x, double y)
         {
             C2S100003 content = new C2S100003();
             content.X = x;

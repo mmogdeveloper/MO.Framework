@@ -24,12 +24,12 @@ namespace ProtoMessage {
           string.Concat(
             "ChdtZXNzYWdlX2dhbWVfZ2F0ZS5wcm90bxIMUHJvdG9NZXNzYWdlIgYKBEMy",
             "UzEiCwoJQzJTMTAwMDAwIhsKCUMyUzEwMDAwMRIOCgZSb29tSWQYASABKAUi",
-            "MQoJVXNlclBvaW50Eg4KBlVzZXJJZBgBIAEoAxIJCgFYGAIgASgDEgkKAVkY",
-            "AyABKAMiSAoJUzJDMTAwMDAxEg4KBlJvb21JZBgBIAEoBRIrCgpVc2VyUG9p",
+            "MQoJVXNlclBvaW50Eg4KBlVzZXJJZBgBIAEoAxIJCgFYGAIgASgBEgkKAVkY",
+            "AyABKAEiSAoJUzJDMTAwMDAxEg4KBlJvb21JZBgBIAEoBRIrCgpVc2VyUG9p",
             "bnRzGAIgAygLMhcuUHJvdG9NZXNzYWdlLlVzZXJQb2ludCIrCglTMkMxMDAw",
             "MDISDgoGVXNlcklkGAEgASgDEg4KBlJvb21JZBgCIAEoBSIhCglDMlMxMDAw",
-            "MDMSCQoBWBgCIAEoAxIJCgFZGAMgASgDIjEKCVMyQzEwMDAwNBIOCgZVc2Vy",
-            "SWQYASABKAMSCQoBWBgCIAEoAxIJCgFZGAMgASgDIhsKCUMyUzEwMDAwNRIO",
+            "MDMSCQoBWBgCIAEoARIJCgFZGAMgASgBIjEKCVMyQzEwMDAwNBIOCgZVc2Vy",
+            "SWQYASABKAMSCQoBWBgCIAEoARIJCgFZGAMgASgBIhsKCUMyUzEwMDAwNRIO",
             "CgZSb29tSWQYASABKAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIO",
             "CgZSb29tSWQYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
@@ -402,9 +402,9 @@ namespace ProtoMessage {
 
     /// <summary>Field number for the "X" field.</summary>
     public const int XFieldNumber = 2;
-    private long x_;
+    private double x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long X {
+    public double X {
       get { return x_; }
       set {
         x_ = value;
@@ -413,9 +413,9 @@ namespace ProtoMessage {
 
     /// <summary>Field number for the "Y" field.</summary>
     public const int YFieldNumber = 3;
-    private long y_;
+    private double y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Y {
+    public double Y {
       get { return y_; }
       set {
         y_ = value;
@@ -445,8 +445,8 @@ namespace ProtoMessage {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
-      if (X != 0L) hash ^= X.GetHashCode();
-      if (Y != 0L) hash ^= Y.GetHashCode();
+      if (X != 0D) hash ^= X.GetHashCode();
+      if (Y != 0D) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -461,13 +461,13 @@ namespace ProtoMessage {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
-      if (X != 0L) {
-        output.WriteRawTag(16);
-        output.WriteInt64(X);
+      if (X != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(X);
       }
-      if (Y != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(Y);
+      if (Y != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Y);
       }
     }
 
@@ -477,11 +477,11 @@ namespace ProtoMessage {
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
       }
-      if (X != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(X);
+      if (X != 0D) {
+        size += 1 + 8;
       }
-      if (Y != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Y);
+      if (Y != 0D) {
+        size += 1 + 8;
       }
       return size;
     }
@@ -494,10 +494,10 @@ namespace ProtoMessage {
       if (other.UserId != 0L) {
         UserId = other.UserId;
       }
-      if (other.X != 0L) {
+      if (other.X != 0D) {
         X = other.X;
       }
-      if (other.Y != 0L) {
+      if (other.Y != 0D) {
         Y = other.Y;
       }
     }
@@ -514,12 +514,12 @@ namespace ProtoMessage {
             UserId = input.ReadInt64();
             break;
           }
-          case 16: {
-            X = input.ReadInt64();
+          case 17: {
+            X = input.ReadDouble();
             break;
           }
-          case 24: {
-            Y = input.ReadInt64();
+          case 25: {
+            Y = input.ReadDouble();
             break;
           }
         }
@@ -851,9 +851,9 @@ namespace ProtoMessage {
 
     /// <summary>Field number for the "X" field.</summary>
     public const int XFieldNumber = 2;
-    private long x_;
+    private double x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long X {
+    public double X {
       get { return x_; }
       set {
         x_ = value;
@@ -862,9 +862,9 @@ namespace ProtoMessage {
 
     /// <summary>Field number for the "Y" field.</summary>
     public const int YFieldNumber = 3;
-    private long y_;
+    private double y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Y {
+    public double Y {
       get { return y_; }
       set {
         y_ = value;
@@ -892,8 +892,8 @@ namespace ProtoMessage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (X != 0L) hash ^= X.GetHashCode();
-      if (Y != 0L) hash ^= Y.GetHashCode();
+      if (X != 0D) hash ^= X.GetHashCode();
+      if (Y != 0D) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -904,24 +904,24 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (X != 0L) {
-        output.WriteRawTag(16);
-        output.WriteInt64(X);
+      if (X != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(X);
       }
-      if (Y != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(Y);
+      if (Y != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Y);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (X != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(X);
+      if (X != 0D) {
+        size += 1 + 8;
       }
-      if (Y != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Y);
+      if (Y != 0D) {
+        size += 1 + 8;
       }
       return size;
     }
@@ -931,10 +931,10 @@ namespace ProtoMessage {
       if (other == null) {
         return;
       }
-      if (other.X != 0L) {
+      if (other.X != 0D) {
         X = other.X;
       }
-      if (other.Y != 0L) {
+      if (other.Y != 0D) {
         Y = other.Y;
       }
     }
@@ -947,12 +947,12 @@ namespace ProtoMessage {
           default:
             input.SkipLastField();
             break;
-          case 16: {
-            X = input.ReadInt64();
+          case 17: {
+            X = input.ReadDouble();
             break;
           }
-          case 24: {
-            Y = input.ReadInt64();
+          case 25: {
+            Y = input.ReadDouble();
             break;
           }
         }
@@ -1011,9 +1011,9 @@ namespace ProtoMessage {
 
     /// <summary>Field number for the "X" field.</summary>
     public const int XFieldNumber = 2;
-    private long x_;
+    private double x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long X {
+    public double X {
       get { return x_; }
       set {
         x_ = value;
@@ -1022,9 +1022,9 @@ namespace ProtoMessage {
 
     /// <summary>Field number for the "Y" field.</summary>
     public const int YFieldNumber = 3;
-    private long y_;
+    private double y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Y {
+    public double Y {
       get { return y_; }
       set {
         y_ = value;
@@ -1054,8 +1054,8 @@ namespace ProtoMessage {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
-      if (X != 0L) hash ^= X.GetHashCode();
-      if (Y != 0L) hash ^= Y.GetHashCode();
+      if (X != 0D) hash ^= X.GetHashCode();
+      if (Y != 0D) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -1070,13 +1070,13 @@ namespace ProtoMessage {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
-      if (X != 0L) {
-        output.WriteRawTag(16);
-        output.WriteInt64(X);
+      if (X != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(X);
       }
-      if (Y != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(Y);
+      if (Y != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Y);
       }
     }
 
@@ -1086,11 +1086,11 @@ namespace ProtoMessage {
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
       }
-      if (X != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(X);
+      if (X != 0D) {
+        size += 1 + 8;
       }
-      if (Y != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Y);
+      if (Y != 0D) {
+        size += 1 + 8;
       }
       return size;
     }
@@ -1103,10 +1103,10 @@ namespace ProtoMessage {
       if (other.UserId != 0L) {
         UserId = other.UserId;
       }
-      if (other.X != 0L) {
+      if (other.X != 0D) {
         X = other.X;
       }
-      if (other.Y != 0L) {
+      if (other.Y != 0D) {
         Y = other.Y;
       }
     }
@@ -1123,12 +1123,12 @@ namespace ProtoMessage {
             UserId = input.ReadInt64();
             break;
           }
-          case 16: {
-            X = input.ReadInt64();
+          case 17: {
+            X = input.ReadDouble();
             break;
           }
-          case 24: {
-            Y = input.ReadInt64();
+          case 25: {
+            Y = input.ReadDouble();
             break;
           }
         }

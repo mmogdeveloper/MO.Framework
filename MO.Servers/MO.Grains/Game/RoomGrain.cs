@@ -120,7 +120,7 @@ namespace MO.Grains.Game
             return Task.CompletedTask;
         }
 
-        public async Task PlayerGo(IUser user,Int64 x, Int64 y)
+        public async Task PlayerGo(IUser user,double x, double y)
         {
             S2C100004 content = new S2C100004();
             content.UserId = user.GetPrimaryKeyLong();

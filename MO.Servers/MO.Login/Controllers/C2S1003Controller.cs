@@ -57,7 +57,7 @@ namespace MO.Login.Controllers
                 userId = user.UserId;
             }
 
-            var token = CryptoHelper.MD5_Encrypt($"{userId}{DateTime.UtcNow.Ticks}");
+            var token = CryptoHelper.MD5_Encrypt($"{userId}{Guid.NewGuid()}{DateTime.UtcNow.Ticks}");
             TokenRedis.Client.Set(userId.ToString(), token, GameConstants.TOKENEXPIRE);
 
             _recordContext.Add(new LoginRecord()

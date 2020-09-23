@@ -28,18 +28,13 @@ namespace MO.Grains.Network
     [Reentrant]
     internal partial class PacketRouterGrain : Grain, IPacketRouter
     {
-        private MODataContext _dataContext;
-        private MORecordContext _recordContext;
         private IPacketObserver _observer;
         private IGlobalWorld _globalWorld;
         private IRoomFactory _roomFactory;
         private IUser _user;
-        public PacketRouterGrain(
-            MODataContext dataContext,
-            MORecordContext recordContext)
+        public PacketRouterGrain()
         {
-            _dataContext = dataContext;
-            _recordContext = recordContext;
+
         }
 
         public override Task OnActivateAsync()

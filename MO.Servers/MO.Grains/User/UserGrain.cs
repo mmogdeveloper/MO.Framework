@@ -1,4 +1,5 @@
-﻿using MO.GrainInterfaces;
+﻿using Microsoft.Extensions.Logging;
+using MO.GrainInterfaces;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
 using Orleans;
@@ -15,18 +16,22 @@ namespace MO.Grains.User
         private StreamSubscriptionHandle<MOMsg> _globalHandler;
         private StreamSubscriptionHandle<MOMsg> _roomHandler;
         private int _roomId;
+        private ILogger _logger;
+
+        public UserGrain(ILogger<UserGrain> logger)
+        {
+            _logger = logger;
+        }
 
         public override async Task OnActivateAsync()
         {
+            _logger.LogInformation($"{this.GetPrimaryKeyLong()} 加载数据");
             await base.OnActivateAsync();
         }
 
         public override async Task OnDeactivateAsync()
         {
-            await UnbindPacketObserver();
-            //取消消息订阅
-            await UnsubscribeGlobal();
-            await UnsubscribeRoom();
+            _logger.LogInformation($"{this.GetPrimaryKeyLong()} 回写数据");
             await base.OnDeactivateAsync();
         }
 
@@ -80,14 +85,15 @@ namespace MO.Grains.User
             }
         }
 
-        public async Task UnsubscribeGlobal()
+        public Task UnsubscribeGlobal()
         {
             //取消全服消息订阅
             if (_globalHandler != null)
             {
-                await _globalHandler.UnsubscribeAsync();
+                _globalHandler.UnsubscribeAsync().Wait();
                 _globalHandler = null;
             }
+            return Task.CompletedTask;
         }
 
         public async Task SubscribeRoom(Guid streamId)
@@ -100,13 +106,14 @@ namespace MO.Grains.User
             }
         }
 
-        public async Task UnsubscribeRoom()
+        public Task UnsubscribeRoom()
         {
             if (_roomHandler != null)
             {
-                await _roomHandler.UnsubscribeAsync();
+                _roomHandler.UnsubscribeAsync().Wait();
                 _roomHandler = null;
             }
+            return Task.CompletedTask;
         }
 
         public Task SetRoomId(int roomId)

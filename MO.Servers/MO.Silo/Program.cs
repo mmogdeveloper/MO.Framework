@@ -78,6 +78,10 @@ namespace MO.Silo
                         options.SerializationProviders.Add(typeof(ProtobufSerializer));
                         options.FallbackSerializationProvider = typeof(ProtobufSerializer);
                     })
+                    .Configure<HostOptions>(options =>
+                    {
+                        options.ShutdownTimeout = TimeSpan.FromMinutes(1);
+                    })
                     .AddSimpleMessageStreamProvider(StreamProviders.JobsProvider)
                     .AddSimpleMessageStreamProvider(StreamProviders.TransientProvider)
 

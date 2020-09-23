@@ -30,7 +30,6 @@ namespace MO.Grains.Network
     {
         private MODataContext _dataContext;
         private MORecordContext _recordContext;
-        //private IClientboundPacketSink _sink;
         private IPacketObserver _observer;
         private IGlobalWorld _globalWorld;
         private IRoomFactory _roomFactory;
@@ -45,7 +44,6 @@ namespace MO.Grains.Network
 
         public override Task OnActivateAsync()
         {
-            //_sink = GrainFactory.GetGrain<IClientboundPacketSink>(this.GetPrimaryKey());
             _globalWorld = GrainFactory.GetGrain<IGlobalWorld>(0);
             _roomFactory = GrainFactory.GetGrain<IRoomFactory>(0);
             return base.OnActivateAsync();
@@ -110,6 +108,7 @@ namespace MO.Grains.Network
             if (_user != null)
             {
                 await _user.UnbindPacketObserver();
+                await _globalWorld.PlayerLeaveGlobalWorld(_user);
 
                 var roomId = await _user.GetRoomId();
                 if (roomId != 0)

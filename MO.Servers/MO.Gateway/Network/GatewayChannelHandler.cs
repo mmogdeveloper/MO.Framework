@@ -26,9 +26,9 @@ namespace MO.Gateway.Network
             _configuration = configuration;
         }
 
-        public override async void ChannelActive(IChannelHandlerContext context)
+        public override void ChannelActive(IChannelHandlerContext context)
         {
-            await _session.Startup();
+
         }
 
         public override async void ChannelRead(IChannelHandlerContext context, object message)

@@ -22,12 +22,13 @@ namespace MO.Gateway.Network
         private readonly IClusterClient _client;
         private readonly ILogger _logger;
         private readonly Guid _sessionId;
-        private readonly OutcomingPacketObserver _outcomingPacketObserver;
         private readonly IConfiguration _configuration;
 
+        private OutcomingPacketObserver _outcomingPacketObserver;
         private IClientboundPacketObserver _clientboundPacketObserverRef;
         private IChannelHandlerContext _context;
         private IPacketRouter _router;
+        private bool _IsInit;
 
         public GatewaySession(IClusterClient client, ILoggerFactory loggerFactory,
             IConfiguration configuration, IChannelHandlerContext context)
@@ -38,14 +39,6 @@ namespace MO.Gateway.Network
             _context = context;
 
             _sessionId = Guid.NewGuid();
-            _outcomingPacketObserver = new OutcomingPacketObserver(this);
-        }
-
-        public async Task Startup()
-        {
-            _router = _client.GetGrain<IPacketRouter>(_sessionId);
-            _clientboundPacketObserverRef = await _client.CreateObjectReference<IClientboundPacketObserver>(_outcomingPacketObserver);
-            await _client.GetGrain<IClientboundPacketSink>(_sessionId).Subscribe(_clientboundPacketObserverRef);
         }
 
         public async Task Disconnect()
@@ -75,6 +68,16 @@ namespace MO.Gateway.Network
                     await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
                     await OnClosed();
                     return;
+                }
+
+                //同步初始化
+                if (!_IsInit)
+                {
+                    _outcomingPacketObserver = new OutcomingPacketObserver(this);
+                    _router = _client.GetGrain<IPacketRouter>(_sessionId);
+                    _clientboundPacketObserverRef = _client.CreateObjectReference<IClientboundPacketObserver>(_outcomingPacketObserver).Result;
+                    _client.GetGrain<IClientboundPacketSink>(_sessionId).Subscribe(_clientboundPacketObserverRef).Wait();
+                    _IsInit = true;
                 }
 
                 //心跳包

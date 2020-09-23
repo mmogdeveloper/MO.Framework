@@ -24,8 +24,8 @@ namespace MO.Gateway.Network
         private readonly Guid _sessionId;
         private readonly IConfiguration _configuration;
 
-        private OutcomingPacketObserver _outcomingPacketObserver;
-        private IClientboundPacketObserver _clientboundPacketObserverRef;
+        private OutcomingPacketObserver _packetObserver;
+        private IPacketObserver _packetObserverRef;
         private IChannelHandlerContext _context;
         private IPacketRouter _router;
         private bool _IsInit;
@@ -59,7 +59,7 @@ namespace MO.Gateway.Network
                 if (CryptoHelper.MD5_Encrypt($"{data}{key}").ToLower() != sign.ToLower())
                 {
                     await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "签名验证失败"));
-                    await OnClosed();
+                    await Close();
                     return;
                 }
 
@@ -67,17 +67,17 @@ namespace MO.Gateway.Network
                 if (TokenRedis.Client.Get<string>(packet.UserId.ToString()) != packet.Token)
                 {
                     await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
-                    await OnClosed();
+                    await Close();
                     return;
                 }
 
                 //同步初始化
                 if (!_IsInit)
                 {
-                    _outcomingPacketObserver = new OutcomingPacketObserver(this);
+                    _packetObserver = new OutcomingPacketObserver(this);
                     _router = _client.GetGrain<IPacketRouter>(_sessionId);
-                    _clientboundPacketObserverRef = _client.CreateObjectReference<IClientboundPacketObserver>(_outcomingPacketObserver).Result;
-                    _client.GetGrain<IClientboundPacketSink>(_sessionId).Subscribe(_clientboundPacketObserverRef).Wait();
+                    _packetObserverRef = _client.CreateObjectReference<IPacketObserver>(_packetObserver).Result;
+                    _router.SetObserver(_packetObserverRef).Wait();
                     _IsInit = true;
                 }
 
@@ -85,7 +85,6 @@ namespace MO.Gateway.Network
                 if (packet.ActionId == 1)
                 {
                     await TokenRedis.Client.ExpireAsync(packet.UserId.ToString(), GameConstants.TOKENEXPIRE);
-                    await _client.GetGrain<IClientboundPacketSink>(_sessionId).Subscribe(_clientboundPacketObserverRef);
                     return;
                 }
                 await _router.SendPacket(packet);
@@ -118,12 +117,12 @@ namespace MO.Gateway.Network
             }
         }
 
-        public async Task OnClosed()
+        public async Task Close()
         {
             await _context.CloseAsync();
         }
 
-        class OutcomingPacketObserver : IClientboundPacketObserver
+        class OutcomingPacketObserver : IPacketObserver
         {
             private readonly GatewaySession session;
 
@@ -132,12 +131,12 @@ namespace MO.Gateway.Network
                 this.session = session;
             }
 
-            public async void OnClosed()
+            public async void Close()
             {
-                await session.OnClosed();
+                await session.Close();
             }
 
-            public async void ReceivePacket(MOMsg packet)
+            public async void SendPacket(MOMsg packet)
             {
                 await session.DispatchOutcomingPacket(packet);
             }

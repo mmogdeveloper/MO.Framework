@@ -30,7 +30,8 @@ namespace MO.Grains.Network
     {
         private MODataContext _dataContext;
         private MORecordContext _recordContext;
-        private IClientboundPacketSink _sink;
+        //private IClientboundPacketSink _sink;
+        private IPacketObserver _observer;
         private IGlobalWorld _globalWorld;
         private IRoomFactory _roomFactory;
         private IUser _user;
@@ -44,10 +45,16 @@ namespace MO.Grains.Network
 
         public override Task OnActivateAsync()
         {
-            _sink = GrainFactory.GetGrain<IClientboundPacketSink>(this.GetPrimaryKey());
+            //_sink = GrainFactory.GetGrain<IClientboundPacketSink>(this.GetPrimaryKey());
             _globalWorld = GrainFactory.GetGrain<IGlobalWorld>(0);
             _roomFactory = GrainFactory.GetGrain<IRoomFactory>(0);
             return base.OnActivateAsync();
+        }
+
+        public Task SetObserver(IPacketObserver observer)
+        {
+            _observer = observer;
+            return Task.CompletedTask;
         }
 
         public async Task SendPacket(MOMsg packet)
@@ -56,15 +63,15 @@ namespace MO.Grains.Network
             {
                 //登录绑定
                 _user = GrainFactory.GetGrain<IUser>(packet.UserId);
-                await _user.BindClientPacketSink(_sink);
+                await _user.BindPacketObserver(_observer);
                 await _globalWorld.PlayerEnterGlobalWorld(_user);
-                await _sink.SendPacket(packet.ParseResult());
+                _observer.SendPacket(packet.ParseResult());
             }
             else
             {
                 if (_user == null)
                 {
-                    await _sink.SendPacket(packet.ParseResult(ErrorType.Hidden, "用户未登录"));
+                    _observer.SendPacket(packet.ParseResult(ErrorType.Hidden, "用户未登录"));
                     return;
                 }
 
@@ -102,7 +109,7 @@ namespace MO.Grains.Network
         {
             if (_user != null)
             {
-                await _user.UnbindClientPacketSink();
+                await _user.UnbindPacketObserver();
 
                 var roomId = await _user.GetRoomId();
                 if (roomId != 0)

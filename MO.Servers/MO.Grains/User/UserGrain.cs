@@ -11,7 +11,7 @@ namespace MO.Grains.User
 {
     public class UserGrain : Grain, IUser, IAsyncObserver<MOMsg>
     {
-        private IClientboundPacketSink _sink;
+        private IPacketObserver _observer;
         private StreamSubscriptionHandle<MOMsg> _globalHandler;
         private StreamSubscriptionHandle<MOMsg> _roomHandler;
         private int _roomId;
@@ -23,7 +23,7 @@ namespace MO.Grains.User
 
         public override async Task OnDeactivateAsync()
         {
-            await UnbindClientPacketSink();
+            await UnbindPacketObserver();
             //取消消息订阅
             await UnsubscribeGlobal();
             await UnsubscribeRoom();
@@ -49,24 +49,25 @@ namespace MO.Grains.User
 
         #endregion
 
-        public Task BindClientPacketSink(IClientboundPacketSink sink)
+        public Task BindPacketObserver(IPacketObserver observer)
         {
-            if (_sink != null)
-                _sink.Close();
-            _sink = sink;
+            if (_observer != null)
+                _observer.Close();
+            _observer = observer;
             return Task.CompletedTask;
         }
 
-        public Task UnbindClientPacketSink()
+        public Task UnbindPacketObserver()
         {
-            _sink = null;
+            _observer = null;
             return Task.CompletedTask;
         }
 
-        public async Task Notify(MOMsg packet)
+        public Task Notify(MOMsg packet)
         {
-            if (_sink != null)
-                await _sink.SendPacket(packet);
+            if (_observer != null)
+                _observer.SendPacket(packet);
+            return Task.CompletedTask;
         }
 
         public async Task SubscribeGlobal(Guid streamId)

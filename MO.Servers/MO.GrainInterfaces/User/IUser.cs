@@ -12,8 +12,8 @@ namespace MO.GrainInterfaces.User
 {
     public interface IUser : IGrainWithIntegerKey
     {
-        Task BindClientPacketSink(IClientboundPacketSink sink);
-        Task UnbindClientPacketSink();
+        Task BindPacketObserver(IPacketObserver observer);
+        Task UnbindPacketObserver();
 
         Task Notify(MOMsg packet);
 

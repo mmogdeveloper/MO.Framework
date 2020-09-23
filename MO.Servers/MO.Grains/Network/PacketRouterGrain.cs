@@ -17,6 +17,7 @@ using Orleans.Concurrency;
 using Orleans.Providers;
 using ProtoMessage;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -52,6 +53,8 @@ namespace MO.Grains.Network
 
         public async Task SendPacket(MOMsg packet)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
             if (packet.ActionId == 100000)
             {
                 //登录绑定
@@ -65,7 +68,6 @@ namespace MO.Grains.Network
                 if (_user == null)
                 {
                     _observer.SendPacket(packet.ParseResult(ErrorType.Hidden, "用户未登录"));
-                    return;
                 }
 
                 switch (packet.ActionId)
@@ -96,6 +98,8 @@ namespace MO.Grains.Network
                         break;
                 }
             }
+            watch.Stop();
+            Console.WriteLine($"执行时间：{watch.ElapsedMilliseconds} ms");
         }
 
         public async Task Disconnect()

@@ -70,9 +70,9 @@ namespace MO.Gateway.Network
             base.ChannelRegistered(context);
         }
 
-        public override async void ChannelUnregistered(IChannelHandlerContext context)
+        public override void ChannelUnregistered(IChannelHandlerContext context)
         {
-            await _session.Disconnect();
+            _session.Disconnect();
             base.ChannelUnregistered(context);
         }
     }

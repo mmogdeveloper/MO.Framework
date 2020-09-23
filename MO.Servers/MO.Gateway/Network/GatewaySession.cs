@@ -37,14 +37,13 @@ namespace MO.Gateway.Network
             _logger = loggerFactory.CreateLogger<GatewaySession>();
             _configuration = configuration;
             _context = context;
-
             _sessionId = Guid.NewGuid();
         }
 
-        public async Task Disconnect()
+        public void Disconnect()
         {
             if (_router != null)
-                await _router.Disconnect();
+                _router.Disconnect();
         }
 
         public async Task DispatchIncomingPacket(MOMsg packet)
@@ -103,9 +102,12 @@ namespace MO.Gateway.Network
         {
             try
             {
-                var bytes = packet.ToByteArray();
-                IByteBuffer buffer = Unpooled.WrappedBuffer(bytes);
-                await _context.WriteAndFlushAsync(buffer);
+                if (_context.Channel.Active)
+                {
+                    var bytes = packet.ToByteArray();
+                    IByteBuffer buffer = Unpooled.WrappedBuffer(bytes);
+                    await _context.WriteAndFlushAsync(buffer);
+                }
             }
             catch (Exception ex)
             {

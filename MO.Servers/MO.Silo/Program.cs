@@ -90,8 +90,8 @@ namespace MO.Silo
                     //.UseLocalhostClustering()
                     .ConfigureEndpoints(
                     hostname: Configuration.GetSection("ClusterConfig")["HostName"],
-                    siloPort: Int16.Parse(Configuration.GetSection("ClusterConfig")["SiloPort"]),
-                    gatewayPort: Int16.Parse(Configuration.GetSection("ClusterConfig")["GatewayPort"]))
+                    siloPort: UInt16.Parse(Configuration.GetSection("ClusterConfig")["SiloPort"]),
+                    gatewayPort: UInt16.Parse(Configuration.GetSection("ClusterConfig")["GatewayPort"]))
                     //.ConfigureEndpoints(siloPort: 11112, gatewayPort: 30001)
                     .UseAdoNetClustering(options =>
                     {

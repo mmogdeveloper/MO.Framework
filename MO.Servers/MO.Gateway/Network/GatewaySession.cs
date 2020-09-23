@@ -12,7 +12,6 @@ using MO.GrainInterfaces.Network;
 using Newtonsoft.Json;
 using Orleans;
 using ProtoMessage;
-using SshNet.Security.Cryptography;
 using System;
 using System.Threading.Tasks;
 
@@ -44,9 +43,9 @@ namespace MO.Gateway.Network
 
         public async Task Startup()
         {
+            _router = _client.GetGrain<IPacketRouter>(_sessionId);
             _clientboundPacketObserverRef = await _client.CreateObjectReference<IClientboundPacketObserver>(_outcomingPacketObserver);
             await _client.GetGrain<IClientboundPacketSink>(_sessionId).Subscribe(_clientboundPacketObserverRef);
-            _router = _client.GetGrain<IPacketRouter>(_sessionId);
         }
 
         public async Task Disconnect()
@@ -78,9 +77,13 @@ namespace MO.Gateway.Network
                     return;
                 }
 
-                //刷新token时间
-                await TokenRedis.Client.ExpireAsync(packet.UserId.ToString(), GameConstants.TOKENEXPIRE);
-                await _client.GetGrain<IClientboundPacketSink>(_sessionId).Subscribe(_clientboundPacketObserverRef);
+                //心跳包
+                if (packet.ActionId == 1)
+                {
+                    await TokenRedis.Client.ExpireAsync(packet.UserId.ToString(), GameConstants.TOKENEXPIRE);
+                    await _client.GetGrain<IClientboundPacketSink>(_sessionId).Subscribe(_clientboundPacketObserverRef);
+                    return;
+                }
                 await _router.SendPacket(packet);
             }
             catch (Exception ex)

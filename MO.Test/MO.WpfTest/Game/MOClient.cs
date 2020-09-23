@@ -32,7 +32,7 @@ namespace MO.WpfTest.Game
             _tcpClient = new TcpClient();
             _httpClient = new HttpClient();
             _callback = callback;
-            _timer = new Timer(TimerCallback, null, 1000, 1000);
+            _timer = new Timer(TimerCallback, null, 5000, 15000);
         }
 
         public void Dispose()

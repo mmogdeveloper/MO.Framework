@@ -39,6 +39,10 @@ namespace MO.Api
                     options.SerializationProviders.Add(typeof(ProtobufSerializer));
                     options.FallbackSerializationProvider = typeof(ProtobufSerializer);
                 })
+                .Configure<HostOptions>(options =>
+                {
+                    options.ShutdownTimeout = TimeSpan.FromMinutes(1);
+                })
                 //.ConfigureServices()
                 .ConfigureLogging(builder => builder.AddProvider(loggerProvider))
                 .ConfigureApplicationParts(parts => { parts.AddFromApplicationBaseDirectory().WithReferences(); })

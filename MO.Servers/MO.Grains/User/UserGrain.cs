@@ -85,15 +85,14 @@ namespace MO.Grains.User
             }
         }
 
-        public Task UnsubscribeGlobal()
+        public async Task UnsubscribeGlobal()
         {
             //取消全服消息订阅
             if (_globalHandler != null)
             {
-                _globalHandler.UnsubscribeAsync().Wait();
+                await _globalHandler.UnsubscribeAsync();
                 _globalHandler = null;
             }
-            return Task.CompletedTask;
         }
 
         public async Task SubscribeRoom(Guid streamId)
@@ -106,14 +105,13 @@ namespace MO.Grains.User
             }
         }
 
-        public Task UnsubscribeRoom()
+        public async Task UnsubscribeRoom()
         {
             if (_roomHandler != null)
             {
-                _roomHandler.UnsubscribeAsync().Wait();
+                await _roomHandler.UnsubscribeAsync();
                 _roomHandler = null;
             }
-            return Task.CompletedTask;
         }
 
         public Task SetRoomId(int roomId)

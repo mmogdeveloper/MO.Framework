@@ -23,17 +23,18 @@ namespace ProtoMessage {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChdtZXNzYWdlX2dhbWVfYmFzZS5wcm90bxIMUHJvdG9NZXNzYWdlIi4KBk1P",
-            "TXNncxIkCgdQYWNrZXRzGAEgAygLMhMuUHJvdG9NZXNzYWdlLk1PTXNnIooB",
+            "TXNncxIkCgdQYWNrZXRzGAEgAygLMhMuUHJvdG9NZXNzYWdlLk1PTXNnIpgB",
             "CgVNT01zZxIQCghBY3Rpb25JZBgBIAEoBRIOCgZVc2VySWQYAiABKAMSDQoF",
             "TXNnSWQYAyABKAUSDQoFVG9rZW4YBCABKAkSCgoCU3QYBSABKAMSDwoHQ29u",
-            "dGVudBgGIAEoDBIRCglFcnJvckNvZGUYCiABKAUSEQoJRXJyb3JJbmZvGAsg",
-            "ASgJIkQKC01PTXNnUmVzdWx0EhEKCUVycm9yQ29kZRgBIAEoBRIRCglFcnJv",
-            "ckluZm8YAiABKAkSDwoHQ29udGVudBgDIAEoDGIGcHJvdG8z"));
+            "dGVudBgGIAEoDBIMCgRTaWduGAcgASgJEhEKCUVycm9yQ29kZRgKIAEoBRIR",
+            "CglFcnJvckluZm8YCyABKAkiRAoLTU9Nc2dSZXN1bHQSEQoJRXJyb3JDb2Rl",
+            "GAEgASgFEhEKCUVycm9ySW5mbxgCIAEoCRIPCgdDb250ZW50GAMgASgMYgZw",
+            "cm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.MOMsgs), global::ProtoMessage.MOMsgs.Parser, new[]{ "Packets" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.MOMsg), global::ProtoMessage.MOMsg.Parser, new[]{ "ActionId", "UserId", "MsgId", "Token", "St", "Content", "ErrorCode", "ErrorInfo" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.MOMsg), global::ProtoMessage.MOMsg.Parser, new[]{ "ActionId", "UserId", "MsgId", "Token", "St", "Content", "Sign", "ErrorCode", "ErrorInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.MOMsgResult), global::ProtoMessage.MOMsgResult.Parser, new[]{ "ErrorCode", "ErrorInfo", "Content" }, null, null, null)
           }));
     }
@@ -189,6 +190,7 @@ namespace ProtoMessage {
       token_ = other.token_;
       st_ = other.st_;
       content_ = other.content_;
+      sign_ = other.sign_;
       errorCode_ = other.errorCode_;
       errorInfo_ = other.errorInfo_;
     }
@@ -267,6 +269,17 @@ namespace ProtoMessage {
       }
     }
 
+    /// <summary>Field number for the "Sign" field.</summary>
+    public const int SignFieldNumber = 7;
+    private string sign_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Sign {
+      get { return sign_; }
+      set {
+        sign_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "ErrorCode" field.</summary>
     public const int ErrorCodeFieldNumber = 10;
     private int errorCode_;
@@ -311,6 +324,7 @@ namespace ProtoMessage {
       if (Token != other.Token) return false;
       if (St != other.St) return false;
       if (Content != other.Content) return false;
+      if (Sign != other.Sign) return false;
       if (ErrorCode != other.ErrorCode) return false;
       if (ErrorInfo != other.ErrorInfo) return false;
       return true;
@@ -325,6 +339,7 @@ namespace ProtoMessage {
       if (Token.Length != 0) hash ^= Token.GetHashCode();
       if (St != 0L) hash ^= St.GetHashCode();
       if (Content.Length != 0) hash ^= Content.GetHashCode();
+      if (Sign.Length != 0) hash ^= Sign.GetHashCode();
       if (ErrorCode != 0) hash ^= ErrorCode.GetHashCode();
       if (ErrorInfo.Length != 0) hash ^= ErrorInfo.GetHashCode();
       return hash;
@@ -361,6 +376,10 @@ namespace ProtoMessage {
         output.WriteRawTag(50);
         output.WriteBytes(Content);
       }
+      if (Sign.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(Sign);
+      }
       if (ErrorCode != 0) {
         output.WriteRawTag(80);
         output.WriteInt32(ErrorCode);
@@ -391,6 +410,9 @@ namespace ProtoMessage {
       }
       if (Content.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Content);
+      }
+      if (Sign.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Sign);
       }
       if (ErrorCode != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ErrorCode);
@@ -423,6 +445,9 @@ namespace ProtoMessage {
       }
       if (other.Content.Length != 0) {
         Content = other.Content;
+      }
+      if (other.Sign.Length != 0) {
+        Sign = other.Sign;
       }
       if (other.ErrorCode != 0) {
         ErrorCode = other.ErrorCode;
@@ -462,6 +487,10 @@ namespace ProtoMessage {
           }
           case 50: {
             Content = input.ReadBytes();
+            break;
+          }
+          case 58: {
+            Sign = input.ReadString();
             break;
           }
           case 80: {

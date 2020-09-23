@@ -16,6 +16,7 @@ message MOMsg {
   string Token = 4;
   int64 St = 5;
   bytes Content = 6;
+  string Sign = 7;
 //Response
   int32 ErrorCode = 10;
   string ErrorInfo = 11;

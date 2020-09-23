@@ -59,17 +59,22 @@ namespace MO.Gateway.Network
             try
             {
                 //md5签名验证
-                //var key = _configuration.GetValue<string>("MD5Key");
-                //var data = packet.ToByteString();
-                //if (CryptoHelper.MD5_Encrypt($"{data}{key}").ToLower() != packet.Sign.ToLower())
-                //{
-                //    return;
-                //}
+                var key = _configuration.GetValue<string>("MD5Key");
+                var sign = packet.Sign;
+                packet.Sign = string.Empty;
+                var data = packet.ToByteString();
+                if (CryptoHelper.MD5_Encrypt($"{data}{key}").ToLower() != sign.ToLower())
+                {
+                    await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "签名验证失败"));
+                    await OnClosed();
+                    return;
+                }
 
                 //token验证
                 if (TokenRedis.Client.Get<string>(packet.UserId.ToString()) != packet.Token)
                 {
                     await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
+                    await OnClosed();
                     return;
                 }
 
@@ -92,9 +97,6 @@ namespace MO.Gateway.Network
         {
             try
             {
-                if (_context == null)
-                    return;
-
                 var bytes = packet.ToByteArray();
                 IByteBuffer buffer = Unpooled.WrappedBuffer(bytes);
                 await _context.WriteAndFlushAsync(buffer);
@@ -111,8 +113,6 @@ namespace MO.Gateway.Network
 
         public async Task OnClosed()
         {
-            if (_context == null)
-                return;
             await _context.CloseAsync();
         }
 

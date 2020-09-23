@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf;
+using MO.Common.Security;
 using ProtoMessage;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace MO.WpfTest.Game
 {
     public class MOClient : IDisposable
     {
+        private readonly string _md5Key = "8B203C98ADD54BACA9857C5DC4DFF603";
         private readonly string _deviceId = Guid.NewGuid().ToString("N");
         public long UserId { get; private set; }
         private string _token;
@@ -89,6 +91,9 @@ namespace MO.WpfTest.Game
                 msg.UserId = UserId;
                 msg.ActionId = actionId;
                 msg.Content = msgContent.ToByteString();
+
+                var data = msg.ToByteString();
+                msg.Sign = CryptoHelper.MD5_Encrypt($"{data}{_md5Key}").ToLower();
                 var content = msg.ToByteArray();
                 var buffer = new byte[content.Length + 2];
                 var len = BitConverter.GetBytes((short)content.Length);

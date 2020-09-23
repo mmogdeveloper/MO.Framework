@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MO.Commons\MO.Common\MO.Common.csproj" />
     <ProjectReference Include="..\..\MO.Commons\MO.Protocol\MO.Protocol.csproj" />
   </ItemGroup>
 

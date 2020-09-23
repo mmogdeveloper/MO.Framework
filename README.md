@@ -31,8 +31,8 @@ NLog 系统日志
 在mysql数据库执行Database文件夹中的sql文件(Orleans需要)  
 Model模块中创建了两个数据库(Code First)  
 分别是MOData和MORecord  
-MOData是基本的业务数据库表  
-MORecord是记录日志的数据库表  
+MOData是基本的业务数据库  
+MORecord是记录日志的数据库  
 Redis作为数据缓存使用  
 Redis 默认 DB10 用来存储Token 过期时间为30秒  
 Redis 默认 DB0 用来存储基本业务数据  (自定义存储格式)

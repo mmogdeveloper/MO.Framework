@@ -71,7 +71,7 @@ namespace MO.Gateway.Network
                 if (!_IsInit)
                 {
                     _userGrain = _client.GetGrain<IUser>(packet.UserId);
-                    var tokenInfo = await _userGrain.GetToken();
+                    var tokenInfo = _userGrain.GetToken().Result;
                     if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                     {
                         await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));

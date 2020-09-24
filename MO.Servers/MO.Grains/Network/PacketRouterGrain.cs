@@ -26,7 +26,7 @@ namespace MO.Grains.Network
     /// <summary>
     /// Packet router grain. It send different packet to partial class by its session state.
     /// </summary>
-    [Reentrant]
+    //[Reentrant]
     internal partial class PacketRouterGrain : Grain, IPacketRouter
     {
         private IPacketObserver _observer;

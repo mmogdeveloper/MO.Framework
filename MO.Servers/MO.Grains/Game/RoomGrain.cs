@@ -1,9 +1,11 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.Logging;
+using MO.Algorithm.Redis;
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Game;
 using MO.GrainInterfaces.User;
 using MO.Model.Context;
+using Newtonsoft.Json;
 using Orleans;
 using Orleans.Providers;
 using Orleans.Streams;
@@ -15,10 +17,11 @@ using System.Threading.Tasks;
 
 namespace MO.Grains.Game
 {
-    public class RoomGrain : Grain, IRoom
+    [StorageProvider(ProviderName = StorageProviders.DefaultProviderName)]
+    public class RoomGrain : Grain<Dictionary<long, PlayerData>>, IRoom
     {
         private readonly ILogger _logger;
-        private readonly Dictionary<long, PlayerData> _playerDict;
+        private Dictionary<long, PlayerData> _playerDict;
 
         private IAsyncStream<MOMsg> _stream;
         private IDisposable _reminder;
@@ -30,7 +33,7 @@ namespace MO.Grains.Game
             _playerDict = new Dictionary<long, PlayerData>();
         }
 
-        public override Task OnActivateAsync()
+        public async override Task OnActivateAsync()
         {
             //间隔1秒执行一次
             _reminder = RegisterTimer(
@@ -48,15 +51,23 @@ namespace MO.Grains.Game
             //{
             //    _seatDatas.Add(new SeatData(i));
             //}
-            return base.OnActivateAsync();
+
+            //自定义加载数据
+            await base.ReadStateAsync();
+            _playerDict = State;
+
+            await base.OnActivateAsync();
         }
 
-        public override Task OnDeactivateAsync()
+        public async override Task OnDeactivateAsync()
         {
             if (_reminder != null)
                 _reminder.Dispose();
 
-            return base.OnActivateAsync();
+            //回写数据
+            await base.WriteStateAsync();
+
+            await base.OnActivateAsync();
         }
 
         private async Task OnTimerCallback(object obj)
@@ -67,6 +78,11 @@ namespace MO.Grains.Game
         public async Task RoomNotify(MOMsg msg)
         {
             await _stream.OnNextAsync(msg);
+        }
+
+        public async Task Reconnect(IUser user)
+        {
+            await user.SubscribeRoom(_stream.Guid);
         }
 
         public async Task PlayerEnterRoom(IUser user)

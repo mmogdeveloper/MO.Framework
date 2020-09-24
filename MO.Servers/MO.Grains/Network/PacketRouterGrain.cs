@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using MO.Algorithm.Actions;
 using MO.Algorithm.Actions.Enum;
 using MO.Algorithm.Redis;
@@ -33,9 +34,13 @@ namespace MO.Grains.Network
         private IGlobalWorld _globalWorld;
         private IRoomFactory _roomFactory;
         private IUser _user;
-        public PacketRouterGrain()
-        {
+        private Stopwatch _watch;
+        private ILogger _logger;
 
+        public PacketRouterGrain(ILogger<PacketRouterGrain> logger)
+        {
+            _watch = new Stopwatch();
+            _logger = logger;
         }
 
         public override Task OnActivateAsync()
@@ -51,23 +56,36 @@ namespace MO.Grains.Network
             return Task.CompletedTask;
         }
 
+        private void Notify(MOMsg packet)
+        {
+            if (_observer != null)
+            {
+                _observer.SendPacket(packet);
+            }
+        }
+
         public async Task SendPacket(MOMsg packet)
         {
-            //Stopwatch watch = new Stopwatch();
-            //watch.Start();
+            _watch.Restart();
             if (packet.ActionId == 100000)
             {
                 //登录绑定
                 _user = GrainFactory.GetGrain<IUser>(packet.UserId);
                 await _user.BindPacketObserver(_observer);
                 await _globalWorld.PlayerEnterGlobalWorld(_user);
-                _observer.SendPacket(packet.ParseResult());
+                var roomId = await _user.GetRoomId();
+                if (roomId != 0)
+                {
+                    var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
+                    await curRoom.Reconnect(_user);
+                }
+                Notify(packet.ParseResult());
             }
             else
             {
                 if (_user == null)
                 {
-                    _observer.SendPacket(packet.ParseResult(ErrorType.Hidden, "用户未登录"));
+                    Notify(packet.ParseResult(ErrorType.Hidden, "用户未登录"));
                 }
 
                 switch (packet.ActionId)
@@ -98,8 +116,8 @@ namespace MO.Grains.Network
                         break;
                 }
             }
-            //watch.Stop();
-            //Console.WriteLine($"执行时间：{watch.ElapsedMilliseconds} ms");
+            _watch.Stop();
+            Console.WriteLine($"执行时间：{packet.UserId} {_watch.ElapsedMilliseconds} ms");
         }
 
         public async Task Disconnect()

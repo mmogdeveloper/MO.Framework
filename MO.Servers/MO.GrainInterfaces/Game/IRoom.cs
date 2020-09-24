@@ -12,6 +12,7 @@ namespace MO.GrainInterfaces.Game
     {
         Task RoomNotify(MOMsg msg);
 
+        Task Reconnect(IUser user);
         Task PlayerEnterRoom(IUser user);
         Task PlayerLeaveRoom(IUser user);
         Task PlayerReady(IUser user);

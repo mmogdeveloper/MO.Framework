@@ -26,6 +26,8 @@ namespace MO.Login
                 })
                 .ConfigureLogging(builder =>
                 {
+                    builder.ClearProviders();
+                    builder.SetMinimumLevel(LogLevel.Trace);
                     builder.AddNLog();
                 });
     }

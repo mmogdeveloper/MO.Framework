@@ -1,9 +1,11 @@
 ﻿using MO.WpfTest.Game;
+using Newtonsoft.Json;
 using ProtoMessage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -68,6 +70,10 @@ namespace MO.WpfTest
         {
             this.Dispatcher.Invoke(() =>
             {
+                richLog.AppendText(JsonConvert.SerializeObject(msg));
+                richLog.AppendText("\n");
+                richLog.ScrollToEnd();
+
                 if (msg.ActionId == 100000)
                 {
                     client.JoinRoom(10000);
@@ -79,14 +85,18 @@ namespace MO.WpfTest
                     foreach (var item in rep.UserPoints)
                     {
                         if (item.UserId == curPlayer.UserId)
-                            continue;
-
-                        if (!_totalPlayer.ContainsKey(item.UserId))
                         {
-                            var newPlayer = new GamePlayer(item.UserId);
-                            root.Children.Add(newPlayer.Rect_Player);
-                            _totalPlayer.Add(item.UserId, newPlayer);
-                            newPlayer.SetPoint(item.X, item.Y);
+                            curPlayer.SetPoint(item.X, item.Y);
+                        }
+                        else
+                        {
+                            if (!_totalPlayer.ContainsKey(item.UserId))
+                            {
+                                var newPlayer = new GamePlayer(item.UserId);
+                                root.Children.Add(newPlayer.Rect_Player);
+                                _totalPlayer.Add(item.UserId, newPlayer);
+                                newPlayer.SetPoint(item.X, item.Y);
+                            }
                         }
                     }
                 }

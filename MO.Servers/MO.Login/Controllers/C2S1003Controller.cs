@@ -64,7 +64,7 @@ namespace MO.Login.Controllers
 
             //将玩家踢出游戏
             var userGrain = _client.GetGrain<IUser>(userId);
-            userGrain.Kick();
+            userGrain.Kick().Wait();
 
             var token = CryptoHelper.MD5_Encrypt($"{userId}{Guid.NewGuid()}{DateTime.UtcNow.Ticks}");
             TokenRedis.Client.Set(userId.ToString(), token, GameConstants.TOKENEXPIRE);

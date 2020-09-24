@@ -90,8 +90,11 @@ namespace MO.Grains.Game
 
         public async Task PlayerEnterRoom(IUser user)
         {
-            _players.State[user.GetPrimaryKeyLong()] = new PlayerData(user);
+            if (!_players.State.ContainsKey(user.GetPrimaryKeyLong()))
+                _players.State[user.GetPrimaryKeyLong()] = new PlayerData(user);
+
             await user.SubscribeRoom(_stream.Guid);
+
             {
                 S2C100001 content = new S2C100001();
                 content.RoomId = (int)this.GetPrimaryKeyLong();

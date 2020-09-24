@@ -80,8 +80,6 @@ namespace MO.Grains.User
 
         public Task BindPacketObserver(IPacketObserver observer)
         {
-            if (_observer != null)
-                _observer.Close();
             _observer = observer;
             return Task.CompletedTask;
         }
@@ -101,11 +99,10 @@ namespace MO.Grains.User
 
         public Task Kick()
         {
-            var packet = new MOMsg() { ErrorCode = (int)ErrorType.Shown, ErrorInfo = "您的账号异地登录" };
             if (_observer != null)
             {
-                _observer.SendPacket(packet);
-                _observer.Close();
+                var packet = new MOMsg() { ErrorCode = (int)ErrorType.Shown, ErrorInfo = "您的账号异地登录" };
+                _observer.Close(packet);
             }
             return Task.CompletedTask;
         }

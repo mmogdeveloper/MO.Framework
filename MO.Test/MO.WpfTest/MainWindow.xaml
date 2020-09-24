@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:MO.WpfTest"
         mc:Ignorable="d"
         Title="Game" Height="450" Width="800" KeyDown="Window_KeyDown" Closed="Window_Closed">
-    <Canvas Name="root">
-        <!--<Rectangle Width="20" Height="20" Fill="Gold" Name="rect_player" Canvas.Top="0" Canvas.Bottom="0" Canvas.Left="0" Canvas.Right="0"></Rectangle>-->
-    </Canvas>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Canvas Name="root">
+        </Canvas>
+        <RichTextBox Name="richLog" Grid.Column="1">
+            
+        </RichTextBox>
+    </Grid>
 </Window>

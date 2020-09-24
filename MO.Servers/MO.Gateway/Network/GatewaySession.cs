@@ -64,14 +64,6 @@ namespace MO.Gateway.Network
                     return;
                 }
 
-                //token验证
-                if (TokenRedis.Client.Get<string>(packet.UserId.ToString()) != packet.Token)
-                {
-                    await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
-                    await Close();
-                    return;
-                }
-
                 //同步初始化
                 if (!_IsInit)
                 {
@@ -144,6 +136,11 @@ namespace MO.Gateway.Network
             await _context.CloseAsync();
         }
 
+        public void Flush()
+        {
+            _context.Flush();
+        }
+
         class OutcomingPacketObserver : IPacketObserver
         {
             private readonly GatewaySession session;
@@ -153,8 +150,10 @@ namespace MO.Gateway.Network
                 this.session = session;
             }
 
-            public async void Close()
+            public async void Close(MOMsg packet = null)
             {
+                if (packet != null)
+                    await session.DispatchOutcomingPacket(packet);
                 await session.Close();
             }
 

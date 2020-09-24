@@ -61,10 +61,11 @@ namespace MO.WpfTest.Game
 
         private async void ReceivePacket()
         {
-            while (true)
+            try
             {
-                try
+                while (true)
                 {
+
                     var recLen = await _networkStream.ReadAsync(_recBuffer);
                     var buffer = new byte[recLen - 2];
                     Array.Copy(_recBuffer, 2, buffer, 0, buffer.Length);
@@ -74,32 +75,39 @@ namespace MO.WpfTest.Game
                         _callback(msg);
                     }
                 }
-                catch (Exception)
-                {
+            }
+            catch (Exception)
+            {
 
-                }
             }
         }
 
         private async void SendPacket(IMessage msgContent)
         {
-            if (_tcpClient.Connected)
+            try
             {
-                var actionId = Int32.Parse(msgContent.GetType().Name.Substring(3));
-                MOMsg msg = new MOMsg();
-                msg.Token = _token;
-                msg.UserId = UserId;
-                msg.ActionId = actionId;
-                msg.Content = msgContent.ToByteString();
+                if (_tcpClient.Connected)
+                {
+                    var actionId = Int32.Parse(msgContent.GetType().Name.Substring(3));
+                    MOMsg msg = new MOMsg();
+                    msg.Token = _token;
+                    msg.UserId = UserId;
+                    msg.ActionId = actionId;
+                    msg.Content = msgContent.ToByteString();
 
-                var data = msg.ToByteString();
-                msg.Sign = CryptoHelper.MD5_Encrypt($"{data}{_md5Key}").ToLower();
-                var content = msg.ToByteArray();
-                var buffer = new byte[content.Length + 2];
-                var len = BitConverter.GetBytes((short)content.Length);
-                Array.Copy(len, buffer, 2);
-                Array.Copy(content, 0, buffer, 2, content.Length);
-                await _networkStream.WriteAsync(buffer);
+                    var data = msg.ToByteString();
+                    msg.Sign = CryptoHelper.MD5_Encrypt($"{data}{_md5Key}").ToLower();
+                    var content = msg.ToByteArray();
+                    var buffer = new byte[content.Length + 2];
+                    var len = BitConverter.GetBytes((short)content.Length);
+                    Array.Copy(len, buffer, 2);
+                    Array.Copy(content, 0, buffer, 2, content.Length);
+                    await _networkStream.WriteAsync(buffer);
+                }
+            }
+            catch(Exception)
+            {
+
             }
         }
 

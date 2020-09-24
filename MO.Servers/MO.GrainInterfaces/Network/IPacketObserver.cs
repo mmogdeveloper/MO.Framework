@@ -9,6 +9,6 @@ namespace MO.GrainInterfaces.Network
     public interface IPacketObserver : IGrainObserver
     {
         void SendPacket(MOMsg packet);
-        void Close();
+        void Close(MOMsg packet = null);
     }
 }

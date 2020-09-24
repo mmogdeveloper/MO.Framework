@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using MO.Algorithm.Actions.Enum;
+using MO.Algorithm.Config;
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
 using Orleans;
-using Orleans.Providers;
 using Orleans.Runtime;
 using Orleans.Streams;
 using ProtoMessage;
 using System;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace MO.Grains.User
@@ -124,7 +123,7 @@ namespace MO.Grains.User
 
         public Task<bool> CheckToken(string token)
         {
-            if (_tokenInfo.Token != token || _tokenInfo.LastTime.AddSeconds(30) < DateTime.Now)
+            if (_tokenInfo.Token != token || _tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                 return Task.FromResult(false);
             return Task.FromResult(true);
         }

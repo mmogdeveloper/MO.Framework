@@ -1,12 +1,9 @@
 ﻿using Google.Protobuf;
+using MO.Algorithm.Config;
 using MO.Algorithm.Redis;
-using MO.Common.Config;
 using MO.GrainInterfaces.Game;
 using Orleans;
 using ProtoMessage;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MO.Grains.Game

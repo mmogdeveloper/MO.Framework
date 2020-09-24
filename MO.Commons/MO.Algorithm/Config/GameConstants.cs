@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MO.Common.Config
+namespace MO.Algorithm.Config
 {
     public class GameConstants
     {

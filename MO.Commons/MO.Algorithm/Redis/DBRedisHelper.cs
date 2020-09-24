@@ -1,9 +1,4 @@
 ﻿using CSRedis;
-using MO.Common;
-using MO.Common.Config;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MO.Algorithm.Redis
 {

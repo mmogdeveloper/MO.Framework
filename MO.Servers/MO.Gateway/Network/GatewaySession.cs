@@ -5,8 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MO.Algorithm;
 using MO.Algorithm.Actions.Enum;
-using MO.Algorithm.Redis;
-using MO.Common.Config;
+using MO.Algorithm.Config;
 using MO.Common.Security;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
@@ -14,7 +13,6 @@ using Newtonsoft.Json;
 using Orleans;
 using ProtoMessage;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace MO.Gateway.Network
@@ -74,7 +72,7 @@ namespace MO.Gateway.Network
                 {
                     _userGrain = _client.GetGrain<IUser>(packet.UserId);
                     var tokenInfo = await _userGrain.GetToken();
-                    if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(30) < DateTime.Now)
+                    if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                     {
                         await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
                         await Close();

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using MO.Common.Config;
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Global;
 using MO.GrainInterfaces.User;

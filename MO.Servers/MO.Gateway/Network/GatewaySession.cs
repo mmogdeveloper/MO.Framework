@@ -29,6 +29,8 @@ namespace MO.Gateway.Network
         private IChannelHandlerContext _context;
         private IPacketRouter _router;
         private bool _IsInit;
+        private long _userId;
+        private string _token;
 
         public GatewaySession(IClusterClient client, ILoggerFactory loggerFactory,
             IConfiguration configuration, IChannelHandlerContext context)
@@ -73,11 +75,29 @@ namespace MO.Gateway.Network
                 //同步初始化
                 if (!_IsInit)
                 {
+                    _token = TokenRedis.Client.Get<string>(packet.UserId.ToString());
+                    if (string.IsNullOrEmpty(_token) || _token != packet.Token)
+                    {
+                        await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
+                        await Close();
+                        return;
+                    }
+
+                    _userId = packet.UserId;
                     _packetObserver = new OutcomingPacketObserver(this);
                     _router = _client.GetGrain<IPacketRouter>(_sessionId);
                     _packetObserverRef = _client.CreateObjectReference<IPacketObserver>(_packetObserver).Result;
                     _router.SetObserver(_packetObserverRef).Wait();
                     _IsInit = true;
+                }
+                else
+                {
+                    if (_token != packet.Token || _userId != packet.UserId)
+                    {
+                        await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
+                        await Close();
+                        return;
+                    }
                 }
 
                 //心跳包

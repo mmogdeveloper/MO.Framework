@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Orleans;
 using ProtoMessage;
 
 namespace MO.Api.Controllers
@@ -12,7 +13,8 @@ namespace MO.Api.Controllers
     public class C2S901Controller : BaseController
     {
         private IConfiguration _configuration;
-        public C2S901Controller(IConfiguration configuration)
+        public C2S901Controller(IClusterClient client, IConfiguration configuration)
+            : base(client)
         {
             _configuration = configuration;
         }

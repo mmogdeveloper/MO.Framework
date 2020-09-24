@@ -99,9 +99,6 @@ namespace MO.Gateway.Network
             //await room.PlayerLeaveRoom(user1);
             //return;
 
-            //初始化Redis
-            TokenRedis.Initialization(_config.GetConnectionString("TokenRedis"));
-
             IPAddress ip_address = IPAddress.Parse(_config.GetSection("GatewayConfig")["ip_address"]);
             int port = int.Parse(_config.GetSection("GatewayConfig")["port"]);
             var dispatcher = new DispatcherEventLoopGroup();

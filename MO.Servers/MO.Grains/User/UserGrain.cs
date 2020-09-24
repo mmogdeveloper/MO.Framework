@@ -34,6 +34,8 @@ namespace MO.Grains.User
         private IPacketObserver _observer;
         private StreamSubscriptionHandle<MOMsg> _globalHandler;
         private StreamSubscriptionHandle<MOMsg> _roomHandler;
+
+        private TokenInfo _tokenInfo;
         
         public UserGrain(
             [PersistentState("LocationState",StorageProviders.DefaultProviderName)]IPersistentState<LocationState> location,
@@ -43,6 +45,7 @@ namespace MO.Grains.User
             _location = location;
             _userinfo = userinfo;
             _logger = logger;
+            _tokenInfo = new TokenInfo();
         }
 
         public override async Task OnActivateAsync()
@@ -104,6 +107,31 @@ namespace MO.Grains.User
                 var packet = new MOMsg() { ErrorCode = (int)ErrorType.Shown, ErrorInfo = "您的账号异地登录" };
                 _observer.Close(packet);
             }
+            return Task.CompletedTask;
+        }
+
+        public Task SetToken(string token)
+        {
+            _tokenInfo.Token = token;
+            _tokenInfo.LastTime = DateTime.Now;
+            return Task.CompletedTask;
+        }
+
+        public Task<TokenInfo> GetToken()
+        {
+            return Task.FromResult(_tokenInfo);
+        }
+
+        public Task<bool> CheckToken(string token)
+        {
+            if (_tokenInfo.Token != token || _tokenInfo.LastTime.AddSeconds(30) < DateTime.Now)
+                return Task.FromResult(false);
+            return Task.FromResult(true);
+        }
+
+        public Task RefreshTokenTime()
+        {
+            _tokenInfo.LastTime = DateTime.Now;
             return Task.CompletedTask;
         }
 

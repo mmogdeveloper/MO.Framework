@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Configuration;
 using MO.Algorithm.Redis;
+using MO.GrainInterfaces.User;
 using Newtonsoft.Json;
+using Orleans;
 using ProtoMessage;
 using System.Text;
 using System.Text.Unicode;
@@ -20,6 +23,12 @@ namespace MO.Api.Controllers
         protected string data = string.Empty;
         protected string token = string.Empty;
         protected long userId = 0;
+        protected IClusterClient client;
+
+        public BaseController(IClusterClient client)
+        {
+            this.client = client;
+        }
 
         [HttpGet]
         public abstract Task<string> GetMessage();
@@ -43,10 +52,8 @@ namespace MO.Api.Controllers
                 long.TryParse(struserid, out userId);
             }
 
-            var redisToken = TokenRedis.Client.Get<string>(userId.ToString());
-            if (string.IsNullOrEmpty(redisToken) ||
-                string.IsNullOrEmpty(token) ||
-                redisToken != token)
+            var userGrain = client.GetGrain<IUser>(userId);
+            if (userGrain.CheckToken(token).Result)
             {
                 var result = new MOMsgResult();
                 result.ErrorCode = 10001;

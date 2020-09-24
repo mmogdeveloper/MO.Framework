@@ -9,6 +9,7 @@ using MO.Algorithm.Redis;
 using MO.Common.Config;
 using MO.Common.Security;
 using MO.GrainInterfaces.Network;
+using MO.GrainInterfaces.User;
 using Newtonsoft.Json;
 using Orleans;
 using ProtoMessage;
@@ -28,6 +29,7 @@ namespace MO.Gateway.Network
         private IPacketObserver _packetObserverRef;
         private IChannelHandlerContext _context;
         private IPacketRouter _router;
+        private IUser _userGrain;
         private bool _IsInit;
         private long _userId;
         private string _token;
@@ -64,17 +66,17 @@ namespace MO.Gateway.Network
                     return;
                 }
 
+                _userGrain = _client.GetGrain<IUser>(packet.UserId);
+                if (!await _userGrain.CheckToken(packet.Token))
+                {
+                    await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
+                    await Close();
+                    return;
+                }
+
                 //同步初始化
                 if (!_IsInit)
                 {
-                    _token = TokenRedis.Client.Get<string>(packet.UserId.ToString());
-                    if (string.IsNullOrEmpty(_token) || _token != packet.Token)
-                    {
-                        await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
-                        await Close();
-                        return;
-                    }
-
                     _userId = packet.UserId;
                     _packetObserver = new OutcomingPacketObserver(this);
                     _router = _client.GetGrain<IPacketRouter>(_sessionId);
@@ -82,22 +84,14 @@ namespace MO.Gateway.Network
                     _router.SetObserver(_packetObserverRef).Wait();
                     _IsInit = true;
                 }
-                else
-                {
-                    if (_token != packet.Token || _userId != packet.UserId)
-                    {
-                        await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
-                        await Close();
-                        return;
-                    }
-                }
 
                 //心跳包
                 if (packet.ActionId == 1)
                 {
-                    await TokenRedis.Client.ExpireAsync(packet.UserId.ToString(), GameConstants.TOKENEXPIRE);
+                    await _userGrain.RefreshTokenTime();
                     return;
                 }
+
                 await _router.SendPacket(packet);
             }
             catch (Exception ex)

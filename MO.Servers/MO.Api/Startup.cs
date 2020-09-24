@@ -54,7 +54,7 @@ namespace MO.Api
                 endpoints.MapControllers();
             });
 
-            TokenRedis.Initialization(_configuration.GetConnectionString("TokenRedis"));
+            //TokenRedis.Initialization(_configuration.GetConnectionString("TokenRedis"));
 
             //app.UseRouting();
 

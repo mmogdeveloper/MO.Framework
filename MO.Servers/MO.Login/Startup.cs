@@ -69,7 +69,7 @@ namespace MO.Login
                 endpoints.MapControllers();
             });
 
-            TokenRedis.Initialization(_configuration.GetConnectionString("TokenRedis"));
+            //TokenRedis.Initialization(_configuration.GetConnectionString("TokenRedis"));
             DataRedis.Initialization(_configuration.GetConnectionString("DataRedis"));
         }
     }

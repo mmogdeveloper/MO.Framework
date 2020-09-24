@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MO.Algorithm.Actions
+namespace MO.Algorithm
 {
     public static class PacketExtensions
     {

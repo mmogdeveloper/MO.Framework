@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MO.Algorithm;
 using MO.Algorithm.Actions;
 using MO.Algorithm.Actions.Enum;
 using MO.Algorithm.Redis;

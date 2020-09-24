@@ -6,6 +6,12 @@ message C2S1{
 
 }
 
+//在线/离线通知
+message S2C100{
+	int64 UserId = 1;
+	bool IsOnline = 2;
+}
+
 //连接网关
 message C2S100000{
 

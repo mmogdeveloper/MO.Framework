@@ -23,19 +23,21 @@ namespace ProtoMessage {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChdtZXNzYWdlX2dhbWVfZ2F0ZS5wcm90bxIMUHJvdG9NZXNzYWdlIgYKBEMy",
-            "UzEiCwoJQzJTMTAwMDAwIhsKCUMyUzEwMDAwMRIOCgZSb29tSWQYASABKAUi",
-            "MQoJVXNlclBvaW50Eg4KBlVzZXJJZBgBIAEoAxIJCgFYGAIgASgBEgkKAVkY",
-            "AyABKAEiSAoJUzJDMTAwMDAxEg4KBlJvb21JZBgBIAEoBRIrCgpVc2VyUG9p",
-            "bnRzGAIgAygLMhcuUHJvdG9NZXNzYWdlLlVzZXJQb2ludCIrCglTMkMxMDAw",
-            "MDISDgoGVXNlcklkGAEgASgDEg4KBlJvb21JZBgCIAEoBSIhCglDMlMxMDAw",
-            "MDMSCQoBWBgCIAEoARIJCgFZGAMgASgBIjEKCVMyQzEwMDAwNBIOCgZVc2Vy",
-            "SWQYASABKAMSCQoBWBgCIAEoARIJCgFZGAMgASgBIhsKCUMyUzEwMDAwNRIO",
-            "CgZSb29tSWQYASABKAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIO",
-            "CgZSb29tSWQYAiABKAViBnByb3RvMw=="));
+            "UzEiKgoGUzJDMTAwEg4KBlVzZXJJZBgBIAEoAxIQCghJc09ubGluZRgCIAEo",
+            "CCILCglDMlMxMDAwMDAiGwoJQzJTMTAwMDAxEg4KBlJvb21JZBgBIAEoBSIx",
+            "CglVc2VyUG9pbnQSDgoGVXNlcklkGAEgASgDEgkKAVgYAiABKAESCQoBWRgD",
+            "IAEoASJICglTMkMxMDAwMDESDgoGUm9vbUlkGAEgASgFEisKClVzZXJQb2lu",
+            "dHMYAiADKAsyFy5Qcm90b01lc3NhZ2UuVXNlclBvaW50IisKCVMyQzEwMDAw",
+            "MhIOCgZVc2VySWQYASABKAMSDgoGUm9vbUlkGAIgASgFIiEKCUMyUzEwMDAw",
+            "MxIJCgFYGAIgASgBEgkKAVkYAyABKAEiMQoJUzJDMTAwMDA0Eg4KBlVzZXJJ",
+            "ZBgBIAEoAxIJCgFYGAIgASgBEgkKAVkYAyABKAEiGwoJQzJTMTAwMDA1Eg4K",
+            "BlJvb21JZBgBIAEoBSIrCglTMkMxMDAwMDYSDgoGVXNlcklkGAEgASgDEg4K",
+            "BlJvb21JZBgCIAEoBWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S1), global::ProtoMessage.C2S1.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.S2C100), global::ProtoMessage.S2C100.Parser, new[]{ "UserId", "IsOnline" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S100000), global::ProtoMessage.C2S100000.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S100001), global::ProtoMessage.C2S100001.Parser, new[]{ "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.UserPoint), global::ProtoMessage.UserPoint.Parser, new[]{ "UserId", "X", "Y" }, null, null, null),
@@ -144,6 +146,154 @@ namespace ProtoMessage {
   }
 
   /// <summary>
+  ///在线/离线通知
+  /// </summary>
+  public sealed partial class S2C100 : pb::IMessage<S2C100> {
+    private static readonly pb::MessageParser<S2C100> _parser = new pb::MessageParser<S2C100>(() => new S2C100());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<S2C100> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2C100() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2C100(S2C100 other) : this() {
+      userId_ = other.userId_;
+      isOnline_ = other.isOnline_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2C100 Clone() {
+      return new S2C100(this);
+    }
+
+    /// <summary>Field number for the "UserId" field.</summary>
+    public const int UserIdFieldNumber = 1;
+    private long userId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long UserId {
+      get { return userId_; }
+      set {
+        userId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "IsOnline" field.</summary>
+    public const int IsOnlineFieldNumber = 2;
+    private bool isOnline_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool IsOnline {
+      get { return isOnline_; }
+      set {
+        isOnline_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as S2C100);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(S2C100 other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (UserId != other.UserId) return false;
+      if (IsOnline != other.IsOnline) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (UserId != 0L) hash ^= UserId.GetHashCode();
+      if (IsOnline != false) hash ^= IsOnline.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (UserId != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(UserId);
+      }
+      if (IsOnline != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(IsOnline);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (UserId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
+      }
+      if (IsOnline != false) {
+        size += 1 + 1;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(S2C100 other) {
+      if (other == null) {
+        return;
+      }
+      if (other.UserId != 0L) {
+        UserId = other.UserId;
+      }
+      if (other.IsOnline != false) {
+        IsOnline = other.IsOnline;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            UserId = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            IsOnline = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
   ///连接网关
   /// </summary>
   public sealed partial class C2S100000 : pb::IMessage<C2S100000> {
@@ -153,7 +303,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[1]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -245,7 +395,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[2]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -362,7 +512,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[3]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -535,7 +685,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[4]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -675,7 +825,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[5]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -823,7 +973,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[6]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -971,7 +1121,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[7]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1147,7 +1297,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[8]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1267,7 +1417,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[9]; }
+      get { return global::ProtoMessage.MessageGameGateReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -79,6 +79,18 @@ namespace MO.Grains.Network
                 {
                     var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
                     await curRoom.Reconnect(_user);
+                    //通知上线
+                    var message = new MOMsg()
+                    {
+                        ActionId = 100,
+                        Content =
+                        new S2C100()
+                        {
+                            UserId = _user.GetPrimaryKeyLong(),
+                            IsOnline = true
+                        }.ToByteString()
+                    };
+                    await curRoom.RoomNotify(message);
                 }
                 Notify(packet.ParseResult());
             }
@@ -132,10 +144,19 @@ namespace MO.Grains.Network
                 var roomId = await _user.GetRoomId();
                 if (roomId != 0)
                 {
-                    var room = GrainFactory.GetGrain<IRoom>(roomId);
+                    var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
                     //通知离线
-                    var message = new MOMsg() { };
-                    await room.RoomNotify(message);
+                    var message = new MOMsg()
+                    {
+                        ActionId = 100,
+                        Content =
+                        new S2C100()
+                        {
+                            UserId = _user.GetPrimaryKeyLong(),
+                            IsOnline = false
+                        }.ToByteString()
+                    };
+                    await curRoom.RoomNotify(message);
                 }
             }
         }

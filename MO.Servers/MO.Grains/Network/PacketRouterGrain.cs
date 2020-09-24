@@ -67,7 +67,7 @@ namespace MO.Grains.Network
 
         public async Task SendPacket(MOMsg packet)
         {
-            _watch.Restart();
+            //_watch.Restart();
             if (packet.ActionId == 100000)
             {
                 //登录绑定
@@ -130,8 +130,8 @@ namespace MO.Grains.Network
                         break;
                 }
             }
-            _watch.Stop();
-            Console.WriteLine($"执行时间：{packet.UserId} {_watch.ElapsedMilliseconds} ms");
+            //_watch.Stop();
+            //Console.WriteLine($"执行时间：{packet.UserId} {_watch.ElapsedMilliseconds} ms");
         }
 
         public async Task Disconnect()

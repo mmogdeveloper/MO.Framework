@@ -55,8 +55,8 @@ namespace MO.Gateway.Network
         {
             try
             {
-                Stopwatch watch = new Stopwatch();
-                watch.Restart();
+                //Stopwatch watch = new Stopwatch();
+                //watch.Restart();
                 //md5签名验证
                 var key = _configuration.GetValue<string>("MD5Key");
                 var sign = packet.Sign;
@@ -107,8 +107,8 @@ namespace MO.Gateway.Network
 
                 await _router.SendPacket(packet);
 
-                watch.Stop();
-                Console.WriteLine($"{packet.UserId} {watch.ElapsedMilliseconds}ms");
+                //watch.Stop();
+                //Console.WriteLine($"{packet.UserId} {watch.ElapsedMilliseconds}ms");
             }
             catch (Exception ex)
             {

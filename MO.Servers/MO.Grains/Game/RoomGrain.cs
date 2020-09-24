@@ -8,6 +8,7 @@ using MO.Model.Context;
 using Newtonsoft.Json;
 using Orleans;
 using Orleans.Providers;
+using Orleans.Runtime;
 using Orleans.Streams;
 using ProtoMessage;
 using System;
@@ -17,24 +18,36 @@ using System.Threading.Tasks;
 
 namespace MO.Grains.Game
 {
-    [StorageProvider(ProviderName = StorageProviders.DefaultProviderName)]
-    public class RoomGrain : Grain<Dictionary<long, PlayerData>>, IRoom
+    public class RoomInfo
     {
+        public Int32 GameId { get; set; }
+    }
+
+    public class RoomGrain : Grain, IRoom
+    {
+        private readonly IPersistentState<RoomInfo> _roomInfo;
+        private readonly IPersistentState<Dictionary<long, PlayerData>> _players;
         private readonly ILogger _logger;
-        private Dictionary<long, PlayerData> _playerDict;
 
         private IAsyncStream<MOMsg> _stream;
         private IDisposable _reminder;
-        //private ProtoRoomInfo _roomInfo;
 
-        public RoomGrain(ILogger<RoomGrain> logger)
+        public RoomGrain(
+            [PersistentState("RoomInfo", StorageProviders.DefaultProviderName)] IPersistentState<RoomInfo> roomInfo,
+            [PersistentState("Players", StorageProviders.DefaultProviderName)] IPersistentState<Dictionary<long, PlayerData>> players,
+            ILogger<RoomGrain> logger)
         {
+            _roomInfo = roomInfo;
+            _players = players;
             _logger = logger;
-            _playerDict = new Dictionary<long, PlayerData>();
         }
 
-        public async override Task OnActivateAsync()
+        public override async Task OnActivateAsync()
         {
+            //自定义加载数据
+            await _roomInfo.ReadStateAsync();
+            await _players.ReadStateAsync();
+            
             //间隔1秒执行一次
             _reminder = RegisterTimer(
                 OnTimerCallback,
@@ -51,23 +64,18 @@ namespace MO.Grains.Game
             //{
             //    _seatDatas.Add(new SeatData(i));
             //}
-
-            //自定义加载数据
-            await base.ReadStateAsync();
-            _playerDict = State;
-
             await base.OnActivateAsync();
         }
 
-        public async override Task OnDeactivateAsync()
+        public override async Task OnDeactivateAsync()
         {
             if (_reminder != null)
                 _reminder.Dispose();
 
             //回写数据
-            await base.WriteStateAsync();
-
-            await base.OnActivateAsync();
+            await _roomInfo.WriteStateAsync();
+            await _players.WriteStateAsync();
+            await base.OnDeactivateAsync();
         }
 
         private async Task OnTimerCallback(object obj)
@@ -87,15 +95,15 @@ namespace MO.Grains.Game
 
         public async Task PlayerEnterRoom(IUser user)
         {
-            _playerDict[user.GetPrimaryKeyLong()] = new PlayerData(user);
+            _players.State[user.GetPrimaryKeyLong()] = new PlayerData(user);
             await user.SubscribeRoom(_stream.Guid);
             {
                 S2C100001 content = new S2C100001();
                 content.RoomId = (int)this.GetPrimaryKeyLong();
-                foreach (var item in _playerDict)
+                foreach (var item in _players.State)
                 {
                     PlayerData player = null;
-                    if (_playerDict.TryGetValue(item.Key, out player))
+                    if (_players.State.TryGetValue(item.Key, out player))
                     {
                         content.UserPoints.Add(new UserPoint() { UserId = item.Key, X = player.X, Y = player.Y });
                     }
@@ -118,7 +126,7 @@ namespace MO.Grains.Game
 
         public async Task PlayerLeaveRoom(IUser user)
         {
-            _playerDict.Remove(user.GetPrimaryKeyLong());
+            _players.State.Remove(user.GetPrimaryKeyLong());
             await user.UnsubscribeRoom();
 
             S2C100006 content = new S2C100006();
@@ -145,9 +153,9 @@ namespace MO.Grains.Game
             msg.ActionId = 100004;
             msg.Content = content.ToByteString();
             await RoomNotify(msg);
-            if (_playerDict.ContainsKey(user.GetPrimaryKeyLong()))
+            if (_players.State.ContainsKey(user.GetPrimaryKeyLong()))
             {
-                _playerDict[user.GetPrimaryKeyLong()].SetPoint(x, y);
+                _players.State[user.GetPrimaryKeyLong()].SetPoint(x, y);
             }
         }
     }

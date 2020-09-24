@@ -3,6 +3,8 @@ using MO.GrainInterfaces;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
 using Orleans;
+using Orleans.Providers;
+using Orleans.Runtime;
 using Orleans.Streams;
 using ProtoMessage;
 using System;
@@ -10,29 +12,49 @@ using System.Threading.Tasks;
 
 namespace MO.Grains.User
 {
+    public class LocationState
+    {
+        public Int32 RoomId { get; set; }
+    }
+
+    public class UserInfoState
+    {
+        public string Nickname { get; set; }
+        public string HeadIcon { get; set; }
+    }
+
     public class UserGrain : Grain, IUser, IAsyncObserver<MOMsg>
     {
+        private readonly IPersistentState<LocationState> _location;
+        private readonly IPersistentState<UserInfoState> _userinfo;
+        private readonly ILogger _logger;
+
         private IPacketObserver _observer;
         private StreamSubscriptionHandle<MOMsg> _globalHandler;
         private StreamSubscriptionHandle<MOMsg> _roomHandler;
-        private int _roomId;
-        private ILogger _logger;
-
-        public UserGrain(ILogger<UserGrain> logger)
+        
+        public UserGrain(
+            [PersistentState("LocationState",StorageProviders.DefaultProviderName)]IPersistentState<LocationState> location,
+            [PersistentState("UserInfoState", StorageProviders.DefaultProviderName)] IPersistentState<UserInfoState> userinfo,
+            ILogger<UserGrain> logger)
         {
+            _location = location;
+            _userinfo = userinfo;
             _logger = logger;
         }
 
-        public override Task OnActivateAsync()
+        public override async Task OnActivateAsync()
         {
-            _logger.LogInformation($"{this.GetPrimaryKeyLong()} 加载数据");
-            return base.OnActivateAsync();
+            await base.OnActivateAsync();
+            await _location.ReadStateAsync();
+            await _userinfo.ReadStateAsync();
         }
 
-        public override Task OnDeactivateAsync()
+        public override async Task OnDeactivateAsync()
         {
-            _logger.LogInformation($"{this.GetPrimaryKeyLong()} 回写数据");
-            return base.OnDeactivateAsync();
+            await _location.WriteStateAsync();
+            await _userinfo.WriteStateAsync();
+            await base.OnDeactivateAsync();
         }
 
         #region 订阅消息
@@ -116,13 +138,14 @@ namespace MO.Grains.User
 
         public Task SetRoomId(int roomId)
         {
-            _roomId = roomId;
+            _location.State.RoomId = roomId;
+            _location.WriteStateAsync();
             return Task.CompletedTask;
         }
 
         public Task<int> GetRoomId()
         {
-            return Task.FromResult(_roomId);
+            return Task.FromResult(_location.State.RoomId);
         }
     }
 }

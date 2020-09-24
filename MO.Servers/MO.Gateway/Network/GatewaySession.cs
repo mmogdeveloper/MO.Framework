@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using Orleans;
 using ProtoMessage;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace MO.Gateway.Network
@@ -54,6 +55,8 @@ namespace MO.Gateway.Network
         {
             try
             {
+                Stopwatch watch = new Stopwatch();
+                watch.Restart();
                 //md5签名验证
                 var key = _configuration.GetValue<string>("MD5Key");
                 var sign = packet.Sign;
@@ -66,23 +69,33 @@ namespace MO.Gateway.Network
                     return;
                 }
 
-                _userGrain = _client.GetGrain<IUser>(packet.UserId);
-                if (!await _userGrain.CheckToken(packet.Token))
-                {
-                    await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
-                    await Close();
-                    return;
-                }
-
                 //同步初始化
                 if (!_IsInit)
                 {
+                    _userGrain = _client.GetGrain<IUser>(packet.UserId);
+                    var tokenInfo = await _userGrain.GetToken();
+                    if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(30) < DateTime.Now)
+                    {
+                        await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
+                        await Close();
+                        return;
+                    }
                     _userId = packet.UserId;
+                    _token = tokenInfo.Token;
                     _packetObserver = new OutcomingPacketObserver(this);
                     _router = _client.GetGrain<IPacketRouter>(_sessionId);
                     _packetObserverRef = _client.CreateObjectReference<IPacketObserver>(_packetObserver).Result;
                     _router.SetObserver(_packetObserverRef).Wait();
                     _IsInit = true;
+                }
+                else
+                {
+                    if (_userId != packet.UserId || _token != packet.Token)
+                    {
+                        await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
+                        await Close();
+                        return;
+                    }
                 }
 
                 //心跳包
@@ -93,6 +106,9 @@ namespace MO.Gateway.Network
                 }
 
                 await _router.SendPacket(packet);
+
+                watch.Stop();
+                Console.WriteLine($"{packet.UserId} {watch.ElapsedMilliseconds}ms");
             }
             catch (Exception ex)
             {

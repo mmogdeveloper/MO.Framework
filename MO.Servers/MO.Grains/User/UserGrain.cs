@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using MO.Algorithm.Actions.Enum;
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
@@ -8,6 +9,7 @@ using Orleans.Runtime;
 using Orleans.Streams;
 using ProtoMessage;
 using System;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace MO.Grains.User
@@ -94,6 +96,17 @@ namespace MO.Grains.User
         {
             if (_observer != null)
                 _observer.SendPacket(packet);
+            return Task.CompletedTask;
+        }
+
+        public Task Kick()
+        {
+            var packet = new MOMsg() { ErrorCode = (int)ErrorType.Shown, ErrorInfo = "您的账号异地登录" };
+            if (_observer != null)
+            {
+                _observer.SendPacket(packet);
+                _observer.Close();
+            }
             return Task.CompletedTask;
         }
 

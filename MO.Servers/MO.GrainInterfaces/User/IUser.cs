@@ -16,6 +16,7 @@ namespace MO.GrainInterfaces.User
         Task UnbindPacketObserver();
 
         Task Notify(MOMsg packet);
+        Task Kick();
 
         Task SubscribeGlobal(Guid streamId);
         Task UnsubscribeGlobal();

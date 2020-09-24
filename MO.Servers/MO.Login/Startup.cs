@@ -31,6 +31,9 @@ namespace MO.Login
             {
                 options.SuppressStatusMessages = true;
             });
+            services.AddSingleton<ClusterHostedService>();
+            services.AddSingleton<IHostedService>(_ => _.GetService<ClusterHostedService>());
+            services.AddSingleton(_ => _.GetService<ClusterHostedService>().Client);
             services.AddControllers(options =>
             {
                 options.Filters.Add<GlobalExceptionFilter>();

@@ -5,8 +5,10 @@ using MO.Algorithm.Redis;
 using MO.Common;
 using MO.Common.Config;
 using MO.Common.Security;
+using MO.GrainInterfaces.User;
 using MO.Model.Context;
 using MO.Model.Entitys;
+using Orleans;
 using ProtoMessage;
 using System;
 using System.Linq;
@@ -22,11 +24,14 @@ namespace MO.Login.Controllers
         private readonly ILogger _logger;
         private readonly MODataContext _dataContext;
         private readonly MORecordContext _recordContext;
+        private readonly IClusterClient _client;
         public C2S1003Controller(
+            IClusterClient client,
             MODataContext dataContext,
             MORecordContext recordContext,
             ILogger<C2S1003Controller> logger)
         {
+            _client = client;
             _dataContext = dataContext;
             _recordContext = recordContext;
             _logger = logger;
@@ -56,6 +61,10 @@ namespace MO.Login.Controllers
             {
                 userId = user.UserId;
             }
+
+            //将玩家踢出游戏
+            var userGrain = _client.GetGrain<IUser>(userId);
+            userGrain.Kick();
 
             var token = CryptoHelper.MD5_Encrypt($"{userId}{Guid.NewGuid()}{DateTime.UtcNow.Ticks}");
             TokenRedis.Client.Set(userId.ToString(), token, GameConstants.TOKENEXPIRE);

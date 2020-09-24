@@ -86,6 +86,7 @@ namespace MO.Grains.Network
                 if (_user == null)
                 {
                     Notify(packet.ParseResult(ErrorType.Hidden, "用户未登录"));
+                    return;
                 }
 
                 switch (packet.ActionId)

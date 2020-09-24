@@ -136,11 +136,6 @@ namespace MO.Gateway.Network
             await _context.CloseAsync();
         }
 
-        public void Flush()
-        {
-            _context.Flush();
-        }
-
         class OutcomingPacketObserver : IPacketObserver
         {
             private readonly GatewaySession session;

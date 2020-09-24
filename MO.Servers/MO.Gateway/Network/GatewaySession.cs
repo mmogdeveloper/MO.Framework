@@ -32,6 +32,7 @@ namespace MO.Gateway.Network
         private bool _IsInit;
         private long _userId;
         private string _token;
+        private string _md5Key;
 
         public GatewaySession(IClusterClient client, ILoggerFactory loggerFactory,
             IConfiguration configuration, IChannelHandlerContext context)
@@ -41,6 +42,7 @@ namespace MO.Gateway.Network
             _configuration = configuration;
             _context = context;
             _sessionId = Guid.NewGuid();
+            _md5Key = _configuration.GetValue<string>("MD5Key");
         }
 
         public void Disconnect()
@@ -56,11 +58,10 @@ namespace MO.Gateway.Network
                 //Stopwatch watch = new Stopwatch();
                 //watch.Restart();
                 //md5签名验证
-                var key = _configuration.GetValue<string>("MD5Key");
                 var sign = packet.Sign;
                 packet.Sign = string.Empty;
                 var data = packet.ToByteString();
-                if (CryptoHelper.MD5_Encrypt($"{data}{key}").ToLower() != sign.ToLower())
+                if (CryptoHelper.MD5_Encrypt($"{data}{_md5Key}").ToLower() != sign.ToLower())
                 {
                     await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "签名验证失败"));
                     await Close();

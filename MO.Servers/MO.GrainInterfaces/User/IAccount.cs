@@ -12,6 +12,10 @@ namespace MO.GrainInterfaces.User
     public class DiamondBalance : Balance { };
     public class ScoreBalance : Balance { };
 
+    /// <summary>
+    /// 房间内Balance账号Id (UserId<<24 + RoomId)
+    /// </summary>
+    /// <typeparam name="TBalance"></typeparam>
     public interface IAccount<TBalance> : IGrainWithIntegerKey
         where TBalance : Balance
     {

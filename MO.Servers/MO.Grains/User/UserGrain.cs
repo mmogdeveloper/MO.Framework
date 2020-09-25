@@ -30,14 +30,15 @@ namespace MO.Grains.User
         private readonly IPersistentState<UserInfoState> _userinfo;
         private readonly ILogger _logger;
 
+        private IAccount _account;
         private IPacketObserver _observer;
         private StreamSubscriptionHandle<MOMsg> _globalHandler;
         private StreamSubscriptionHandle<MOMsg> _roomHandler;
 
         private TokenInfo _tokenInfo;
-        
+
         public UserGrain(
-            [PersistentState("LocationState",StorageProviders.DefaultProviderName)]IPersistentState<LocationState> location,
+            [PersistentState("LocationState", StorageProviders.DefaultProviderName)] IPersistentState<LocationState> location,
             [PersistentState("UserInfoState", StorageProviders.DefaultProviderName)] IPersistentState<UserInfoState> userinfo,
             ILogger<UserGrain> logger)
         {
@@ -52,6 +53,7 @@ namespace MO.Grains.User
             await base.OnActivateAsync();
             await _location.ReadStateAsync();
             await _userinfo.ReadStateAsync();
+            _account = GrainFactory.GetGrain<IAccount>(this.GetPrimaryKeyLong());
         }
 
         public override async Task OnDeactivateAsync()

@@ -118,7 +118,8 @@ namespace MO.Silo
                         options.Invariant = Configuration.GetSection("StorageConfig")["Invariant"];
                         options.ConnectionString = Configuration.GetSection("StorageConfig")["ConnectionString"];
                         options.UseJsonFormat = true;
-                    });
+                    })
+                    .UseTransactions();//事务
                 });
         }
 

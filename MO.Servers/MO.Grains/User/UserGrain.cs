@@ -30,7 +30,7 @@ namespace MO.Grains.User
         private readonly IPersistentState<UserInfoState> _userinfo;
         private readonly ILogger _logger;
 
-        private IAccount _account;
+        private IAccount<DiamondBalance> _account;
         private IPacketObserver _observer;
         private StreamSubscriptionHandle<MOMsg> _globalHandler;
         private StreamSubscriptionHandle<MOMsg> _roomHandler;
@@ -53,7 +53,7 @@ namespace MO.Grains.User
             await base.OnActivateAsync();
             await _location.ReadStateAsync();
             await _userinfo.ReadStateAsync();
-            _account = GrainFactory.GetGrain<IAccount>(this.GetPrimaryKeyLong());
+            _account = GrainFactory.GetGrain<IAccount<DiamondBalance>>(this.GetPrimaryKeyLong());
         }
 
         public override async Task OnDeactivateAsync()

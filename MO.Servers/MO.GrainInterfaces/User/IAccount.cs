@@ -4,20 +4,45 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.User
 {
-    public class Balance
+    public abstract class Balance
     {
-        public ulong Diamond { get; set; }
+        public ulong Value { get; set; }
     }
 
-    public interface IAccount : IGrainWithIntegerKey
+    public class DiamondBalance : Balance { };
+    public class ScoreBalance : Balance { };
+
+    public interface IAccount<TBalance> : IGrainWithIntegerKey
+        where TBalance : Balance
     {
-        [Transaction(TransactionOption.Join)]
+        /// <summary>
+        /// 取款
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        [Transaction(TransactionOption.CreateOrJoin)]
         Task Withdraw(ulong amount);
 
-        [Transaction(TransactionOption.Join)]
+        /// <summary>
+        /// 存款
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        [Transaction(TransactionOption.CreateOrJoin)]
         Task Deposit(ulong amount);
 
+        /// <summary>
+        /// 获取余额
+        /// </summary>
+        /// <returns></returns>
         [Transaction(TransactionOption.CreateOrJoin)]
         Task<ulong> GetBalance();
+
+        /// <summary>
+        /// 清空账户
+        /// </summary>
+        /// <returns></returns>
+        [Transaction(TransactionOption.CreateOrJoin)]
+        Task Clear();
     }
 }

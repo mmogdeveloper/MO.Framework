@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 namespace MO.Grains.Transaction
 {
     [StatelessWorker]
-    public class ATMGrain : Grain, IATM
+    public class ATMGrain<TBalance> : Grain, IATM<TBalance>
+        where TBalance : Balance
     {
         public Task Transfer(long fromAccount, long toAccount, ulong amountToTransfer)
         {
             return Task.WhenAll(
-                this.GrainFactory.GetGrain<IAccount>(fromAccount).Withdraw(amountToTransfer),
-                this.GrainFactory.GetGrain<IAccount>(toAccount).Deposit(amountToTransfer));
+                this.GrainFactory.GetGrain<IAccount<TBalance>>(fromAccount).Withdraw(amountToTransfer),
+                this.GrainFactory.GetGrain<IAccount<TBalance>>(toAccount).Deposit(amountToTransfer));
         }
     }
 }

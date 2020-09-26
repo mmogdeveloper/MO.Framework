@@ -11,7 +11,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MO.Api
+namespace MO
 {
     public class ClusterHostedService : IHostedService
     {

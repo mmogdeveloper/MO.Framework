@@ -1,11 +1,13 @@
 {
   "MD5Key": "8B203C98ADD54BACA9857C5DC4DFF603",
+  //address∫Õport≈‰÷√
   "GatewayConfig": {
     "socket_ip_address": "127.0.0.1",
     "socket_port": 9001,
     "websocket_ip_address": "127.0.0.1",
     "websocket_port": 9002
   },
+  //Orleans≈‰÷√
   "ClusterConfig": {
     "ClusterId": "MOCluster",
     "ServiceId": "MOService",

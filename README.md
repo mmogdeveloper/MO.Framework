@@ -1,14 +1,14 @@
 # MO.Framework
 
 #### 介绍
-可承载百万人同时在线的分布式游戏框架  
+可承载百万人同时在线的分布式游戏框架(同时支持websocket,socket和http)  
 
 #### 软件架构
 基于dotnetcore3.1,Orleans,Dotnetty跨平台的分布式游戏框架  
 模块分为:  
 Login:登录服务器  
 Api:http服务器  
-Gate:socket网关  
+Gate:支持socket和websocket  
 Silo:基于Orleans的分布式服务  
 Model:基于entityframeworkcore模块  
 Protocol:基于proto3的协议  
@@ -35,6 +35,7 @@ MOData是基本的业务数据库
 MORecord是记录日志的数据库  
 Redis作为数据缓存使用  
 Redis 默认 用来存储基本业务数据  (自定义存储格式)
+
 
 启动顺序  
 1.Silo  

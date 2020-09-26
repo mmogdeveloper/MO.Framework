@@ -1,6 +1,7 @@
 {
   "MD5Key": "8B203C98ADD54BACA9857C5DC4DFF603",
   "DESKey": "",
+  //Orleans≈‰÷√
   "ClusterConfig": {
     "ClusterId": "MOCluster",
     "ServiceId": "MOService",

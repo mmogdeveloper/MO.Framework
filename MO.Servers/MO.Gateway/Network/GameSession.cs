@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace MO.Gateway.Network
 {
-    public class GatewaySession
+    public class GameSession
     {
         private readonly IClusterClient _client;
         private readonly ILogger _logger;
@@ -34,11 +34,11 @@ namespace MO.Gateway.Network
         private string _token;
         private string _md5Key;
 
-        public GatewaySession(IClusterClient client, ILoggerFactory loggerFactory,
+        public GameSession(IClusterClient client, ILoggerFactory loggerFactory,
             IConfiguration configuration, IChannelHandlerContext context)
         {
             _client = client;
-            _logger = loggerFactory.CreateLogger<GatewaySession>();
+            _logger = loggerFactory.CreateLogger<GameSession>();
             _configuration = configuration;
             _context = context;
             _sessionId = Guid.NewGuid();
@@ -147,9 +147,9 @@ namespace MO.Gateway.Network
 
         class OutcomingPacketObserver : IPacketObserver
         {
-            private readonly GatewaySession session;
+            private readonly GameSession session;
 
-            public OutcomingPacketObserver(GatewaySession session)
+            public OutcomingPacketObserver(GameSession session)
             {
                 this.session = session;
             }

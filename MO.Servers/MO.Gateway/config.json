@@ -1,8 +1,10 @@
 {
   "MD5Key": "8B203C98ADD54BACA9857C5DC4DFF603",
   "GatewayConfig": {
-    "ip_address": "127.0.0.1",
-    "port": 9001
+    "socket_ip_address": "127.0.0.1",
+    "socket_port": 9001,
+    "websocket_ip_address": "127.0.0.1",
+    "websocket_port": 9002
   },
   "ClusterConfig": {
     "ClusterId": "MOCluster",

@@ -26,7 +26,8 @@ namespace MO.Gateway
                     services.AddSingleton<IHostedService>(_ => _.GetService<ClusterHostedService>());
                     services.AddSingleton(_ => _.GetService<ClusterHostedService>().Client);
 
-                    services.AddHostedService<GatewayService>();
+                    services.AddHostedService<WebSocketService>();
+                    services.AddHostedService<SocketService>();
                     services.Configure<ConsoleLifetimeOptions>(options =>
                     {
                         options.SuppressStatusMessages = true;

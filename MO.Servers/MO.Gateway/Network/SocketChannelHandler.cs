@@ -11,18 +11,18 @@ using Microsoft.Extensions.Configuration;
 
 namespace MO.Gateway.Network
 {
-    public class GatewayChannelHandler : ChannelHandlerAdapter
+    public class SocketChannelHandler : ChannelHandlerAdapter
     {
         private readonly ILogger _logger;
         private readonly IClusterClient _client;
         private readonly ILoggerFactory _loggerFactory;
         private readonly IConfiguration _configuration;
-        private GatewaySession _session;
-        public GatewayChannelHandler(IClusterClient client, ILoggerFactory loggerFactory, IConfiguration configuration)
+        private GameSession _session;
+        public SocketChannelHandler(IClusterClient client, ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _client = client;
             _loggerFactory = loggerFactory;
-            _logger = loggerFactory.CreateLogger<GatewayChannelHandler>();
+            _logger = loggerFactory.CreateLogger<SocketChannelHandler>();
             _configuration = configuration;
         }
 
@@ -66,7 +66,7 @@ namespace MO.Gateway.Network
 
         public override void ChannelRegistered(IChannelHandlerContext context)
         {
-            _session = new GatewaySession(_client, _loggerFactory, _configuration, context);
+            _session = new GameSession(_client, _loggerFactory, _configuration, context);
             base.ChannelRegistered(context);
         }
 

@@ -21,7 +21,7 @@ using ProtoMessage;
 
 namespace MO.Gateway.Network
 {
-    public class GatewayService: IHostedService
+    public class SocketService: IHostedService
     {
         private readonly IClusterClient _client;
         private readonly IConfiguration _config;
@@ -33,7 +33,7 @@ namespace MO.Gateway.Network
         ServerBootstrap _bootstrap = new ServerBootstrap();
         IChannel _bootstrapChannel = null;
 
-        public GatewayService(
+        public SocketService(
             IClusterClient client,
             IConfiguration config,
             ILoggerFactory loggerFactory)
@@ -41,7 +41,7 @@ namespace MO.Gateway.Network
             _client = client;
             _config = config;
             _loggerFactory = loggerFactory;
-            _logger = _loggerFactory.CreateLogger<GatewayService>();
+            _logger = _loggerFactory.CreateLogger<SocketService>();
         }
 
         //public void Test(IRoom room)
@@ -99,8 +99,8 @@ namespace MO.Gateway.Network
             //await room.PlayerLeaveRoom(user1);
             //return;
 
-            IPAddress ip_address = IPAddress.Parse(_config.GetSection("GatewayConfig")["ip_address"]);
-            int port = int.Parse(_config.GetSection("GatewayConfig")["port"]);
+            IPAddress ip_address = IPAddress.Parse(_config.GetSection("GatewayConfig")["socket_ip_address"]);
+            int port = int.Parse(_config.GetSection("GatewayConfig")["socket_port"]);
             var dispatcher = new DispatcherEventLoopGroup();
             _bossGroup = dispatcher;
             _workerGroup = new WorkerEventLoopGroup(dispatcher);
@@ -119,11 +119,11 @@ namespace MO.Gateway.Network
                     ByteOrder.LittleEndian, 2, 0, false));
                     pipeline.AddLast(new LengthFieldBasedFrameDecoder(
                         ByteOrder.LittleEndian, UInt16.MaxValue, 0, 2, 0, 2, true));
-                    pipeline.AddLast(new GatewayChannelHandler(_client, _loggerFactory, _config));
+                    pipeline.AddLast(new SocketChannelHandler(_client, _loggerFactory, _config));
                 }));
 
             _bootstrapChannel = await _bootstrap.BindAsync(ip_address, port);
-            _logger.LogInformation($"Gateway启动成功 {ip_address}:{port}");
+            _logger.LogInformation($"Socket服务启动成功 {ip_address}:{port}");
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
@@ -131,7 +131,7 @@ namespace MO.Gateway.Network
             try
             {
                 await _bootstrapChannel.CloseAsync();
-                _logger.LogInformation($"Gateway关闭成功");
+                _logger.LogInformation($"Socket服务关闭成功");
             }
             finally
             {

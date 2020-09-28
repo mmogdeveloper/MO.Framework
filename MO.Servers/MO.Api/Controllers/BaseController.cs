@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
+using MO.Algorithm.Config;
 using MO.Algorithm.Redis;
 using MO.GrainInterfaces.User;
 using Newtonsoft.Json;
 using Orleans;
 using ProtoMessage;
+using System;
 using System.Text;
 using System.Text.Unicode;
 using System.Threading.Tasks;
@@ -52,8 +54,12 @@ namespace MO.Api.Controllers
                 long.TryParse(struserid, out userId);
             }
 
+            var ip = HttpContext.Request.Host.Host;
             var tokenGrain = client.GetGrain<IToken>(userId);
-            if (tokenGrain.CheckToken(token).Result)
+            var tokenInfo = tokenGrain.GetToken().Result;
+            if (tokenInfo.Token != token ||
+                tokenInfo.IP != ip ||
+                tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
             {
                 var result = new MOMsgResult();
                 result.ErrorCode = 10001;

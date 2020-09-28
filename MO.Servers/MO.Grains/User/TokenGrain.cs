@@ -19,9 +19,10 @@ namespace MO.Grains.User
             _tokenInfo = new TokenInfo();
         }
 
-        public Task SetToken(string token)
+        public Task SetToken(string token, string ip)
         {
             _tokenInfo.Token = token;
+            _tokenInfo.IP = ip;
             _tokenInfo.LastTime = DateTime.Now;
             return Task.CompletedTask;
         }
@@ -29,13 +30,6 @@ namespace MO.Grains.User
         public Task<TokenInfo> GetToken()
         {
             return Task.FromResult(_tokenInfo);
-        }
-
-        public Task<bool> CheckToken(string token)
-        {
-            if (_tokenInfo.Token != token || _tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
-                return Task.FromResult(false);
-            return Task.FromResult(true);
         }
 
         public Task RefreshTokenTime()

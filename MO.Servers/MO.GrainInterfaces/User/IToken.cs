@@ -9,14 +9,14 @@ namespace MO.GrainInterfaces.User
     public class TokenInfo
     {
         public string Token { get; set; }
+        public string IP { get; set; }
         public DateTime LastTime { get; set; }
     }
 
     public interface IToken : IGrainWithIntegerKey
     {
-        Task SetToken(string token);
+        Task SetToken(string token, string ip);
         Task<TokenInfo> GetToken();
-        Task<bool> CheckToken(string token);
         Task RefreshTokenTime();
     }
 }

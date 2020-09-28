@@ -67,7 +67,7 @@ namespace MO.Login.Controllers
             userGrain.Kick().Wait();
             var token = CryptoHelper.MD5_Encrypt($"{userId}{Guid.NewGuid()}{DateTime.UtcNow.Ticks}");
             var tokenGtain = _client.GetGrain<IToken>(userId);
-            tokenGtain.SetToken(token).Wait();
+            tokenGtain.SetToken(token, HttpContext.Request.Host.Host).Wait();
 
             _recordContext.Add(new LoginRecord()
             {

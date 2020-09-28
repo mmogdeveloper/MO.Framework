@@ -28,7 +28,7 @@ namespace MO.Gateway.Network
         private IPacketObserver _packetObserverRef;
         private IChannelHandlerContext _context;
         private IPacketRouter _router;
-        private IUser _userGrain;
+        private IToken _tokenGrain;
         private bool _IsInit;
         private long _userId;
         private string _token;
@@ -71,8 +71,8 @@ namespace MO.Gateway.Network
                 //同步初始化
                 if (!_IsInit)
                 {
-                    _userGrain = _client.GetGrain<IUser>(packet.UserId);
-                    var tokenInfo = _userGrain.GetToken().Result;
+                    _tokenGrain = _client.GetGrain<IToken>(packet.UserId);
+                    var tokenInfo = _tokenGrain.GetToken().Result;
                     if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                     {
                         await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
@@ -100,7 +100,7 @@ namespace MO.Gateway.Network
                 //心跳包
                 if (packet.ActionId == 1)
                 {
-                    await _userGrain.RefreshTokenTime();
+                    await _tokenGrain.RefreshTokenTime();
                     return;
                 }
 

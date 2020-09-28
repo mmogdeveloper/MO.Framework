@@ -52,8 +52,8 @@ namespace MO.Api.Controllers
                 long.TryParse(struserid, out userId);
             }
 
-            var userGrain = client.GetGrain<IUser>(userId);
-            if (userGrain.CheckToken(token).Result)
+            var tokenGrain = client.GetGrain<IToken>(userId);
+            if (tokenGrain.CheckToken(token).Result)
             {
                 var result = new MOMsgResult();
                 result.ErrorCode = 10001;

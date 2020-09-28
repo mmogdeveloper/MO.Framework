@@ -75,7 +75,7 @@ namespace MO.Grains.Game
 
         private async Task OnTimerCallback(object obj)
         {
-            //await RoomNotify(new MOMsg() { ActionId = 1 });
+            await Task.CompletedTask;
         }
 
         public async Task RoomNotify(MOMsg msg)

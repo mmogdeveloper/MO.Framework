@@ -7,6 +7,9 @@ namespace MO.Model.Entitys
 {
     public class ServerConfig : BaseEntity
     {
+        /// <summary>
+        /// 服务器等级,根据玩家vip等级分配服务器
+        /// </summary>
         [MaxLength(2)]
         public int ServerLevel { get; set; }
 

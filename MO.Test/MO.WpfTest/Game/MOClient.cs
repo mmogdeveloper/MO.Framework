@@ -26,6 +26,9 @@ namespace MO.WpfTest.Game
         private Action<MOMsg> _callback;
         private Timer _timer;
 
+        private string _gateIP;
+        private int _port;
+
         public MOClient(Action<MOMsg> callback)
         {
             _recBuffer = new byte[UInt16.MaxValue];
@@ -50,7 +53,7 @@ namespace MO.WpfTest.Game
 
         public void ConnectGate()
         {
-            _tcpClient.Connect(IPAddress.Parse("127.0.0.1"), 9001);
+            _tcpClient.Connect(_gateIP, _port);
             _networkStream = _tcpClient.GetStream();
             ReceivePacket();
 
@@ -123,6 +126,8 @@ namespace MO.WpfTest.Game
             var rep1003 = S2C_1003.Parser.ParseFrom(moResult.Content);
             UserId = rep1003.UserId;
             _token = rep1003.Token;
+            _gateIP = rep1003.GateIP;
+            _port = rep1003.GatePort;
         }
 
         public void JoinRoom(int roomId)

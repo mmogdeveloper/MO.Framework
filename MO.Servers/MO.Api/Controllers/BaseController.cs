@@ -54,7 +54,7 @@ namespace MO.Api.Controllers
                 long.TryParse(struserid, out userId);
             }
 
-            var ip = HttpContext.Request.Host.Host;
+            var ip = HttpContext.Connection.RemoteIpAddress.ToString();
             var tokenGrain = client.GetGrain<IToken>(userId);
             var tokenInfo = tokenGrain.GetToken().Result;
             if (tokenInfo.Token != token ||

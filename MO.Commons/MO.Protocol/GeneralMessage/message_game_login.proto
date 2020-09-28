@@ -1,5 +1,5 @@
 syntax = "proto3";
-package ProtoMessage;
+package MO.Protocol;
 
 //获取配置信息
 message C2S_1001{

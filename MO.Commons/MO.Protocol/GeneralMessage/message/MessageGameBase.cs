@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace ProtoMessage {
+namespace MO.Protocol {
 
   /// <summary>Holder for reflection information generated from message_game_base.proto</summary>
   public static partial class MessageGameBaseReflection {
@@ -22,20 +22,20 @@ namespace ProtoMessage {
     static MessageGameBaseReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChdtZXNzYWdlX2dhbWVfYmFzZS5wcm90bxIMUHJvdG9NZXNzYWdlIi4KBk1P",
-            "TXNncxIkCgdQYWNrZXRzGAEgAygLMhMuUHJvdG9NZXNzYWdlLk1PTXNnIpgB",
-            "CgVNT01zZxIQCghBY3Rpb25JZBgBIAEoBRIOCgZVc2VySWQYAiABKAMSDQoF",
-            "TXNnSWQYAyABKAUSDQoFVG9rZW4YBCABKAkSCgoCU3QYBSABKAMSDwoHQ29u",
-            "dGVudBgGIAEoDBIMCgRTaWduGAcgASgJEhEKCUVycm9yQ29kZRgKIAEoBRIR",
-            "CglFcnJvckluZm8YCyABKAkiRAoLTU9Nc2dSZXN1bHQSEQoJRXJyb3JDb2Rl",
-            "GAEgASgFEhEKCUVycm9ySW5mbxgCIAEoCRIPCgdDb250ZW50GAMgASgMYgZw",
-            "cm90bzM="));
+            "ChdtZXNzYWdlX2dhbWVfYmFzZS5wcm90bxILTU8uUHJvdG9jb2wiLQoGTU9N",
+            "c2dzEiMKB1BhY2tldHMYASADKAsyEi5NTy5Qcm90b2NvbC5NT01zZyKYAQoF",
+            "TU9Nc2cSEAoIQWN0aW9uSWQYASABKAUSDgoGVXNlcklkGAIgASgDEg0KBU1z",
+            "Z0lkGAMgASgFEg0KBVRva2VuGAQgASgJEgoKAlN0GAUgASgDEg8KB0NvbnRl",
+            "bnQYBiABKAwSDAoEU2lnbhgHIAEoCRIRCglFcnJvckNvZGUYCiABKAUSEQoJ",
+            "RXJyb3JJbmZvGAsgASgJIkQKC01PTXNnUmVzdWx0EhEKCUVycm9yQ29kZRgB",
+            "IAEoBRIRCglFcnJvckluZm8YAiABKAkSDwoHQ29udGVudBgDIAEoDGIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.MOMsgs), global::ProtoMessage.MOMsgs.Parser, new[]{ "Packets" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.MOMsg), global::ProtoMessage.MOMsg.Parser, new[]{ "ActionId", "UserId", "MsgId", "Token", "St", "Content", "Sign", "ErrorCode", "ErrorInfo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.MOMsgResult), global::ProtoMessage.MOMsgResult.Parser, new[]{ "ErrorCode", "ErrorInfo", "Content" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.MOMsgs), global::MO.Protocol.MOMsgs.Parser, new[]{ "Packets" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.MOMsg), global::MO.Protocol.MOMsg.Parser, new[]{ "ActionId", "UserId", "MsgId", "Token", "St", "Content", "Sign", "ErrorCode", "ErrorInfo" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.MOMsgResult), global::MO.Protocol.MOMsgResult.Parser, new[]{ "ErrorCode", "ErrorInfo", "Content" }, null, null, null)
           }));
     }
     #endregion
@@ -52,7 +52,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameBaseReflection.Descriptor.MessageTypes[0]; }
+      get { return global::MO.Protocol.MessageGameBaseReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -79,14 +79,14 @@ namespace ProtoMessage {
 
     /// <summary>Field number for the "Packets" field.</summary>
     public const int PacketsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::ProtoMessage.MOMsg> _repeated_packets_codec
-        = pb::FieldCodec.ForMessage(10, global::ProtoMessage.MOMsg.Parser);
-    private readonly pbc::RepeatedField<global::ProtoMessage.MOMsg> packets_ = new pbc::RepeatedField<global::ProtoMessage.MOMsg>();
+    private static readonly pb::FieldCodec<global::MO.Protocol.MOMsg> _repeated_packets_codec
+        = pb::FieldCodec.ForMessage(10, global::MO.Protocol.MOMsg.Parser);
+    private readonly pbc::RepeatedField<global::MO.Protocol.MOMsg> packets_ = new pbc::RepeatedField<global::MO.Protocol.MOMsg>();
     /// <summary>
     ///数据包列表
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::ProtoMessage.MOMsg> Packets {
+    public pbc::RepeatedField<global::MO.Protocol.MOMsg> Packets {
       get { return packets_; }
     }
 
@@ -167,7 +167,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameBaseReflection.Descriptor.MessageTypes[1]; }
+      get { return global::MO.Protocol.MessageGameBaseReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -517,7 +517,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameBaseReflection.Descriptor.MessageTypes[2]; }
+      get { return global::MO.Protocol.MessageGameBaseReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

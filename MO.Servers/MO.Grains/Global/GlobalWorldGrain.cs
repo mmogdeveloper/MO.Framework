@@ -2,9 +2,9 @@
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Global;
 using MO.GrainInterfaces.User;
+using MO.Protocol;
 using Orleans;
 using Orleans.Streams;
-using ProtoMessage;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

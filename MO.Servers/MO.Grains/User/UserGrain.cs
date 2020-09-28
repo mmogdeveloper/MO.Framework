@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using MO.Algorithm.Actions.Enum;
-using MO.Algorithm.Config;
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
+using MO.Protocol;
 using Orleans;
 using Orleans.Runtime;
 using Orleans.Streams;
-using ProtoMessage;
 using System;
 using System.Threading.Tasks;
 

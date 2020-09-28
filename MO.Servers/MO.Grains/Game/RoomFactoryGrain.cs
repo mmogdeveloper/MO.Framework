@@ -2,8 +2,8 @@
 using MO.Algorithm.Config;
 using MO.Algorithm.Redis;
 using MO.GrainInterfaces.Game;
+using MO.Protocol;
 using Orleans;
-using ProtoMessage;
 using System.Threading.Tasks;
 
 namespace MO.Grains.Game

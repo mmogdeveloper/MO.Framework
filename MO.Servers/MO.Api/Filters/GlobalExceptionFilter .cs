@@ -2,12 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using MO.Algorithm.Actions.Enum;
+using MO.Protocol;
 using Newtonsoft.Json;
-using ProtoMessage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MO.Api.Filters
 {

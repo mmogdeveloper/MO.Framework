@@ -1,5 +1,5 @@
 syntax = "proto3";
-package ProtoMessage;
+package MO.Protocol;
 
 message Contacts{
 	string WeiXinCode = 1;

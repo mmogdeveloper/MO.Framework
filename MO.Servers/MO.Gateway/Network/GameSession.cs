@@ -9,9 +9,9 @@ using MO.Algorithm.Config;
 using MO.Common.Security;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
+using MO.Protocol;
 using Newtonsoft.Json;
 using Orleans;
-using ProtoMessage;
 using System;
 using System.Threading.Tasks;
 

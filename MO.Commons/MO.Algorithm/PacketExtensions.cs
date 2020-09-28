@@ -1,9 +1,6 @@
 ﻿using Google.Protobuf;
 using MO.Algorithm.Actions.Enum;
-using ProtoMessage;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using MO.Protocol;
 
 namespace MO.Algorithm
 {

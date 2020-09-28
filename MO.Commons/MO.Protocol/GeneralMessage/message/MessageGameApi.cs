@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace ProtoMessage {
+namespace MO.Protocol {
 
   /// <summary>Holder for reflection information generated from message_game_api.proto</summary>
   public static partial class MessageGameApiReflection {
@@ -22,13 +22,13 @@ namespace ProtoMessage {
     static MessageGameApiReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChZtZXNzYWdlX2dhbWVfYXBpLnByb3RvEgxQcm90b01lc3NhZ2UiRAoIQ29u",
-            "dGFjdHMSEgoKV2VpWGluQ29kZRgBIAEoCRIPCgdRUUdyb3VwGAIgASgJEhMK",
-            "C1dlaVhpbkdyb3VwGAMgASgJYgZwcm90bzM="));
+            "ChZtZXNzYWdlX2dhbWVfYXBpLnByb3RvEgtNTy5Qcm90b2NvbCJECghDb250",
+            "YWN0cxISCgpXZWlYaW5Db2RlGAEgASgJEg8KB1FRR3JvdXAYAiABKAkSEwoL",
+            "V2VpWGluR3JvdXAYAyABKAliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.Contacts), global::ProtoMessage.Contacts.Parser, new[]{ "WeiXinCode", "QQGroup", "WeiXinGroup" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.Contacts), global::MO.Protocol.Contacts.Parser, new[]{ "WeiXinCode", "QQGroup", "WeiXinGroup" }, null, null, null)
           }));
     }
     #endregion
@@ -42,7 +42,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameApiReflection.Descriptor.MessageTypes[0]; }
+      get { return global::MO.Protocol.MessageGameApiReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

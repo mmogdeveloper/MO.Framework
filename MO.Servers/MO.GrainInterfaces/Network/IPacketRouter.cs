@@ -1,6 +1,5 @@
-﻿using Google.Protobuf;
+﻿using MO.Protocol;
 using Orleans;
-using ProtoMessage;
 using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Network

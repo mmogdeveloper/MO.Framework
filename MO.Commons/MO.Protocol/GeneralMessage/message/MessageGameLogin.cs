@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace ProtoMessage {
+namespace MO.Protocol {
 
   /// <summary>Holder for reflection information generated from message_game_login.proto</summary>
   public static partial class MessageGameLoginReflection {
@@ -22,23 +22,23 @@ namespace ProtoMessage {
     static MessageGameLoginReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChhtZXNzYWdlX2dhbWVfbG9naW4ucHJvdG8SDFByb3RvTWVzc2FnZSIyCghD",
-            "MlNfMTAwMRISCgpNb2JpbGVUeXBlGAEgASgFEhIKCkN1clZlcnNpb24YAiAB",
-            "KAkijQEKCFMyQ18xMDAxEhQKDFZlcnNpb25Ub3RhbBgBIAEoCRIUCgxWZXJz",
-            "aW9uUGF0Y2gYAiABKAkSFgoOSXNBcHBTdG9yZVBhc3MYAyABKAgSDgoGRmly",
-            "VXJsGAQgASgJEg4KBkFwa1VybBgFIAEoCRIOCgZEb25hbWUYBiABKAkSDQoF",
-            "Rml4SXAYByABKAkiMAoIQzJTXzEwMDMSEgoKTW9iaWxlVHlwZRgBIAEoBRIQ",
-            "CghEZXZpY2VJZBgCIAEoCSKPAQoIUzJDXzEwMDMSDgoGVXNlcklkGAEgASgD",
-            "Eg0KBVRva2VuGAIgASgJEg8KB0xvZ2luSVAYAyABKAkSEQoJTG9naW5Qb3J0",
-            "GAQgASgFEg4KBkdhdGVJUBgFIAEoCRIQCghHYXRlUG9ydBgGIAEoBRINCgVB",
-            "cGlJUBgHIAEoCRIPCgdBcGlQb3J0GAggASgFYgZwcm90bzM="));
+            "ChhtZXNzYWdlX2dhbWVfbG9naW4ucHJvdG8SC01PLlByb3RvY29sIjIKCEMy",
+            "U18xMDAxEhIKCk1vYmlsZVR5cGUYASABKAUSEgoKQ3VyVmVyc2lvbhgCIAEo",
+            "CSKNAQoIUzJDXzEwMDESFAoMVmVyc2lvblRvdGFsGAEgASgJEhQKDFZlcnNp",
+            "b25QYXRjaBgCIAEoCRIWCg5Jc0FwcFN0b3JlUGFzcxgDIAEoCBIOCgZGaXJV",
+            "cmwYBCABKAkSDgoGQXBrVXJsGAUgASgJEg4KBkRvbmFtZRgGIAEoCRINCgVG",
+            "aXhJcBgHIAEoCSIwCghDMlNfMTAwMxISCgpNb2JpbGVUeXBlGAEgASgFEhAK",
+            "CERldmljZUlkGAIgASgJIo8BCghTMkNfMTAwMxIOCgZVc2VySWQYASABKAMS",
+            "DQoFVG9rZW4YAiABKAkSDwoHTG9naW5JUBgDIAEoCRIRCglMb2dpblBvcnQY",
+            "BCABKAUSDgoGR2F0ZUlQGAUgASgJEhAKCEdhdGVQb3J0GAYgASgFEg0KBUFw",
+            "aUlQGAcgASgJEg8KB0FwaVBvcnQYCCABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S_1001), global::ProtoMessage.C2S_1001.Parser, new[]{ "MobileType", "CurVersion" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.S2C_1001), global::ProtoMessage.S2C_1001.Parser, new[]{ "VersionTotal", "VersionPatch", "IsAppStorePass", "FirUrl", "ApkUrl", "Doname", "FixIp" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.C2S_1003), global::ProtoMessage.C2S_1003.Parser, new[]{ "MobileType", "DeviceId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProtoMessage.S2C_1003), global::ProtoMessage.S2C_1003.Parser, new[]{ "UserId", "Token", "LoginIP", "LoginPort", "GateIP", "GatePort", "ApiIP", "ApiPort" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S_1001), global::MO.Protocol.C2S_1001.Parser, new[]{ "MobileType", "CurVersion" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C_1001), global::MO.Protocol.S2C_1001.Parser, new[]{ "VersionTotal", "VersionPatch", "IsAppStorePass", "FirUrl", "ApkUrl", "Doname", "FixIp" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S_1003), global::MO.Protocol.C2S_1003.Parser, new[]{ "MobileType", "DeviceId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C_1003), global::MO.Protocol.S2C_1003.Parser, new[]{ "UserId", "Token", "LoginIP", "LoginPort", "GateIP", "GatePort", "ApiIP", "ApiPort" }, null, null, null)
           }));
     }
     #endregion
@@ -55,7 +55,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameLoginReflection.Descriptor.MessageTypes[0]; }
+      get { return global::MO.Protocol.MessageGameLoginReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -200,7 +200,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameLoginReflection.Descriptor.MessageTypes[1]; }
+      get { return global::MO.Protocol.MessageGameLoginReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -488,7 +488,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameLoginReflection.Descriptor.MessageTypes[2]; }
+      get { return global::MO.Protocol.MessageGameLoginReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -633,7 +633,7 @@ namespace ProtoMessage {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ProtoMessage.MessageGameLoginReflection.Descriptor.MessageTypes[3]; }
+      get { return global::MO.Protocol.MessageGameLoginReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

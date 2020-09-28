@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-package ProtoMessage;
+package MO.Protocol;
 
 //合并数据包
 message MOMsgs{

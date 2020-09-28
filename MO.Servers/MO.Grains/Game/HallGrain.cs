@@ -3,13 +3,11 @@ using MO.GrainInterfaces;
 using MO.GrainInterfaces.Game;
 using MO.GrainInterfaces.User;
 using MO.Model.Context;
+using MO.Protocol;
 using Orleans;
 using Orleans.Streams;
-using ProtoMessage;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MO.Grains.Game

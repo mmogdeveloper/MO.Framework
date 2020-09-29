@@ -23,8 +23,8 @@ namespace Assets.Scripts.Network.Actions
             PlayerData player = null;
             if (GameUser.Instance.ViewPlayers.TryGetValue(rep.UserId, out player))
             {
-                GameObject.Destroy(player.GameObject);
-                GameUser.Instance.ViewPlayers.Remove(rep.UserId);
+                //GameObject.Destroy(player.GameObject);
+                //GameUser.Instance.ViewPlayers.Remove(rep.UserId);
             }
         }
     }

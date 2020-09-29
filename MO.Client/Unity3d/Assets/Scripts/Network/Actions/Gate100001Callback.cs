@@ -24,6 +24,8 @@ namespace Assets.Scripts.Network.Actions
             {
                 if (item.UserId == GameUser.Instance.CurPlayer.UserId)
                 {
+                    GameUser.Instance.CurPlayer.X = item.X;
+                    GameUser.Instance.CurPlayer.Y = item.Y;
                     GameUser.Instance.CurPlayer.GameObject.transform.position = new Vector3(item.X, item.Y, 0);
                 }
                 else
@@ -33,6 +35,7 @@ namespace Assets.Scripts.Network.Actions
                         var newPlayer = new PlayerData();
                         newPlayer.UserId = item.UserId;
                         newPlayer.GameObject = (GameObject)Resources.Load("Player");
+                        newPlayer.GameObject.name = item.UserId.ToString();
                         GameObject prefabInstance = GameObject.Instantiate(newPlayer.GameObject);
                         prefabInstance.transform.parent = GameObject.Find("Canvas").gameObject.transform;
                         GameUser.Instance.ViewPlayers.Add(item.UserId, newPlayer);

@@ -25,7 +25,13 @@ namespace Assets.Scripts.Network.Actions
             PlayerData gamePlayer;
             if (GameUser.Instance.ViewPlayers.TryGetValue(rep.UserId, out gamePlayer))
             {
-                gamePlayer.GameObject.transform.position = new Vector3(rep.X, rep.Y, 0);
+                Log.Info("{0}({1},{2})", rep.UserId, rep.X, rep.Y);
+                //gamePlayer.GameObject.transform.position = new Vector3(rep.X, rep.Y, 0);
+                //GameUser.Instance.CurPlayer.GameObject.transform.position = new Vector3(rep.X, rep.Y);
+                //gamePlayer.GameObject.transform.position = new Vector3(rep.X, rep.Y);
+                gamePlayer.X = rep.X;
+                gamePlayer.Y = rep.Y;
+                gamePlayer.GameObject.transform.position = new Vector3(rep.X, rep.Y);
             }
         }
     }

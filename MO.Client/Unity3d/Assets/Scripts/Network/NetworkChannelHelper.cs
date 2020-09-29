@@ -21,7 +21,12 @@ public class NetworkChannelHelper : INetworkChannelHelper
         _heartPacket = PacketHelper.BuildPacket(1);
         _networkChannel = networkChannel;
         _networkChannel.RegisterHandler(new Gate1Callback());
+        _networkChannel.RegisterHandler(new Gate100Callback());
         _networkChannel.RegisterHandler(new Gate100000Callback());
+        _networkChannel.RegisterHandler(new Gate100001Callback());
+        _networkChannel.RegisterHandler(new Gate100002Callback());
+        _networkChannel.RegisterHandler(new Gate100004Callback());
+        _networkChannel.RegisterHandler(new Gate100006Callback());
     }
 
     public Packet DeserializePacket(IPacketHeader packetHeader, Stream source, out object customErrorData)

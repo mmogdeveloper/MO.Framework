@@ -7,16 +7,16 @@ using UnityGameFramework.Runtime;
 
 namespace Assets.Scripts.Network.Actions
 {
-    public class Gate100000Callback : IPacketHandler
+    public class Gate100004Callback: IPacketHandler
     {
         public int Id
         {
-            get { return 100000; }
+            get { return 100004; }
         }
 
         public void Handle(object sender, Packet packet)
         {
-            Log.Info("{0},网关连接成功", GameUser.Instance.CurPlayer.UserId);
+            Log.Info("100004Callback");
         }
     }
 }

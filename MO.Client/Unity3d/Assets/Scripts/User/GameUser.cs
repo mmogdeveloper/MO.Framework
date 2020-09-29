@@ -14,7 +14,16 @@ public class GameUser
     {
         Instance = new GameUser();
     }
-    public PlayerData PlayerData { get; set; }
+    GameUser()
+    {
+        CurPlayer = new PlayerData();
+        CurPlayer.GameObject = (GameObject)Resources.Load("Self");
+        GameObject prefabInstance = GameObject.Instantiate(CurPlayer.GameObject);
+        prefabInstance.transform.parent = GameObject.Find("Canvas").gameObject.transform;
+        ViewPlayers = new Dictionary<Int64, PlayerData>();
+    }
+    public Dictionary<Int64, PlayerData> ViewPlayers { get; set; }
+    public PlayerData CurPlayer { get; set; }
     public string Token { get; set; }
     private string _deviceId;
     public string DeviceId

@@ -24,4 +24,19 @@ public class UIEvent : MonoBehaviour
     {
 
     }
+
+	public void OnEnterBtnClick()
+	{
+		C2S100001 content = new C2S100001();
+		content.RoomId = 10000;
+		var packet = PacketHelper.BuildPacket(100001, content);
+		GameUser.Instance.NetworkChannel.Send(packet);
+	}
+
+	public void OnLeaveBtnClick()
+    {
+		C2S100005 content = new C2S100005();
+		var packet = PacketHelper.BuildPacket(100005, content);
+		GameUser.Instance.NetworkChannel.Send(packet);
+	}
 }

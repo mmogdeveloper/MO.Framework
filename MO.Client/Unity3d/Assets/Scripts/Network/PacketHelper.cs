@@ -11,7 +11,7 @@ public static class PacketHelper
     public static MOPacket BuildPacket(int actionId, IMessage content = null)
     {
         MOMsg msg = new MOMsg();
-        msg.UserId = GameUser.Instance.PlayerData.UserId;
+        msg.UserId = GameUser.Instance.CurPlayer.UserId;
         msg.Token = GameUser.Instance.Token;
         msg.MsgId = GameUser.Instance.MsgId;
         msg.ActionId = actionId;

@@ -38,13 +38,11 @@ public class EventSystemComponent : MonoBehaviour {
 						var strResult = Encoding.UTF8.GetString(webarg.GetWebResponseBytes());
 						var moResult = MOMsgResult.Parser.ParseFrom(ByteString.FromBase64(strResult));
 						var rep1003 = S2C_1003.Parser.ParseFrom(moResult.Content);
-						PlayerData playerData = new PlayerData();
-						playerData.UserId = rep1003.UserId;
-						GameUser.Instance.PlayerData = playerData;
+						GameUser.Instance.CurPlayer.UserId = rep1003.UserId;
 						GameUser.Instance.Token = rep1003.Token;
 						GameUser.Instance.GateIP = rep1003.GateIP;
 						GameUser.Instance.GatePort = rep1003.GatePort;
-						Log.Info(string.Format("{0},登录成功", GameUser.Instance.PlayerData.UserId));
+						Log.Info(string.Format("{0},登录成功", GameUser.Instance.CurPlayer.UserId));
 
 						var tcpNetwork = GameEntry.GetComponent<NetworkComponent>();
 						GameUser.Instance.NetworkChannel = tcpNetwork.CreateNetworkChannel("Global", ServiceType.Tcp, new NetworkChannelHelper());

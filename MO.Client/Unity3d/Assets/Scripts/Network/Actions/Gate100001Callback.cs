@@ -24,7 +24,7 @@ namespace Assets.Scripts.Network.Actions
             {
                 if (item.UserId == GameUser.Instance.CurPlayer.UserId)
                 {
-                    GameUser.Instance.CurPlayer.GameObject.transform.position = new Vector3((float)item.X, (float)item.Y, 0);
+                    GameUser.Instance.CurPlayer.GameObject.transform.position = new Vector3(item.X, item.Y, 0);
                 }
                 else
                 {

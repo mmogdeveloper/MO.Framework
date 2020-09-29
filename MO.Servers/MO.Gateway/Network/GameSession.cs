@@ -101,6 +101,7 @@ namespace MO.Gateway.Network
                 if (packet.ActionId == 1)
                 {
                     await _tokenGrain.RefreshTokenTime();
+                    await DispatchOutcomingPacket(packet.ParseResult());
                     return;
                 }
 

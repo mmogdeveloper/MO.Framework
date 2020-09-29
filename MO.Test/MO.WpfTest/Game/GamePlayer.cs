@@ -10,9 +10,9 @@ namespace MO.WpfTest.Game
     {
         public Rectangle Rect_Player { get; }
 
-        public double X { get; private set; }
+        public float X { get; private set; }
 
-        public double Y { get; private set; }
+        public float Y { get; private set; }
 
         public long UserId { get; }
 
@@ -29,12 +29,12 @@ namespace MO.WpfTest.Game
             Canvas.SetBottom(Rect_Player, 0);
         }
 
-        public (double, double) GetPoint()
+        public (float, float) GetPoint()
         {
             return (X, Y);
         }
 
-        public void SetPoint(double x, double y)
+        public void SetPoint(float x, float y)
         {
             X = x;
             Y = y;

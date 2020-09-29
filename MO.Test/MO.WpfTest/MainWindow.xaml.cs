@@ -130,7 +130,7 @@ namespace MO.WpfTest
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            var step = this.Width / 100;
+            var step = (float)this.Width / 100;
             var point = curPlayer.GetPoint();
             switch (e.Key)
             {

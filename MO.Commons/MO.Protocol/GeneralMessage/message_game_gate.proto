@@ -24,8 +24,8 @@ message C2S100001{
 
 message UserPoint{
 	int64 UserId = 1;
-	double X = 2;
-	double Y = 3;
+	float X = 2;
+	float Y = 3;
 }
 message S2C100001{
 	int32 RoomId = 1;
@@ -40,15 +40,15 @@ message S2C100002{
 
 //移动
 message C2S100003{
-	double X = 2;
-	double Y = 3;
+	float X = 2;
+	float Y = 3;
 }
 
 //通知移动
 message S2C100004{
 	int64 UserId = 1;
-	double X = 2;
-	double Y = 3;
+	float X = 2;
+	float Y = 3;
 }
 
 //离开频道

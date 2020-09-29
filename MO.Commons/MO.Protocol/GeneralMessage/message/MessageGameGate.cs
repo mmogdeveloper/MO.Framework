@@ -25,12 +25,12 @@ namespace MO.Protocol {
             "ChdtZXNzYWdlX2dhbWVfZ2F0ZS5wcm90bxILTU8uUHJvdG9jb2wiBgoEQzJT",
             "MSIqCgZTMkMxMDASDgoGVXNlcklkGAEgASgDEhAKCElzT25saW5lGAIgASgI",
             "IgsKCUMyUzEwMDAwMCIbCglDMlMxMDAwMDESDgoGUm9vbUlkGAEgASgFIjEK",
-            "CVVzZXJQb2ludBIOCgZVc2VySWQYASABKAMSCQoBWBgCIAEoARIJCgFZGAMg",
-            "ASgBIkcKCVMyQzEwMDAwMRIOCgZSb29tSWQYASABKAUSKgoKVXNlclBvaW50",
+            "CVVzZXJQb2ludBIOCgZVc2VySWQYASABKAMSCQoBWBgCIAEoAhIJCgFZGAMg",
+            "ASgCIkcKCVMyQzEwMDAwMRIOCgZSb29tSWQYASABKAUSKgoKVXNlclBvaW50",
             "cxgCIAMoCzIWLk1PLlByb3RvY29sLlVzZXJQb2ludCIrCglTMkMxMDAwMDIS",
             "DgoGVXNlcklkGAEgASgDEg4KBlJvb21JZBgCIAEoBSIhCglDMlMxMDAwMDMS",
-            "CQoBWBgCIAEoARIJCgFZGAMgASgBIjEKCVMyQzEwMDAwNBIOCgZVc2VySWQY",
-            "ASABKAMSCQoBWBgCIAEoARIJCgFZGAMgASgBIhsKCUMyUzEwMDAwNRIOCgZS",
+            "CQoBWBgCIAEoAhIJCgFZGAMgASgCIjEKCVMyQzEwMDAwNBIOCgZVc2VySWQY",
+            "ASABKAMSCQoBWBgCIAEoAhIJCgFZGAMgASgCIhsKCUMyUzEwMDAwNRIOCgZS",
             "b29tSWQYASABKAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIOCgZS",
             "b29tSWQYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
@@ -552,9 +552,9 @@ namespace MO.Protocol {
 
     /// <summary>Field number for the "X" field.</summary>
     public const int XFieldNumber = 2;
-    private double x_;
+    private float x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public double X {
+    public float X {
       get { return x_; }
       set {
         x_ = value;
@@ -563,9 +563,9 @@ namespace MO.Protocol {
 
     /// <summary>Field number for the "Y" field.</summary>
     public const int YFieldNumber = 3;
-    private double y_;
+    private float y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public double Y {
+    public float Y {
       get { return y_; }
       set {
         y_ = value;
@@ -595,8 +595,8 @@ namespace MO.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
-      if (X != 0D) hash ^= X.GetHashCode();
-      if (Y != 0D) hash ^= Y.GetHashCode();
+      if (X != 0F) hash ^= X.GetHashCode();
+      if (Y != 0F) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -611,13 +611,13 @@ namespace MO.Protocol {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
-      if (X != 0D) {
-        output.WriteRawTag(17);
-        output.WriteDouble(X);
+      if (X != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(X);
       }
-      if (Y != 0D) {
-        output.WriteRawTag(25);
-        output.WriteDouble(Y);
+      if (Y != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(Y);
       }
     }
 
@@ -627,11 +627,11 @@ namespace MO.Protocol {
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
       }
-      if (X != 0D) {
-        size += 1 + 8;
+      if (X != 0F) {
+        size += 1 + 4;
       }
-      if (Y != 0D) {
-        size += 1 + 8;
+      if (Y != 0F) {
+        size += 1 + 4;
       }
       return size;
     }
@@ -644,10 +644,10 @@ namespace MO.Protocol {
       if (other.UserId != 0L) {
         UserId = other.UserId;
       }
-      if (other.X != 0D) {
+      if (other.X != 0F) {
         X = other.X;
       }
-      if (other.Y != 0D) {
+      if (other.Y != 0F) {
         Y = other.Y;
       }
     }
@@ -664,12 +664,12 @@ namespace MO.Protocol {
             UserId = input.ReadInt64();
             break;
           }
-          case 17: {
-            X = input.ReadDouble();
+          case 21: {
+            X = input.ReadFloat();
             break;
           }
-          case 25: {
-            Y = input.ReadDouble();
+          case 29: {
+            Y = input.ReadFloat();
             break;
           }
         }
@@ -1001,9 +1001,9 @@ namespace MO.Protocol {
 
     /// <summary>Field number for the "X" field.</summary>
     public const int XFieldNumber = 2;
-    private double x_;
+    private float x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public double X {
+    public float X {
       get { return x_; }
       set {
         x_ = value;
@@ -1012,9 +1012,9 @@ namespace MO.Protocol {
 
     /// <summary>Field number for the "Y" field.</summary>
     public const int YFieldNumber = 3;
-    private double y_;
+    private float y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public double Y {
+    public float Y {
       get { return y_; }
       set {
         y_ = value;
@@ -1042,8 +1042,8 @@ namespace MO.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (X != 0D) hash ^= X.GetHashCode();
-      if (Y != 0D) hash ^= Y.GetHashCode();
+      if (X != 0F) hash ^= X.GetHashCode();
+      if (Y != 0F) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -1054,24 +1054,24 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (X != 0D) {
-        output.WriteRawTag(17);
-        output.WriteDouble(X);
+      if (X != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(X);
       }
-      if (Y != 0D) {
-        output.WriteRawTag(25);
-        output.WriteDouble(Y);
+      if (Y != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(Y);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (X != 0D) {
-        size += 1 + 8;
+      if (X != 0F) {
+        size += 1 + 4;
       }
-      if (Y != 0D) {
-        size += 1 + 8;
+      if (Y != 0F) {
+        size += 1 + 4;
       }
       return size;
     }
@@ -1081,10 +1081,10 @@ namespace MO.Protocol {
       if (other == null) {
         return;
       }
-      if (other.X != 0D) {
+      if (other.X != 0F) {
         X = other.X;
       }
-      if (other.Y != 0D) {
+      if (other.Y != 0F) {
         Y = other.Y;
       }
     }
@@ -1097,12 +1097,12 @@ namespace MO.Protocol {
           default:
             input.SkipLastField();
             break;
-          case 17: {
-            X = input.ReadDouble();
+          case 21: {
+            X = input.ReadFloat();
             break;
           }
-          case 25: {
-            Y = input.ReadDouble();
+          case 29: {
+            Y = input.ReadFloat();
             break;
           }
         }
@@ -1161,9 +1161,9 @@ namespace MO.Protocol {
 
     /// <summary>Field number for the "X" field.</summary>
     public const int XFieldNumber = 2;
-    private double x_;
+    private float x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public double X {
+    public float X {
       get { return x_; }
       set {
         x_ = value;
@@ -1172,9 +1172,9 @@ namespace MO.Protocol {
 
     /// <summary>Field number for the "Y" field.</summary>
     public const int YFieldNumber = 3;
-    private double y_;
+    private float y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public double Y {
+    public float Y {
       get { return y_; }
       set {
         y_ = value;
@@ -1204,8 +1204,8 @@ namespace MO.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
-      if (X != 0D) hash ^= X.GetHashCode();
-      if (Y != 0D) hash ^= Y.GetHashCode();
+      if (X != 0F) hash ^= X.GetHashCode();
+      if (Y != 0F) hash ^= Y.GetHashCode();
       return hash;
     }
 
@@ -1220,13 +1220,13 @@ namespace MO.Protocol {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
-      if (X != 0D) {
-        output.WriteRawTag(17);
-        output.WriteDouble(X);
+      if (X != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(X);
       }
-      if (Y != 0D) {
-        output.WriteRawTag(25);
-        output.WriteDouble(Y);
+      if (Y != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(Y);
       }
     }
 
@@ -1236,11 +1236,11 @@ namespace MO.Protocol {
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
       }
-      if (X != 0D) {
-        size += 1 + 8;
+      if (X != 0F) {
+        size += 1 + 4;
       }
-      if (Y != 0D) {
-        size += 1 + 8;
+      if (Y != 0F) {
+        size += 1 + 4;
       }
       return size;
     }
@@ -1253,10 +1253,10 @@ namespace MO.Protocol {
       if (other.UserId != 0L) {
         UserId = other.UserId;
       }
-      if (other.X != 0D) {
+      if (other.X != 0F) {
         X = other.X;
       }
-      if (other.Y != 0D) {
+      if (other.Y != 0F) {
         Y = other.Y;
       }
     }
@@ -1273,12 +1273,12 @@ namespace MO.Protocol {
             UserId = input.ReadInt64();
             break;
           }
-          case 17: {
-            X = input.ReadDouble();
+          case 21: {
+            X = input.ReadFloat();
             break;
           }
-          case 25: {
-            Y = input.ReadDouble();
+          case 29: {
+            Y = input.ReadFloat();
             break;
           }
         }

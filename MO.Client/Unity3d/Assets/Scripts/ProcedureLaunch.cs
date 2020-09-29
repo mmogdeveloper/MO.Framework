@@ -34,6 +34,7 @@ namespace GameFramework.Procedure
 
             //// 打印严重错误级别日志，建议在发生严重错误，可能导致游戏崩溃或异常时使用，此时应尝试重启进程或重建游戏框架
             //Log.Fatal(welcomeMessage);
+            GameUser.Instance.Initialization();
         }
 
         // 每次轮询执行。

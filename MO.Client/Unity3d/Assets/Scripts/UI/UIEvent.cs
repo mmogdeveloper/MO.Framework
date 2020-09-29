@@ -8,6 +8,11 @@ using UnityGameFramework.Runtime;
 
 public class UIEvent : MonoBehaviour
 {
+	void Start()
+	{
+
+	}
+
 	public void OnLoginBtnClick()
 	{
 		var webComponent = GameEntry.GetComponent<WebRequestComponent>();

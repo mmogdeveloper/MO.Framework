@@ -22,10 +22,8 @@ public class GameUser
     }
 	public void Initialization()
 	{
-		Instance.CurPlayer = new PlayerData();
-		Instance.CurPlayer.GameObject = (GameObject)Resources.Load("Self");
-		GameObject prefabInstance = GameObject.Instantiate(Instance.CurPlayer.GameObject);
-		prefabInstance.transform.parent = GameObject.Find("Canvas").gameObject.transform;
+		var gameObject = (GameObject)Resources.Load("Self");
+		Instance.CurPlayer = new PlayerData(gameObject);
 		Instance.ViewPlayers = new Dictionary<Int64, PlayerData>();
 		var eventCom = GameEntry.GetComponent<EventComponent>();
 		eventCom.SetDefaultHandler(EventCallback);
@@ -97,6 +95,7 @@ public class GameUser
 		{
 			if (arg is UnityGameFramework.Runtime.NetworkConnectedEventArgs)
 			{
+				GameUser.Instance.CurPlayer.GameObject.transform.position = new Vector3(300, 300);
 				C2S100000 content = new C2S100000();
 				GameUser.Instance.NetworkChannel.Send(PacketHelper.BuildPacket(100000, content));
 			}

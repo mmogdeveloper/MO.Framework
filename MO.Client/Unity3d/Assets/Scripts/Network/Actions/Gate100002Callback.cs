@@ -25,10 +25,6 @@ namespace Assets.Scripts.Network.Actions
             {
                 var newPlayer = new PlayerData();
                 newPlayer.UserId = rep.UserId;
-                newPlayer.GameObject = (GameObject)Resources.Load("Player");
-                newPlayer.GameObject.name = rep.UserId.ToString();
-                GameObject prefabInstance = GameObject.Instantiate(newPlayer.GameObject);
-                prefabInstance.transform.parent = GameObject.Find("Canvas").gameObject.transform;
                 GameUser.Instance.ViewPlayers.Add(rep.UserId, newPlayer);
             }
         }

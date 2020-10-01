@@ -4,7 +4,7 @@
 GameFramework插件:https://gameframework.cn/download/  
 
 学习Demo  
-https://github.com/mutouzdl/gameframework_demo(非常不错的入门教程)  
+https://github.com/mutouzdl/gameframework_demo (非常不错的入门教程)  
 https://github.com/EllanJiang/StarForce  
 
 聊天demo  

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: chat_atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b01703ff8066f1c4ca7260d3805f5233, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f9891860abf0ecc41b60aceb02ad7318, type: 3}
+  - {fileID: 21300000, guid: c4451041c8c8ed1479b1df629317e170, type: 3}
+  - {fileID: 21300000, guid: b34baeb4e5f505d4c957f116d699fef9, type: 3}
+  - {fileID: 21300000, guid: 6a3dc945ab4a0414fa64354ae1e0143a, type: 3}
+  - {fileID: 21300000, guid: dcc6ff5975db63b4fa1a1e47440e64b2, type: 3}
+  - {fileID: 21300000, guid: 45bd2e1a461ed824fa3c64b11bf46478, type: 3}
+  - {fileID: 21300000, guid: 537ced3a292b0bb418138c8f7b8ac1f9, type: 3}
+  - {fileID: 21300000, guid: 66f8f48bb1b82dd48a662b089b9bb6de, type: 3}
+  - {fileID: 21300000, guid: 57d7d37c0aeaa3b40bfcab9fc935c45f, type: 3}
+  - {fileID: 21300000, guid: 5877de3e8510d9f4595a7bfb575dae62, type: 3}
+  - {fileID: 21300000, guid: f8a2f54e3cf601244bbbf2ba510834ee, type: 3}
+  - {fileID: 21300000, guid: c097008e0c4a18b4587a81f65fadc0e8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - playerhead01
+  - button_close02
+  - font_chat
+  - panel_buttom
+  - chat_selfdialog
+  - button_confirm_01
+  - chat_enemydialog
+  - panel_title
+  - chat_typeframe
+  - panel_middleboard
+  - tips_grayboard
+  - tips_blueboard
+  m_Tag: chat_atlas
+  m_IsVariant: 0

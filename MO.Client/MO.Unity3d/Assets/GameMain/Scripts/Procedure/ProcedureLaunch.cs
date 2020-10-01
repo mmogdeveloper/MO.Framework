@@ -17,7 +17,6 @@ namespace MO.Unity3d.Procedure
             base.OnEnter(procedureOwner);
             GameUser.Instance.Initiation();
             ChangeState<ProcedureSplash>(procedureOwner);
-            //ChangeState<ProcedureInitResources>(procedureOwner);
         }
     }
 }

@@ -155,5 +155,17 @@ namespace MO.Grains.User
         {
             return Task.FromResult(_location.State.RoomId);
         }
+
+        public Task SetUserName(string userName)
+        {
+            _userinfo.State.Nickname = userName;
+            _userinfo.WriteStateAsync();
+            return Task.CompletedTask;
+        }
+
+        public Task<string> GetUserName()
+        {
+            return Task.FromResult(_userinfo.State.Nickname);
+        }
     }
 }

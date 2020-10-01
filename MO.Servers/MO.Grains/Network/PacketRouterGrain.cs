@@ -116,6 +116,14 @@ namespace MO.Grains.Network
                             await curRoom.PlayerLeaveRoom(_user);
                         }
                         break;
+                    case 100007:
+                        {
+                            var req = C2S100007.Parser.ParseFrom(packet.Content);
+                            var roomId = await _user.GetRoomId();
+                            var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
+                            await curRoom.PlayerSendMsg(_user, req.Content);
+                        }
+                        break;
                 }
             }
             //_watch.Stop();

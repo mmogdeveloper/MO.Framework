@@ -4,12 +4,12 @@ namespace MO.Grains.Game
 {
     public class PlayerData
     {
-        private IUser _user;
+        public IUser User { get; }
         public float X { get; set; }
         public float Y { get; set; }
         public PlayerData(IUser user)
         {
-            _user = user;
+            User = user;
         }
 
         public void SetPoint(float x, float y)

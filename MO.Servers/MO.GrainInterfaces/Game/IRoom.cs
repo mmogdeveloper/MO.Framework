@@ -14,5 +14,6 @@ namespace MO.GrainInterfaces.Game
         Task PlayerLeaveRoom(IUser user);
         Task PlayerReady(IUser user);
         Task PlayerGo(IUser user, float x, float y);
+        Task PlayerSendMsg(IUser user, string msg);
     }
 }

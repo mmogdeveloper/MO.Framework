@@ -22,5 +22,8 @@ namespace MO.GrainInterfaces.User
 
         Task SetRoomId(int roomId);
         Task<int> GetRoomId();
+
+        Task SetUserName(string userName);
+        Task<string> GetUserName();
     }
 }

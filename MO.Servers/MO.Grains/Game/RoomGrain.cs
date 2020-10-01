@@ -103,7 +103,13 @@ namespace MO.Grains.Game
                     PlayerData player = null;
                     if (_players.State.TryGetValue(item.Key, out player))
                     {
-                        content.UserPoints.Add(new UserPoint() { UserId = item.Key, X = player.X, Y = player.Y });
+                        content.UserPoints.Add(new UserPoint()
+                        {
+                            UserId = item.Key,
+                            UserName = await player.User.GetUserName(),
+                            X = player.X,
+                            Y = player.Y
+                        });
                     }
                 }
                 MOMsg msg = new MOMsg();
@@ -115,6 +121,7 @@ namespace MO.Grains.Game
                 S2C100002 content = new S2C100002();
                 content.UserId = user.GetPrimaryKeyLong();
                 content.RoomId = (int)this.GetPrimaryKeyLong();
+                content.UserName = await user.GetUserName();
                 MOMsg msg = new MOMsg();
                 msg.ActionId = 100002;
                 msg.Content = content.ToByteString();
@@ -155,6 +162,17 @@ namespace MO.Grains.Game
             {
                 _players.State[user.GetPrimaryKeyLong()].SetPoint(x, y);
             }
+        }
+
+        public async Task PlayerSendMsg(IUser user, string msg)
+        {
+            S2C100008 content = new S2C100008();
+            content.UserId = user.GetPrimaryKeyLong();
+            content.Content = msg;
+            MOMsg notify = new MOMsg();
+            notify.ActionId = 100008;
+            notify.Content = content.ToByteString();
+            await RoomNotify(notify);
         }
     }
 }

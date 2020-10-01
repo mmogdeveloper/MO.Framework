@@ -24,15 +24,17 @@ namespace MO.Protocol {
           string.Concat(
             "ChdtZXNzYWdlX2dhbWVfZ2F0ZS5wcm90bxILTU8uUHJvdG9jb2wiBgoEQzJT",
             "MSIqCgZTMkMxMDASDgoGVXNlcklkGAEgASgDEhAKCElzT25saW5lGAIgASgI",
-            "IgsKCUMyUzEwMDAwMCIbCglDMlMxMDAwMDESDgoGUm9vbUlkGAEgASgFIjEK",
-            "CVVzZXJQb2ludBIOCgZVc2VySWQYASABKAMSCQoBWBgCIAEoAhIJCgFZGAMg",
-            "ASgCIkcKCVMyQzEwMDAwMRIOCgZSb29tSWQYASABKAUSKgoKVXNlclBvaW50",
-            "cxgCIAMoCzIWLk1PLlByb3RvY29sLlVzZXJQb2ludCIrCglTMkMxMDAwMDIS",
-            "DgoGVXNlcklkGAEgASgDEg4KBlJvb21JZBgCIAEoBSIhCglDMlMxMDAwMDMS",
-            "CQoBWBgCIAEoAhIJCgFZGAMgASgCIjEKCVMyQzEwMDAwNBIOCgZVc2VySWQY",
-            "ASABKAMSCQoBWBgCIAEoAhIJCgFZGAMgASgCIhsKCUMyUzEwMDAwNRIOCgZS",
-            "b29tSWQYASABKAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIOCgZS",
-            "b29tSWQYAiABKAViBnByb3RvMw=="));
+            "IgsKCUMyUzEwMDAwMCIbCglDMlMxMDAwMDESDgoGUm9vbUlkGAEgASgFIkMK",
+            "CVVzZXJQb2ludBIOCgZVc2VySWQYASABKAMSEAoIVXNlck5hbWUYAiABKAkS",
+            "CQoBWBgDIAEoAhIJCgFZGAQgASgCIkcKCVMyQzEwMDAwMRIOCgZSb29tSWQY",
+            "ASABKAUSKgoKVXNlclBvaW50cxgCIAMoCzIWLk1PLlByb3RvY29sLlVzZXJQ",
+            "b2ludCI9CglTMkMxMDAwMDISDgoGVXNlcklkGAEgASgDEhAKCFVzZXJOYW1l",
+            "GAIgASgJEg4KBlJvb21JZBgDIAEoBSIhCglDMlMxMDAwMDMSCQoBWBgCIAEo",
+            "AhIJCgFZGAMgASgCIjEKCVMyQzEwMDAwNBIOCgZVc2VySWQYASABKAMSCQoB",
+            "WBgCIAEoAhIJCgFZGAMgASgCIhsKCUMyUzEwMDAwNRIOCgZSb29tSWQYASAB",
+            "KAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIOCgZSb29tSWQYAiAB",
+            "KAUiHAoJQzJTMTAwMDA3Eg8KB0NvbnRlbnQYASABKAkiLAoJUzJDMTAwMDA4",
+            "Eg4KBlVzZXJJZBgBIAEoAxIPCgdDb250ZW50GAIgASgJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -40,13 +42,15 @@ namespace MO.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100), global::MO.Protocol.S2C100.Parser, new[]{ "UserId", "IsOnline" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100000), global::MO.Protocol.C2S100000.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100001), global::MO.Protocol.C2S100001.Parser, new[]{ "RoomId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.UserPoint), global::MO.Protocol.UserPoint.Parser, new[]{ "UserId", "X", "Y" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.UserPoint), global::MO.Protocol.UserPoint.Parser, new[]{ "UserId", "UserName", "X", "Y" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100001), global::MO.Protocol.S2C100001.Parser, new[]{ "RoomId", "UserPoints" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100002), global::MO.Protocol.S2C100002.Parser, new[]{ "UserId", "RoomId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100002), global::MO.Protocol.S2C100002.Parser, new[]{ "UserId", "UserName", "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100003), global::MO.Protocol.C2S100003.Parser, new[]{ "X", "Y" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100004), global::MO.Protocol.S2C100004.Parser, new[]{ "UserId", "X", "Y" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100005), global::MO.Protocol.C2S100005.Parser, new[]{ "RoomId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100006), global::MO.Protocol.S2C100006.Parser, new[]{ "UserId", "RoomId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100006), global::MO.Protocol.S2C100006.Parser, new[]{ "UserId", "RoomId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100007), global::MO.Protocol.C2S100007.Parser, new[]{ "Content" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100008), global::MO.Protocol.S2C100008.Parser, new[]{ "UserId", "Content" }, null, null, null)
           }));
     }
     #endregion
@@ -530,6 +534,7 @@ namespace MO.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UserPoint(UserPoint other) : this() {
       userId_ = other.userId_;
+      userName_ = other.userName_;
       x_ = other.x_;
       y_ = other.y_;
     }
@@ -550,8 +555,19 @@ namespace MO.Protocol {
       }
     }
 
+    /// <summary>Field number for the "UserName" field.</summary>
+    public const int UserNameFieldNumber = 2;
+    private string userName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string UserName {
+      get { return userName_; }
+      set {
+        userName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "X" field.</summary>
-    public const int XFieldNumber = 2;
+    public const int XFieldNumber = 3;
     private float x_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public float X {
@@ -562,7 +578,7 @@ namespace MO.Protocol {
     }
 
     /// <summary>Field number for the "Y" field.</summary>
-    public const int YFieldNumber = 3;
+    public const int YFieldNumber = 4;
     private float y_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public float Y {
@@ -586,6 +602,7 @@ namespace MO.Protocol {
         return true;
       }
       if (UserId != other.UserId) return false;
+      if (UserName != other.UserName) return false;
       if (X != other.X) return false;
       if (Y != other.Y) return false;
       return true;
@@ -595,6 +612,7 @@ namespace MO.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
+      if (UserName.Length != 0) hash ^= UserName.GetHashCode();
       if (X != 0F) hash ^= X.GetHashCode();
       if (Y != 0F) hash ^= Y.GetHashCode();
       return hash;
@@ -611,12 +629,16 @@ namespace MO.Protocol {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
+      if (UserName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(UserName);
+      }
       if (X != 0F) {
-        output.WriteRawTag(21);
+        output.WriteRawTag(29);
         output.WriteFloat(X);
       }
       if (Y != 0F) {
-        output.WriteRawTag(29);
+        output.WriteRawTag(37);
         output.WriteFloat(Y);
       }
     }
@@ -626,6 +648,9 @@ namespace MO.Protocol {
       int size = 0;
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
+      }
+      if (UserName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserName);
       }
       if (X != 0F) {
         size += 1 + 4;
@@ -643,6 +668,9 @@ namespace MO.Protocol {
       }
       if (other.UserId != 0L) {
         UserId = other.UserId;
+      }
+      if (other.UserName.Length != 0) {
+        UserName = other.UserName;
       }
       if (other.X != 0F) {
         X = other.X;
@@ -664,11 +692,15 @@ namespace MO.Protocol {
             UserId = input.ReadInt64();
             break;
           }
-          case 21: {
-            X = input.ReadFloat();
+          case 18: {
+            UserName = input.ReadString();
             break;
           }
           case 29: {
+            X = input.ReadFloat();
+            break;
+          }
+          case 37: {
             Y = input.ReadFloat();
             break;
           }
@@ -843,6 +875,7 @@ namespace MO.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S2C100002(S2C100002 other) : this() {
       userId_ = other.userId_;
+      userName_ = other.userName_;
       roomId_ = other.roomId_;
     }
 
@@ -862,8 +895,19 @@ namespace MO.Protocol {
       }
     }
 
+    /// <summary>Field number for the "UserName" field.</summary>
+    public const int UserNameFieldNumber = 2;
+    private string userName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string UserName {
+      get { return userName_; }
+      set {
+        userName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "RoomId" field.</summary>
-    public const int RoomIdFieldNumber = 2;
+    public const int RoomIdFieldNumber = 3;
     private int roomId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int RoomId {
@@ -887,6 +931,7 @@ namespace MO.Protocol {
         return true;
       }
       if (UserId != other.UserId) return false;
+      if (UserName != other.UserName) return false;
       if (RoomId != other.RoomId) return false;
       return true;
     }
@@ -895,6 +940,7 @@ namespace MO.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
+      if (UserName.Length != 0) hash ^= UserName.GetHashCode();
       if (RoomId != 0) hash ^= RoomId.GetHashCode();
       return hash;
     }
@@ -910,8 +956,12 @@ namespace MO.Protocol {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
+      if (UserName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(UserName);
+      }
       if (RoomId != 0) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(24);
         output.WriteInt32(RoomId);
       }
     }
@@ -921,6 +971,9 @@ namespace MO.Protocol {
       int size = 0;
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
+      }
+      if (UserName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserName);
       }
       if (RoomId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
@@ -935,6 +988,9 @@ namespace MO.Protocol {
       }
       if (other.UserId != 0L) {
         UserId = other.UserId;
+      }
+      if (other.UserName.Length != 0) {
+        UserName = other.UserName;
       }
       if (other.RoomId != 0) {
         RoomId = other.RoomId;
@@ -953,7 +1009,11 @@ namespace MO.Protocol {
             UserId = input.ReadInt64();
             break;
           }
-          case 16: {
+          case 18: {
+            UserName = input.ReadString();
+            break;
+          }
+          case 24: {
             RoomId = input.ReadInt32();
             break;
           }
@@ -1547,6 +1607,274 @@ namespace MO.Protocol {
           }
           case 16: {
             RoomId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///发送消息
+  /// </summary>
+  public sealed partial class C2S100007 : pb::IMessage<C2S100007> {
+    private static readonly pb::MessageParser<C2S100007> _parser = new pb::MessageParser<C2S100007>(() => new C2S100007());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<C2S100007> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[11]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public C2S100007() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public C2S100007(C2S100007 other) : this() {
+      content_ = other.content_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public C2S100007 Clone() {
+      return new C2S100007(this);
+    }
+
+    /// <summary>Field number for the "Content" field.</summary>
+    public const int ContentFieldNumber = 1;
+    private string content_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Content {
+      get { return content_; }
+      set {
+        content_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as C2S100007);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(C2S100007 other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Content != other.Content) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Content.Length != 0) hash ^= Content.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Content.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Content);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Content.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Content);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(C2S100007 other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Content.Length != 0) {
+        Content = other.Content;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Content = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///通知消息
+  /// </summary>
+  public sealed partial class S2C100008 : pb::IMessage<S2C100008> {
+    private static readonly pb::MessageParser<S2C100008> _parser = new pb::MessageParser<S2C100008>(() => new S2C100008());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<S2C100008> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[12]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2C100008() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2C100008(S2C100008 other) : this() {
+      userId_ = other.userId_;
+      content_ = other.content_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2C100008 Clone() {
+      return new S2C100008(this);
+    }
+
+    /// <summary>Field number for the "UserId" field.</summary>
+    public const int UserIdFieldNumber = 1;
+    private long userId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long UserId {
+      get { return userId_; }
+      set {
+        userId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Content" field.</summary>
+    public const int ContentFieldNumber = 2;
+    private string content_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Content {
+      get { return content_; }
+      set {
+        content_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as S2C100008);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(S2C100008 other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (UserId != other.UserId) return false;
+      if (Content != other.Content) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (UserId != 0L) hash ^= UserId.GetHashCode();
+      if (Content.Length != 0) hash ^= Content.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (UserId != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(UserId);
+      }
+      if (Content.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Content);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (UserId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
+      }
+      if (Content.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Content);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(S2C100008 other) {
+      if (other == null) {
+        return;
+      }
+      if (other.UserId != 0L) {
+        UserId = other.UserId;
+      }
+      if (other.Content.Length != 0) {
+        Content = other.Content;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            UserId = input.ReadInt64();
+            break;
+          }
+          case 18: {
+            Content = input.ReadString();
             break;
           }
         }

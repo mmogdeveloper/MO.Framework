@@ -10,12 +10,16 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
-
 namespace MO.Unity3d.UI
 {
     public class GameForm : UIFormLogic
     {
-        public void SendMsg()
+        protected internal override void OnOpen(object userData)
+        {
+            base.OnOpen(userData);
+        }
+
+        public void OnSendMsg()
         {
             var textCom = this.GetComponentInChildren<InputField>();
             if (string.IsNullOrEmpty(textCom.text))
@@ -26,6 +30,11 @@ namespace MO.Unity3d.UI
                 "DefaultEntityGroup", new MsgUserData(GameUser.Instance.UserName, textCom.text));
             GameUser.Instance.Channel.Send(PacketHelper.BuildPacket(new C2S100007() { Content = textCom.text }));
             textCom.text = "";
+        }
+
+        public void OnClose()
+        {
+            GameUser.Instance.Channel.Send(PacketHelper.BuildPacket(new C2S100005() { RoomId = 100000 }));
         }
     }
 }

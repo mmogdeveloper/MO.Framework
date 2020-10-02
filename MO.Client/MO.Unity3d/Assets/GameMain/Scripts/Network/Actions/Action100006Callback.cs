@@ -1,5 +1,6 @@
 ﻿using GameFramework.Network;
 using MO.Protocol;
+using MO.Unity3d.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,12 @@ namespace MO.Unity3d.Network.Actions
 
         public void Handle(object sender, Packet packet)
         {
-            //S2C100006 rep = S2C100006.Parser.ParseFrom(((MOPacket)packet).Packet.Content);
-            //if (rep.UserId == GameUser.Instance.CurPlayer.UserId)
-            //    return;
-            //PlayerData player = null;
-            //if (GameUser.Instance.ViewPlayers.TryGetValue(rep.UserId, out player))
-            //{
-            //    //GameObject.Destroy(player.GameObject);
-            //    //GameUser.Instance.ViewPlayers.Remove(rep.UserId);
-            //}
+            S2C100006 rep = S2C100006.Parser.ParseFrom(((MOPacket)packet).Packet.Content);
+            if (rep.UserId == GameUser.Instance.UserId)
+            {
+                GameUser.Instance.IsGameStart = false;
+                GameUser.Instance.Channel.Close();
+            }
         }
     }
 }

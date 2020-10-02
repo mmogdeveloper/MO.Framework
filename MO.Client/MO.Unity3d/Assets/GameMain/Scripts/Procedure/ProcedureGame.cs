@@ -1,5 +1,6 @@
 ﻿using GameFramework.Event;
 using GameFramework.Procedure;
+using MO.Unity3d.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace MO.Unity3d.Procedure
 {
     class ProcedureGame : ProcedureBase
     {
+        private int _formId;
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
@@ -23,13 +25,23 @@ namespace MO.Unity3d.Procedure
             //}
 
             GameEntry.Scene.LoadScene("Assets/GameMain/Scenes/Game.unity");
-            GameEntry.UI.OpenUIForm("Assets/GameMain/UI/UIForms/GameForm.prefab", "DefaultUIGroup", procedureOwner);
-
+            _formId = GameEntry.UI.OpenUIForm("Assets/GameMain/UI/UIForms/GameForm.prefab", "DefaultUIGroup", procedureOwner);
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
+            GameEntry.Scene.UnloadScene("Assets/GameMain/Scenes/Game.unity");
+            GameEntry.UI.CloseUIForm(_formId);
+        }
+
+        protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
+        {
+            base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+            if (!GameUser.Instance.IsGameStart)
+            {
+                ChangeState<ProcedureLogin>(procedureOwner);
+            }
         }
     }
 }

@@ -38,7 +38,5 @@ namespace MO.Unity3d.Data
                 return _msgId;
             }
         }
-
-        public bool IsGameStart { get; set; }
     }
 }

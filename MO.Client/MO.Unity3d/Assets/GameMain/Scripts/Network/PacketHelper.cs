@@ -19,7 +19,7 @@ namespace MO.Unity3d.Network
             if (content != null)
                 msg.Content = content.ToByteString();
             var data = msg.ToByteString();
-            msg.Sign = CryptoHelper.MD5_Encrypt(string.Format("{0}{1}", data, GameConfig.Md5Key)).ToLower();
+            msg.Sign = CryptoHelper.MD5_Encrypt(string.Format("{0}{1}", data, GlobalGame.Md5Key)).ToLower();
             MOPacket packet = new MOPacket(msg);
             return packet;
         }

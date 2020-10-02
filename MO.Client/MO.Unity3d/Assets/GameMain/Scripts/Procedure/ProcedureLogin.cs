@@ -41,7 +41,7 @@ namespace MO.Unity3d.Procedure
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-            if (!GameUser.Instance.IsGameStart)
+            if (!GlobalGame.IsGameStart)
                 return;
 
             ChangeState<ProcedureGame>(procedureOwner);

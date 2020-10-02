@@ -21,7 +21,7 @@ namespace MO.Unity3d.Network.Actions
             S2C100006 rep = S2C100006.Parser.ParseFrom(((MOPacket)packet).Packet.Content);
             if (rep.UserId == GameUser.Instance.UserId)
             {
-                GameUser.Instance.IsGameStart = false;
+                GlobalGame.IsGameStart = false;
                 GameUser.Instance.Channel.Close();
             }
         }

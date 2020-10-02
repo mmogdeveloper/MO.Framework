@@ -131,9 +131,6 @@ namespace MO.Grains.Game
 
         public async Task PlayerLeaveRoom(IUser user)
         {
-            _players.State.Remove(user.GetPrimaryKeyLong());
-            await user.UnsubscribeRoom();
-
             S2C100006 content = new S2C100006();
             content.UserId = user.GetPrimaryKeyLong();
             content.RoomId = (int)this.GetPrimaryKeyLong();
@@ -141,6 +138,9 @@ namespace MO.Grains.Game
             msg.ActionId = 100006;
             msg.Content = content.ToByteString();
             await RoomNotify(msg);
+
+            _players.State.Remove(user.GetPrimaryKeyLong());
+            await user.UnsubscribeRoom();
         }
 
         public Task PlayerReady(IUser user)

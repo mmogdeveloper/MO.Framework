@@ -16,7 +16,18 @@ namespace MO.GrainInterfaces.Transaction
         /// <param name="toAccount"></param>
         /// <param name="amountToTransfer"></param>
         /// <returns></returns>
+        //[Transaction(TransactionOption.Create)]
+        //Task Transfer<TBalance>(long fromAccount, long toAccount, ulong amountToTransfer) where TBalance : Balance;
+
+        /// <summary>
+        /// 转账
+        /// </summary>
+        /// <typeparam name="TBalance"></typeparam>
+        /// <param name="fromAccount"></param>
+        /// <param name="toAccount"></param>
+        /// <param name="amountToTransfer"></param>
+        /// <returns></returns>
         [Transaction(TransactionOption.Create)]
-        Task Transfer<TBalance>(long fromAccount, long toAccount, ulong amountToTransfer) where TBalance : Balance;
+        Task Transfer<TBalance>(IAccount<TBalance> fromAccount, IAccount<TBalance> toAccount, ulong amountToTransfer) where TBalance : Balance;
     }
 }

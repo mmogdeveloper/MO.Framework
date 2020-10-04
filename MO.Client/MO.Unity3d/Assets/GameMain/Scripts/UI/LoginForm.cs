@@ -23,7 +23,6 @@ namespace MO.Unity3d.UI
         public void OnLogin()
         {
             var input = GetComponentInChildren<InputField>();
-            GameUser.Instance.CurPlayer.UserName = input.text;
             C2S1003 content = new C2S1003();
             content.DeviceId = input.text;
             content.MobileType = 1;

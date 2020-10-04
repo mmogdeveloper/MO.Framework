@@ -89,6 +89,7 @@ namespace MO.Login.Controllers
             var message = new S2C1003();
             message.Token = token;
             message.UserId = userId;
+            message.UserName = req1003.DeviceId;
             message.LoginIP = serverconfig.LoginIP;
             message.LoginPort = serverconfig.LoginPort;
             message.ApiIP = serverconfig.ApiIP;

@@ -25,11 +25,12 @@ message C2S1003{
 
 message S2C1003{
 	int64 UserId = 1;
-	string Token = 2;
-	string LoginIP = 3;
-	int32 LoginPort = 4;
-	string GateIP = 5;
-	int32 GatePort = 6;
-	string ApiIP = 7;
-	int32 ApiPort = 8;
+	string UserName = 2;
+	string Token = 3;
+	string LoginIP = 10;
+	int32 LoginPort = 11;
+	string GateIP = 12;
+	int32 GatePort = 13;
+	string ApiIP = 14;
+	int32 ApiPort = 15;
 }

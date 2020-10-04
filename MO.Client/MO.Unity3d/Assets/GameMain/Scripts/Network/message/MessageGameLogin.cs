@@ -28,17 +28,18 @@ namespace MO.Protocol {
             "UGF0Y2gYAiABKAkSFgoOSXNBcHBTdG9yZVBhc3MYAyABKAgSDgoGRmlyVXJs",
             "GAQgASgJEg4KBkFwa1VybBgFIAEoCRIOCgZEb25hbWUYBiABKAkSDQoFRml4",
             "SXAYByABKAkiLwoHQzJTMTAwMxISCgpNb2JpbGVUeXBlGAEgASgFEhAKCERl",
-            "dmljZUlkGAIgASgJIo4BCgdTMkMxMDAzEg4KBlVzZXJJZBgBIAEoAxINCgVU",
-            "b2tlbhgCIAEoCRIPCgdMb2dpbklQGAMgASgJEhEKCUxvZ2luUG9ydBgEIAEo",
-            "BRIOCgZHYXRlSVAYBSABKAkSEAoIR2F0ZVBvcnQYBiABKAUSDQoFQXBpSVAY",
-            "ByABKAkSDwoHQXBpUG9ydBgIIAEoBWIGcHJvdG8z"));
+            "dmljZUlkGAIgASgJIqABCgdTMkMxMDAzEg4KBlVzZXJJZBgBIAEoAxIQCghV",
+            "c2VyTmFtZRgCIAEoCRINCgVUb2tlbhgDIAEoCRIPCgdMb2dpbklQGAogASgJ",
+            "EhEKCUxvZ2luUG9ydBgLIAEoBRIOCgZHYXRlSVAYDCABKAkSEAoIR2F0ZVBv",
+            "cnQYDSABKAUSDQoFQXBpSVAYDiABKAkSDwoHQXBpUG9ydBgPIAEoBWIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S1001), global::MO.Protocol.C2S1001.Parser, new[]{ "MobileType", "CurVersion" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C1001), global::MO.Protocol.S2C1001.Parser, new[]{ "VersionTotal", "VersionPatch", "IsAppStorePass", "FirUrl", "ApkUrl", "Doname", "FixIp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S1003), global::MO.Protocol.C2S1003.Parser, new[]{ "MobileType", "DeviceId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C1003), global::MO.Protocol.S2C1003.Parser, new[]{ "UserId", "Token", "LoginIP", "LoginPort", "GateIP", "GatePort", "ApiIP", "ApiPort" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C1003), global::MO.Protocol.S2C1003.Parser, new[]{ "UserId", "UserName", "Token", "LoginIP", "LoginPort", "GateIP", "GatePort", "ApiIP", "ApiPort" }, null, null, null)
           }));
     }
     #endregion
@@ -651,6 +652,7 @@ namespace MO.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S2C1003(S2C1003 other) : this() {
       userId_ = other.userId_;
+      userName_ = other.userName_;
       token_ = other.token_;
       loginIP_ = other.loginIP_;
       loginPort_ = other.loginPort_;
@@ -676,8 +678,19 @@ namespace MO.Protocol {
       }
     }
 
+    /// <summary>Field number for the "UserName" field.</summary>
+    public const int UserNameFieldNumber = 2;
+    private string userName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string UserName {
+      get { return userName_; }
+      set {
+        userName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "Token" field.</summary>
-    public const int TokenFieldNumber = 2;
+    public const int TokenFieldNumber = 3;
     private string token_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Token {
@@ -688,7 +701,7 @@ namespace MO.Protocol {
     }
 
     /// <summary>Field number for the "LoginIP" field.</summary>
-    public const int LoginIPFieldNumber = 3;
+    public const int LoginIPFieldNumber = 10;
     private string loginIP_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string LoginIP {
@@ -699,7 +712,7 @@ namespace MO.Protocol {
     }
 
     /// <summary>Field number for the "LoginPort" field.</summary>
-    public const int LoginPortFieldNumber = 4;
+    public const int LoginPortFieldNumber = 11;
     private int loginPort_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int LoginPort {
@@ -710,7 +723,7 @@ namespace MO.Protocol {
     }
 
     /// <summary>Field number for the "GateIP" field.</summary>
-    public const int GateIPFieldNumber = 5;
+    public const int GateIPFieldNumber = 12;
     private string gateIP_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string GateIP {
@@ -721,7 +734,7 @@ namespace MO.Protocol {
     }
 
     /// <summary>Field number for the "GatePort" field.</summary>
-    public const int GatePortFieldNumber = 6;
+    public const int GatePortFieldNumber = 13;
     private int gatePort_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int GatePort {
@@ -732,7 +745,7 @@ namespace MO.Protocol {
     }
 
     /// <summary>Field number for the "ApiIP" field.</summary>
-    public const int ApiIPFieldNumber = 7;
+    public const int ApiIPFieldNumber = 14;
     private string apiIP_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ApiIP {
@@ -743,7 +756,7 @@ namespace MO.Protocol {
     }
 
     /// <summary>Field number for the "ApiPort" field.</summary>
-    public const int ApiPortFieldNumber = 8;
+    public const int ApiPortFieldNumber = 15;
     private int apiPort_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int ApiPort {
@@ -767,6 +780,7 @@ namespace MO.Protocol {
         return true;
       }
       if (UserId != other.UserId) return false;
+      if (UserName != other.UserName) return false;
       if (Token != other.Token) return false;
       if (LoginIP != other.LoginIP) return false;
       if (LoginPort != other.LoginPort) return false;
@@ -781,6 +795,7 @@ namespace MO.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
+      if (UserName.Length != 0) hash ^= UserName.GetHashCode();
       if (Token.Length != 0) hash ^= Token.GetHashCode();
       if (LoginIP.Length != 0) hash ^= LoginIP.GetHashCode();
       if (LoginPort != 0) hash ^= LoginPort.GetHashCode();
@@ -802,32 +817,36 @@ namespace MO.Protocol {
         output.WriteRawTag(8);
         output.WriteInt64(UserId);
       }
-      if (Token.Length != 0) {
+      if (UserName.Length != 0) {
         output.WriteRawTag(18);
+        output.WriteString(UserName);
+      }
+      if (Token.Length != 0) {
+        output.WriteRawTag(26);
         output.WriteString(Token);
       }
       if (LoginIP.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(82);
         output.WriteString(LoginIP);
       }
       if (LoginPort != 0) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(88);
         output.WriteInt32(LoginPort);
       }
       if (GateIP.Length != 0) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(98);
         output.WriteString(GateIP);
       }
       if (GatePort != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(104);
         output.WriteInt32(GatePort);
       }
       if (ApiIP.Length != 0) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(114);
         output.WriteString(ApiIP);
       }
       if (ApiPort != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(120);
         output.WriteInt32(ApiPort);
       }
     }
@@ -837,6 +856,9 @@ namespace MO.Protocol {
       int size = 0;
       if (UserId != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
+      }
+      if (UserName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserName);
       }
       if (Token.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
@@ -869,6 +891,9 @@ namespace MO.Protocol {
       }
       if (other.UserId != 0L) {
         UserId = other.UserId;
+      }
+      if (other.UserName.Length != 0) {
+        UserName = other.UserName;
       }
       if (other.Token.Length != 0) {
         Token = other.Token;
@@ -906,30 +931,34 @@ namespace MO.Protocol {
             break;
           }
           case 18: {
-            Token = input.ReadString();
+            UserName = input.ReadString();
             break;
           }
           case 26: {
+            Token = input.ReadString();
+            break;
+          }
+          case 82: {
             LoginIP = input.ReadString();
             break;
           }
-          case 32: {
+          case 88: {
             LoginPort = input.ReadInt32();
             break;
           }
-          case 42: {
+          case 98: {
             GateIP = input.ReadString();
             break;
           }
-          case 48: {
+          case 104: {
             GatePort = input.ReadInt32();
             break;
           }
-          case 58: {
+          case 114: {
             ApiIP = input.ReadString();
             break;
           }
-          case 64: {
+          case 120: {
             ApiPort = input.ReadInt32();
             break;
           }

@@ -72,7 +72,7 @@ namespace MO.Unity3d.Procedure
             var webargs = (WebRequestFailureEventArgs)args;
             if (webargs.UserData == typeof(C2S1003))
             {
-                Log.Info("{0}登录失败", GameUser.Instance.UserName);
+                Log.Info("登录失败");
             }
         }
     }

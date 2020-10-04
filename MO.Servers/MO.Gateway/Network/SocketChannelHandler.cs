@@ -34,7 +34,10 @@ namespace MO.Gateway.Network
             {
                 var revBuffer = message as IByteBuffer;
                 if (revBuffer.ReadableBytes > sizeof(UInt16) || revBuffer.ReadableBytes < 0)
+                {
                     await context.CloseAsync();
+                    return;
+                }
 
                 var dataBuffer = new byte[revBuffer.ReadableBytes];
                 revBuffer.ReadBytes(dataBuffer);

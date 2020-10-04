@@ -24,12 +24,12 @@ namespace MO.Unity3d.UI
         {
             var input = GetComponentInChildren<InputField>();
             GameUser.Instance.CurPlayer.UserName = input.text;
-            C2S_1003 content = new C2S_1003();
+            C2S1003 content = new C2S1003();
             content.DeviceId = input.text;
             content.MobileType = 1;
             var url = string.Format("http://localhost:8001/api/c2s1003?data={0}",
                 content.ToByteString().ToBase64());
-            GameEntry.WebRequest.AddWebRequest(url, this);
+            GameEntry.WebRequest.AddWebRequest(url, typeof(C2S1003));
         }
     }
 }

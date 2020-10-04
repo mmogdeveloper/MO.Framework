@@ -39,7 +39,7 @@ namespace MO.Login.Controllers
 
         public override Task<string> GetMessage()
         {
-            var req1003 = C2S_1003.Parser.ParseFrom(ByteString.FromBase64(data));
+            var req1003 = C2S1003.Parser.ParseFrom(ByteString.FromBase64(data));
 
             var user = _dataContext.GameUsers.Where(m => m.DeviceId == req1003.DeviceId).FirstOrDefault();
             long userId = 0;
@@ -86,7 +86,7 @@ namespace MO.Login.Controllers
                 return Task.FromResult(new MOMsgResult() { ErrorCode = (int)ErrorType.Shown, ErrorInfo = "服务器不存在" }.ToByteString().ToBase64());
             }
 
-            var message = new S2C_1003();
+            var message = new S2C1003();
             message.Token = token;
             message.UserId = userId;
             message.LoginIP = serverconfig.LoginIP;

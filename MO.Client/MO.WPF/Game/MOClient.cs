@@ -112,14 +112,14 @@ namespace MO.WpfTest.Game
 
         public void Login()
         {
-            C2S_1003 content = new C2S_1003();
+            C2S1003 content = new C2S1003();
             content.DeviceId = _deviceId;
             content.MobileType = 1;
             var url = $"http://localhost:8001/api/c2s1003?data={content.ToByteString().ToBase64()}";
             var result = _httpClient.GetAsync(url).Result;
             var resultContent = result.Content.ReadAsStringAsync().Result;
             var moResult = MOMsgResult.Parser.ParseFrom(ByteString.FromBase64(resultContent));
-            var rep1003 = S2C_1003.Parser.ParseFrom(moResult.Content);
+            var rep1003 = S2C1003.Parser.ParseFrom(moResult.Content);
             UserId = rep1003.UserId;
             _token = rep1003.Token;
             _gateIP = rep1003.GateIP;

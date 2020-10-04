@@ -9,7 +9,7 @@ namespace MO.Login.Controllers
     {
         public override Task<string> GetMessage()
         {
-            var param = C2S_1001.Parser.ParseFrom(ByteString.FromBase64(data));
+            var param = C2S1001.Parser.ParseFrom(ByteString.FromBase64(data));
 
             string versionTotal = "1.0.0";
             string versionPatch = "1.0";
@@ -33,7 +33,7 @@ namespace MO.Login.Controllers
                     break;
             }
 
-            S2C_1001 message = new S2C_1001();
+            S2C1001 message = new S2C1001();
             message.VersionTotal = versionTotal;
             message.VersionPatch = versionPatch;
             message.IsAppStorePass = false;//0是在审核,1是没审核

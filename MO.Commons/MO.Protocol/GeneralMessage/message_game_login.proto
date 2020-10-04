@@ -2,12 +2,12 @@ syntax = "proto3";
 package MO.Protocol;
 
 //获取配置信息
-message C2S_1001{
+message C2S1001{
     int32 MobileType = 1;
     string CurVersion = 2;
 }
 
-message S2C_1001 {
+message S2C1001 {
 	string VersionTotal = 1;
 	string VersionPatch = 2;
 	bool IsAppStorePass = 3;
@@ -18,12 +18,12 @@ message S2C_1001 {
 }
 
 //游客登录
-message C2S_1003{
+message C2S1003{
     int32 MobileType = 1;
     string DeviceId = 2;
 }
 
-message S2C_1003{
+message S2C1003{
 	int64 UserId = 1;
 	string Token = 2;
 	string LoginIP = 3;

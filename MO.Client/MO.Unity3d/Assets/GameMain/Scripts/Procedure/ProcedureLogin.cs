@@ -6,6 +6,7 @@ using MO.Protocol;
 using MO.Unity3d.Data;
 using MO.Unity3d.Network;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -50,14 +51,16 @@ namespace MO.Unity3d.Procedure
         private void OnWebRequestSuccess(object sender, GameEventArgs args)
         {
             var webargs = (WebRequestSuccessEventArgs)args;
-            var strResult = Encoding.UTF8.GetString(webargs.GetWebResponseBytes());
-            var moResult = MOMsgResult.Parser.ParseFrom(ByteString.FromBase64(strResult));
-            var rep1003 = S2C_1003.Parser.ParseFrom(moResult.Content);
-            GameUser.Instance.CurPlayer.UserId = rep1003.UserId;
-            GameUser.Instance.Token = rep1003.Token;
-            Log.Info("{0}登录成功", GameUser.Instance.UserName);
-
-            GameUser.Instance.Channel.Connect(IPAddress.Parse(rep1003.GateIP), rep1003.GatePort);
+            if (webargs.UserData == typeof(C2S1003))
+            {
+                var strResult = Encoding.UTF8.GetString(webargs.GetWebResponseBytes());
+                var moResult = MOMsgResult.Parser.ParseFrom(ByteString.FromBase64(strResult));
+                var rep1003 = S2C1003.Parser.ParseFrom(moResult.Content);
+                GameUser.Instance.CurPlayer.UserId = rep1003.UserId;
+                GameUser.Instance.Token = rep1003.Token;
+                Log.Info("{0}登录成功", GameUser.Instance.UserName);
+                GameUser.Instance.Channel.Connect(IPAddress.Parse(rep1003.GateIP), rep1003.GatePort);
+            }
         }
 
         private void OnWebRequestFailure(object sender, GameEventArgs args)

@@ -22,23 +22,23 @@ namespace MO.Protocol {
     static MessageGameLoginReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChhtZXNzYWdlX2dhbWVfbG9naW4ucHJvdG8SC01PLlByb3RvY29sIjIKCEMy",
-            "U18xMDAxEhIKCk1vYmlsZVR5cGUYASABKAUSEgoKQ3VyVmVyc2lvbhgCIAEo",
-            "CSKNAQoIUzJDXzEwMDESFAoMVmVyc2lvblRvdGFsGAEgASgJEhQKDFZlcnNp",
-            "b25QYXRjaBgCIAEoCRIWCg5Jc0FwcFN0b3JlUGFzcxgDIAEoCBIOCgZGaXJV",
-            "cmwYBCABKAkSDgoGQXBrVXJsGAUgASgJEg4KBkRvbmFtZRgGIAEoCRINCgVG",
-            "aXhJcBgHIAEoCSIwCghDMlNfMTAwMxISCgpNb2JpbGVUeXBlGAEgASgFEhAK",
-            "CERldmljZUlkGAIgASgJIo8BCghTMkNfMTAwMxIOCgZVc2VySWQYASABKAMS",
-            "DQoFVG9rZW4YAiABKAkSDwoHTG9naW5JUBgDIAEoCRIRCglMb2dpblBvcnQY",
-            "BCABKAUSDgoGR2F0ZUlQGAUgASgJEhAKCEdhdGVQb3J0GAYgASgFEg0KBUFw",
-            "aUlQGAcgASgJEg8KB0FwaVBvcnQYCCABKAViBnByb3RvMw=="));
+            "ChhtZXNzYWdlX2dhbWVfbG9naW4ucHJvdG8SC01PLlByb3RvY29sIjEKB0My",
+            "UzEwMDESEgoKTW9iaWxlVHlwZRgBIAEoBRISCgpDdXJWZXJzaW9uGAIgASgJ",
+            "IowBCgdTMkMxMDAxEhQKDFZlcnNpb25Ub3RhbBgBIAEoCRIUCgxWZXJzaW9u",
+            "UGF0Y2gYAiABKAkSFgoOSXNBcHBTdG9yZVBhc3MYAyABKAgSDgoGRmlyVXJs",
+            "GAQgASgJEg4KBkFwa1VybBgFIAEoCRIOCgZEb25hbWUYBiABKAkSDQoFRml4",
+            "SXAYByABKAkiLwoHQzJTMTAwMxISCgpNb2JpbGVUeXBlGAEgASgFEhAKCERl",
+            "dmljZUlkGAIgASgJIo4BCgdTMkMxMDAzEg4KBlVzZXJJZBgBIAEoAxINCgVU",
+            "b2tlbhgCIAEoCRIPCgdMb2dpbklQGAMgASgJEhEKCUxvZ2luUG9ydBgEIAEo",
+            "BRIOCgZHYXRlSVAYBSABKAkSEAoIR2F0ZVBvcnQYBiABKAUSDQoFQXBpSVAY",
+            "ByABKAkSDwoHQXBpUG9ydBgIIAEoBWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S_1001), global::MO.Protocol.C2S_1001.Parser, new[]{ "MobileType", "CurVersion" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C_1001), global::MO.Protocol.S2C_1001.Parser, new[]{ "VersionTotal", "VersionPatch", "IsAppStorePass", "FirUrl", "ApkUrl", "Doname", "FixIp" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S_1003), global::MO.Protocol.C2S_1003.Parser, new[]{ "MobileType", "DeviceId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C_1003), global::MO.Protocol.S2C_1003.Parser, new[]{ "UserId", "Token", "LoginIP", "LoginPort", "GateIP", "GatePort", "ApiIP", "ApiPort" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S1001), global::MO.Protocol.C2S1001.Parser, new[]{ "MobileType", "CurVersion" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C1001), global::MO.Protocol.S2C1001.Parser, new[]{ "VersionTotal", "VersionPatch", "IsAppStorePass", "FirUrl", "ApkUrl", "Doname", "FixIp" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S1003), global::MO.Protocol.C2S1003.Parser, new[]{ "MobileType", "DeviceId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C1003), global::MO.Protocol.S2C1003.Parser, new[]{ "UserId", "Token", "LoginIP", "LoginPort", "GateIP", "GatePort", "ApiIP", "ApiPort" }, null, null, null)
           }));
     }
     #endregion
@@ -48,10 +48,10 @@ namespace MO.Protocol {
   /// <summary>
   ///获取配置信息
   /// </summary>
-  public sealed partial class C2S_1001 : pb::IMessage<C2S_1001> {
-    private static readonly pb::MessageParser<C2S_1001> _parser = new pb::MessageParser<C2S_1001>(() => new C2S_1001());
+  public sealed partial class C2S1001 : pb::IMessage<C2S1001> {
+    private static readonly pb::MessageParser<C2S1001> _parser = new pb::MessageParser<C2S1001>(() => new C2S1001());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<C2S_1001> Parser { get { return _parser; } }
+    public static pb::MessageParser<C2S1001> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -64,21 +64,21 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S_1001() {
+    public C2S1001() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S_1001(C2S_1001 other) : this() {
+    public C2S1001(C2S1001 other) : this() {
       mobileType_ = other.mobileType_;
       curVersion_ = other.curVersion_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S_1001 Clone() {
-      return new C2S_1001(this);
+    public C2S1001 Clone() {
+      return new C2S1001(this);
     }
 
     /// <summary>Field number for the "MobileType" field.</summary>
@@ -105,11 +105,11 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as C2S_1001);
+      return Equals(other as C2S1001);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(C2S_1001 other) {
+    public bool Equals(C2S1001 other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -159,7 +159,7 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(C2S_1001 other) {
+    public void MergeFrom(C2S1001 other) {
       if (other == null) {
         return;
       }
@@ -193,10 +193,10 @@ namespace MO.Protocol {
 
   }
 
-  public sealed partial class S2C_1001 : pb::IMessage<S2C_1001> {
-    private static readonly pb::MessageParser<S2C_1001> _parser = new pb::MessageParser<S2C_1001>(() => new S2C_1001());
+  public sealed partial class S2C1001 : pb::IMessage<S2C1001> {
+    private static readonly pb::MessageParser<S2C1001> _parser = new pb::MessageParser<S2C1001>(() => new S2C1001());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<S2C_1001> Parser { get { return _parser; } }
+    public static pb::MessageParser<S2C1001> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -209,14 +209,14 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C_1001() {
+    public S2C1001() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C_1001(S2C_1001 other) : this() {
+    public S2C1001(S2C1001 other) : this() {
       versionTotal_ = other.versionTotal_;
       versionPatch_ = other.versionPatch_;
       isAppStorePass_ = other.isAppStorePass_;
@@ -227,8 +227,8 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C_1001 Clone() {
-      return new S2C_1001(this);
+    public S2C1001 Clone() {
+      return new S2C1001(this);
     }
 
     /// <summary>Field number for the "VersionTotal" field.</summary>
@@ -310,11 +310,11 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as S2C_1001);
+      return Equals(other as S2C1001);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(S2C_1001 other) {
+    public bool Equals(S2C1001 other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -409,7 +409,7 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(S2C_1001 other) {
+    public void MergeFrom(S2C1001 other) {
       if (other == null) {
         return;
       }
@@ -481,10 +481,10 @@ namespace MO.Protocol {
   /// <summary>
   ///游客登录
   /// </summary>
-  public sealed partial class C2S_1003 : pb::IMessage<C2S_1003> {
-    private static readonly pb::MessageParser<C2S_1003> _parser = new pb::MessageParser<C2S_1003>(() => new C2S_1003());
+  public sealed partial class C2S1003 : pb::IMessage<C2S1003> {
+    private static readonly pb::MessageParser<C2S1003> _parser = new pb::MessageParser<C2S1003>(() => new C2S1003());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<C2S_1003> Parser { get { return _parser; } }
+    public static pb::MessageParser<C2S1003> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -497,21 +497,21 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S_1003() {
+    public C2S1003() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S_1003(C2S_1003 other) : this() {
+    public C2S1003(C2S1003 other) : this() {
       mobileType_ = other.mobileType_;
       deviceId_ = other.deviceId_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S_1003 Clone() {
-      return new C2S_1003(this);
+    public C2S1003 Clone() {
+      return new C2S1003(this);
     }
 
     /// <summary>Field number for the "MobileType" field.</summary>
@@ -538,11 +538,11 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as C2S_1003);
+      return Equals(other as C2S1003);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(C2S_1003 other) {
+    public bool Equals(C2S1003 other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -592,7 +592,7 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(C2S_1003 other) {
+    public void MergeFrom(C2S1003 other) {
       if (other == null) {
         return;
       }
@@ -626,10 +626,10 @@ namespace MO.Protocol {
 
   }
 
-  public sealed partial class S2C_1003 : pb::IMessage<S2C_1003> {
-    private static readonly pb::MessageParser<S2C_1003> _parser = new pb::MessageParser<S2C_1003>(() => new S2C_1003());
+  public sealed partial class S2C1003 : pb::IMessage<S2C1003> {
+    private static readonly pb::MessageParser<S2C1003> _parser = new pb::MessageParser<S2C1003>(() => new S2C1003());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<S2C_1003> Parser { get { return _parser; } }
+    public static pb::MessageParser<S2C1003> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -642,14 +642,14 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C_1003() {
+    public S2C1003() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C_1003(S2C_1003 other) : this() {
+    public S2C1003(S2C1003 other) : this() {
       userId_ = other.userId_;
       token_ = other.token_;
       loginIP_ = other.loginIP_;
@@ -661,8 +661,8 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C_1003 Clone() {
-      return new S2C_1003(this);
+    public S2C1003 Clone() {
+      return new S2C1003(this);
     }
 
     /// <summary>Field number for the "UserId" field.</summary>
@@ -755,11 +755,11 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as S2C_1003);
+      return Equals(other as S2C1003);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(S2C_1003 other) {
+    public bool Equals(S2C1003 other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -863,7 +863,7 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(S2C_1003 other) {
+    public void MergeFrom(S2C1003 other) {
       if (other == null) {
         return;
       }

@@ -33,6 +33,9 @@ namespace MO.Gateway.Network
             try
             {
                 var revBuffer = message as IByteBuffer;
+                if (revBuffer.ReadableBytes > sizeof(UInt16) || revBuffer.ReadableBytes < 0)
+                    await context.CloseAsync();
+
                 var dataBuffer = new byte[revBuffer.ReadableBytes];
                 revBuffer.ReadBytes(dataBuffer);
                 var msg = MOMsg.Parser.ParseFrom(dataBuffer);

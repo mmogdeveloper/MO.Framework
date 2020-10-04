@@ -15,7 +15,6 @@ namespace MO.Unity3d.Procedure
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            GameUser.Instance.Initiation();
             ChangeState<ProcedureSplash>(procedureOwner);
         }
     }

@@ -17,12 +17,12 @@ namespace MO.Unity3d.Data
         }
 
         public INetworkChannel Channel { get; private set; }
-        public Dictionary<long, PlayerData> Players { get; set; }
-        public PlayerData CurPlayer { get; set; }
-        public void Initiation()
+        public Dictionary<long, PlayerData> Players { get;private set; }
+        public PlayerData CurPlayer { get; private set; }
+        public void Initiation(PlayerData playerData)
         {
+            CurPlayer = playerData;
             Channel = GameEntry.Network.CreateNetworkChannel("Global", ServiceType.Tcp, new NetworkChannelHelper());
-            CurPlayer = new PlayerData();
             Players = new Dictionary<long, PlayerData>();
         }
 

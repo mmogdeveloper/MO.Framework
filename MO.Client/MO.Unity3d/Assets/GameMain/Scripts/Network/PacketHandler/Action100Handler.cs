@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MO.Unity3d.Network.Actions
+namespace MO.Unity3d.Network.PacketHandler
 {
-    public class Action100Callback: IPacketHandler
+    public class Action100Handler : IPacketHandler
     {
         public int Id
         {

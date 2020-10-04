@@ -8,9 +8,9 @@ using System.Text;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-namespace MO.Unity3d.Network.Actions
+namespace MO.Unity3d.Network.PacketHandler
 {
-    public class Action100001Callback : IPacketHandler
+    public class Action100001Handler : IPacketHandler
     {
         public int Id
         {

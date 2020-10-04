@@ -1,9 +1,10 @@
-﻿using GameFramework.Event;
+﻿using GameFramework;
+using GameFramework.Event;
 using GameFramework.Network;
 using Google.Protobuf;
 using MO.Protocol;
-using MO.Unity3d.Network.Actions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityGameFramework.Runtime;
@@ -12,14 +13,17 @@ namespace MO.Unity3d.Network
 {
     public class NetworkChannelHelper : INetworkChannelHelper
     {
+        private readonly Dictionary<int, Type> _packetTypes = new Dictionary<int, Type>();
+        private readonly MemoryStream _cachedStream = new MemoryStream(1024 * 8);
         private INetworkChannel _networkChannel;
+
         private MOPacket _heartPacket;
-        public int PacketHeaderLength { get { return 2; } }
+        public int PacketHeaderLength { get { return sizeof(ushort); } }
 
         public void Initialize(INetworkChannel networkChannel)
         {
             _networkChannel = networkChannel;
-
+            _heartPacket = new MOPacket(new MOMsg() { Content = new C2S1().ToByteString() });
             Type packetHandlerBaseType = typeof(IPacketHandler);
             Assembly assembly = Assembly.GetExecutingAssembly();
             Type[] types = assembly.GetTypes();
@@ -41,6 +45,50 @@ namespace MO.Unity3d.Network
             GameEntry.Event.Subscribe(UnityGameFramework.Runtime.NetworkMissHeartBeatEventArgs.EventId, OnNetworkMissHeartBeat);
             GameEntry.Event.Subscribe(UnityGameFramework.Runtime.NetworkErrorEventArgs.EventId, OnNetworkError);
             GameEntry.Event.Subscribe(UnityGameFramework.Runtime.NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
+        }
+
+        public void Shutdown()
+        {
+            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkConnectedEventArgs.EventId, OnNetworkConnected);
+            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkClosedEventArgs.EventId, OnNetworkClosed);
+            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkMissHeartBeatEventArgs.EventId, OnNetworkMissHeartBeat);
+            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkErrorEventArgs.EventId, OnNetworkError);
+            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
+
+            _networkChannel = null;
+        }
+
+        public void PrepareForConnecting()
+        {
+            _networkChannel.Socket.ReceiveBufferSize = 1024 * 64;
+            _networkChannel.Socket.SendBufferSize = 1024 * 64;
+        }
+
+        public bool SendHeartBeat()
+        {
+            if (_networkChannel.Connected)
+            {
+                _networkChannel.Send(_heartPacket.BuildHeartPacket());
+                return true;
+            }
+            return false;
+        }
+
+        public bool Serialize<T>(T packet, Stream destination) where T : Packet
+        {
+            var moPacket = packet as MOPacket;
+            if (moPacket != null)
+            {
+                _cachedStream.SetLength(_cachedStream.Capacity);
+                _cachedStream.Position = 0L;
+                var content = moPacket.Packet.ToByteArray();
+                _cachedStream.Write(BitConverter.GetBytes((ushort)content.Length), 0, PacketHeaderLength);
+                _cachedStream.Write(content, 0, content.Length);
+                var buffer = _cachedStream.GetBuffer();
+                destination.Write(buffer, 0, content.Length + PacketHeaderLength);
+                return true;
+            }
+            return false;
         }
 
         public Packet DeserializePacket(IPacketHeader packetHeader, Stream source, out object customErrorData)
@@ -68,56 +116,13 @@ namespace MO.Unity3d.Network
             {
                 var bufferLen = new byte[PacketHeaderLength];
                 source.Read(bufferLen, 0, bufferLen.Length);
-                packetLength = BitConverter.ToInt16(bufferLen, 0);
+                packetLength = BitConverter.ToUInt16(bufferLen, 0);
             }
             catch (Exception ex)
             {
                 customErrorData = ex.Message;
             }
-            return new PacketHeader(packetLength);
-        }
-
-        public void PrepareForConnecting()
-        {
-
-        }
-
-        public bool SendHeartBeat()
-        {
-            if (_networkChannel.Connected)
-            {
-                if (_heartPacket == null)
-                    _heartPacket = PacketHelper.BuildPacket(new C2S1());
-                _networkChannel.Send(_heartPacket);
-            }
-            return false;
-        }
-
-        public bool Serialize<T>(T packet, Stream destination) where T : Packet
-        {
-            var moPacket = packet as MOPacket;
-            if (moPacket != null)
-            {
-                var content = moPacket.Packet.ToByteArray();
-                var buffer = new byte[content.Length + PacketHeaderLength];
-                var len = BitConverter.GetBytes((short)content.Length);
-                Array.Copy(len, buffer, PacketHeaderLength);
-                Array.Copy(content, 0, buffer, PacketHeaderLength, content.Length);
-                destination.Write(buffer, 0, buffer.Length);
-                return true;
-            }
-            return false;
-        }
-
-        public void Shutdown()
-        {
-            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkConnectedEventArgs.EventId, OnNetworkConnected);
-            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkClosedEventArgs.EventId, OnNetworkClosed);
-            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkMissHeartBeatEventArgs.EventId, OnNetworkMissHeartBeat);
-            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkErrorEventArgs.EventId, OnNetworkError);
-            GameEntry.Event.Unsubscribe(UnityGameFramework.Runtime.NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
-
-            _networkChannel = null;
+            return new MOPacketHeader(packetLength);
         }
 
         private void OnNetworkConnected(object sender, GameEventArgs e)
@@ -130,7 +135,7 @@ namespace MO.Unity3d.Network
 
             Log.Info("Network channel '{0}' connected, local address '{1}', remote address '{2}'.", ne.NetworkChannel.Name, ne.NetworkChannel.Socket.LocalEndPoint.ToString(), ne.NetworkChannel.Socket.RemoteEndPoint.ToString());
 
-            _networkChannel.Send(PacketHelper.BuildPacket(new C2S100000()));
+            _networkChannel.Send(new C2S100000().BuildPacket());
         }
 
         private void OnNetworkClosed(object sender, GameEventArgs e)

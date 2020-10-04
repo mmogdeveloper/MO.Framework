@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace MO.Unity3d.Network.Actions
+namespace MO.Unity3d.Network.PacketHandler
 {
-    public class Action100002Callback: IPacketHandler
+    public class Action100002Handler : IPacketHandler
     {
         public int Id
         {

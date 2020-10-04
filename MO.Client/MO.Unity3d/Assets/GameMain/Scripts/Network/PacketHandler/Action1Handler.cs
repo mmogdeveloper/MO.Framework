@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MO.Unity3d.Network.Actions
+namespace MO.Unity3d.Network.PacketHandler
 {
     /// <summary>
     /// 心跳包
     /// </summary>
-    public class Action1Callback : IPacketHandler
+    public class Action1Handler : IPacketHandler
     {
         public int Id
         {

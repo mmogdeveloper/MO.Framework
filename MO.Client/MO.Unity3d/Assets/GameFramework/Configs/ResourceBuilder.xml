@@ -2,7 +2,7 @@
 <UnityGameFramework>
   <ResourceBuilder>
     <Settings>
-      <InternalResourceVersion>15</InternalResourceVersion>
+      <InternalResourceVersion>17</InternalResourceVersion>
       <Platforms>1</Platforms>
       <ZipSelected>True</ZipSelected>
       <UncompressedAssetBundleSelected>False</UncompressedAssetBundleSelected>
@@ -17,7 +17,7 @@
       <OutputPackedSelected>True</OutputPackedSelected>
       <BuildEventHandlerTypeName>
       </BuildEventHandlerTypeName>
-      <OutputDirectory>C:/Users/pc/Desktop/Projects/unity/MO.Unity3d/Resources</OutputDirectory>
+      <OutputDirectory>C:\Users\pc\Desktop\Projects\mo.framework\MO.Client\MO.Unity3d\Resources</OutputDirectory>
     </Settings>
   </ResourceBuilder>
 </UnityGameFramework>

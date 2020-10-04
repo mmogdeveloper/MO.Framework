@@ -28,13 +28,13 @@ namespace MO.Unity3d.UI
                 GameEntry.Entity.GenerateSerialId(),
                 "Assets/GameMain/Entities/SelfChatMsg.prefab",
                 "DefaultEntityGroup", new MsgUserData(GameUser.Instance.UserName, textCom.text));
-            GameUser.Instance.Channel.Send(PacketHelper.BuildPacket(new C2S100007() { Content = textCom.text }));
+            GameUser.Instance.Channel.Send(new C2S100007() { Content = textCom.text }.BuildPacket());
             textCom.text = "";
         }
 
         public void OnClose()
         {
-            GameUser.Instance.Channel.Send(PacketHelper.BuildPacket(new C2S100005() { RoomId = 100000 }));
+            GameUser.Instance.Channel.Send(new C2S100005() { RoomId = 100000 }.BuildPacket());
         }
     }
 }

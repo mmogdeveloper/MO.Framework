@@ -1,4 +1,5 @@
-﻿using GameFramework.Network;
+﻿using GameFramework;
+using GameFramework.Network;
 using MO.Protocol;
 using System;
 using System.Collections.Generic;
@@ -7,10 +8,11 @@ using System.Text;
 
 namespace MO.Unity3d.Network
 {
-    public class PacketHeader : IPacketHeader
+    public class MOPacketHeader : IPacketHeader
     {
-        public int PacketLength { get; }
-        public PacketHeader(int packetLength)
+        public int PacketLength { get;private set; }
+
+        public MOPacketHeader(int packetLength)
         {
             PacketLength = packetLength;
         }

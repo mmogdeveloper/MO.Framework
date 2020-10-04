@@ -13,16 +13,16 @@ namespace MO.Unity3d.Network
         {
             get
             {
-                if (Packet == null)
-                    Packet = new MOMsg();
                 return Packet.ActionId;
             }
         }
-        public MOMsg Packet { get; private set; }
+        public MOMsg Packet { get;private set; }
+
         public MOPacket(MOMsg msg)
         {
-            Packet = msg ?? new MOMsg();
+            Packet = msg;
         }
+
         public override void Clear()
         {
             Packet = null;

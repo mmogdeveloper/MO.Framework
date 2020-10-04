@@ -65,7 +65,11 @@ namespace MO.Unity3d.Procedure
 
         private void OnWebRequestFailure(object sender, GameEventArgs args)
         {
-            Log.Info("{0}登录失败", GameUser.Instance.UserName);
+            var webargs = (WebRequestSuccessEventArgs)args;
+            if (webargs.UserData == typeof(C2S1003))
+            {
+                Log.Info("{0}登录失败", GameUser.Instance.UserName);
+            }
         }
     }
 }

@@ -75,6 +75,9 @@ namespace MO.Grains.Game
 
         private async Task OnTimerCallback(object obj)
         {
+            //non-Reentrant 调用
+            var grain = this.AsReference<IRoom>();
+            
             await Task.CompletedTask;
         }
 

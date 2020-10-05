@@ -82,6 +82,10 @@ namespace MO.Silo
                     {
                         options.ShutdownTimeout = TimeSpan.FromMinutes(1);
                     })
+                    .Configure<SchedulingOptions>(optisons =>
+                    {
+                        optisons.AllowCallChainReentrancy = false;
+                    })
                     .AddSimpleMessageStreamProvider(StreamProviders.JobsProvider)
                     .AddSimpleMessageStreamProvider(StreamProviders.TransientProvider)
 

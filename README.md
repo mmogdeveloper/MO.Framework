@@ -15,7 +15,7 @@ Protocol:基于proto3的协议
 Common:基本工具模块  
 Algorithm:基本逻辑模块  
 
-框架使用了
+框架使用了  
 Orleans 分布式基础  
 Dotnetty 网关socket通信  
 Entityframeworkcore 操作mysql  
@@ -28,6 +28,7 @@ NLog 系统日志
 
 #### 使用说明
 运行框架需要安装Mysql和Redis  
+在mysql中新建数据库命名为Orleans
 在mysql数据库执行Database文件夹中的sql文件(Orleans需要)  
 Model模块中创建了两个数据库(Code First)  
 分别是MOData和MORecord  

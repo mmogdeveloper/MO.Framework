@@ -21,9 +21,13 @@ namespace MO.Unity3d.Data
         public PlayerData CurPlayer { get; private set; }
         public void Initiation(PlayerData playerData)
         {
+            if (Channel == null)
+                Channel = GameEntry.Network.CreateNetworkChannel("Global", ServiceType.Tcp, new NetworkChannelHelper());
+            if (Players == null)
+                Players = new Dictionary<long, PlayerData>();
+            else
+                Players.Clear();
             CurPlayer = playerData;
-            Channel = GameEntry.Network.CreateNetworkChannel("Global", ServiceType.Tcp, new NetworkChannelHelper());
-            Players = new Dictionary<long, PlayerData>();
         }
 
         public long UserId { get { return CurPlayer.UserId; } }

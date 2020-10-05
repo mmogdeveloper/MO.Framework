@@ -46,9 +46,8 @@ namespace MO.Login.Controllers
             if (user == null || user.UserId == 0)
             {
                 //注册账号
-                if (DataRedis.Client.Get<int>(RedisConstants.SKeyRedis_UserId) == 0)
-                    DataRedis.Client.Set(RedisConstants.SKeyRedis_UserId, GameConstants.USERIDINIT);
-                userId = (long)DataRedis.Client.IncrByFloat(RedisConstants.SKeyRedis_UserId, RandomUtils.GetRandom(1, 1024));
+                var userIdFactory = _client.GetGrain<IUserIdFactory>(default(Int64));
+                userId = userIdFactory.GetNewUserId().Result;
                 user = new GameUser();
                 user.UserId = userId;
                 user.NickName = "游客001";

@@ -59,7 +59,6 @@ namespace MO.Unity3d.Procedure
                 var playerData = new PlayerData();
                 playerData.UserId = rep1003.UserId;
                 playerData.UserName = rep1003.UserName;
-
                 GameUser.Instance.Initiation(playerData);
                 GameUser.Instance.Token = rep1003.Token;
                 Log.Info("{0}登录成功", GameUser.Instance.UserName);

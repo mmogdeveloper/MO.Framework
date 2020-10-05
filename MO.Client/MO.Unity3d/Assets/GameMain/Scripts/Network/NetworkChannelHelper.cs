@@ -84,7 +84,7 @@ namespace MO.Unity3d.Network
                 var content = moPacket.Packet.ToByteArray();
                 _cachedStream.Write(BitConverter.GetBytes((ushort)content.Length), 0, PacketHeaderLength);
                 _cachedStream.Write(content, 0, content.Length);
-                var buffer = _cachedStream.GetBuffer();
+                var buffer = _cachedStream.ToArray();
                 destination.Write(buffer, 0, content.Length + PacketHeaderLength);
                 return true;
             }

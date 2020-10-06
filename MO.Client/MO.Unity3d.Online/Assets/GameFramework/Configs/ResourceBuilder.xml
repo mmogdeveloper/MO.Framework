@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <ResourceBuilder>
+    <Settings>
+      <InternalResourceVersion>10</InternalResourceVersion>
+      <Platforms>1</Platforms>
+      <ZipSelected>True</ZipSelected>
+      <UncompressedAssetBundleSelected>False</UncompressedAssetBundleSelected>
+      <DisableWriteTypeTreeSelected>False</DisableWriteTypeTreeSelected>
+      <DeterministicAssetBundleSelected>True</DeterministicAssetBundleSelected>
+      <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>
+      <IgnoreTypeTreeChangesSelected>False</IgnoreTypeTreeChangesSelected>
+      <AppendHashToAssetBundleNameSelected>False</AppendHashToAssetBundleNameSelected>
+      <ChunkBasedCompressionSelected>True</ChunkBasedCompressionSelected>
+      <OutputPackageSelected>True</OutputPackageSelected>
+      <OutputFullSelected>True</OutputFullSelected>
+      <OutputPackedSelected>True</OutputPackedSelected>
+      <BuildEventHandlerTypeName>
+      </BuildEventHandlerTypeName>
+      <OutputDirectory>C:/Users/pc/Desktop/Projects/mo.framework/MO.Client/MO.Unity3d.Online/Resource</OutputDirectory>
+    </Settings>
+  </ResourceBuilder>
+</UnityGameFramework>

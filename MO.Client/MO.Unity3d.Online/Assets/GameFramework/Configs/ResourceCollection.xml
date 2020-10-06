@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <ResourceCollection>
+    <Resources>
+      <Resource Name="Entities/Player" LoadType="0" Packed="False" />
+      <Resource Name="Entities/PlayerChatMsg" LoadType="0" Packed="False" />
+      <Resource Name="Entities/Self" LoadType="0" Packed="False" />
+      <Resource Name="Entities/SelfChatMsg" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Credits" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Example/EnvironmentMat" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Example/ExampleScene" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Example/GlassesMat" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Example/PlayerMat" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Prefabs/ArrowsAllDirections" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Prefabs/ArrowsHorizontal" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Prefabs/ArrowsVertical" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Prefabs/DpadMultiplePieces" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Prefabs/DpadOnePiece" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Prefabs/Joystick" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Prefabs/SteeringWheel" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/README" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/FlatDark/flatDark06" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/FlatDark/Joystick/flatDark00" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/FlatLight/Arrows/flatLight22" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/FlatLight/Arrows/flatLight23" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/OtherSprites/SteeringWheel" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/Arrows/shadedDark24" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/Arrows/shadedDark25" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/Arrows/shadedDark26" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/Arrows/shadedDark27" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/Buttons/shadedDark00" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/Buttons/shadedDark36" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/Buttons/shadedDark45" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/DpadOnePiece/shadedDark04" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedDark/shadedDark11" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedLight/DpadMultiplePieces/shadedLight03" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedLight/DpadMultiplePieces/shadedLight05" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedLight/DpadMultiplePieces/shadedLight06" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/ShadedLight/DpadMultiplePieces/shadedLight10" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/TransparentDark/Arrows/transparentDark24" LoadType="0" Packed="False" />
+      <Resource Name="Plugins/SimpleInput/Sprites/TransparentDark/Arrows/transparentDark25" LoadType="0" Packed="False" />
+      <Resource Name="Scenes/Game" LoadType="0" Packed="False" />
+      <Resource Name="Scenes/Launcher" LoadType="0" Packed="False" />
+      <Resource Name="Scenes/Login" LoadType="0" Packed="False" />
+      <Resource Name="Textures/button_close02" LoadType="0" Packed="False" />
+      <Resource Name="Textures/button_confirm_01" LoadType="0" Packed="False" />
+      <Resource Name="Textures/chat_enemydialog" LoadType="0" Packed="False" />
+      <Resource Name="Textures/chat_selfdialog" LoadType="0" Packed="False" />
+      <Resource Name="Textures/chat_typeframe" LoadType="0" Packed="False" />
+      <Resource Name="Textures/font_chat" LoadType="0" Packed="False" />
+      <Resource Name="Textures/panel_buttom" LoadType="0" Packed="False" />
+      <Resource Name="Textures/panel_middleboard" LoadType="0" Packed="False" />
+      <Resource Name="Textures/panel_title" LoadType="0" Packed="False" />
+      <Resource Name="Textures/playerhead01" LoadType="0" Packed="False" />
+      <Resource Name="Textures/tips_blueboard" LoadType="0" Packed="False" />
+      <Resource Name="Textures/tips_grayboard" LoadType="0" Packed="False" />
+      <Resource Name="UI/UIForms/ChatForm" LoadType="0" Packed="False" />
+      <Resource Name="UI/UIForms/GameForm" LoadType="0" Packed="False" />
+      <Resource Name="UI/UIForms/LoginForm" LoadType="0" Packed="False" />
+    </Resources>
+    <Assets>
+      <Asset Guid="062cee36aaf322e47821b456db3e1f44" ResourceName="Plugins/SimpleInput/Sprites/TransparentDark/Arrows/transparentDark25" />
+      <Asset Guid="069c00ebeb26fc84ba244cd7ced51cf8" ResourceName="Plugins/SimpleInput/Example/PlayerMat" />
+      <Asset Guid="0b0b3a09994a6e94e81dae611cb60c29" ResourceName="Plugins/SimpleInput/Example/EnvironmentMat" />
+      <Asset Guid="0d4427e968e720644b7c4a42a70c0854" ResourceName="Plugins/SimpleInput/Sprites/FlatLight/Arrows/flatLight23" />
+      <Asset Guid="1406f387437800b49a1cb6cf728e11e2" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/Arrows/shadedDark24" />
+      <Asset Guid="151625cc86b0b5448ba1f8b772f49432" ResourceName="Scenes/Login" />
+      <Asset Guid="23bd993e6f5562348b23a3b7550cc6dd" ResourceName="Plugins/SimpleInput/Credits" />
+      <Asset Guid="2620b5566cb22dd4c8742c763fa34f79" ResourceName="UI/UIForms/ChatForm" />
+      <Asset Guid="3066c3a8fcfd6fc4482868bf62045594" ResourceName="Plugins/SimpleInput/Prefabs/ArrowsHorizontal" />
+      <Asset Guid="3166043dec3cd5d48ab026a0a162a03d" ResourceName="Plugins/SimpleInput/Sprites/ShadedLight/DpadMultiplePieces/shadedLight10" />
+      <Asset Guid="36300ad3f703b964fb4e8c42be9649ec" ResourceName="Plugins/SimpleInput/Prefabs/ArrowsAllDirections" />
+      <Asset Guid="381b429e58f0f984a827788e78839b0f" ResourceName="Plugins/SimpleInput/Sprites/OtherSprites/SteeringWheel" />
+      <Asset Guid="419a50522402a3444a8cbf1a4c5bc9fc" ResourceName="Entities/PlayerChatMsg" />
+      <Asset Guid="45bd2e1a461ed824fa3c64b11bf46478" ResourceName="Textures/button_confirm_01" />
+      <Asset Guid="51a39369d386ca84aaad1d4625465c03" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/Buttons/shadedDark36" />
+      <Asset Guid="5262616ea7558dd40b1ada4eddb2f6f0" ResourceName="UI/UIForms/LoginForm" />
+      <Asset Guid="537ced3a292b0bb418138c8f7b8ac1f9" ResourceName="Textures/chat_enemydialog" />
+      <Asset Guid="53e917ccdf9fe484386a922fc2c12718" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/Arrows/shadedDark25" />
+      <Asset Guid="57d7d37c0aeaa3b40bfcab9fc935c45f" ResourceName="Textures/chat_typeframe" />
+      <Asset Guid="5877de3e8510d9f4595a7bfb575dae62" ResourceName="Textures/panel_middleboard" />
+      <Asset Guid="5c7644bbe440b054580b36911866efee" ResourceName="Plugins/SimpleInput/Example/GlassesMat" />
+      <Asset Guid="5cf044d1748e5d8408b2b810b9813f20" ResourceName="Entities/SelfChatMsg" />
+      <Asset Guid="5fe76d8874b5ab349a260c69ea0dece9" ResourceName="Plugins/SimpleInput/Prefabs/SteeringWheel" />
+      <Asset Guid="66f8f48bb1b82dd48a662b089b9bb6de" ResourceName="Textures/panel_title" />
+      <Asset Guid="68779cbdef076cc4fa3f6e3c4edc7873" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/shadedDark11" />
+      <Asset Guid="6a3dc945ab4a0414fa64354ae1e0143a" ResourceName="Textures/panel_buttom" />
+      <Asset Guid="6b75b1192eaae08459d581ac845ba27d" ResourceName="Plugins/SimpleInput/README" />
+      <Asset Guid="7d504517c5476c14383e765e9d58ac62" ResourceName="Plugins/SimpleInput/Sprites/ShadedLight/DpadMultiplePieces/shadedLight06" />
+      <Asset Guid="82e0b58d2dd116b48b63147aca1661b4" ResourceName="UI/UIForms/GameForm" />
+      <Asset Guid="83b4d2d7539de7a439576f4abc1d8354" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/Arrows/shadedDark27" />
+      <Asset Guid="8baafd6b30b8b9d42ad7f25dba782c71" ResourceName="Entities/Player" />
+      <Asset Guid="9329ad6eca7fdf849b8885dea848b783" ResourceName="Plugins/SimpleInput/Sprites/ShadedLight/DpadMultiplePieces/shadedLight05" />
+      <Asset Guid="9cf2350f606e4e648aad8ba9c39fb514" ResourceName="Entities/Self" />
+      <Asset Guid="a7b49600f61b7674380e5aaec149d07d" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/DpadOnePiece/shadedDark04" />
+      <Asset Guid="afec60b2ce5345c4782cc0a45e5fa926" ResourceName="Plugins/SimpleInput/Prefabs/ArrowsVertical" />
+      <Asset Guid="b34baeb4e5f505d4c957f116d699fef9" ResourceName="Textures/font_chat" />
+      <Asset Guid="be6deb8bf525f96498b79add47297699" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/Buttons/shadedDark45" />
+      <Asset Guid="c097008e0c4a18b4587a81f65fadc0e8" ResourceName="Textures/tips_blueboard" />
+      <Asset Guid="c4451041c8c8ed1479b1df629317e170" ResourceName="Textures/button_close02" />
+      <Asset Guid="cbe53ee11b8b16b4986e16fc2c13abcd" ResourceName="Plugins/SimpleInput/Sprites/FlatLight/Arrows/flatLight22" />
+      <Asset Guid="d034e08b2788726409842f1003c1336b" ResourceName="Plugins/SimpleInput/Sprites/ShadedLight/DpadMultiplePieces/shadedLight03" />
+      <Asset Guid="dcc6ff5975db63b4fa1a1e47440e64b2" ResourceName="Textures/chat_selfdialog" />
+      <Asset Guid="e0815e227ed46e445b99930271e8942c" ResourceName="Plugins/SimpleInput/Prefabs/Joystick" />
+      <Asset Guid="e174592c8e08c9740b7181b1d8b72c11" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/Buttons/shadedDark00" />
+      <Asset Guid="e2f20be4a9f1c184485bcdc7bc65e23f" ResourceName="Plugins/SimpleInput/Sprites/ShadedDark/Arrows/shadedDark26" />
+      <Asset Guid="e33a0aeabb903c842bad84315710646c" ResourceName="Plugins/SimpleInput/Example/ExampleScene" />
+      <Asset Guid="e836104b92fa84745a88bc1dbf782858" ResourceName="Scenes/Launcher" />
+      <Asset Guid="ec82f38f33c98ad4e9b63e173baec013" ResourceName="Plugins/SimpleInput/Sprites/FlatDark/flatDark06" />
+      <Asset Guid="f1dda6d9032792049b415efb7f07ab18" ResourceName="Scenes/Game" />
+      <Asset Guid="f57649fe1a2603a479aa18b473201768" ResourceName="Plugins/SimpleInput/Sprites/TransparentDark/Arrows/transparentDark24" />
+      <Asset Guid="f85b4a2b127c8b844b3e08d59561124d" ResourceName="Plugins/SimpleInput/Prefabs/DpadMultiplePieces" />
+      <Asset Guid="f8a2f54e3cf601244bbbf2ba510834ee" ResourceName="Textures/tips_grayboard" />
+      <Asset Guid="f9891860abf0ecc41b60aceb02ad7318" ResourceName="Textures/playerhead01" />
+      <Asset Guid="fc57d97f3d02d954fb2ef7f56d585ce3" ResourceName="Plugins/SimpleInput/Prefabs/DpadOnePiece" />
+      <Asset Guid="feb4e677e7afc03429ca1c69ca33d783" ResourceName="Plugins/SimpleInput/Sprites/FlatDark/Joystick/flatDark00" />
+    </Assets>
+  </ResourceCollection>
+</UnityGameFramework>

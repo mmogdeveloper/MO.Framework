@@ -105,13 +105,16 @@ namespace MO.WpfTest
                 else if (msg.ActionId == 100004)
                 {
                     S2C100004 rep = S2C100004.Parser.ParseFrom(msg.Content);
-                    if (rep.UserId == curPlayer.UserId)
-                        return;
-
-                    GamePlayer gamePlayer;
-                    if (_totalPlayer.TryGetValue(rep.UserId, out gamePlayer))
+                    foreach (var item in rep.UserPoints)
                     {
-                        gamePlayer.SetPoint(rep.X, rep.Y);
+                        if (item.UserId == curPlayer.UserId)
+                            continue;
+
+                        GamePlayer gamePlayer;
+                        if (_totalPlayer.TryGetValue(item.UserId, out gamePlayer))
+                        {
+                            gamePlayer.SetPoint(item.X, item.Y);
+                        }
                     }
                 }
                 else if (msg.ActionId == 100006)

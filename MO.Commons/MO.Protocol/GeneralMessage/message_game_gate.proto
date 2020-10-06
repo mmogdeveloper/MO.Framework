@@ -48,9 +48,7 @@ message C2S100003{
 
 //通知移动
 message S2C100004{
-	int64 UserId = 1;
-	float X = 2;
-	float Y = 3;
+	repeated UserPoint UserPoints = 1;
 }
 
 //离开频道

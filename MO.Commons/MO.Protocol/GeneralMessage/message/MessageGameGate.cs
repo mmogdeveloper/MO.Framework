@@ -30,11 +30,12 @@ namespace MO.Protocol {
             "ASABKAUSKgoKVXNlclBvaW50cxgCIAMoCzIWLk1PLlByb3RvY29sLlVzZXJQ",
             "b2ludCI9CglTMkMxMDAwMDISDgoGVXNlcklkGAEgASgDEhAKCFVzZXJOYW1l",
             "GAIgASgJEg4KBlJvb21JZBgDIAEoBSIhCglDMlMxMDAwMDMSCQoBWBgCIAEo",
-            "AhIJCgFZGAMgASgCIjEKCVMyQzEwMDAwNBIOCgZVc2VySWQYASABKAMSCQoB",
-            "WBgCIAEoAhIJCgFZGAMgASgCIhsKCUMyUzEwMDAwNRIOCgZSb29tSWQYASAB",
-            "KAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIOCgZSb29tSWQYAiAB",
-            "KAUiHAoJQzJTMTAwMDA3Eg8KB0NvbnRlbnQYASABKAkiLAoJUzJDMTAwMDA4",
-            "Eg4KBlVzZXJJZBgBIAEoAxIPCgdDb250ZW50GAIgASgJYgZwcm90bzM="));
+            "AhIJCgFZGAMgASgCIjcKCVMyQzEwMDAwNBIqCgpVc2VyUG9pbnRzGAEgAygL",
+            "MhYuTU8uUHJvdG9jb2wuVXNlclBvaW50IhsKCUMyUzEwMDAwNRIOCgZSb29t",
+            "SWQYASABKAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIOCgZSb29t",
+            "SWQYAiABKAUiHAoJQzJTMTAwMDA3Eg8KB0NvbnRlbnQYASABKAkiLAoJUzJD",
+            "MTAwMDA4Eg4KBlVzZXJJZBgBIAEoAxIPCgdDb250ZW50GAIgASgJYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -46,7 +47,7 @@ namespace MO.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100001), global::MO.Protocol.S2C100001.Parser, new[]{ "RoomId", "UserPoints" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100002), global::MO.Protocol.S2C100002.Parser, new[]{ "UserId", "UserName", "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100003), global::MO.Protocol.C2S100003.Parser, new[]{ "X", "Y" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100004), global::MO.Protocol.S2C100004.Parser, new[]{ "UserId", "X", "Y" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100004), global::MO.Protocol.S2C100004.Parser, new[]{ "UserPoints" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100005), global::MO.Protocol.C2S100005.Parser, new[]{ "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100006), global::MO.Protocol.S2C100006.Parser, new[]{ "UserId", "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100007), global::MO.Protocol.C2S100007.Parser, new[]{ "Content" }, null, null, null),
@@ -1198,9 +1199,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S2C100004(S2C100004 other) : this() {
-      userId_ = other.userId_;
-      x_ = other.x_;
-      y_ = other.y_;
+      userPoints_ = other.userPoints_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1208,37 +1207,14 @@ namespace MO.Protocol {
       return new S2C100004(this);
     }
 
-    /// <summary>Field number for the "UserId" field.</summary>
-    public const int UserIdFieldNumber = 1;
-    private long userId_;
+    /// <summary>Field number for the "UserPoints" field.</summary>
+    public const int UserPointsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::MO.Protocol.UserPoint> _repeated_userPoints_codec
+        = pb::FieldCodec.ForMessage(10, global::MO.Protocol.UserPoint.Parser);
+    private readonly pbc::RepeatedField<global::MO.Protocol.UserPoint> userPoints_ = new pbc::RepeatedField<global::MO.Protocol.UserPoint>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserId {
-      get { return userId_; }
-      set {
-        userId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "X" field.</summary>
-    public const int XFieldNumber = 2;
-    private float x_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float X {
-      get { return x_; }
-      set {
-        x_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Y" field.</summary>
-    public const int YFieldNumber = 3;
-    private float y_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float Y {
-      get { return y_; }
-      set {
-        y_ = value;
-      }
+    public pbc::RepeatedField<global::MO.Protocol.UserPoint> UserPoints {
+      get { return userPoints_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1254,18 +1230,14 @@ namespace MO.Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserId != other.UserId) return false;
-      if (X != other.X) return false;
-      if (Y != other.Y) return false;
+      if(!userPoints_.Equals(other.userPoints_)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserId != 0L) hash ^= UserId.GetHashCode();
-      if (X != 0F) hash ^= X.GetHashCode();
-      if (Y != 0F) hash ^= Y.GetHashCode();
+      hash ^= userPoints_.GetHashCode();
       return hash;
     }
 
@@ -1276,32 +1248,13 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserId != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserId);
-      }
-      if (X != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(X);
-      }
-      if (Y != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(Y);
-      }
+      userPoints_.WriteTo(output, _repeated_userPoints_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserId != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
-      }
-      if (X != 0F) {
-        size += 1 + 4;
-      }
-      if (Y != 0F) {
-        size += 1 + 4;
-      }
+      size += userPoints_.CalculateSize(_repeated_userPoints_codec);
       return size;
     }
 
@@ -1310,15 +1263,7 @@ namespace MO.Protocol {
       if (other == null) {
         return;
       }
-      if (other.UserId != 0L) {
-        UserId = other.UserId;
-      }
-      if (other.X != 0F) {
-        X = other.X;
-      }
-      if (other.Y != 0F) {
-        Y = other.Y;
-      }
+      userPoints_.Add(other.userPoints_);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1329,16 +1274,8 @@ namespace MO.Protocol {
           default:
             input.SkipLastField();
             break;
-          case 8: {
-            UserId = input.ReadInt64();
-            break;
-          }
-          case 21: {
-            X = input.ReadFloat();
-            break;
-          }
-          case 29: {
-            Y = input.ReadFloat();
+          case 10: {
+            userPoints_.AddEntriesFrom(input, _repeated_userPoints_codec);
             break;
           }
         }

@@ -7,6 +7,7 @@ namespace MO.GrainInterfaces.Game
 {
     public interface IRoom : IGrainWithIntegerKey
     {
+        Task Update();
         Task RoomNotify(MOMsg msg);
 
         Task Reconnect(IUser user);

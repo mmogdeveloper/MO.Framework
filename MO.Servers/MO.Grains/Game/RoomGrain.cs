@@ -21,7 +21,7 @@ namespace MO.Grains.Game
     public class RoomGrain : Grain, IRoom
     {
         private readonly IPersistentState<RoomInfo> _roomInfo;
-        private readonly IPersistentState<Dictionary<long, PlayerData>> _players;
+        private readonly Dictionary<long, PlayerData> _players;
         private readonly ILogger _logger;
 
         private IAsyncStream<MOMsg> _stream;
@@ -29,19 +29,17 @@ namespace MO.Grains.Game
 
         public RoomGrain(
             [PersistentState("RoomInfo", StorageProviders.DefaultProviderName)] IPersistentState<RoomInfo> roomInfo,
-            [PersistentState("Players", StorageProviders.DefaultProviderName)] IPersistentState<Dictionary<long, PlayerData>> players,
             ILogger<RoomGrain> logger)
         {
             _roomInfo = roomInfo;
-            _players = players;
             _logger = logger;
+            _players = new Dictionary<long, PlayerData>();
         }
 
         public override async Task OnActivateAsync()
         {
             //自定义加载数据
             await _roomInfo.ReadStateAsync();
-            await _players.ReadStateAsync();
             
             //间隔1秒执行一次
             _reminder = RegisterTimer(
@@ -69,7 +67,6 @@ namespace MO.Grains.Game
 
             //回写数据
             await _roomInfo.WriteStateAsync();
-            await _players.WriteStateAsync();
             await base.OnDeactivateAsync();
         }
 
@@ -77,13 +74,33 @@ namespace MO.Grains.Game
         {
             //non-Reentrant 调用
             var grain = this.AsReference<IRoom>();
-            
-            await Task.CompletedTask;
+            await grain.Update();
         }
 
-        public async Task RoomNotify(MOMsg msg)
+        public Task Update()
         {
-            await _stream.OnNextAsync(msg);
+            S2C100004 content = new S2C100004();
+            foreach (var item in _players)
+            {
+                if (item.Value.IsMove)
+                {
+                    var userPoint = new UserPoint();
+                    userPoint.UserId = item.Key;
+                    userPoint.X = item.Value.X;
+                    userPoint.Y = item.Value.Y;
+                    content.UserPoints.Add(userPoint);
+                    item.Value.IsMove = false;
+                }
+            }
+            MOMsg msg = new MOMsg();
+            msg.ActionId = 100004;
+            msg.Content = content.ToByteString();
+            return RoomNotify(msg);
+        }
+
+        public Task RoomNotify(MOMsg msg)
+        {
+            return _stream.OnNextAsync(msg);
         }
 
         public async Task Reconnect(IUser user)
@@ -93,18 +110,18 @@ namespace MO.Grains.Game
 
         public async Task PlayerEnterRoom(IUser user)
         {
-            if (!_players.State.ContainsKey(user.GetPrimaryKeyLong()))
-                _players.State[user.GetPrimaryKeyLong()] = new PlayerData(user);
+            if (!_players.ContainsKey(user.GetPrimaryKeyLong()))
+                _players[user.GetPrimaryKeyLong()] = new PlayerData(user);
 
             await user.SubscribeRoom(_stream.Guid);
 
             {
                 S2C100001 content = new S2C100001();
                 content.RoomId = (int)this.GetPrimaryKeyLong();
-                foreach (var item in _players.State)
+                foreach (var item in _players)
                 {
                     PlayerData player = null;
-                    if (_players.State.TryGetValue(item.Key, out player))
+                    if (_players.TryGetValue(item.Key, out player))
                     {
                         content.UserPoints.Add(new UserPoint()
                         {
@@ -142,7 +159,7 @@ namespace MO.Grains.Game
             msg.Content = content.ToByteString();
             await RoomNotify(msg);
 
-            _players.State.Remove(user.GetPrimaryKeyLong());
+            _players.Remove(user.GetPrimaryKeyLong());
             await user.UnsubscribeRoom();
         }
 
@@ -151,20 +168,13 @@ namespace MO.Grains.Game
             return Task.CompletedTask;
         }
 
-        public async Task PlayerGo(IUser user, float x, float y)
+        public Task PlayerGo(IUser user, float x, float y)
         {
-            S2C100004 content = new S2C100004();
-            content.UserId = user.GetPrimaryKeyLong();
-            content.X = x;
-            content.Y = y;
-            MOMsg msg = new MOMsg();
-            msg.ActionId = 100004;
-            msg.Content = content.ToByteString();
-            await RoomNotify(msg);
-            if (_players.State.ContainsKey(user.GetPrimaryKeyLong()))
+            if (_players.ContainsKey(user.GetPrimaryKeyLong()))
             {
-                _players.State[user.GetPrimaryKeyLong()].SetPoint(x, y);
+                _players[user.GetPrimaryKeyLong()].SetPoint(x, y);
             }
+            return Task.CompletedTask;
         }
 
         public async Task PlayerSendMsg(IUser user, string msg)

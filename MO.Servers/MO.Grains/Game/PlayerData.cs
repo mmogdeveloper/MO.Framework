@@ -7,6 +7,7 @@ namespace MO.Grains.Game
         public IUser User { get; }
         public float X { get; set; }
         public float Y { get; set; }
+        public bool IsMove { get; set; }
         public PlayerData(IUser user)
         {
             User = user;
@@ -14,6 +15,7 @@ namespace MO.Grains.Game
 
         public void SetPoint(float x, float y)
         {
+            IsMove = true;
             X = x;
             Y = y;
         }

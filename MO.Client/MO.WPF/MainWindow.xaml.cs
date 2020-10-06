@@ -21,11 +21,13 @@ namespace MO.WpfTest
         private double oldY;
         private Timer timer;
         private int lockedNum;
+        private float step;
         public MainWindow()
         {
             InitializeComponent();
             try
             {
+                step = 10f;
                 _totalPlayer = new Dictionary<long, GamePlayer>();
                 client = new MOClient(ReceivedCallback);
                 client.Login();
@@ -113,7 +115,7 @@ namespace MO.WpfTest
                         GamePlayer gamePlayer;
                         if (_totalPlayer.TryGetValue(item.UserId, out gamePlayer))
                         {
-                            gamePlayer.SetPoint(item.X, item.Y);
+                            gamePlayer.MoveTo(item.X, item.Y, step);
                         }
                     }
                 }
@@ -133,7 +135,6 @@ namespace MO.WpfTest
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            var step = (float)this.Width / 100;
             var point = curPlayer.GetPoint();
             switch (e.Key)
             {

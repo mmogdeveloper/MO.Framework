@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace MO.WpfTest.Game
@@ -38,6 +39,15 @@ namespace MO.WpfTest.Game
         {
             X = x;
             Y = y;
+            Canvas.SetLeft(Rect_Player, x);
+            Canvas.SetTop(Rect_Player, y);
+        }
+
+        public void MoveTo(float x, float y, float step)
+        {
+            //_storyboard.Stop();
+            //创建X轴方向动画
+
             Canvas.SetLeft(Rect_Player, x);
             Canvas.SetTop(Rect_Player, y);
         }

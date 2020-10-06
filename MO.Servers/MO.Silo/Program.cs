@@ -52,9 +52,7 @@ namespace MO.Silo
                     services.BuildServiceProvider().GetService<MODataContext>().Database.Migrate();
                     services.BuildServiceProvider().GetService<MORecordContext>().Database.Migrate();
 
-                    DataRedis.Initialization(Configuration.GetConnectionString("DataRedis"));
-                    //CSRedisClient redisClient = new CSRedisClient(() =>);
-                    //RedisHelper.Initialization(redisClient);
+                    //DataRedis.Initialization(Configuration.GetConnectionString("DataRedis"));
 
                     services.Configure<ConsoleLifetimeOptions>(options =>
                     {

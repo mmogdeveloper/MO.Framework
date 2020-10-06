@@ -133,11 +133,13 @@ namespace MO.WpfTest.Game
             SendPacket(content);
         }
 
-        public void UploadPoint(float x, float y)
+        public void UploadPoint(float x, float y, float z)
         {
             C2S100003 content = new C2S100003();
-            content.X = x;
-            content.Y = y;
+            content.Vector = new MsgVector3();
+            content.Vector.X = x;
+            content.Vector.Y = y;
+            content.Vector.Z = z;
             SendPacket(content);
         }
 

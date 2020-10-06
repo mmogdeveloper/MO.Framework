@@ -41,12 +41,12 @@ namespace MO.Grains.Game
             //自定义加载数据
             await _roomInfo.ReadStateAsync();
             
-            //间隔1秒执行一次
+            //定时器
             _reminder = RegisterTimer(
                 OnTimerCallback,
                 this,
                 TimeSpan.FromSeconds(1),
-                TimeSpan.FromSeconds(1));
+                TimeSpan.FromMilliseconds(100));
 
             var streamProvider = this.GetStreamProvider(StreamProviders.JobsProvider);
             _stream = streamProvider.GetStream<MOMsg>(Guid.NewGuid(), StreamProviders.Namespaces.ChunkSender);
@@ -86,8 +86,14 @@ namespace MO.Grains.Game
                 {
                     var userPoint = new UserPoint();
                     userPoint.UserId = item.Key;
-                    userPoint.X = item.Value.X;
-                    userPoint.Y = item.Value.Y;
+                    userPoint.Vector = new MsgVector3();
+                    userPoint.Vector.X = item.Value.X;
+                    userPoint.Vector.Y = item.Value.Y;
+                    userPoint.Vector.Z = item.Value.Z;
+                    userPoint.Rotation = new MsgRotation();
+                    userPoint.Rotation.X = item.Value.RX;
+                    userPoint.Rotation.Y = item.Value.RY;
+                    userPoint.Rotation.Z = item.Value.RZ;
                     content.UserPoints.Add(userPoint);
                     item.Value.IsMove = false;
                 }
@@ -123,13 +129,18 @@ namespace MO.Grains.Game
                     PlayerData player = null;
                     if (_players.TryGetValue(item.Key, out player))
                     {
-                        content.UserPoints.Add(new UserPoint()
-                        {
-                            UserId = item.Key,
-                            UserName = await player.User.GetUserName(),
-                            X = player.X,
-                            Y = player.Y
-                        });
+                        var userPoint = new UserPoint();
+                        userPoint.UserId = item.Key;
+                        userPoint.UserName = await player.User.GetUserName();
+                        userPoint.Vector = new MsgVector3();
+                        userPoint.Vector.X = player.X;
+                        userPoint.Vector.Y = player.Y;
+                        userPoint.Vector.Z = player.Z;
+                        userPoint.Rotation = new MsgRotation();
+                        userPoint.Rotation.X = player.RX;
+                        userPoint.Rotation.Y = player.RY;
+                        userPoint.Rotation.Z = player.RZ;
+                        content.UserPoints.Add(userPoint);
                     }
                 }
                 MOMsg msg = new MOMsg();
@@ -168,11 +179,12 @@ namespace MO.Grains.Game
             return Task.CompletedTask;
         }
 
-        public Task PlayerGo(IUser user, float x, float y)
+        public Task PlayerGo(IUser user, float x, float y, float z,
+            float rx, float ry, float rz)
         {
             if (_players.ContainsKey(user.GetPrimaryKeyLong()))
             {
-                _players[user.GetPrimaryKeyLong()].SetPoint(x, y);
+                _players[user.GetPrimaryKeyLong()].SetLocation(x, y, z, rx, rz, rz);
             }
             return Task.CompletedTask;
         }

@@ -105,7 +105,8 @@ namespace MO.Grains.Network
                             var req = C2S100003.Parser.ParseFrom(packet.Content);
                             var roomId = await _user.GetRoomId();
                             var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
-                            await curRoom.PlayerGo(_user, req.X, req.Y);
+                            await curRoom.PlayerGo(_user, req.Vector.X, req.Vector.Y, req.Vector.Z,
+                                req.Rotation.X, req.Rotation.Y, req.Rotation.Z);
                         }
                         break;
                     case 100005:

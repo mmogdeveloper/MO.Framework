@@ -51,7 +51,7 @@ namespace MO.WpfTest
                 {
                     oldX = curPoint.Item1;
                     oldY = curPoint.Item2;
-                    client.UploadPoint(curPoint.Item1, curPoint.Item2);
+                    client.UploadPoint(curPoint.Item1, curPoint.Item2, 0);
                 }
                 Interlocked.Exchange(ref lockedNum, 0);
             }
@@ -77,7 +77,7 @@ namespace MO.WpfTest
                     {
                         if (item.UserId == curPlayer.UserId)
                         {
-                            curPlayer.SetPoint(item.X, item.Y);
+                            curPlayer.SetPoint(item.Vector.X, item.Vector.Y);
                         }
                         else
                         {
@@ -86,7 +86,7 @@ namespace MO.WpfTest
                                 var newPlayer = new GamePlayer(item.UserId);
                                 root.Children.Add(newPlayer.Rect_Player);
                                 _totalPlayer.Add(item.UserId, newPlayer);
-                                newPlayer.SetPoint(item.X, item.Y);
+                                newPlayer.SetPoint(item.Vector.X, item.Vector.Y);
                             }
                         }
                     }
@@ -115,7 +115,7 @@ namespace MO.WpfTest
                         GamePlayer gamePlayer;
                         if (_totalPlayer.TryGetValue(item.UserId, out gamePlayer))
                         {
-                            gamePlayer.MoveTo(item.X, item.Y, step);
+                            gamePlayer.MoveTo(item.Vector.X, item.Vector.Y, step);
                         }
                     }
                 }

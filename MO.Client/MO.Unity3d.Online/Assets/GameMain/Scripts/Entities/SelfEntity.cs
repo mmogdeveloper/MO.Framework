@@ -67,26 +67,26 @@ namespace MO.Unity3d.Entities
 
 			_camera.transform.position = transform.position + _offset;
 
-			if (Time.frameCount % 5 == 0)
-			{
-				GameUser.Instance.Channel.Send(new C2S100003()
-				{
-					Vector = new MsgVector3()
-					{
-						X = transform.position.x,
-						Y = transform.position.y,
-						Z = transform.position.z
-					},
-					Rotation = new MsgRotation()
-					{
-						X = transform.eulerAngles.x,
-						Y = transform.eulerAngles.y,
-						Z = transform.eulerAngles.z
-					}
-				}.BuildPacket());
-			}
-
 			base.OnUpdate(elapseSeconds, realElapseSeconds);
+		}
+
+		void FixedUpdate()
+		{
+			GameUser.Instance.Channel.Send(new C2S100003()
+			{
+				Vector = new MsgVector3()
+				{
+					X = transform.position.x,
+					Y = transform.position.y,
+					Z = transform.position.z
+				},
+				Rotation = new MsgRotation()
+				{
+					X = transform.rotation.eulerAngles.x,
+					Y = transform.rotation.eulerAngles.y,
+					Z = transform.rotation.eulerAngles.z
+				}
+			}.BuildPacket());
 		}
 	}
 }

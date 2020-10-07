@@ -35,7 +35,7 @@ namespace MO.Unity3d.Entities
 		{
 			base.OnInit(userData);
 			GetComponent<Renderer>().material.color = Color.blue;
-			this.transform.position = new Vector3(
+			transform.position = new Vector3(
 				GameUser.Instance.CurPlayer.X,
 				GameUser.Instance.CurPlayer.Y,
 				GameUser.Instance.CurPlayer.Z);
@@ -48,6 +48,7 @@ namespace MO.Unity3d.Entities
 
 			_camera = Camera.main;
 			_offset = _camera.transform.position;
+			_camera.transform.position = transform.position + _offset;
 
 			this.transform.rotation = quaternion;
 		}

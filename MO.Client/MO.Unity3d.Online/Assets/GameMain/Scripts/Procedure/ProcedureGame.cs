@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
@@ -23,6 +24,11 @@ namespace MO.Unity3d.Procedure
             //{
             //    GameEntry.Scene.UnloadScene(loadedSceneAssetNames[i]);
             //}
+
+            //设置游戏场景摄像机视角
+            Camera.main.transform.position = new Vector3(0, 10, -10);
+            Vector3 eulerAngles = new Vector3(45, 0, 0);
+            Camera.main.transform.Rotate(eulerAngles);
 
             GameEntry.Scene.LoadScene("Assets/GameMain/Scenes/Game.unity");
             _formId = GameEntry.UI.OpenUIForm("Assets/GameMain/UI/UIForms/GameForm.prefab", "DefaultUIGroup", procedureOwner);

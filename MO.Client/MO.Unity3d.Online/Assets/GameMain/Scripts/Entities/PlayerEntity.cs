@@ -18,7 +18,7 @@ namespace MO.Unity3d.Entities
 		protected internal override void OnInit(object userData)
 		{
 			base.OnInit(userData);
-			GetComponent<Renderer>().material.color = Color.gray;
+			GetComponent<Renderer>().material.color = Color.green;
 			_playerData = (PlayerData)userData;
 			transform.position = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
 

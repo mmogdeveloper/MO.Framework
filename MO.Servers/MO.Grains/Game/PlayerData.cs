@@ -1,4 +1,5 @@
 ﻿using MO.GrainInterfaces.User;
+using System;
 
 namespace MO.Grains.Game
 {
@@ -22,7 +23,6 @@ namespace MO.Grains.Game
         public void SetLocation(float x, float y, float z,
             float rx, float ry, float rz)
         {
-            IsMove = true;
             X = x;
             Y = y;
             Z = z;
@@ -30,6 +30,8 @@ namespace MO.Grains.Game
             RX = rx;
             RY = ry;
             RZ = rz;
+
+            IsMove = true;
         }
     }
 }

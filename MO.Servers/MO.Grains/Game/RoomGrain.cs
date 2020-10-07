@@ -184,7 +184,7 @@ namespace MO.Grains.Game
         {
             if (_players.ContainsKey(user.GetPrimaryKeyLong()))
             {
-                _players[user.GetPrimaryKeyLong()].SetLocation(x, y, z, rx, rz, rz);
+                _players[user.GetPrimaryKeyLong()].SetLocation(x, y, z, rx, ry, rz);
             }
             return Task.CompletedTask;
         }

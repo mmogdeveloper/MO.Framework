@@ -64,15 +64,5 @@ namespace MO.Unity3d.Entities
 
 			base.OnUpdate(elapseSeconds, realElapseSeconds);
 		}
-
-
-        IEnumerator MoveToPosition()
-        {
-            while (transform.localPosition != new Vector3(_playerData.X, _playerData.Y, _playerData.Z))
-            {
-				transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(_playerData.X, _playerData.Y, _playerData.Z), 2.0f * Time.deltaTime);
-                yield return 0;
-            }
-        }
     }
 }

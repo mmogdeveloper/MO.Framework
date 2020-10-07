@@ -40,17 +40,15 @@ namespace MO.Unity3d.Entities
 				GameUser.Instance.CurPlayer.Y,
 				GameUser.Instance.CurPlayer.Z);
 
-			Vector3 dir = new Vector3(
+			Vector3 eulerAngles = new Vector3(
 				GameUser.Instance.CurPlayer.RX,
 				GameUser.Instance.CurPlayer.RY,
 				GameUser.Instance.CurPlayer.RZ);
-			Quaternion quaternion = Quaternion.LookRotation(dir);
+			transform.Rotate(eulerAngles);
 
 			_camera = Camera.main;
 			_offset = _camera.transform.position;
 			_camera.transform.position = transform.position + _offset;
-
-			this.transform.rotation = quaternion;
 		}
 
         protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)

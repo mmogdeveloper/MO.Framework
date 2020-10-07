@@ -22,12 +22,11 @@ namespace MO.Unity3d.Entities
 			_playerData = (PlayerData)userData;
 			transform.position = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
 
-			Vector3 dir = new Vector3(
+			Vector3 eulerAngles = new Vector3(
 				_playerData.RX,
 				_playerData.RY,
 				_playerData.RZ);
-			Quaternion quaternion = Quaternion.LookRotation(dir);
-			this.transform.rotation = quaternion;
+			transform.Rotate(eulerAngles);
 		}
 
 		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)

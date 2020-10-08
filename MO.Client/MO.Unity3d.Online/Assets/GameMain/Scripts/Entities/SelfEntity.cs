@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityGameFramework.Runtime;
+using System.Collections;
 
 namespace MO.Unity3d.Entities
 {
@@ -14,60 +15,83 @@ namespace MO.Unity3d.Entities
     {
 		public string HorizontalAxis = "Horizontal";
 		public string VerticalAxis = "Vertical";
-		//public string jumpButton = "Jump";
-
 		private float _inputHorizontal;
 		private float _inputVertical;
-		private Camera _camera;
+
 		private Vector3 _offset;
-
-
-		private Vector3 _position = Vector3.zero;
-		private Vector3 _eulerAngles = Vector3.zero;
-		private Vector3 _scale = Vector3.zero;
-
-		public Vector3 DestPosition = Vector3.zero;
-		public Vector3 DestDirection = Vector3.zero;
-
-		private float _speed = 0f;
+		private float _positionSpeed = 2.0f;
+		private float _rotateSpeed = 8.0f;
+		private PlayerData _playerData;
 
 		protected internal override void OnInit(object userData)
 		{
 			base.OnInit(userData);
+			_playerData = (PlayerData)userData;
 			GetComponent<Renderer>().material.color = Color.blue;
-			transform.position = new Vector3(
-				GameUser.Instance.CurPlayer.X,
-				GameUser.Instance.CurPlayer.Y,
-				GameUser.Instance.CurPlayer.Z);
-
+			transform.position = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
 			Vector3 eulerAngles = new Vector3(
-				GameUser.Instance.CurPlayer.RX,
-				GameUser.Instance.CurPlayer.RY,
-				GameUser.Instance.CurPlayer.RZ);
+				_playerData.RX,
+				_playerData.RY,
+				_playerData.RZ);
 			transform.Rotate(eulerAngles);
 
-			_camera = Camera.main;
-			_offset = _camera.transform.position;
-			_camera.transform.position = transform.position + _offset;
+			_offset = Camera.main.transform.position;
+			Camera.main.transform.position = transform.position + _offset;
 		}
 
-        protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
+		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
 			_inputHorizontal = SimpleInput.GetAxis(HorizontalAxis);
 			_inputVertical = SimpleInput.GetAxis(VerticalAxis);
 			if (_inputHorizontal == 0 && _inputVertical == 0)
+			{
 				return;
+			}
+			else
+			{
+				Vector3 destDirection = new Vector3(_inputHorizontal, 0, _inputVertical);
+				Quaternion quaternion = Quaternion.LookRotation(destDirection);
+				transform.rotation = quaternion;
+				transform.position += transform.forward * Time.deltaTime * _positionSpeed;
+			}
 
-			Vector3 dir = new Vector3(_inputHorizontal, 0, _inputVertical);
-			Quaternion quaternion = Quaternion.LookRotation(dir);
-
-			transform.rotation = quaternion;
-
-			transform.position += transform.forward * Time.deltaTime * 2.0f;
-
-			_camera.transform.position = transform.position + _offset;
-
+			Camera.main.transform.position = transform.position + _offset;
+			FixedState();
 			base.OnUpdate(elapseSeconds, realElapseSeconds);
+		}
+
+		private void FixedState()
+		{
+			//500ms误差修正玩家位置
+			var destDirection = new Vector3(_playerData.RX, _playerData.RY, _playerData.RZ);
+			if (Vector3.Distance(transform.eulerAngles, destDirection) > _rotateSpeed / 2)
+			{
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), _rotateSpeed * Time.deltaTime);
+			}
+
+			float distance = 0.0f;
+			float deltaSpeed = (_positionSpeed * Time.deltaTime);
+
+			var destPosition = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
+			distance = Vector3.Distance(destPosition, transform.position);
+
+			if (distance > _positionSpeed / 2)
+			{
+				Vector3 pos = transform.position;
+
+				Vector3 movement = destPosition - pos;
+				movement.y = 0f;
+				movement.Normalize();
+
+				movement *= deltaSpeed;
+
+				if (distance > deltaSpeed || movement.magnitude > deltaSpeed)
+					pos += movement;
+				else
+					pos = destPosition;
+
+				transform.position = pos;
+			}
 		}
 
 		void FixedUpdate()

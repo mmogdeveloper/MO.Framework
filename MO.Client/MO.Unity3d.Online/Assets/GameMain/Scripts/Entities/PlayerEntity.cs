@@ -8,18 +8,18 @@ namespace MO.Unity3d.Entities
 {
 	public class PlayerEntity : EntityLogic
 	{
-		public string horizontalAxis = "Horizontal";
-		public string verticalAxis = "Vertical";
-
-		private float inputHorizontal;
-		private float inputVertical;
 		private PlayerData _playerData;
+
+		private float _positionSpeed = 2.0f;
+		private float _rotateSpeed = 8.0f;
 
 		protected internal override void OnInit(object userData)
 		{
 			base.OnInit(userData);
-			GetComponent<Renderer>().material.color = Color.green;
 			_playerData = (PlayerData)userData;
+
+			GetComponent<Renderer>().material.color = Color.green;
+
 			transform.position = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
 
 			Vector3 eulerAngles = new Vector3(
@@ -31,20 +31,19 @@ namespace MO.Unity3d.Entities
 
 		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
-			Vector3 destDirection = new Vector3(_playerData.RX, _playerData.RY, _playerData.RZ);
+			var destDirection = new Vector3(_playerData.RX, _playerData.RY, _playerData.RZ);
 			if (Vector3.Distance(transform.eulerAngles, destDirection) > 0.0004f)
 			{
-				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), 8f * Time.deltaTime);
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), _rotateSpeed * Time.deltaTime);
 			}
 
-			float dist = 0.0f;
-			float deltaSpeed = (2.0f * Time.deltaTime);
+			float distance = 0.0f;
+			float deltaSpeed = (_positionSpeed * Time.deltaTime);
 
-			Vector3 destPosition = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
-			dist = Vector3.Distance(new Vector3(destPosition.x, destPosition.y, destPosition.z),
-				new Vector3(transform.position.x, transform.position.y, transform.position.z));
+			var destPosition = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
+			distance = Vector3.Distance(destPosition, transform.position);
 
-			if (dist > 0.01f)
+			if (distance > 0.01f)
 			{
 				Vector3 pos = transform.position;
 
@@ -54,7 +53,7 @@ namespace MO.Unity3d.Entities
 
 				movement *= deltaSpeed;
 
-				if (dist > deltaSpeed || movement.magnitude > deltaSpeed)
+				if (distance > deltaSpeed || movement.magnitude > deltaSpeed)
 					pos += movement;
 				else
 					pos = destPosition;

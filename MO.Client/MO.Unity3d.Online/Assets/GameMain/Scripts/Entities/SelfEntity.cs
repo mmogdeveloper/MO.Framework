@@ -35,11 +35,6 @@ namespace MO.Unity3d.Entities
 			Camera.main.transform.position = transform.position + _offset;
 		}
 
-		private void OnJoystickDrag(Vector3 eulerAngles)
-		{
-
-		}
-
 		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
 			var eulerAngles = UIJoystickControl.GetDestination();
@@ -52,7 +47,7 @@ namespace MO.Unity3d.Entities
 			transform.rotation = quaternion;
 			transform.position += transform.forward * Time.deltaTime * _positionSpeed;
 			Camera.main.transform.position = transform.position + _offset;
-			//FixedState();
+			FixedState();
 			base.OnUpdate(elapseSeconds, realElapseSeconds);
 		}
 

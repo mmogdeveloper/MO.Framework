@@ -13,11 +13,6 @@ namespace MO.Unity3d.Entities
 {
     public class SelfEntity : EntityLogic
     {
-		public string HorizontalAxis = "Horizontal";
-		public string VerticalAxis = "Vertical";
-		private float _inputHorizontal;
-		private float _inputVertical;
-
 		private Vector3 _offset;
 		private float _positionSpeed = 2.0f;
 		private float _rotateSpeed = 8.0f;
@@ -26,6 +21,7 @@ namespace MO.Unity3d.Entities
 		protected internal override void OnInit(object userData)
 		{
 			base.OnInit(userData);
+			//UIJoystickControl.Instance.joystickDragDelegate = OnJoystickDrag;
 			_playerData = (PlayerData)userData;
 			GetComponent<Renderer>().material.color = Color.blue;
 			transform.position = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
@@ -39,24 +35,24 @@ namespace MO.Unity3d.Entities
 			Camera.main.transform.position = transform.position + _offset;
 		}
 
+		private void OnJoystickDrag(Vector3 eulerAngles)
+		{
+
+		}
+
 		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
-			_inputHorizontal = SimpleInput.GetAxis(HorizontalAxis);
-			_inputVertical = SimpleInput.GetAxis(VerticalAxis);
-			if (_inputHorizontal == 0 && _inputVertical == 0)
-			{
+			var eulerAngles = UIJoystickControl.GetDestination();
+			if(eulerAngles == new Vector3())
+            {
 				return;
-			}
-			else
-			{
-				Vector3 destDirection = new Vector3(_inputHorizontal, 0, _inputVertical);
-				Quaternion quaternion = Quaternion.LookRotation(destDirection);
-				transform.rotation = quaternion;
-				transform.position += transform.forward * Time.deltaTime * _positionSpeed;
-			}
-
+            }
+			Vector3 destDirection = new Vector3(eulerAngles.x, 0, eulerAngles.y);
+			Quaternion quaternion = Quaternion.LookRotation(destDirection);
+			transform.rotation = quaternion;
+			transform.position += transform.forward * Time.deltaTime * _positionSpeed;
 			Camera.main.transform.position = transform.position + _offset;
-			FixedState();
+			//FixedState();
 			base.OnUpdate(elapseSeconds, realElapseSeconds);
 		}
 

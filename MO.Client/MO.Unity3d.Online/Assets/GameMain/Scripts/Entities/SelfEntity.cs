@@ -33,7 +33,6 @@ namespace MO.Unity3d.Entities
 
 			_offset = Camera.main.transform.position;
 			var position = transform.position + _offset;
-			position.y = 10;
 			Camera.main.transform.position = position;
 		}
 
@@ -65,7 +64,6 @@ namespace MO.Unity3d.Entities
 				transform.position += transform.forward * Time.deltaTime * _positionSpeed;
 			}
 			var position = transform.position + _offset;
-			position.y = 10;
 			Camera.main.transform.position = position;
 			//FixedState();
 			base.OnUpdate(elapseSeconds, realElapseSeconds);

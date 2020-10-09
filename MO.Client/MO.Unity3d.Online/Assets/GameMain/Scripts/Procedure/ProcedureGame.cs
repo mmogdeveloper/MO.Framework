@@ -26,8 +26,8 @@ namespace MO.Unity3d.Procedure
             //}
 
             //设置游戏场景摄像机视角
-            Camera.main.transform.position = new Vector3(0, 10, 0);
-            Vector3 eulerAngles = new Vector3(90, 0, 0);
+            Camera.main.transform.position = new Vector3(0, 10, -10);
+            Vector3 eulerAngles = new Vector3(30, 0, 0);
             Camera.main.transform.Rotate(eulerAngles);
 
             GameEntry.Scene.LoadScene("Assets/GameMain/Scenes/Game.unity");

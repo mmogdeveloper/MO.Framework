@@ -16,6 +16,7 @@ namespace MO.Unity3d.Entities
 		private Vector3 _offset;
 		private float _positionSpeed = 2.0f;
 		private float _rotateSpeed = 8.0f;
+		private float currY = 1.0f;
 		private PlayerData _playerData;
 
 		protected internal override void OnInit(object userData)
@@ -38,22 +39,38 @@ namespace MO.Unity3d.Entities
 
 		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
-			if (GameUser.Instance.IsJump)
+			//if (GameUser.Instance.JumpState)
+			//{
+			//	transform.position += transform.forward * _positionSpeed * 2;
+			//	GameUser.Instance.IsJump = false;
+			//}
+
+			if (GameUser.Instance.JumpState > 0)
 			{
-				float magnitude = transform.rotation.eulerAngles.magnitude;
-				float x = (float)Math.Cos(Math.PI * (magnitude / 180)) * 5;
-				float z = (float)Math.Sin(Math.PI * (magnitude / 180)) * 5;
-				if ((magnitude > 90 && magnitude < 180) ||
-					(magnitude > 270 && magnitude < 360))
+				transform.position += transform.forward * Time.deltaTime * _positionSpeed * 4;
+
+				if (GameUser.Instance.JumpState == 1)
 				{
-					x = -x;
-					z = -z;
+					currY += 0.05f;
+
+					if (currY > 2.0f)
+						GameUser.Instance.JumpState = 2;
+				}
+				else
+				{
+					currY -= 0.05f;
+					if (currY < 1.0f)
+					{
+						GameUser.Instance.JumpState = 0;
+						currY = 1.0f;
+					}
 				}
 
-				transform.position += new Vector3(x, 0, z);
-				Log.Info("{0}-{1}-{2}", transform.position.x, transform.position.y, transform.position.z);
-				GameUser.Instance.IsJump = false;
+				Vector3 pos = transform.position;
+				pos.y = currY;
+				transform.position = pos;
 			}
+
 
 			var eulerAngles = JoystickControl.GetDestination();
 			if (eulerAngles != new Vector3())

@@ -43,6 +43,6 @@ namespace MO.Unity3d.Data
             }
         }
 
-        public bool IsJump { get; set; }
+        public byte JumpState { get; set; }
     }
 }

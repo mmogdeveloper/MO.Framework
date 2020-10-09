@@ -7,7 +7,7 @@ public class SkillControl : MonoBehaviour
 {
     public void OnJump()
     {
-        GameUser.Instance.IsJump = true;
+        GameUser.Instance.JumpState = 1;
     }
 
     public void OnSkillC()

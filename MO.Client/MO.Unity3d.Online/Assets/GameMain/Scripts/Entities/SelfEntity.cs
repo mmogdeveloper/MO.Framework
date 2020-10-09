@@ -32,22 +32,42 @@ namespace MO.Unity3d.Entities
 			transform.Rotate(eulerAngles);
 
 			_offset = Camera.main.transform.position;
-			Camera.main.transform.position = transform.position + _offset;
+			var position = transform.position + _offset;
+			position.y = 10;
+			Camera.main.transform.position = position;
 		}
 
 		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
-			var eulerAngles = UIJoystickControl.GetDestination();
-			if(eulerAngles == new Vector3())
-            {
-				return;
-            }
-			Vector3 destDirection = new Vector3(eulerAngles.x, 0, eulerAngles.y);
-			Quaternion quaternion = Quaternion.LookRotation(destDirection);
-			transform.rotation = quaternion;
-			transform.position += transform.forward * Time.deltaTime * _positionSpeed;
-			Camera.main.transform.position = transform.position + _offset;
-			FixedState();
+			if (GameUser.Instance.IsJump)
+			{
+				float magnitude = transform.rotation.eulerAngles.magnitude;
+				float x = (float)Math.Cos(Math.PI * (magnitude / 180)) * 5;
+				float z = (float)Math.Sin(Math.PI * (magnitude / 180)) * 5;
+				if ((magnitude > 90 && magnitude < 180) ||
+					(magnitude > 270 && magnitude < 360))
+				{
+					x = -x;
+					z = -z;
+				}
+
+				transform.position += new Vector3(x, 0, z);
+				Log.Info("{0}-{1}-{2}", transform.position.x, transform.position.y, transform.position.z);
+				GameUser.Instance.IsJump = false;
+			}
+
+			var eulerAngles = JoystickControl.GetDestination();
+			if (eulerAngles != new Vector3())
+			{
+				Vector3 destDirection = new Vector3(eulerAngles.x, 0, eulerAngles.y);
+				Quaternion quaternion = Quaternion.LookRotation(destDirection);
+				transform.rotation = quaternion;
+				transform.position += transform.forward * Time.deltaTime * _positionSpeed;
+			}
+			var position = transform.position + _offset;
+			position.y = 10;
+			Camera.main.transform.position = position;
+			//FixedState();
 			base.OnUpdate(elapseSeconds, realElapseSeconds);
 		}
 

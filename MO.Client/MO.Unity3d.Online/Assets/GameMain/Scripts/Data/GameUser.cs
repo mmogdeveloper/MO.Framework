@@ -17,7 +17,7 @@ namespace MO.Unity3d.Data
         }
 
         public INetworkChannel Channel { get; private set; }
-        public Dictionary<long, PlayerData> Players { get;private set; }
+        public Dictionary<long, PlayerData> Players { get; private set; }
         public PlayerData CurPlayer { get; private set; }
         public void Initiation(PlayerData playerData)
         {
@@ -42,5 +42,7 @@ namespace MO.Unity3d.Data
                 return _msgId;
             }
         }
+
+        public bool IsJump { get; set; }
     }
 }

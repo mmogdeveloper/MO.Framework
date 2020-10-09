@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIJoystickControl : MonoBehaviour
+public class JoystickControl : MonoBehaviour
 {
 	//public Transform border;
 	public float moveDistance = 100.0f;
@@ -18,6 +18,7 @@ public class UIJoystickControl : MonoBehaviour
 
 	void Start()
 	{
+		startRotation = new Vector3();
 		startPosition = transform.position;
 	}
 

@@ -39,6 +39,7 @@ namespace MO.Unity3d.Procedure
             base.OnLeave(procedureOwner, isShutdown);
             GameEntry.Scene.UnloadScene("Assets/GameMain/Scenes/Game.unity");
             GameEntry.UI.CloseUIForm(_formId);
+            GameEntry.Entity.HideAllLoadedEntities();
         }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)

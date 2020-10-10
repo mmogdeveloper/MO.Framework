@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 25975c43db132a14fa54a8821e885e67
-timeCreated: 1486319333
+guid: d67b20024488f3e418f32397c57bbb08
+timeCreated: 1469484475
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -27,7 +27,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 4096
+  maxTextureSize: 256
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -45,18 +45,18 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 5
   buildTargetSettings:
-  - buildTarget: WebGL
-    maxTextureSize: 4096
-    textureFormat: -5
-    compressionQuality: 15
-    allowsAlphaSplitting: 0
   - buildTarget: Android
     maxTextureSize: 1024
-    textureFormat: -1
+    textureFormat: 47
     compressionQuality: 0
+    allowsAlphaSplitting: 0
+  - buildTarget: WebGL
+    maxTextureSize: 256
+    textureFormat: 29
+    compressionQuality: 15
     allowsAlphaSplitting: 0
   spriteSheet:
     sprites: []

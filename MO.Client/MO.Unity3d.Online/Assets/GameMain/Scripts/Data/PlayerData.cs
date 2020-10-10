@@ -19,6 +19,7 @@ namespace MO.Unity3d.Data
         public int SkillCEntityId { get { return (int)UserId * 100 + 5; } }
         public int SkillXEntityId { get { return (int)UserId * 100 + 6; } }
         public int SkillZEntityId { get { return (int)UserId * 100 + 7; } }
+        public int SkillBigEntityId { get { return (int)UserId * 100 + 8; } }
         public byte JumpState { get; set; }
     }
 }

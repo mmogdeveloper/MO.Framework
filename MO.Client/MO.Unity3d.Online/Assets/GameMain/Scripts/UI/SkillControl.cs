@@ -12,9 +12,9 @@ public class SkillControl : MonoBehaviour
         GameUser.Instance.CurPlayer.JumpState = 1;
     }
 
-    private IEnumerator HideSkill(int entityId)
+    private IEnumerator HideSkill(int entityId, int seconds)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(seconds);
         GameEntry.Entity.HideEntity(entityId);
     }
 
@@ -28,7 +28,19 @@ public class SkillControl : MonoBehaviour
         skillData.Distance = distance;
         GameEntry.Entity.ShowEntity<SkillEntity>(entityId,
             "Assets/GameMain/Entities/Skill.prefab", "DefaultEntityGroup", skillData);
-        StartCoroutine(HideSkill(entityId));
+        StartCoroutine(HideSkill(entityId, 3));
+    }
+
+    private void ShowBigSkill(int entityId)
+    {
+        if (GameEntry.Entity.HasEntity(entityId))
+            return;
+
+        var skillData = new SkillData();
+        skillData.PlayerData = GameUser.Instance.CurPlayer;
+        GameEntry.Entity.ShowEntity<BigSkillEntity>(entityId,
+            "Assets/GameMain/Entities/BigSkill.prefab", "DefaultEntityGroup", skillData);
+        StartCoroutine(HideSkill(entityId, 7));
     }
 
     public void OnSkillC()
@@ -48,6 +60,6 @@ public class SkillControl : MonoBehaviour
 
     public void OnSkillBig()
     {
-
+        ShowBigSkill(GameUser.Instance.CurPlayer.SkillBigEntityId);
     }
 }

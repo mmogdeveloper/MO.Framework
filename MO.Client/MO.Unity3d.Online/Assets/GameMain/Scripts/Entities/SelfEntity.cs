@@ -45,23 +45,23 @@ namespace MO.Unity3d.Entities
 			//	GameUser.Instance.IsJump = false;
 			//}
 
-			if (GameUser.Instance.JumpState > 0)
+			if (_playerData.JumpState > 0)
 			{
 				transform.position += transform.forward * Time.deltaTime * _positionSpeed * 4;
 
-				if (GameUser.Instance.JumpState == 1)
+				if (_playerData.JumpState == 1)
 				{
 					currY += 0.05f;
 
 					if (currY > 2.0f)
-						GameUser.Instance.JumpState = 2;
+						_playerData.JumpState = 2;
 				}
 				else
 				{
 					currY -= 0.05f;
 					if (currY < 1.0f)
 					{
-						GameUser.Instance.JumpState = 0;
+						_playerData.JumpState = 0;
 						currY = 1.0f;
 					}
 				}
@@ -80,7 +80,7 @@ namespace MO.Unity3d.Entities
 				transform.rotation = quaternion;
 				transform.position += transform.forward * Time.deltaTime * _positionSpeed;
 			}
-			var position = transform.position + _offset;
+			var position = new Vector3(transform.position.x, 0, transform.position.z) + _offset;
 			Camera.main.transform.position = position;
 			//FixedState();
 			base.OnUpdate(elapseSeconds, realElapseSeconds);

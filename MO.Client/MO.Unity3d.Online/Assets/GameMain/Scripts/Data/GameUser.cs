@@ -42,7 +42,5 @@ namespace MO.Unity3d.Data
                 return _msgId;
             }
         }
-
-        public byte JumpState { get; set; }
     }
 }

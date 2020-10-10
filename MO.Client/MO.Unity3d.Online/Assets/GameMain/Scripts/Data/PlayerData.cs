@@ -15,6 +15,10 @@ namespace MO.Unity3d.Data
         public float RX { get; set; }
         public float RY { get; set; }
         public float RZ { get; set; }
-        public int EntityId { get; set; }
+        public int EntityId { get { return (int)UserId * 100 + 1; } }
+        public int SkillCEntityId { get { return (int)UserId * 100 + 5; } }
+        public int SkillXEntityId { get { return (int)UserId * 100 + 6; } }
+        public int SkillZEntityId { get { return (int)UserId * 100 + 7; } }
+        public byte JumpState { get; set; }
     }
 }

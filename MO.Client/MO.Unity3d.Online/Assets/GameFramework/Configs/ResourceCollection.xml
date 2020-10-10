@@ -6,10 +6,16 @@
       <Resource Name="Entities/PlayerChatMsg" LoadType="0" Packed="False" />
       <Resource Name="Entities/Self" LoadType="0" Packed="False" />
       <Resource Name="Entities/SelfChatMsg" LoadType="0" Packed="False" />
+      <Resource Name="Entities/Skill" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Fire" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Skull1" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Skull2" LoadType="0" Packed="False" />
       <Resource Name="Prefabs/Joystick" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Game" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Launcher" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Login" LoadType="0" Packed="False" />
+      <Resource Name="Shaders/RFX4_Particle" LoadType="0" Packed="False" />
+      <Resource Name="Shaders/RFX4_ShaderExtension" LoadType="0" Packed="False" />
       <Resource Name="Textures/button_close02" LoadType="0" Packed="False" />
       <Resource Name="Textures/button_confirm_01" LoadType="0" Packed="False" />
       <Resource Name="Textures/chat_enemydialog" LoadType="0" Packed="False" />
@@ -21,6 +27,9 @@
       <Resource Name="Textures/panel_middleboard" LoadType="0" Packed="False" />
       <Resource Name="Textures/panel_title" LoadType="0" Packed="False" />
       <Resource Name="Textures/playerhead01" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Fire" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Skull1" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Skull2" LoadType="0" Packed="False" />
       <Resource Name="Textures/tips_blueboard" LoadType="0" Packed="False" />
       <Resource Name="Textures/tips_grayboard" LoadType="0" Packed="False" />
       <Resource Name="UI/UIForms/ChatForm" LoadType="0" Packed="False" />
@@ -28,16 +37,23 @@
       <Resource Name="UI/UIForms/LoginForm" LoadType="0" Packed="False" />
     </Resources>
     <Assets>
+      <Asset Guid="033d238a6a9c0ba47970fee48375570b" ResourceName="Materials/Fire" />
+      <Asset Guid="05839f1a8049db445b449455d3793590" ResourceName="Textures/Skills/Fire" />
+      <Asset Guid="0ab49eb50ee0b5443a4ecd519e117e7a" ResourceName="Materials/Skull1" />
+      <Asset Guid="11bd7325bb2d5b84e9d83cfc63e1c4ba" ResourceName="Textures/Skills/Skull2" />
       <Asset Guid="151625cc86b0b5448ba1f8b772f49432" ResourceName="Scenes/Login" />
       <Asset Guid="2620b5566cb22dd4c8742c763fa34f79" ResourceName="UI/UIForms/ChatForm" />
       <Asset Guid="373297f5dab6b394a9b34bc63dbca5cd" ResourceName="Prefabs/Joystick" />
       <Asset Guid="419a50522402a3444a8cbf1a4c5bc9fc" ResourceName="Entities/PlayerChatMsg" />
       <Asset Guid="45bd2e1a461ed824fa3c64b11bf46478" ResourceName="Textures/button_confirm_01" />
       <Asset Guid="4ac34f9554f26a647be680e3b3bf3c10" ResourceName="Textures/JoyStick/ETCDefaultSprite" />
+      <Asset Guid="50609c7cf7955e44a80a9d58099d5657" ResourceName="Shaders/RFX4_Particle" />
       <Asset Guid="5262616ea7558dd40b1ada4eddb2f6f0" ResourceName="UI/UIForms/LoginForm" />
+      <Asset Guid="5293620f4a1baef479672ff8664240c9" ResourceName="Materials/Skull2" />
       <Asset Guid="537ced3a292b0bb418138c8f7b8ac1f9" ResourceName="Textures/chat_enemydialog" />
       <Asset Guid="57d7d37c0aeaa3b40bfcab9fc935c45f" ResourceName="Textures/chat_typeframe" />
       <Asset Guid="5877de3e8510d9f4595a7bfb575dae62" ResourceName="Textures/panel_middleboard" />
+      <Asset Guid="598cbf45ecbf81c4abfb3361868e10ab" ResourceName="Textures/Skills/Skull1" />
       <Asset Guid="5cf044d1748e5d8408b2b810b9813f20" ResourceName="Entities/SelfChatMsg" />
       <Asset Guid="66f8f48bb1b82dd48a662b089b9bb6de" ResourceName="Textures/panel_title" />
       <Asset Guid="6a3dc945ab4a0414fa64354ae1e0143a" ResourceName="Textures/panel_buttom" />
@@ -48,7 +64,9 @@
       <Asset Guid="c097008e0c4a18b4587a81f65fadc0e8" ResourceName="Textures/tips_blueboard" />
       <Asset Guid="c4451041c8c8ed1479b1df629317e170" ResourceName="Textures/button_close02" />
       <Asset Guid="dcc6ff5975db63b4fa1a1e47440e64b2" ResourceName="Textures/chat_selfdialog" />
+      <Asset Guid="dfd584cf1a77c384d99a6908fb34c835" ResourceName="Entities/Skill" />
       <Asset Guid="e836104b92fa84745a88bc1dbf782858" ResourceName="Scenes/Launcher" />
+      <Asset Guid="e859c2fcd9cfc0c439a959bdb4049ef9" ResourceName="Shaders/RFX4_ShaderExtension" />
       <Asset Guid="f1dda6d9032792049b415efb7f07ab18" ResourceName="Scenes/Game" />
       <Asset Guid="f8a2f54e3cf601244bbbf2ba510834ee" ResourceName="Textures/tips_grayboard" />
       <Asset Guid="f9891860abf0ecc41b60aceb02ad7318" ResourceName="Textures/playerhead01" />

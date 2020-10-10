@@ -25,13 +25,11 @@ namespace MO.Unity3d.Network.PacketHandler
 
             if (!GameUser.Instance.Players.ContainsKey(rep.UserId))
             {
-                var entityId = GameEntry.Entity.GenerateSerialId();
                 var newPlayer = new PlayerData();
                 newPlayer.UserId = rep.UserId;
                 newPlayer.UserName = rep.UserName;
-                newPlayer.EntityId = entityId;
                 GameUser.Instance.Players.Add(rep.UserId, newPlayer);
-                GameEntry.Entity.ShowEntity<PlayerEntity>(entityId,
+                GameEntry.Entity.ShowEntity<PlayerEntity>(newPlayer.EntityId,
                     "Assets/GameMain/Entities/Player.prefab", "DefaultEntityGroup", newPlayer);
             }
         }

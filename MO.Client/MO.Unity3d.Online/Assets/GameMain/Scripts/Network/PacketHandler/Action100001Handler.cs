@@ -33,7 +33,7 @@ namespace MO.Unity3d.Network.PacketHandler
                     GameUser.Instance.CurPlayer.RY = item.Rotation.Y;
                     GameUser.Instance.CurPlayer.RZ = item.Rotation.Z;
                     GameEntry.Entity.ShowEntity<SelfEntity>(
-                        1,
+                        GameUser.Instance.CurPlayer.EntityId,
                         "Assets/GameMain/Entities/Self.prefab", "DefaultEntityGroup",
                         GameUser.Instance.CurPlayer);
                 }
@@ -41,11 +41,9 @@ namespace MO.Unity3d.Network.PacketHandler
                 {
                     if (!GameUser.Instance.Players.ContainsKey(item.UserId))
                     {
-                        var entityId = GameEntry.Entity.GenerateSerialId();
                         var newPlayer = new PlayerData();
                         newPlayer.UserId = item.UserId;
                         newPlayer.UserName = item.UserName;
-                        newPlayer.EntityId = entityId;
                         newPlayer.X = item.Vector.X;
                         newPlayer.Y = item.Vector.Y;
                         newPlayer.Z = item.Vector.Z;
@@ -53,7 +51,7 @@ namespace MO.Unity3d.Network.PacketHandler
                         newPlayer.RY = item.Rotation.Y;
                         newPlayer.RZ = item.Rotation.Z;
                         GameUser.Instance.Players.Add(item.UserId, newPlayer);
-                        GameEntry.Entity.ShowEntity<PlayerEntity>(entityId,
+                        GameEntry.Entity.ShowEntity<PlayerEntity>(newPlayer.EntityId,
                             "Assets/GameMain/Entities/Player.prefab", "DefaultEntityGroup", newPlayer);
                     }
                 }

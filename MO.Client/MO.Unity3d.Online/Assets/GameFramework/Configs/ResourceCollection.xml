@@ -2,18 +2,31 @@
 <UnityGameFramework>
   <ResourceCollection>
     <Resources>
+      <Resource Name="Entities/BigSkill" LoadType="0" Packed="False" />
       <Resource Name="Entities/Player" LoadType="0" Packed="False" />
       <Resource Name="Entities/PlayerChatMsg" LoadType="0" Packed="False" />
       <Resource Name="Entities/Self" LoadType="0" Packed="False" />
       <Resource Name="Entities/SelfChatMsg" LoadType="0" Packed="False" />
       <Resource Name="Entities/Skill" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Distort" LoadType="0" Packed="False" />
       <Resource Name="Materials/Fire" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Fire1" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Fire1Mobile" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Fire2" LoadType="0" Packed="False" />
+      <Resource Name="Materials/FireMobile" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Ground" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Particles" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Particles3Mobile" LoadType="0" Packed="False" />
+      <Resource Name="Materials/ParticlesMobile" LoadType="0" Packed="False" />
       <Resource Name="Materials/Skull1" LoadType="0" Packed="False" />
       <Resource Name="Materials/Skull2" LoadType="0" Packed="False" />
+      <Resource Name="Materials/SkullFire" LoadType="0" Packed="False" />
+      <Resource Name="Materials/Trail" LoadType="0" Packed="False" />
       <Resource Name="Prefabs/Joystick" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Game" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Launcher" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Login" LoadType="0" Packed="False" />
+      <Resource Name="Shaders/RFX4_DistortionParticles" LoadType="0" Packed="False" />
       <Resource Name="Shaders/RFX4_Particle" LoadType="0" Packed="False" />
       <Resource Name="Shaders/RFX4_ShaderExtension" LoadType="0" Packed="False" />
       <Resource Name="Textures/button_close02" LoadType="0" Packed="False" />
@@ -27,9 +40,20 @@
       <Resource Name="Textures/panel_middleboard" LoadType="0" Packed="False" />
       <Resource Name="Textures/panel_title" LoadType="0" Packed="False" />
       <Resource Name="Textures/playerhead01" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Distortion1" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Distortion3" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Distortion4" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/DistortionExplosion" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/DistortionSwirl2" LoadType="0" Packed="False" />
       <Resource Name="Textures/Skills/Fire" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Fire1" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Fire2" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Fire4" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/Heat" LoadType="0" Packed="False" />
       <Resource Name="Textures/Skills/Skull1" LoadType="0" Packed="False" />
       <Resource Name="Textures/Skills/Skull2" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/TeleportParticles" LoadType="0" Packed="False" />
+      <Resource Name="Textures/Skills/TeleportParticles2" LoadType="0" Packed="False" />
       <Resource Name="Textures/tips_blueboard" LoadType="0" Packed="False" />
       <Resource Name="Textures/tips_grayboard" LoadType="0" Packed="False" />
       <Resource Name="UI/UIForms/ChatForm" LoadType="0" Packed="False" />
@@ -37,14 +61,21 @@
       <Resource Name="UI/UIForms/LoginForm" LoadType="0" Packed="False" />
     </Resources>
     <Assets>
+      <Asset Guid="01019f96f557d804790cfb64c21c3a2f" ResourceName="Entities/BigSkill" />
       <Asset Guid="033d238a6a9c0ba47970fee48375570b" ResourceName="Materials/Fire" />
-      <Asset Guid="05839f1a8049db445b449455d3793590" ResourceName="Textures/Skills/Fire" />
+      <Asset Guid="05839f1a8049db445b449455d3793590" ResourceName="Textures/Skills/Fire4" />
       <Asset Guid="0ab49eb50ee0b5443a4ecd519e117e7a" ResourceName="Materials/Skull1" />
-      <Asset Guid="11bd7325bb2d5b84e9d83cfc63e1c4ba" ResourceName="Textures/Skills/Skull2" />
+      <Asset Guid="108f06227ef95924ab83b2e90c0baa8f" ResourceName="Materials/Trail" />
       <Asset Guid="151625cc86b0b5448ba1f8b772f49432" ResourceName="Scenes/Login" />
+      <Asset Guid="1debf0cb140ce12488db61379bca5441" ResourceName="Materials/Fire2" />
+      <Asset Guid="204b306d6ca7fb449adebd165e5acb70" ResourceName="Textures/Skills/Fire2" />
+      <Asset Guid="25975c43db132a14fa54a8821e885e67" ResourceName="Textures/Skills/Skull1" />
       <Asset Guid="2620b5566cb22dd4c8742c763fa34f79" ResourceName="UI/UIForms/ChatForm" />
+      <Asset Guid="2f4a967e044ee524ca2ed57073befea6" ResourceName="Shaders/RFX4_DistortionParticles" />
       <Asset Guid="373297f5dab6b394a9b34bc63dbca5cd" ResourceName="Prefabs/Joystick" />
+      <Asset Guid="4103e250f43e5f746941ea4de1bbdfb4" ResourceName="Materials/Distort" />
       <Asset Guid="419a50522402a3444a8cbf1a4c5bc9fc" ResourceName="Entities/PlayerChatMsg" />
+      <Asset Guid="45ae0f133d028a148bb4f305dda509d8" ResourceName="Materials/FireMobile" />
       <Asset Guid="45bd2e1a461ed824fa3c64b11bf46478" ResourceName="Textures/button_confirm_01" />
       <Asset Guid="4ac34f9554f26a647be680e3b3bf3c10" ResourceName="Textures/JoyStick/ETCDefaultSprite" />
       <Asset Guid="50609c7cf7955e44a80a9d58099d5657" ResourceName="Shaders/RFX4_Particle" />
@@ -53,18 +84,34 @@
       <Asset Guid="537ced3a292b0bb418138c8f7b8ac1f9" ResourceName="Textures/chat_enemydialog" />
       <Asset Guid="57d7d37c0aeaa3b40bfcab9fc935c45f" ResourceName="Textures/chat_typeframe" />
       <Asset Guid="5877de3e8510d9f4595a7bfb575dae62" ResourceName="Textures/panel_middleboard" />
-      <Asset Guid="598cbf45ecbf81c4abfb3361868e10ab" ResourceName="Textures/Skills/Skull1" />
       <Asset Guid="5cf044d1748e5d8408b2b810b9813f20" ResourceName="Entities/SelfChatMsg" />
       <Asset Guid="66f8f48bb1b82dd48a662b089b9bb6de" ResourceName="Textures/panel_title" />
+      <Asset Guid="69c92a8893996da4dba5ab35386faf39" ResourceName="Materials/Particles" />
       <Asset Guid="6a3dc945ab4a0414fa64354ae1e0143a" ResourceName="Textures/panel_buttom" />
+      <Asset Guid="6db063f1caa5d454f9a6fbdff560e7b2" ResourceName="Materials/Ground" />
+      <Asset Guid="6f3d9af1ac1426644b1af02b33386464" ResourceName="Materials/Particles3Mobile" />
       <Asset Guid="82e0b58d2dd116b48b63147aca1661b4" ResourceName="UI/UIForms/GameForm" />
+      <Asset Guid="836e3791e9ea81348aff1afa191270bf" ResourceName="Materials/Fire1" />
+      <Asset Guid="85368322f24d0504991f60961f3a9c97" ResourceName="Textures/Skills/Heat" />
       <Asset Guid="8baafd6b30b8b9d42ad7f25dba782c71" ResourceName="Entities/Player" />
+      <Asset Guid="8dfb1bd0429f29140a6aa80fdeeb001c" ResourceName="Textures/Skills/DistortionSwirl2" />
+      <Asset Guid="91165df292374a449aa2861e8982a7bb" ResourceName="Textures/Skills/Distortion3" />
+      <Asset Guid="971559d7813aeb04d83173dd400c14e2" ResourceName="Textures/Skills/DistortionExplosion" />
       <Asset Guid="9cf2350f606e4e648aad8ba9c39fb514" ResourceName="Entities/Self" />
+      <Asset Guid="9ec9b3b7ce6a7074e840cd0297bbb969" ResourceName="Materials/SkullFire" />
+      <Asset Guid="a1393eb2861b3cc4494901b1248c92e7" ResourceName="Materials/ParticlesMobile" />
+      <Asset Guid="a90a2fe3e5bb7144e90070f3cdf7a8ae" ResourceName="Textures/Skills/Fire1" />
+      <Asset Guid="a92c26ea197213340b0e2ba800eaf04e" ResourceName="Textures/Skills/TeleportParticles2" />
+      <Asset Guid="aea38290c10bf614d8f4983d955186c3" ResourceName="Materials/Fire1Mobile" />
       <Asset Guid="b34baeb4e5f505d4c957f116d699fef9" ResourceName="Textures/font_chat" />
       <Asset Guid="c097008e0c4a18b4587a81f65fadc0e8" ResourceName="Textures/tips_blueboard" />
       <Asset Guid="c4451041c8c8ed1479b1df629317e170" ResourceName="Textures/button_close02" />
+      <Asset Guid="c5495e46b5a4131498ff3c898f84c50c" ResourceName="Textures/Skills/Distortion4" />
+      <Asset Guid="d2381268c77b1fe48b1693cbdceb0274" ResourceName="Textures/Skills/Distortion1" />
+      <Asset Guid="d67b20024488f3e418f32397c57bbb08" ResourceName="Textures/Skills/TeleportParticles" />
       <Asset Guid="dcc6ff5975db63b4fa1a1e47440e64b2" ResourceName="Textures/chat_selfdialog" />
       <Asset Guid="dfd584cf1a77c384d99a6908fb34c835" ResourceName="Entities/Skill" />
+      <Asset Guid="e39607ff67d6c9d4196714b9785ccc03" ResourceName="Textures/Skills/Skull2" />
       <Asset Guid="e836104b92fa84745a88bc1dbf782858" ResourceName="Scenes/Launcher" />
       <Asset Guid="e859c2fcd9cfc0c439a959bdb4049ef9" ResourceName="Shaders/RFX4_ShaderExtension" />
       <Asset Guid="f1dda6d9032792049b415efb7f07ab18" ResourceName="Scenes/Game" />

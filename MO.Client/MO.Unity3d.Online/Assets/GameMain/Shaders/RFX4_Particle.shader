@@ -137,5 +137,5 @@ Category {
 		}
 	}	
 }
- CustomEditor "RFX4_CustomMaterialInspectorParticle"
+ //CustomEditor "RFX4_CustomMaterialInspectorParticle"
 }

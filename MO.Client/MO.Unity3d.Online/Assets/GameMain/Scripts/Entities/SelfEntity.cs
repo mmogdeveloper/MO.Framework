@@ -51,18 +51,18 @@ namespace MO.Unity3d.Entities
 
 				if (_playerData.JumpState == 1)
 				{
-					currY += 0.05f;
+					currY += 0.1f;
 
 					if (currY > 2.0f)
 						_playerData.JumpState = 2;
 				}
 				else
 				{
-					currY -= 0.05f;
-					if (currY < 1.0f)
+					currY -= 0.1f;
+					if (currY < 0.0f)
 					{
 						_playerData.JumpState = 0;
-						currY = 1.0f;
+						currY = 0.0f;
 					}
 				}
 

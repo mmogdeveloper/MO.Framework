@@ -10,5 +10,5 @@ https://github.com/bitcraftCoLtd/protobuf3-for-unity
 https://github.com/mutouzdl/gameframework_demo (非常不错的入门教程)  
 https://github.com/EllanJiang/StarForce  
 
-聊天demo  
+简单MOBA游戏demo  
 启动unity3d,打开Asserts/GameMain/Scenes/Launcher.unity即可运行  

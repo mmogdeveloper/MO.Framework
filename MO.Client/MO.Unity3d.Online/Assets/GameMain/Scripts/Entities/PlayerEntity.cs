@@ -45,6 +45,9 @@ namespace MO.Unity3d.Entities
 			{
 				GetComponent<Renderer>().material.color = Color.green;
 			}
+
+			GameEntry.Entity.ShowEntity<HPBarEntity>(_playerData.HPEntityId,
+				"Assets/GameMain/Entities/HP_Bar.prefab", "DefaultEntityGroup", _playerData);
 		}
 
 		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)

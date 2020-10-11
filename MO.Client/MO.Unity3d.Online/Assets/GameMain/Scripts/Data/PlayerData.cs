@@ -15,6 +15,8 @@ namespace MO.Unity3d.Data
         {
             SendCommands = new Queue<CommandInfo>();
             RecvCommands = new Queue<CommandInfo>();
+            TotalBlood = 1300;
+            CurBlood = 1300;
         }
         public long UserId { get; set; }
         public string UserName { get; set; }
@@ -26,8 +28,11 @@ namespace MO.Unity3d.Data
         public float ServerRY { get; set; }
         public float ServerRZ { get; set; }
 
+        public int TotalBlood { get; }
+        public int CurBlood { get; set; }
 
         public int EntityId { get { return (int)UserId * 100 + 1; } }
+        public int HPEntityId { get { return (int)UserId * 100 + 2; } }
         public int SkillCEntityId { get { return (int)UserId * 100 + 5; } }
         public int SkillXEntityId { get { return (int)UserId * 100 + 6; } }
         public int SkillZEntityId { get { return (int)UserId * 100 + 7; } }

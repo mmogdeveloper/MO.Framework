@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using MO.Algorithm.Config;
+using MO.GrainInterfaces.Config;
 using MO.GrainInterfaces.User;
 using MO.Protocol;
 using Newtonsoft.Json;

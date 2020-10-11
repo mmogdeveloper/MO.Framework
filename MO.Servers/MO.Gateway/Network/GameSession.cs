@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MO.Algorithm;
 using MO.Algorithm.Actions.Enum;
-using MO.Algorithm.Config;
+using MO.GrainInterfaces.Config;
 using MO.Common.Security;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;

@@ -1,15 +1,12 @@
-﻿using CSRedis;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MO.Algorithm.Redis;
 using MO.GrainInterfaces;
 using MO.Model.Context;
 using NLog.Extensions.Logging;
 using Orleans;
-using Orleans.ApplicationParts;
 using Orleans.Configuration;
 using Orleans.Hosting;
 using Orleans.Serialization;

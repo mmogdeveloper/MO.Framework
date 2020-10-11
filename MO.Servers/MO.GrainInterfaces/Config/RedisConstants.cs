@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MO.Algorithm.Config
+﻿namespace MO.GrainInterfaces.Config
 {
     public class RedisConstants
     {

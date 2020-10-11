@@ -3,6 +3,7 @@
   <ResourceCollection>
     <Resources>
       <Resource Name="Entities/BigSkill" LoadType="0" Packed="False" />
+      <Resource Name="Entities/HP_Bar" LoadType="0" Packed="False" />
       <Resource Name="Entities/Player" LoadType="0" Packed="False" />
       <Resource Name="Entities/PlayerChatMsg" LoadType="0" Packed="False" />
       <Resource Name="Entities/Self" LoadType="0" Packed="False" />
@@ -98,6 +99,7 @@
       <Asset Guid="c5495e46b5a4131498ff3c898f84c50c" ResourceName="Textures/Skills/Distortion4" />
       <Asset Guid="d2381268c77b1fe48b1693cbdceb0274" ResourceName="Textures/Skills/Distortion1" />
       <Asset Guid="d67b20024488f3e418f32397c57bbb08" ResourceName="Textures/Skills/TeleportParticles" />
+      <Asset Guid="d8b32009f0e17634780fdaafd23dc03e" ResourceName="Entities/HP_Bar" />
       <Asset Guid="dcc6ff5975db63b4fa1a1e47440e64b2" ResourceName="Textures/chat_selfdialog" />
       <Asset Guid="dfd584cf1a77c384d99a6908fb34c835" ResourceName="Entities/Skill" />
       <Asset Guid="e39607ff67d6c9d4196714b9785ccc03" ResourceName="Textures/Skills/Skull2" />

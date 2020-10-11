@@ -26,6 +26,7 @@ namespace MO.Grains.Game
 
         private IAsyncStream<MOMsg> _stream;
         private IDisposable _reminder;
+        private Queue<CommandInfo> _commands;
 
         public RoomGrain(
             [PersistentState("RoomInfo", StorageProviders.DefaultProviderName)] IPersistentState<RoomInfo> roomInfo,
@@ -34,6 +35,7 @@ namespace MO.Grains.Game
             _roomInfo = roomInfo;
             _logger = logger;
             _players = new Dictionary<long, PlayerData>();
+            _commands = new Queue<CommandInfo>();
         }
 
         public override async Task OnActivateAsync()
@@ -79,29 +81,21 @@ namespace MO.Grains.Game
 
         public Task Update()
         {
-            S2C100004 content = new S2C100004();
-            foreach (var item in _players)
+            if (_commands.Count != 0)
             {
-                if (item.Value.IsMove)
+                List<CommandInfo> commands = new List<CommandInfo>();
+                while (_commands.Count != 0)
                 {
-                    var userPoint = new UserPoint();
-                    userPoint.UserId = item.Key;
-                    userPoint.Vector = new MsgVector3();
-                    userPoint.Vector.X = item.Value.X;
-                    userPoint.Vector.Y = item.Value.Y;
-                    userPoint.Vector.Z = item.Value.Z;
-                    userPoint.Rotation = new MsgRotation();
-                    userPoint.Rotation.X = item.Value.RX;
-                    userPoint.Rotation.Y = item.Value.RY;
-                    userPoint.Rotation.Z = item.Value.RZ;
-                    content.UserPoints.Add(userPoint);
-                    item.Value.IsMove = false;
+                    commands.Add(_commands.Dequeue());
                 }
+                S2C100010 content = new S2C100010();
+                content.Commands.AddRange(commands);
+                MOMsg notify = new MOMsg();
+                notify.ActionId = 100010;
+                notify.Content = content.ToByteString();
+                return RoomNotify(notify);
             }
-            MOMsg msg = new MOMsg();
-            msg.ActionId = 100004;
-            msg.Content = content.ToByteString();
-            return RoomNotify(msg);
+            return Task.CompletedTask;
         }
 
         public Task RoomNotify(MOMsg msg)
@@ -200,15 +194,32 @@ namespace MO.Grains.Game
             await RoomNotify(notify);
         }
 
-        public async Task PlayerCommand(IUser user, List<CommandInfo> commands)
+        public Task PlayerCommand(IUser user, List<CommandInfo> commands)
         {
-            S2C100010 content = new S2C100010();
-            content.UserId = user.GetPrimaryKeyLong();
-            content.Commands.AddRange(commands);
-            MOMsg notify = new MOMsg();
-            notify.ActionId = 100010;
-            notify.Content = content.ToByteString();
-            await RoomNotify(notify);
+            foreach (var command in commands)
+            {
+                if (command.CommandId == (int)CommandEnum.Transform)
+                {
+                    var commandInfo = TransformInfo.Parser.ParseFrom(command.CommandContent);
+                    if (_players.ContainsKey(user.GetPrimaryKeyLong()))
+                    {
+                        _players[user.GetPrimaryKeyLong()].SetLocation(
+                            commandInfo.X,
+                            commandInfo.Y,
+                            commandInfo.Z,
+                            commandInfo.RX,
+                            commandInfo.RY,
+                            commandInfo.RZ);
+                    }
+                }
+            }
+
+            commands.ForEach(m =>
+            {
+                m.UserId = user.GetPrimaryKeyLong();
+                _commands.Enqueue(m);
+            });
+            return Task.CompletedTask;
         }
     }
 }

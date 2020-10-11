@@ -22,18 +22,16 @@ namespace MO.Protocol {
     static MessageGameBaseReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChdtZXNzYWdlX2dhbWVfYmFzZS5wcm90bxILTU8uUHJvdG9jb2wiLQoGTU9N",
-            "c2dzEiMKB1BhY2tldHMYASADKAsyEi5NTy5Qcm90b2NvbC5NT01zZyKYAQoF",
-            "TU9Nc2cSEAoIQWN0aW9uSWQYASABKAUSDgoGVXNlcklkGAIgASgDEg0KBU1z",
-            "Z0lkGAMgASgFEg0KBVRva2VuGAQgASgJEgoKAlN0GAUgASgDEg8KB0NvbnRl",
-            "bnQYBiABKAwSDAoEU2lnbhgHIAEoCRIRCglFcnJvckNvZGUYCiABKAUSEQoJ",
-            "RXJyb3JJbmZvGAsgASgJIkQKC01PTXNnUmVzdWx0EhEKCUVycm9yQ29kZRgB",
-            "IAEoBRIRCglFcnJvckluZm8YAiABKAkSDwoHQ29udGVudBgDIAEoDGIGcHJv",
-            "dG8z"));
+            "ChdtZXNzYWdlX2dhbWVfYmFzZS5wcm90bxILTU8uUHJvdG9jb2wimAEKBU1P",
+            "TXNnEhAKCEFjdGlvbklkGAEgASgFEg4KBlVzZXJJZBgCIAEoAxINCgVNc2dJ",
+            "ZBgDIAEoBRINCgVUb2tlbhgEIAEoCRIKCgJTdBgFIAEoAxIPCgdDb250ZW50",
+            "GAYgASgMEgwKBFNpZ24YByABKAkSEQoJRXJyb3JDb2RlGAogASgFEhEKCUVy",
+            "cm9ySW5mbxgLIAEoCSJECgtNT01zZ1Jlc3VsdBIRCglFcnJvckNvZGUYASAB",
+            "KAUSEQoJRXJyb3JJbmZvGAIgASgJEg8KB0NvbnRlbnQYAyABKAxiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.MOMsgs), global::MO.Protocol.MOMsgs.Parser, new[]{ "Packets" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.MOMsg), global::MO.Protocol.MOMsg.Parser, new[]{ "ActionId", "UserId", "MsgId", "Token", "St", "Content", "Sign", "ErrorCode", "ErrorInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.MOMsgResult), global::MO.Protocol.MOMsgResult.Parser, new[]{ "ErrorCode", "ErrorInfo", "Content" }, null, null, null)
           }));
@@ -42,121 +40,6 @@ namespace MO.Protocol {
 
   }
   #region Messages
-  /// <summary>
-  ///合并数据包
-  /// </summary>
-  public sealed partial class MOMsgs : pb::IMessage<MOMsgs> {
-    private static readonly pb::MessageParser<MOMsgs> _parser = new pb::MessageParser<MOMsgs>(() => new MOMsgs());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<MOMsgs> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameBaseReflection.Descriptor.MessageTypes[0]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MOMsgs() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MOMsgs(MOMsgs other) : this() {
-      packets_ = other.packets_.Clone();
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MOMsgs Clone() {
-      return new MOMsgs(this);
-    }
-
-    /// <summary>Field number for the "Packets" field.</summary>
-    public const int PacketsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::MO.Protocol.MOMsg> _repeated_packets_codec
-        = pb::FieldCodec.ForMessage(10, global::MO.Protocol.MOMsg.Parser);
-    private readonly pbc::RepeatedField<global::MO.Protocol.MOMsg> packets_ = new pbc::RepeatedField<global::MO.Protocol.MOMsg>();
-    /// <summary>
-    ///数据包列表
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::MO.Protocol.MOMsg> Packets {
-      get { return packets_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as MOMsgs);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(MOMsgs other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!packets_.Equals(other.packets_)) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= packets_.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      packets_.WriteTo(output, _repeated_packets_codec);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      size += packets_.CalculateSize(_repeated_packets_codec);
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(MOMsgs other) {
-      if (other == null) {
-        return;
-      }
-      packets_.Add(other.packets_);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 10: {
-            packets_.AddEntriesFrom(input, _repeated_packets_codec);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
   /// <summary>
   ///tcp
   /// </summary>
@@ -167,7 +50,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameBaseReflection.Descriptor.MessageTypes[1]; }
+      get { return global::MO.Protocol.MessageGameBaseReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -261,6 +144,9 @@ namespace MO.Protocol {
     /// <summary>Field number for the "Content" field.</summary>
     public const int ContentFieldNumber = 6;
     private pb::ByteString content_ = pb::ByteString.Empty;
+    /// <summary>
+    ///合并数据包
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString Content {
       get { return content_; }
@@ -517,7 +403,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameBaseReflection.Descriptor.MessageTypes[2]; }
+      get { return global::MO.Protocol.MessageGameBaseReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

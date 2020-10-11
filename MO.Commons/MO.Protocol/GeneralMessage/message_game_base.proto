@@ -2,11 +2,6 @@
 
 package MO.Protocol;
 
-//合并数据包
-message MOMsgs{
-	repeated MOMsg Packets = 1;//数据包列表
-}
-
 //tcp
 message MOMsg {
 //Request
@@ -15,7 +10,7 @@ message MOMsg {
   int32 MsgId = 3;
   string Token = 4;
   int64 St = 5;
-  bytes Content = 6;
+  bytes Content = 6;//合并数据包
   string Sign = 7;
 //Response
   int32 ErrorCode = 10;

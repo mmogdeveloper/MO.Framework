@@ -32,7 +32,7 @@ namespace MO.Unity3d.Network.PacketHandler
                     GameUser.Instance.CurPlayer.RX = item.Rotation.X;
                     GameUser.Instance.CurPlayer.RY = item.Rotation.Y;
                     GameUser.Instance.CurPlayer.RZ = item.Rotation.Z;
-                    GameEntry.Entity.ShowEntity<SelfEntity>(
+                    GameEntry.Entity.ShowEntity<PlayerEntity>(
                         GameUser.Instance.CurPlayer.EntityId,
                         "Assets/GameMain/Entities/Self.prefab", "DefaultEntityGroup",
                         GameUser.Instance.CurPlayer);

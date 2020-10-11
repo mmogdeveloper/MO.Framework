@@ -1,4 +1,5 @@
-﻿using MO.Unity3d;
+﻿using MO.Protocol;
+using MO.Unity3d;
 using MO.Unity3d.Data;
 using MO.Unity3d.Entities;
 using System.Collections;
@@ -9,57 +10,41 @@ public class SkillControl : MonoBehaviour
 {
     public void OnJump()
     {
-        GameUser.Instance.CurPlayer.JumpState = 1;
-    }
-
-    private IEnumerator HideSkill(int entityId, int seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        GameEntry.Entity.HideEntity(entityId);
-    }
-
-    private void ShowSkill(int entityId, float distance)
-    {
-        if (GameEntry.Entity.HasEntity(entityId))
-            return;
-
-        var skillData = new SkillData();
-        skillData.PlayerData = GameUser.Instance.CurPlayer;
-        skillData.Distance = distance;
-        GameEntry.Entity.ShowEntity<SkillEntity>(entityId,
-            "Assets/GameMain/Entities/Skill.prefab", "DefaultEntityGroup", skillData);
-        StartCoroutine(HideSkill(entityId, 3));
-    }
-
-    private void ShowBigSkill(int entityId)
-    {
-        if (GameEntry.Entity.HasEntity(entityId))
-            return;
-
-        var skillData = new SkillData();
-        skillData.PlayerData = GameUser.Instance.CurPlayer;
-        GameEntry.Entity.ShowEntity<BigSkillEntity>(entityId,
-            "Assets/GameMain/Entities/BigSkill.prefab", "DefaultEntityGroup", skillData);
-        StartCoroutine(HideSkill(entityId, 7));
+        GameUser.Instance.CurPlayer.Jump();
+        var command = new CommandInfo();
+        command.CommandId = (int)CommandEnum.Jump;
+        GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 
     public void OnSkillC()
     {
-        ShowSkill(GameUser.Instance.CurPlayer.SkillCEntityId, 9);
+        GameUser.Instance.CurPlayer.ShowSkillC();
+        var command = new CommandInfo();
+        command.CommandId = (int)CommandEnum.SkillC;
+        GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 
     public void OnSkillX()
     {
-        ShowSkill(GameUser.Instance.CurPlayer.SkillXEntityId, 6);
+        GameUser.Instance.CurPlayer.ShowSkillX();
+        var command = new CommandInfo();
+        command.CommandId = (int)CommandEnum.SkillX;
+        GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 
     public void OnSkillZ()
     {
-        ShowSkill(GameUser.Instance.CurPlayer.SkillZEntityId, 3);
+        GameUser.Instance.CurPlayer.ShowSkillZ();
+        var command = new CommandInfo();
+        command.CommandId = (int)CommandEnum.SkillZ;
+        GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 
     public void OnSkillBig()
     {
-        ShowBigSkill(GameUser.Instance.CurPlayer.SkillBigEntityId);
+        GameUser.Instance.CurPlayer.ShowBigSkill();
+        var command = new CommandInfo();
+        command.CommandId = (int)CommandEnum.BigSkill;
+        GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 }

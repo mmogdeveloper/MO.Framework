@@ -1,4 +1,5 @@
 ﻿using GameFramework.Network;
+using Google.Protobuf;
 using MO.Unity3d.Network;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,11 @@ namespace MO.Unity3d.Data
                 _msgId++;
                 return _msgId;
             }
+        }
+
+        public void SendPackage(IMessage content)
+        {
+            Channel.Send(content.BuildPacket());
         }
     }
 }

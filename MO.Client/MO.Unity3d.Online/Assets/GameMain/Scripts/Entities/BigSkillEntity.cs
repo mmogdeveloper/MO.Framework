@@ -1,5 +1,6 @@
 ﻿using MO.Unity3d.Data;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
@@ -12,6 +13,13 @@ namespace MO.Unity3d.Entities
 		{
 			base.OnInit(userData);
 			_skillData = (SkillData)userData;
+			StartCoroutine(HideSkill(Entity.Id, 7));
+		}
+
+		private IEnumerator HideSkill(int entityId, int seconds)
+		{
+			yield return new WaitForSeconds(seconds);
+			GameEntry.Entity.HideEntity(entityId);
 		}
 
 		protected internal override void OnShow(object userData)

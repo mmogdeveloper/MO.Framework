@@ -9,6 +9,7 @@ using MO.GrainInterfaces.User;
 using MO.Protocol;
 using Orleans;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MO.Grains.Network
@@ -123,6 +124,14 @@ namespace MO.Grains.Network
                             var roomId = await _user.GetRoomId();
                             var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
                             await curRoom.PlayerSendMsg(_user, req.Content);
+                        }
+                        break;
+                    case 100009:
+                        {
+                            var req = C2S100009.Parser.ParseFrom(packet.Content);
+                            var roomId = await _user.GetRoomId();
+                            var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
+                            await curRoom.PlayerCommand(_user, req.Commands.ToList());
                         }
                         break;
                 }

@@ -1,6 +1,7 @@
 ﻿using MO.GrainInterfaces.User;
 using MO.Protocol;
 using Orleans;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Game
@@ -17,5 +18,6 @@ namespace MO.GrainInterfaces.Game
         Task PlayerGo(IUser user, float x, float y, float z,
             float rx, float ry, float rz);
         Task PlayerSendMsg(IUser user, string msg);
+        Task PlayerCommand(IUser user, List<CommandInfo> commands);
     }
 }

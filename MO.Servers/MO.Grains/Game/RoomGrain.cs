@@ -199,5 +199,16 @@ namespace MO.Grains.Game
             notify.Content = content.ToByteString();
             await RoomNotify(notify);
         }
+
+        public async Task PlayerCommand(IUser user, List<CommandInfo> commands)
+        {
+            S2C100010 content = new S2C100010();
+            content.UserId = user.GetPrimaryKeyLong();
+            content.Commands.AddRange(commands);
+            MOMsg notify = new MOMsg();
+            notify.ActionId = 100010;
+            notify.Content = content.ToByteString();
+            await RoomNotify(notify);
+        }
     }
 }

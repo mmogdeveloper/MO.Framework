@@ -85,3 +85,20 @@ message S2C100008{
 	int64 UserId = 1;
 	string Content = 2;
 }
+
+//玩家指令
+message CommandInfo{
+	int32 CommandId = 1;
+	bytes CommandContent = 2;
+}
+
+//玩家指令集
+message C2S100009{
+	repeated CommandInfo Commands = 1;
+}
+
+//通知玩家指令集
+message S2C100010{
+	int64 UserId = 1;
+	repeated CommandInfo Commands = 2;
+}

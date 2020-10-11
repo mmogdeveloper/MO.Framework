@@ -13,7 +13,7 @@ namespace MO.Unity3d.Entities
 {
     public class PlayerEntity : EntityLogic
     {
-		public bool IsSelf;
+		private bool _isSelf;
 		private Vector3 _offset;
 		private float _positionSpeed = 2.0f;
 		private float _rotateSpeed = 8.0f;
@@ -25,16 +25,16 @@ namespace MO.Unity3d.Entities
 			base.OnInit(userData);
 			//UIJoystickControl.Instance.joystickDragDelegate = OnJoystickDrag;
 			_playerData = (PlayerData)userData;
-			IsSelf = _playerData.UserId == GameUser.Instance.UserId;
+			_isSelf = _playerData.UserId == GameUser.Instance.UserId;
 
-			transform.position = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
+			transform.position = new Vector3(_playerData.ServerX, _playerData.ServerY, _playerData.ServerZ);
 			Vector3 eulerAngles = new Vector3(
-				_playerData.RX,
-				_playerData.RY,
-				_playerData.RZ);
+				_playerData.ServerRX,
+				_playerData.ServerRY,
+				_playerData.ServerRZ);
 			transform.Rotate(eulerAngles);
 
-			if (IsSelf)
+			if (_isSelf)
 			{
 				GetComponent<Renderer>().material.color = Color.blue;
 				_offset = Camera.main.transform.position;
@@ -81,7 +81,7 @@ namespace MO.Unity3d.Entities
 				transform.position = pos;
 			}
 
-			if (IsSelf)
+			if (_isSelf)
 			{
 				var eulerAngles = JoystickControl.GetDestination();
 				if (eulerAngles != new Vector3())
@@ -96,7 +96,7 @@ namespace MO.Unity3d.Entities
 			}
 			else
             {
-				var destDirection = new Vector3(_playerData.RX, _playerData.RY, _playerData.RZ);
+				var destDirection = new Vector3(_playerData.ServerRX, _playerData.ServerRY, _playerData.ServerRZ);
 				if (Vector3.Distance(transform.eulerAngles, destDirection) > 0.0004f)
 				{
 					transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), _rotateSpeed * Time.deltaTime);
@@ -105,7 +105,7 @@ namespace MO.Unity3d.Entities
 				float distance = 0.0f;
 				float deltaSpeed = (_positionSpeed * Time.deltaTime);
 
-				var destPosition = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
+				var destPosition = new Vector3(_playerData.ServerX, _playerData.ServerY, _playerData.ServerZ);
 				distance = Vector3.Distance(destPosition, transform.position);
 
 				if (distance > 0.01f)
@@ -133,7 +133,7 @@ namespace MO.Unity3d.Entities
 		private void FixedState()
 		{
 			//500ms误差修正玩家位置
-			var destDirection = new Vector3(_playerData.RX, _playerData.RY, _playerData.RZ);
+			var destDirection = new Vector3(_playerData.ServerRX, _playerData.ServerRY, _playerData.ServerRZ);
 			if (Vector3.Distance(transform.eulerAngles, destDirection) > _rotateSpeed / 2)
 			{
 				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), _rotateSpeed * Time.deltaTime);
@@ -142,7 +142,7 @@ namespace MO.Unity3d.Entities
 			float distance = 0.0f;
 			float deltaSpeed = (_positionSpeed * Time.deltaTime);
 
-			var destPosition = new Vector3(_playerData.X, _playerData.Y, _playerData.Z);
+			var destPosition = new Vector3(_playerData.ServerX, _playerData.ServerY, _playerData.ServerZ);
 			distance = Vector3.Distance(destPosition, transform.position);
 
 			if (distance > _positionSpeed / 2)
@@ -161,36 +161,6 @@ namespace MO.Unity3d.Entities
 					pos = destPosition;
 
 				transform.position = pos;
-			}
-		}
-
-		void FixedUpdate()
-		{
-			if (IsSelf)
-			{
-				GameUser.Instance.SendPackage(new C2S100003()
-				{
-					Vector = new MsgVector3()
-					{
-						X = transform.position.x,
-						Y = transform.position.y,
-						Z = transform.position.z
-					},
-					Rotation = new MsgRotation()
-					{
-						X = transform.rotation.eulerAngles.x,
-						Y = transform.rotation.eulerAngles.y,
-						Z = transform.rotation.eulerAngles.z
-					}
-				});
-
-				var content = new C2S100009();
-				while (GameUser.Instance.CurPlayer.SendCommands.Count != 0)
-				{
-					var command = GameUser.Instance.CurPlayer.SendCommands.Dequeue();
-					content.Commands.Add(command);
-				}
-				GameUser.Instance.SendPackage(content);
 			}
 		}
 	}

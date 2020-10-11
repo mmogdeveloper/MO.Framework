@@ -18,12 +18,22 @@ namespace MO.Unity3d.Data
         }
         public long UserId { get; set; }
         public string UserName { get; set; }
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Z { get; set; }
-        public float RX { get; set; }
-        public float RY { get; set; }
-        public float RZ { get; set; }
+
+        public float ServerX { get; set; }
+        public float ServerY { get; set; }
+        public float ServerZ { get; set; }
+        public float ServerRX { get; set; }
+        public float ServerRY { get; set; }
+        public float ServerRZ { get; set; }
+
+        public float LocalX { get; set; }
+        public float LocalY { get; set; }
+        public float LocalZ { get; set; }
+        public float LocalRX { get; set; }
+        public float LocalRY { get; set; }
+        public float LocalRZ { get; set; }
+
+
         public int EntityId { get { return (int)UserId * 100 + 1; } }
         public int SkillCEntityId { get { return (int)UserId * 100 + 5; } }
         public int SkillXEntityId { get { return (int)UserId * 100 + 6; } }

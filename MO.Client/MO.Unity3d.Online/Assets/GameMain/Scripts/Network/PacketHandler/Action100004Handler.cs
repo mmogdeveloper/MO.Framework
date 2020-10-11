@@ -25,24 +25,24 @@ namespace MO.Unity3d.Network.PacketHandler
             {
                 if (item.UserId == GameUser.Instance.UserId)
                 {
-                    GameUser.Instance.CurPlayer.X = item.Vector.X;
-                    GameUser.Instance.CurPlayer.Y = item.Vector.Y;
-                    GameUser.Instance.CurPlayer.Z = item.Vector.Z;
-                    GameUser.Instance.CurPlayer.RX = item.Rotation.X;
-                    GameUser.Instance.CurPlayer.RY = item.Rotation.Y;
-                    GameUser.Instance.CurPlayer.RZ = item.Rotation.Z;
+                    GameUser.Instance.CurPlayer.ServerX = item.Vector.X;
+                    GameUser.Instance.CurPlayer.ServerY = item.Vector.Y;
+                    GameUser.Instance.CurPlayer.ServerZ = item.Vector.Z;
+                    GameUser.Instance.CurPlayer.ServerRX = item.Rotation.X;
+                    GameUser.Instance.CurPlayer.ServerRY = item.Rotation.Y;
+                    GameUser.Instance.CurPlayer.ServerRZ = item.Rotation.Z;
                 }
                 else
                 {
                     PlayerData gamePlayer;
                     if (GameUser.Instance.Players.TryGetValue(item.UserId, out gamePlayer))
                     {
-                        gamePlayer.X = item.Vector.X;
-                        gamePlayer.Y = item.Vector.Y;
-                        gamePlayer.Z = item.Vector.Z;
-                        gamePlayer.RX = item.Rotation.X;
-                        gamePlayer.RY = item.Rotation.Y;
-                        gamePlayer.RZ = item.Rotation.Z;
+                        gamePlayer.ServerX = item.Vector.X;
+                        gamePlayer.ServerY = item.Vector.Y;
+                        gamePlayer.ServerZ = item.Vector.Z;
+                        gamePlayer.ServerRX = item.Rotation.X;
+                        gamePlayer.ServerRY = item.Rotation.Y;
+                        gamePlayer.ServerRZ = item.Rotation.Z;
                     }
                 }
             }

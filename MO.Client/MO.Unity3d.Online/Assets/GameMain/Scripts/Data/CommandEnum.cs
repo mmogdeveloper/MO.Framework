@@ -11,6 +11,10 @@ namespace MO.Unity3d.Data
         SkillC,
         SkillX,
         SkillZ,
-        Jump
+        Jump,
+        /// <summary>
+        /// 位置信息
+        /// </summary>
+        Transform,
     }
 }

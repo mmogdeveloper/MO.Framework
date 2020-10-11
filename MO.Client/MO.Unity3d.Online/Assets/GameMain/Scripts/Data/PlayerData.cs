@@ -26,13 +26,6 @@ namespace MO.Unity3d.Data
         public float ServerRY { get; set; }
         public float ServerRZ { get; set; }
 
-        public float LocalX { get; set; }
-        public float LocalY { get; set; }
-        public float LocalZ { get; set; }
-        public float LocalRX { get; set; }
-        public float LocalRY { get; set; }
-        public float LocalRZ { get; set; }
-
 
         public int EntityId { get { return (int)UserId * 100 + 1; } }
         public int SkillCEntityId { get { return (int)UserId * 100 + 5; } }

@@ -1,4 +1,5 @@
-﻿using MO.Protocol;
+﻿using Google.Protobuf;
+using MO.Protocol;
 using MO.Unity3d.Data;
 using UnityEngine;
 
@@ -29,21 +30,19 @@ namespace MO.Unity3d.Network
 				curRY = transform.rotation.eulerAngles.y;
 				curRZ = transform.rotation.eulerAngles.z;
 
-				GameUser.Instance.SendPackage(new C2S100003()
+				var transformInfo = new TransformInfo()
 				{
-					Vector = new MsgVector3()
-					{
 						X = curX,
 						Y = curY,
-						Z = curZ
-					},
-					Rotation = new MsgRotation()
-					{
-						X = curRX,
-						Y = curRY,
-						Z = curRZ
-					}
-				});
+						Z = curZ,
+						RX = curRX,
+						RY = curRY,
+						RZ = curRZ
+				};
+				var command = new CommandInfo();
+				command.CommandId = (int)CommandEnum.Transform;
+				command.CommandContent = transformInfo.ToByteString();
+				GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
 			}
 
 			if (GameUser.Instance.CurPlayer.SendCommands.Count != 0)

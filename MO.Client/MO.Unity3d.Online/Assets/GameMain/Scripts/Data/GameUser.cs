@@ -29,6 +29,7 @@ namespace MO.Unity3d.Data
             else
                 Players.Clear();
             CurPlayer = playerData;
+            Players[playerData.UserId] = CurPlayer;
         }
 
         public long UserId { get { return CurPlayer.UserId; } }

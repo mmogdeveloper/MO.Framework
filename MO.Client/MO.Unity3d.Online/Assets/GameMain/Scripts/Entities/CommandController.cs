@@ -2,6 +2,7 @@
 using MO.Algorithm.Enum;
 using MO.Protocol;
 using MO.Unity3d.Data;
+using System;
 using UnityEngine;
 
 namespace MO.Unity3d.Entities
@@ -15,14 +16,23 @@ namespace MO.Unity3d.Entities
 		private float curRY;
 		private float curRZ;
 
+		private bool Compare(float x, float y)
+		{
+			if (Math.Abs(x - y) < 0.00001)
+			{
+				return true;
+			}
+			return false;
+		}
+
 		void FixedUpdate()
 		{
-			if (transform.position.x != curX ||
-				transform.position.y != curY ||
-				transform.position.z != curZ ||
-				transform.rotation.eulerAngles.x != curRX ||
-				transform.rotation.eulerAngles.y != curRY ||
-				transform.rotation.eulerAngles.z != curRZ)
+			if (!Compare(transform.position.x, curX) ||
+				!Compare(transform.position.y, curY) ||
+				!Compare(transform.position.z, curZ) ||
+				!Compare(transform.rotation.eulerAngles.x, curRX) ||
+				!Compare(transform.rotation.eulerAngles.y, curRY) ||
+				!Compare(transform.rotation.eulerAngles.z, curRZ))
 			{
 				curX = transform.position.x;
 				curY = transform.position.y;
@@ -33,12 +43,12 @@ namespace MO.Unity3d.Entities
 
 				var transformInfo = new TransformInfo()
 				{
-						X = curX,
-						Y = curY,
-						Z = curZ,
-						RX = curRX,
-						RY = curRY,
-						RZ = curRZ
+					X = curX,
+					Y = curY,
+					Z = curZ,
+					RX = curRX,
+					RY = curRY,
+					RZ = curRZ
 				};
 				var command = new CommandInfo();
 				command.CommandId = (int)CommandType.Transform;

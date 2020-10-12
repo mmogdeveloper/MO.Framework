@@ -2,6 +2,7 @@
 using MO.Algorithm.Enum;
 using MO.Protocol;
 using MO.Unity3d.Data;
+using UnityGameFramework.Runtime;
 
 namespace MO.Unity3d.Network.PacketHandler
 {
@@ -15,6 +16,15 @@ namespace MO.Unity3d.Network.PacketHandler
         public void Handle(object sender, Packet packet)
         {
             S2C100010 rep = S2C100010.Parser.ParseFrom(((MOPacket)packet).Packet.Content);
+            if (GameUser.Instance.FrameCount != 0)
+            {
+                var nextFrameCount = GameUser.Instance.FrameCount + 1;
+                if (nextFrameCount != rep.FrameCount)
+                {
+                    Log.Info("丢帧");
+                }
+            }
+            GameUser.Instance.FrameCount = rep.FrameCount;
             PlayerData player;
             foreach (var command in rep.Commands)
             {

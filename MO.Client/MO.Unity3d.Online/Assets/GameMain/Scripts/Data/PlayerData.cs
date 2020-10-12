@@ -30,7 +30,6 @@ namespace MO.Unity3d.Data
 
         public int TotalBlood { get; }
         public int CurBlood { get; set; }
-
         public int EntityId { get { return (int)UserId * 100 + 1; } }
         public int HPEntityId { get { return (int)UserId * 100 + 2; } }
         public int SkillCEntityId { get { return (int)UserId * 100 + 5; } }

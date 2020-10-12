@@ -49,7 +49,10 @@ Redis 默认 用来存储基本业务数据  (自定义存储格式)
 4.Login  
 先检查json文件配置是否正确  
 
-
+正式环境配置NLog  
+将Share/NLog.Config中的Console打印注释  
+只保留Share/NLog.Config中的需要的打印等级  
+日志配置会影响严重影响运行效率  
 
 #### 参与贡献
 

@@ -73,8 +73,7 @@ namespace MO.Login.Controllers
                 LoginIP = HttpContext.Connection.RemoteIpAddress.ToString(),
                 LoginDevice = req1003.DeviceId
             });
-
-            _recordContext.SaveChanges();
+            _recordContext.SaveChangesAsync();
 
             var serverconfig = _dataContext.ServerConfigs.Where(m => m.ServerLevel == 0).FirstOrDefault();
             if (serverconfig == null)

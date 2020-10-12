@@ -99,7 +99,8 @@ namespace MO.Grains.Game
                 content.Commands.AddRange(commands);
                 notify.Content = content.ToByteString();
             }
-            return RoomNotify(notify);
+            RoomNotify(notify);
+            return Task.CompletedTask;
         }
 
         public Task RoomNotify(MOMsg msg)

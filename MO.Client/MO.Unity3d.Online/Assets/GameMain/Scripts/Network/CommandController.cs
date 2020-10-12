@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace MO.Unity3d.Network
 {
-    public class UploadState : MonoBehaviour
+    public class CommandController : MonoBehaviour
     {
 		private float curX;
 		private float curY;

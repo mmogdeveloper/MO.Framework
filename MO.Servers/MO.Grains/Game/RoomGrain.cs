@@ -97,8 +97,8 @@ namespace MO.Grains.Game
                     commands.Add(_commands.Dequeue());
                 }
                 content.Commands.AddRange(commands);
-                notify.Content = content.ToByteString();
             }
+            notify.Content = content.ToByteString();
             RoomNotify(notify);
             return Task.CompletedTask;
         }

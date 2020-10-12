@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf;
+using MO.Algorithm.Enum;
 using MO.Protocol;
 using MO.Unity3d.Data;
 using UnityEngine;
@@ -40,7 +41,7 @@ namespace MO.Unity3d.Network
 						RZ = curRZ
 				};
 				var command = new CommandInfo();
-				command.CommandId = (int)CommandEnum.Transform;
+				command.CommandId = (int)CommandType.Transform;
 				command.CommandContent = transformInfo.ToByteString();
 				GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
 			}

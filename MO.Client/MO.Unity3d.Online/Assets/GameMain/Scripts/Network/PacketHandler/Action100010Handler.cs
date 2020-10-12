@@ -1,4 +1,5 @@
 ﻿using GameFramework.Network;
+using MO.Algorithm.Enum;
 using MO.Protocol;
 using MO.Unity3d.Data;
 
@@ -21,22 +22,22 @@ namespace MO.Unity3d.Network.PacketHandler
                 {
                     switch (command.CommandId)
                     {
-                        case (int)CommandEnum.BigSkill:
+                        case (int)CommandType.BigSkill:
                             player.ShowBigSkill();
                             break;
-                        case (int)CommandEnum.Jump:
+                        case (int)CommandType.Jump:
                             player.Jump();
                             break;
-                        case (int)CommandEnum.SkillC:
+                        case (int)CommandType.SkillC:
                             player.ShowSkillC();
                             break;
-                        case (int)CommandEnum.SkillX:
+                        case (int)CommandType.SkillX:
                             player.ShowSkillX();
                             break;
-                        case (int)CommandEnum.SkillZ:
+                        case (int)CommandType.SkillZ:
                             player.ShowSkillZ();
                             break;
-                        case (int)CommandEnum.Transform:
+                        case (int)CommandType.Transform:
                             var transform = TransformInfo.Parser.ParseFrom(command.CommandContent);
                             player.ServerX = transform.X;
                             player.ServerY = transform.Y;

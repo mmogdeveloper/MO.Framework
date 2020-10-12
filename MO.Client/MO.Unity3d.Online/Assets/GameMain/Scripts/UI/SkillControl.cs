@@ -1,9 +1,6 @@
-﻿using MO.Protocol;
-using MO.Unity3d;
+﻿using MO.Algorithm.Enum;
+using MO.Protocol;
 using MO.Unity3d.Data;
-using MO.Unity3d.Entities;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillControl : MonoBehaviour
@@ -12,7 +9,7 @@ public class SkillControl : MonoBehaviour
     {
         GameUser.Instance.CurPlayer.Jump();
         var command = new CommandInfo();
-        command.CommandId = (int)CommandEnum.Jump;
+        command.CommandId = (int)CommandType.Jump;
         GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 
@@ -20,7 +17,7 @@ public class SkillControl : MonoBehaviour
     {
         GameUser.Instance.CurPlayer.ShowSkillC();
         var command = new CommandInfo();
-        command.CommandId = (int)CommandEnum.SkillC;
+        command.CommandId = (int)CommandType.SkillC;
         GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 
@@ -28,7 +25,7 @@ public class SkillControl : MonoBehaviour
     {
         GameUser.Instance.CurPlayer.ShowSkillX();
         var command = new CommandInfo();
-        command.CommandId = (int)CommandEnum.SkillX;
+        command.CommandId = (int)CommandType.SkillX;
         GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 
@@ -36,7 +33,7 @@ public class SkillControl : MonoBehaviour
     {
         GameUser.Instance.CurPlayer.ShowSkillZ();
         var command = new CommandInfo();
-        command.CommandId = (int)CommandEnum.SkillZ;
+        command.CommandId = (int)CommandType.SkillZ;
         GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 
@@ -44,7 +41,7 @@ public class SkillControl : MonoBehaviour
     {
         GameUser.Instance.CurPlayer.ShowBigSkill();
         var command = new CommandInfo();
-        command.CommandId = (int)CommandEnum.BigSkill;
+        command.CommandId = (int)CommandType.BigSkill;
         GameUser.Instance.CurPlayer.SendCommands.Enqueue(command);
     }
 }

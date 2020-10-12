@@ -9,6 +9,7 @@ using NLog.Extensions.Logging;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
+using OrleansDashboard;
 using Orleans.Serialization;
 using System;
 using System.IO;
@@ -118,7 +119,8 @@ namespace MO.Silo
                         options.ConnectionString = Configuration.GetSection("StorageConfig")["ConnectionString"];
                         options.UseJsonFormat = true;
                     })
-                    .UseTransactions();//事务
+                    .UseTransactions()//事务
+                    .UseDashboard();//Orleans监控
                 });
         }
 

@@ -14,20 +14,20 @@ namespace MO.Login.Controllers
             string versionTotal = "1.0.0";
             string versionPatch = "1.0";
 
-            switch ((DeviceType)param.MobileType)
+            switch ((BaseDeviceType)param.MobileType)
             {
-                case DeviceType.Android:
+                case BaseDeviceType.Android:
                     versionTotal = "1.0.0";
                     versionPatch = "1.0";
                     break;
-                case DeviceType.iPhone:
-                case DeviceType.iPad:
-                case DeviceType.iPod:
-                case DeviceType.Mac:
+                case BaseDeviceType.iPhone:
+                case BaseDeviceType.iPad:
+                case BaseDeviceType.iPod:
+                case BaseDeviceType.Mac:
                     versionTotal = "1.0.0";
                     versionPatch = "1.0";
                     break;
-                case DeviceType.Unknow:
+                case BaseDeviceType.Unknow:
                     versionTotal = "1.0.0";
                     versionPatch = "1.0";
                     break;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using MO.Algorithm.Actions.Enum;
+using MO.Algorithm.Enum;
 using MO.Protocol;
 using Newtonsoft.Json;
 
@@ -21,7 +21,7 @@ namespace MO.Login.Filters
                 context.Exception,
                 context.Exception.Message);
 
-            var result = new MOMsgResult() { ErrorCode = (int)ErrorType.Hidden, ErrorInfo = "未知错误" };
+            var result = new MOMsgResult() { ErrorCode = (int)BaseErrorType.Hidden, ErrorInfo = "未知错误" };
             context.HttpContext.Response.WriteAsync(JsonConvert.SerializeObject(result));
         }
     }

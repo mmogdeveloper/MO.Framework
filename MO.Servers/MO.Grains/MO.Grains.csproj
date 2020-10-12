@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MO.Commons\MO.Algorithm\MO.Algorithm.csproj" />
     <ProjectReference Include="..\..\MO.Commons\MO.Model\MO.Model.csproj" />
     <ProjectReference Include="..\MO.GrainInterfaces\MO.GrainInterfaces.csproj" />
   </ItemGroup>

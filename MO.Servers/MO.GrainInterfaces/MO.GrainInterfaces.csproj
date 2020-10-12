@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MO.Commons\MO.Algorithm\MO.Algorithm.csproj" />
     <ProjectReference Include="..\..\MO.Commons\MO.Protocol\MO.Protocol.csproj" />
   </ItemGroup>
 

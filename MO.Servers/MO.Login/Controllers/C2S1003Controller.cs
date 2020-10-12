@@ -1,6 +1,6 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.Logging;
-using MO.Algorithm.Actions.Enum;
+using MO.Algorithm.Enum;
 using MO.Common.Security;
 using MO.GrainInterfaces.User;
 using MO.Model.Context;
@@ -79,7 +79,7 @@ namespace MO.Login.Controllers
             var serverconfig = _dataContext.ServerConfigs.Where(m => m.ServerLevel == 0).FirstOrDefault();
             if (serverconfig == null)
             {
-                return Task.FromResult(new MOMsgResult() { ErrorCode = (int)ErrorType.Shown, ErrorInfo = "服务器不存在" }.ToByteString().ToBase64());
+                return Task.FromResult(new MOMsgResult() { ErrorCode = (int)BaseErrorType.Shown, ErrorInfo = "服务器不存在" }.ToByteString().ToBase64());
             }
 
             var message = new S2C1003();

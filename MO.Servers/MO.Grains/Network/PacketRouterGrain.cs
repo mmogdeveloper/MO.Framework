@@ -1,7 +1,7 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.Logging;
-using MO.Algorithm;
-using MO.Algorithm.Actions.Enum;
+using MO.Algorithm.Enum;
+using MO.GrainInterfaces.Extensions;
 using MO.GrainInterfaces.Game;
 using MO.GrainInterfaces.Global;
 using MO.GrainInterfaces.Network;
@@ -87,7 +87,7 @@ namespace MO.Grains.Network
             {
                 if (_user == null)
                 {
-                    Notify(packet.ParseResult(ErrorType.Hidden, "用户未登录"));
+                    Notify(packet.ParseResult(BaseErrorType.Hidden, "用户未登录"));
                     return;
                 }
 

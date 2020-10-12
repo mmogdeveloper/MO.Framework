@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MO.GrainInterfaces\MO.GrainInterfaces.csproj" />
     <ProjectReference Include="..\MO.Grains\MO.Grains.csproj" />
   </ItemGroup>
 

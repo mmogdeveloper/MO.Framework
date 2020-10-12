@@ -7,7 +7,7 @@ namespace MO.Algorithm.Enum
     /// <summary>
     /// 手机类型
     /// </summary>
-    public enum DeviceType
+    public enum BaseDeviceType : uint
     {
         Normal = 0,
         iPod = 1,

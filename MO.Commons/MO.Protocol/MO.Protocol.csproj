@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="GeneralMessage\_GenAllC#.bat" />
+    <None Remove="GeneralMessage\_GenOneC#.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.13.0" />
   </ItemGroup>
 

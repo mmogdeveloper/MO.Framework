@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MO.Algorithm.Actions.Enum
+namespace MO.Algorithm.Enum
 {
-    public enum ErrorType : uint
+    public enum BaseErrorType : uint
     {
         Success,
         /// <summary>

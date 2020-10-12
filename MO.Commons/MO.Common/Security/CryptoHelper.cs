@@ -271,10 +271,12 @@ namespace MO.Common.Security
             {
                 key = DefaultKey;
             }
+#if ! NET35
             if (string.IsNullOrWhiteSpace(iv))
             {
                 iv = key;
             }
+#endif
             if (string.IsNullOrEmpty(source))
             {
                 return null;

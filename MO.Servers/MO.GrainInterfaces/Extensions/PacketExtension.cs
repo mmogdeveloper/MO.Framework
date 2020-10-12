@@ -1,13 +1,13 @@
 ﻿using Google.Protobuf;
-using MO.Algorithm.Actions.Enum;
+using MO.Algorithm.Enum;
 using MO.Protocol;
 
-namespace MO.Algorithm
+namespace MO.GrainInterfaces.Extensions
 {
-    public static class PacketExtensions
+    public static class PacketExtension
     {
         public static MOMsg ParseResult(this MOMsg packet,
-            ErrorType errorType = ErrorType.Success,
+            BaseErrorType errorType = BaseErrorType.Success,
             string errorInfo = "")
         {
             packet.Token = string.Empty;

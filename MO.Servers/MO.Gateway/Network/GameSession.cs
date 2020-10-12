@@ -4,7 +4,7 @@ using Google.Protobuf;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MO.Algorithm;
-using MO.Algorithm.Actions.Enum;
+using MO.Algorithm.Enum;
 using MO.GrainInterfaces.Config;
 using MO.Common.Security;
 using MO.GrainInterfaces.Network;
@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using Orleans;
 using System;
 using System.Threading.Tasks;
+using MO.GrainInterfaces.Extensions;
 
 namespace MO.Gateway.Network
 {
@@ -63,7 +64,7 @@ namespace MO.Gateway.Network
                 var data = packet.ToByteString();
                 if (CryptoHelper.MD5_Encrypt($"{data}{_md5Key}").ToLower() != sign.ToLower())
                 {
-                    await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "签名验证失败"));
+                    await DispatchOutcomingPacket(packet.ParseResult(BaseErrorType.Hidden, "签名验证失败"));
                     await Close();
                     return;
                 }
@@ -75,7 +76,7 @@ namespace MO.Gateway.Network
                     var tokenInfo = _tokenGrain.GetToken().Result;
                     if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                     {
-                        await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
+                        await DispatchOutcomingPacket(packet.ParseResult(BaseErrorType.Hidden, "Token验证失败"));
                         await Close();
                         return;
                     }
@@ -91,7 +92,7 @@ namespace MO.Gateway.Network
                 {
                     if (_userId != packet.UserId || _token != packet.Token)
                     {
-                        await DispatchOutcomingPacket(packet.ParseResult(ErrorType.Hidden, "Token验证失败"));
+                        await DispatchOutcomingPacket(packet.ParseResult(BaseErrorType.Hidden, "Token验证失败"));
                         await Close();
                         return;
                     }

@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net35</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MO.Common\MO.Common.csproj" />
-    <ProjectReference Include="..\MO.Protocol\MO.Protocol.csproj" />
   </ItemGroup>
 
 </Project>

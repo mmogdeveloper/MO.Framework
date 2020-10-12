@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using MO.Algorithm.Actions.Enum;
+using MO.Algorithm.Enum;
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
@@ -99,7 +99,7 @@ namespace MO.Grains.User
         {
             if (_observer != null)
             {
-                var packet = new MOMsg() { ErrorCode = (int)ErrorType.Shown, ErrorInfo = "您的账号异地登录" };
+                var packet = new MOMsg() { ErrorCode = (int)BaseErrorType.Shown, ErrorInfo = "您的账号异地登录" };
                 _observer.Close(packet);
             }
             return Task.CompletedTask;

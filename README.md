@@ -27,13 +27,17 @@ NLog 系统日志
 
 
 #### 使用说明
-运行框架需要安装Mysql和Redis  
+运行框架需要安装Mysql  
 在mysql中新建数据库命名为Orleans
 在mysql数据库执行Database文件夹中的sql文件(Orleans需要)  
+
+(Model根据业务需要,非必须模块)
 Model模块中创建了两个数据库(Code First)  
 分别是MOData和MORecord  
 MOData是基本的业务数据库  
 MORecord是记录日志的数据库  
+
+(Redis根据业务需要,非必须模块)
 Redis作为数据缓存使用  
 Redis 默认 用来存储基本业务数据  (自定义存储格式)
 
@@ -45,8 +49,7 @@ Redis 默认 用来存储基本业务数据  (自定义存储格式)
 4.Login  
 先检查json文件配置是否正确  
 
-U3D客户端编译错误:  
-需要将工程Assembly-CSharp-firstpass工程设置勾选"允许不安全代码"
+
 
 #### 参与贡献
 

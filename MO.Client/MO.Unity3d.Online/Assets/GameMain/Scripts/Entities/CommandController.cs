@@ -4,7 +4,7 @@ using MO.Protocol;
 using MO.Unity3d.Data;
 using UnityEngine;
 
-namespace MO.Unity3d.Network
+namespace MO.Unity3d.Entities
 {
     public class CommandController : MonoBehaviour
     {
@@ -21,8 +21,8 @@ namespace MO.Unity3d.Network
 				transform.position.y != curY ||
 				transform.position.z != curZ ||
 				transform.rotation.eulerAngles.x != curRX ||
-				transform.rotation.eulerAngles.x != curRY ||
-				transform.rotation.eulerAngles.x != curRZ)
+				transform.rotation.eulerAngles.y != curRY ||
+				transform.rotation.eulerAngles.z != curRZ)
 			{
 				curX = transform.position.x;
 				curY = transform.position.y;

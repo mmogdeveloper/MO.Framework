@@ -14,7 +14,6 @@ namespace MO.Grains.Game
         public float RY { get; set; }
         public float RZ { get; set; }
 
-        public bool IsMove { get; set; }
         public PlayerData(IUser user)
         {
             User = user;
@@ -30,8 +29,6 @@ namespace MO.Grains.Game
             RX = rx;
             RY = ry;
             RZ = rz;
-
-            IsMove = true;
         }
     }
 }

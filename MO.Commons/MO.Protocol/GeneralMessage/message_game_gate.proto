@@ -109,5 +109,6 @@ message C2S100009{
 
 //通知玩家指令集
 message S2C100010{
+	int32 FrameCount = 1;
 	repeated CommandInfo Commands = 2;
 }

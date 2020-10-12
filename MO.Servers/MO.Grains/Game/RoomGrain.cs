@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.Logging;
+using MO.Algorithm.Enum;
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Game;
 using MO.GrainInterfaces.User;
@@ -27,6 +28,7 @@ namespace MO.Grains.Game
         private IAsyncStream<MOMsg> _stream;
         private IDisposable _reminder;
         private Queue<CommandInfo> _commands;
+        private Int32 _frameCount;
 
         public RoomGrain(
             [PersistentState("RoomInfo", StorageProviders.DefaultProviderName)] IPersistentState<RoomInfo> roomInfo,
@@ -36,6 +38,7 @@ namespace MO.Grains.Game
             _logger = logger;
             _players = new Dictionary<long, PlayerData>();
             _commands = new Queue<CommandInfo>();
+            _frameCount = 0;
         }
 
         public override async Task OnActivateAsync()
@@ -81,6 +84,11 @@ namespace MO.Grains.Game
 
         public Task Update()
         {
+            _frameCount++;
+            MOMsg notify = new MOMsg();
+            notify.ActionId = 100010;
+            S2C100010 content = new S2C100010();
+            content.FrameCount = _frameCount;
             if (_commands.Count != 0)
             {
                 List<CommandInfo> commands = new List<CommandInfo>();
@@ -88,14 +96,10 @@ namespace MO.Grains.Game
                 {
                     commands.Add(_commands.Dequeue());
                 }
-                S2C100010 content = new S2C100010();
                 content.Commands.AddRange(commands);
-                MOMsg notify = new MOMsg();
-                notify.ActionId = 100010;
                 notify.Content = content.ToByteString();
-                return RoomNotify(notify);
             }
-            return Task.CompletedTask;
+            return RoomNotify(notify);
         }
 
         public Task RoomNotify(MOMsg msg)
@@ -198,7 +202,7 @@ namespace MO.Grains.Game
         {
             foreach (var command in commands)
             {
-                if (command.CommandId == (int)CommandEnum.Transform)
+                if (command.CommandId == (int)CommandType.Transform)
                 {
                     var commandInfo = TransformInfo.Parser.ParseFrom(command.CommandContent);
                     if (_players.ContainsKey(user.GetPrimaryKeyLong()))

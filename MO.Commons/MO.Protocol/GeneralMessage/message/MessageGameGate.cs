@@ -44,9 +44,9 @@ namespace MO.Protocol {
             "UlgYBCABKAISCgoCUlkYBSABKAISCgoCUloYBiABKAIiSAoLQ29tbWFuZElu",
             "Zm8SDgoGVXNlcklkGAEgASgDEhEKCUNvbW1hbmRJZBgCIAEoBRIWCg5Db21t",
             "YW5kQ29udGVudBgDIAEoDCI3CglDMlMxMDAwMDkSKgoIQ29tbWFuZHMYASAD",
-            "KAsyGC5NTy5Qcm90b2NvbC5Db21tYW5kSW5mbyI3CglTMkMxMDAwMTASKgoI",
-            "Q29tbWFuZHMYAiADKAsyGC5NTy5Qcm90b2NvbC5Db21tYW5kSW5mb2IGcHJv",
-            "dG8z"));
+            "KAsyGC5NTy5Qcm90b2NvbC5Db21tYW5kSW5mbyJLCglTMkMxMDAwMTASEgoK",
+            "RnJhbWVDb3VudBgBIAEoBRIqCghDb21tYW5kcxgCIAMoCzIYLk1PLlByb3Rv",
+            "Y29sLkNvbW1hbmRJbmZvYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -68,7 +68,7 @@ namespace MO.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.TransformInfo), global::MO.Protocol.TransformInfo.Parser, new[]{ "X", "Y", "Z", "RX", "RY", "RZ" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.CommandInfo), global::MO.Protocol.CommandInfo.Parser, new[]{ "UserId", "CommandId", "CommandContent" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100009), global::MO.Protocol.C2S100009.Parser, new[]{ "Commands" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100010), global::MO.Protocol.S2C100010.Parser, new[]{ "Commands" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100010), global::MO.Protocol.S2C100010.Parser, new[]{ "FrameCount", "Commands" }, null, null, null)
           }));
     }
     #endregion
@@ -2779,12 +2779,24 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S2C100010(S2C100010 other) : this() {
+      frameCount_ = other.frameCount_;
       commands_ = other.commands_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S2C100010 Clone() {
       return new S2C100010(this);
+    }
+
+    /// <summary>Field number for the "FrameCount" field.</summary>
+    public const int FrameCountFieldNumber = 1;
+    private int frameCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int FrameCount {
+      get { return frameCount_; }
+      set {
+        frameCount_ = value;
+      }
     }
 
     /// <summary>Field number for the "Commands" field.</summary>
@@ -2810,6 +2822,7 @@ namespace MO.Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (FrameCount != other.FrameCount) return false;
       if(!commands_.Equals(other.commands_)) return false;
       return true;
     }
@@ -2817,6 +2830,7 @@ namespace MO.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (FrameCount != 0) hash ^= FrameCount.GetHashCode();
       hash ^= commands_.GetHashCode();
       return hash;
     }
@@ -2828,12 +2842,19 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (FrameCount != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(FrameCount);
+      }
       commands_.WriteTo(output, _repeated_commands_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (FrameCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FrameCount);
+      }
       size += commands_.CalculateSize(_repeated_commands_codec);
       return size;
     }
@@ -2842,6 +2863,9 @@ namespace MO.Protocol {
     public void MergeFrom(S2C100010 other) {
       if (other == null) {
         return;
+      }
+      if (other.FrameCount != 0) {
+        FrameCount = other.FrameCount;
       }
       commands_.Add(other.commands_);
     }
@@ -2854,6 +2878,10 @@ namespace MO.Protocol {
           default:
             input.SkipLastField();
             break;
+          case 8: {
+            FrameCount = input.ReadInt32();
+            break;
+          }
           case 18: {
             commands_.AddEntriesFrom(input, _repeated_commands_codec);
             break;

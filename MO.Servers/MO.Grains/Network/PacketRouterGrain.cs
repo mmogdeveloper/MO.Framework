@@ -87,7 +87,7 @@ namespace MO.Grains.Network
             {
                 if (_user == null)
                 {
-                    Notify(packet.ParseResult(BaseErrorType.Hidden, "用户未登录"));
+                    Notify(packet.ParseResult(MOErrorType.Hidden, "用户未登录"));
                     return;
                 }
 

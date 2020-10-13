@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MO.Algorithm.Enum
+﻿namespace MO.Algorithm.Enum
 {
-    public enum BaseErrorType : uint
+    public enum MOErrorType : uint
     {
         Success,
         /// <summary>

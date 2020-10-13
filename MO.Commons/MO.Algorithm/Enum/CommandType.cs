@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MO.Algorithm.Enum
+﻿namespace MO.Algorithm.Enum
 {
     public enum CommandType
     {

@@ -78,7 +78,7 @@ namespace MO.Login.Controllers
             var serverconfig = _dataContext.ServerConfigs.Where(m => m.ServerLevel == 0).FirstOrDefault();
             if (serverconfig == null)
             {
-                return Task.FromResult(new MOMsgResult() { ErrorCode = (int)BaseErrorType.Shown, ErrorInfo = "服务器不存在" }.ToByteString().ToBase64());
+                return Task.FromResult(new MOMsgResult() { ErrorCode = (int)MOErrorType.Shown, ErrorInfo = "服务器不存在" }.ToByteString().ToBase64());
             }
 
             var message = new S2C1003();

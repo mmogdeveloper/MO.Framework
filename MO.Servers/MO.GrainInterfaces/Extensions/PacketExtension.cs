@@ -7,7 +7,7 @@ namespace MO.GrainInterfaces.Extensions
     public static class PacketExtension
     {
         public static MOMsg ParseResult(this MOMsg packet,
-            BaseErrorType errorType = BaseErrorType.Success,
+            MOErrorType errorType = MOErrorType.Success,
             string errorInfo = "")
         {
             packet.Token = string.Empty;

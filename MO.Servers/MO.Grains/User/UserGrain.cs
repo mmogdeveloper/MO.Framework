@@ -99,7 +99,7 @@ namespace MO.Grains.User
         {
             if (_observer != null)
             {
-                var packet = new MOMsg() { ErrorCode = (int)BaseErrorType.Shown, ErrorInfo = "您的账号异地登录" };
+                var packet = new MOMsg() { ErrorCode = (int)MOErrorType.Shown, ErrorInfo = "您的账号异地登录" };
                 _observer.Close(packet);
             }
             return Task.CompletedTask;

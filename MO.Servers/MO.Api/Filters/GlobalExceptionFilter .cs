@@ -21,7 +21,7 @@ namespace MO.Api.Filters
                 context.Exception,
                 context.Exception.Message);
 
-            var result = new MOMsgResult() { ErrorCode = (int)BaseErrorType.Hidden, ErrorInfo = "未知错误" };
+            var result = new MOMsgResult() { ErrorCode = (int)MOErrorType.Hidden, ErrorInfo = "未知错误" };
             context.HttpContext.Response.WriteAsync(JsonConvert.SerializeObject(result));
         }
     }

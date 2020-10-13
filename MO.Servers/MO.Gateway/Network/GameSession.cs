@@ -64,7 +64,7 @@ namespace MO.Gateway.Network
                 var data = packet.ToByteString();
                 if (CryptoHelper.MD5_Encrypt($"{data}{_md5Key}").ToLower() != sign.ToLower())
                 {
-                    await DispatchOutcomingPacket(packet.ParseResult(BaseErrorType.Hidden, "签名验证失败"));
+                    await DispatchOutcomingPacket(packet.ParseResult(MOErrorType.Hidden, "签名验证失败"));
                     await Close();
                     return;
                 }
@@ -76,7 +76,7 @@ namespace MO.Gateway.Network
                     var tokenInfo = _tokenGrain.GetToken().Result;
                     if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                     {
-                        await DispatchOutcomingPacket(packet.ParseResult(BaseErrorType.Hidden, "Token验证失败"));
+                        await DispatchOutcomingPacket(packet.ParseResult(MOErrorType.Hidden, "Token验证失败"));
                         await Close();
                         return;
                     }
@@ -92,7 +92,7 @@ namespace MO.Gateway.Network
                 {
                     if (_userId != packet.UserId || _token != packet.Token)
                     {
-                        await DispatchOutcomingPacket(packet.ParseResult(BaseErrorType.Hidden, "Token验证失败"));
+                        await DispatchOutcomingPacket(packet.ParseResult(MOErrorType.Hidden, "Token验证失败"));
                         await Close();
                         return;
                     }

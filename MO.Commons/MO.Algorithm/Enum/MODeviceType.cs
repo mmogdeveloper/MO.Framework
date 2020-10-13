@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MO.Algorithm.Enum
+﻿namespace MO.Algorithm.Enum
 {
     /// <summary>
     /// 手机类型
     /// </summary>
-    public enum BaseDeviceType : uint
+    public enum MODeviceType : uint
     {
         Normal = 0,
         iPod = 1,

@@ -126,7 +126,7 @@ namespace MO.Grains.Game
                     var destination = new Vector3(x, 0, z) * skillDistance;
                     var skilldestination = Vector3.Add(_players[commad.UserId].Position, destination);
                     var distance = Vector3.Distance(skilldestination, player.Value.Position);
-                    Console.WriteLine("{0},{1}", distance, skillAttackDistance);
+                    //Console.WriteLine("{0},{1}", distance, skillAttackDistance);
                     if (distance <= skillAttackDistance)
                     {
                         player.Value.CurBlood -= skillAttack;

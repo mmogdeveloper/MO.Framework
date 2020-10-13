@@ -1,4 +1,5 @@
 ﻿using MO.Unity3d.Data;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityGameFramework.Runtime;
@@ -24,8 +25,16 @@ namespace MO.Unity3d.Entities
 		protected internal override void OnShow(object userData)
         {
             base.OnShow(userData);
-			transform.Rotate(new Vector3(_skillData.PlayerData.ServerRX, _skillData.PlayerData.ServerRY, _skillData.PlayerData.ServerRZ));
-			transform.position = transform.forward * _skillData.Distance + new Vector3(_skillData.PlayerData.ServerX, _skillData.PlayerData.ServerY, _skillData.PlayerData.ServerZ);
+
+			var x = (float)(Math.Sin(Math.PI * (_skillData.PlayerData.ServerRY / 180)));
+			var z = (float)(Math.Cos(Math.PI * (_skillData.PlayerData.ServerRY / 180)));
+			
+			var destination = new Vector3(x, 0, z) * _skillData.Distance;
+			var skilldestination = new Vector3(_skillData.PlayerData.ServerX, _skillData.PlayerData.ServerY, _skillData.PlayerData.ServerZ) + destination;
+			transform.position = skilldestination;
+
+			//transform.Rotate(new Vector3(_skillData.PlayerData.ServerRX, _skillData.PlayerData.ServerRY, _skillData.PlayerData.ServerRZ));
+			//transform.position = transform.forward * _skillData.Distance + new Vector3(_skillData.PlayerData.ServerX, _skillData.PlayerData.ServerY, _skillData.PlayerData.ServerZ);
 		}
     }
 }

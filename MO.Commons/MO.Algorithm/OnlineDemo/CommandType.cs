@@ -1,4 +1,4 @@
-﻿namespace MO.Algorithm.Enum
+﻿namespace MO.Algorithm.OnlineDemo
 {
     public enum CommandType
     {
@@ -11,5 +11,7 @@
         /// 位置信息
         /// </summary>
         Transform,
+
+        StateUpdate = 100
     }
 }

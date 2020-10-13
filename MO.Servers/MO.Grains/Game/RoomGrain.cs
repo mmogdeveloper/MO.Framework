@@ -1,6 +1,6 @@
 ﻿using Google.Protobuf;
 using Microsoft.Extensions.Logging;
-using MO.Algorithm.Enum;
+using MO.Algorithm.OnlineDemo;
 using MO.GrainInterfaces;
 using MO.GrainInterfaces.Game;
 using MO.GrainInterfaces.User;
@@ -55,13 +55,6 @@ namespace MO.Grains.Game
 
             var streamProvider = this.GetStreamProvider(StreamProviders.JobsProvider);
             _stream = streamProvider.GetStream<MOMsg>(Guid.NewGuid(), StreamProviders.Namespaces.ChunkSender);
-
-            //var roomFactory = GrainFactory.GetGrain<IRoomFactory>(this.GetPrimaryKeyLong());
-            //_roomInfo = await roomFactory.GetRoomInfo((int)this.GetPrimaryKeyLong());
-            //for (int i = 0; i < _roomInfo.RoomHeader.PlayerNum; i++)
-            //{
-            //    _seatDatas.Add(new SeatData(i));
-            //}
             await base.OnActivateAsync();
         }
 

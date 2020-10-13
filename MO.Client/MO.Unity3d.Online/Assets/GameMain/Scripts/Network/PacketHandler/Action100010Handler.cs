@@ -1,5 +1,5 @@
 ﻿using GameFramework.Network;
-using MO.Algorithm.Enum;
+using MO.Algorithm.OnlineDemo;
 using MO.Protocol;
 using MO.Unity3d.Data;
 using UnityGameFramework.Runtime;
@@ -30,33 +30,49 @@ namespace MO.Unity3d.Network.PacketHandler
             {
                 if (GameUser.Instance.Players.TryGetValue(command.UserId, out player))
                 {
-                    switch (command.CommandId)
+                    if (command.CommandId == (int)CommandType.Transform)
                     {
-                        case (int)CommandType.BigSkill:
-                            player.ShowBigSkill();
-                            break;
-                        case (int)CommandType.Jump:
-                            player.Jump();
-                            break;
-                        case (int)CommandType.SkillC:
-                            player.ShowSkillC();
-                            break;
-                        case (int)CommandType.SkillX:
-                            player.ShowSkillX();
-                            break;
-                        case (int)CommandType.SkillZ:
-                            player.ShowSkillZ();
-                            break;
-                        case (int)CommandType.Transform:
-                            var transform = TransformInfo.Parser.ParseFrom(command.CommandContent);
-                            player.ServerX = transform.X;
-                            player.ServerY = transform.Y;
-                            player.ServerZ = transform.Z;
-                            player.ServerRX = transform.RX;
-                            player.ServerRY = transform.RY;
-                            player.ServerRZ = transform.RZ;
-                            break;
+                        var transform = TransformInfo.Parser.ParseFrom(command.CommandContent);
+                        player.ServerX = transform.X;
+                        player.ServerY = transform.Y;
+                        player.ServerZ = transform.Z;
+                        player.ServerRX = transform.RX;
+                        player.ServerRY = transform.RY;
+                        player.ServerRZ = transform.RZ;
                     }
+                    else
+                    {
+                        if (command.UserId == GameUser.Instance.UserId)
+                            continue;
+
+                        switch (command.CommandId)
+                        {
+                            case (int)CommandType.BigSkill:
+                                player.ShowBigSkill();
+                                break;
+                            case (int)CommandType.Jump:
+                                player.Jump();
+                                break;
+                            case (int)CommandType.SkillC:
+                                player.ShowSkillC();
+                                break;
+                            case (int)CommandType.SkillX:
+                                player.ShowSkillX();
+                                break;
+                            case (int)CommandType.SkillZ:
+                                player.ShowSkillZ();
+                                break;
+                        }
+                    }
+                }
+            }
+
+            var bloodInfoList = BloodInfoList.Parser.ParseFrom(rep.CommandResult);
+            foreach (var bloodInfo in bloodInfoList.Bloods)
+            {
+                if (GameUser.Instance.Players.TryGetValue(bloodInfo.UserId, out player))
+                {
+                    player.CurBlood = bloodInfo.BloodValue;
                 }
             }
         }

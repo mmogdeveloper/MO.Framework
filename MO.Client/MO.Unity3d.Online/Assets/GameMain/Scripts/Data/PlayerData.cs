@@ -57,7 +57,7 @@ namespace MO.Unity3d.Data
 
         public void ShowSkillC()
         {
-            ShowSkill(SkillCEntityId, 9);
+            ShowSkill(SkillCEntityId, 10);
         }
 
         public void ShowSkillX()

@@ -129,7 +129,7 @@ namespace MO.Unity3d.Entities
 					transform.position = pos;
 				}
 			}
-			//FixedState();
+			FixedState();
 			base.OnUpdate(elapseSeconds, realElapseSeconds);
 		}
 

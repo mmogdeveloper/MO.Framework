@@ -95,6 +95,15 @@ message TransformInfo{
 	float RZ = 6;
 }
 
+message BloodInfo{
+	int64 UserId = 1;
+	int32 BloodValue = 2;
+}
+
+message BloodInfoList{
+	repeated BloodInfo Bloods = 1;
+}
+
 //ÕÊº“÷∏¡Ó
 message CommandInfo{
 	int64 UserId = 1;
@@ -111,4 +120,5 @@ message C2S100009{
 message S2C100010{
 	int32 FrameCount = 1;
 	repeated CommandInfo Commands = 2;
+	bytes CommandResult = 3;
 }

@@ -10,6 +10,8 @@ using Orleans.Runtime;
 using Orleans.Streams;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace MO.Grains.Game
@@ -75,6 +77,61 @@ namespace MO.Grains.Game
             await grain.Update();
         }
 
+        private void DoCommand(CommandInfo commad)
+        {
+            foreach (var player in _players)
+            {
+                if (player.Key == commad.UserId)
+                    continue;
+
+                if (commad.CommandId == (int)CommandType.BigSkill)
+                {
+                    var distance = Vector3.Distance(_players[commad.UserId].Position, player.Value.Position);
+                    if (distance <= DemoValue.BigSkillAttackDistance)
+                    {
+                        player.Value.CurBlood -= DemoValue.BigSkillAttack;
+                        player.Value.BloodChanged = true;
+                    }
+                }
+                else
+                {
+                    var skillDistance = 0;
+                    var skillAttackDistance = 0;
+                    var skillAttack = 0;
+                    if (commad.CommandId == (int)CommandType.SkillC)
+                    {
+                        skillDistance = DemoValue.SkillCDistance;
+                        skillAttackDistance = DemoValue.SkillCAttackDistance;
+                        skillAttack = DemoValue.SkillCAttack;
+                    }
+                    else if (commad.CommandId == (int)CommandType.SkillX)
+                    {
+                        skillDistance = DemoValue.SkillXDistance;
+                        skillAttackDistance = DemoValue.SkillXAttackDistance;
+                        skillAttack = DemoValue.SkillXAttack;
+                    }
+                    else if (commad.CommandId == (int)CommandType.SkillZ)
+                    {
+                        skillDistance = DemoValue.SkillZDistance;
+                        skillAttackDistance = DemoValue.SkillZAttackDistance;
+                        skillAttack = DemoValue.SkillZAttack;
+                    }
+
+                    var x = (float)(Math.Cos(Math.PI * (_players[commad.UserId].Rotate.Y / 180)));
+                    var z = (float)(Math.Sin(Math.PI * (_players[commad.UserId].Rotate.Y / 180)));
+
+                    var destination = new Vector3(x, 0, z) * skillDistance;
+                    var skilldestination = Vector3.Add(_players[commad.UserId].Position, destination);
+                    var distance = Vector3.Distance(skilldestination, player.Value.Position);
+                    if (distance <= skillAttackDistance)
+                    {
+                        player.Value.CurBlood -= skillAttack;
+                        player.Value.BloodChanged = true;
+                    }
+                }
+            }
+        }
+
         public Task Update()
         {
             _frameCount++;
@@ -87,10 +144,26 @@ namespace MO.Grains.Game
                 List<CommandInfo> commands = new List<CommandInfo>();
                 while (_commands.Count != 0)
                 {
-                    commands.Add(_commands.Dequeue());
+                    var command = _commands.Dequeue();
+                    DoCommand(command);
+                    commands.Add(command);
                 }
                 content.Commands.AddRange(commands);
             }
+            BloodInfoList bloodInfos = new BloodInfoList();
+            foreach (var player in _players)
+            {
+                if (player.Value.BloodChanged)
+                {
+                    bloodInfos.Bloods.Add(new BloodInfo()
+                    {
+                        UserId = player.Key,
+                        BloodValue = player.Value.CurBlood
+                    });
+                    player.Value.BloodChanged = false;
+                }
+            }
+            content.CommandResult = bloodInfos.ToByteString();
             notify.Content = content.ToByteString();
             RoomNotify(notify);
             return Task.CompletedTask;
@@ -125,13 +198,13 @@ namespace MO.Grains.Game
                         userPoint.UserId = item.Key;
                         userPoint.UserName = await player.User.GetUserName();
                         userPoint.Vector = new MsgVector3();
-                        userPoint.Vector.X = player.X;
-                        userPoint.Vector.Y = player.Y;
-                        userPoint.Vector.Z = player.Z;
+                        userPoint.Vector.X = player.Position.X;
+                        userPoint.Vector.Y = player.Position.Y;
+                        userPoint.Vector.Z = player.Position.Z;
                         userPoint.Rotation = new MsgRotation();
-                        userPoint.Rotation.X = player.RX;
-                        userPoint.Rotation.Y = player.RY;
-                        userPoint.Rotation.Z = player.RZ;
+                        userPoint.Rotation.X = player.Rotate.X;
+                        userPoint.Rotation.Y = player.Rotate.Y;
+                        userPoint.Rotation.Z = player.Rotate.Z;
                         content.UserPoints.Add(userPoint);
                     }
                 }

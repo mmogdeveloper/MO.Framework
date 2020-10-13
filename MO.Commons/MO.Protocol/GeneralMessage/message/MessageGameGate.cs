@@ -41,12 +41,15 @@ namespace MO.Protocol {
             "AiABKAUiHAoJQzJTMTAwMDA3Eg8KB0NvbnRlbnQYASABKAkiLAoJUzJDMTAw",
             "MDA4Eg4KBlVzZXJJZBgBIAEoAxIPCgdDb250ZW50GAIgASgJIlQKDVRyYW5z",
             "Zm9ybUluZm8SCQoBWBgBIAEoAhIJCgFZGAIgASgCEgkKAVoYAyABKAISCgoC",
-            "UlgYBCABKAISCgoCUlkYBSABKAISCgoCUloYBiABKAIiSAoLQ29tbWFuZElu",
-            "Zm8SDgoGVXNlcklkGAEgASgDEhEKCUNvbW1hbmRJZBgCIAEoBRIWCg5Db21t",
-            "YW5kQ29udGVudBgDIAEoDCI3CglDMlMxMDAwMDkSKgoIQ29tbWFuZHMYASAD",
-            "KAsyGC5NTy5Qcm90b2NvbC5Db21tYW5kSW5mbyJLCglTMkMxMDAwMTASEgoK",
-            "RnJhbWVDb3VudBgBIAEoBRIqCghDb21tYW5kcxgCIAMoCzIYLk1PLlByb3Rv",
-            "Y29sLkNvbW1hbmRJbmZvYgZwcm90bzM="));
+            "UlgYBCABKAISCgoCUlkYBSABKAISCgoCUloYBiABKAIiLwoJQmxvb2RJbmZv",
+            "Eg4KBlVzZXJJZBgBIAEoAxISCgpCbG9vZFZhbHVlGAIgASgFIjcKDUJsb29k",
+            "SW5mb0xpc3QSJgoGQmxvb2RzGAEgAygLMhYuTU8uUHJvdG9jb2wuQmxvb2RJ",
+            "bmZvIkgKC0NvbW1hbmRJbmZvEg4KBlVzZXJJZBgBIAEoAxIRCglDb21tYW5k",
+            "SWQYAiABKAUSFgoOQ29tbWFuZENvbnRlbnQYAyABKAwiNwoJQzJTMTAwMDA5",
+            "EioKCENvbW1hbmRzGAEgAygLMhguTU8uUHJvdG9jb2wuQ29tbWFuZEluZm8i",
+            "YgoJUzJDMTAwMDEwEhIKCkZyYW1lQ291bnQYASABKAUSKgoIQ29tbWFuZHMY",
+            "AiADKAsyGC5NTy5Qcm90b2NvbC5Db21tYW5kSW5mbxIVCg1Db21tYW5kUmVz",
+            "dWx0GAMgASgMYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -66,9 +69,11 @@ namespace MO.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100007), global::MO.Protocol.C2S100007.Parser, new[]{ "Content" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100008), global::MO.Protocol.S2C100008.Parser, new[]{ "UserId", "Content" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.TransformInfo), global::MO.Protocol.TransformInfo.Parser, new[]{ "X", "Y", "Z", "RX", "RY", "RZ" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.BloodInfo), global::MO.Protocol.BloodInfo.Parser, new[]{ "UserId", "BloodValue" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.BloodInfoList), global::MO.Protocol.BloodInfoList.Parser, new[]{ "Bloods" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.CommandInfo), global::MO.Protocol.CommandInfo.Parser, new[]{ "UserId", "CommandId", "CommandContent" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100009), global::MO.Protocol.C2S100009.Parser, new[]{ "Commands" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100010), global::MO.Protocol.S2C100010.Parser, new[]{ "FrameCount", "Commands" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100010), global::MO.Protocol.S2C100010.Parser, new[]{ "FrameCount", "Commands", "CommandResult" }, null, null, null)
           }));
     }
     #endregion
@@ -2464,6 +2469,260 @@ namespace MO.Protocol {
 
   }
 
+  public sealed partial class BloodInfo : pb::IMessage<BloodInfo> {
+    private static readonly pb::MessageParser<BloodInfo> _parser = new pb::MessageParser<BloodInfo>(() => new BloodInfo());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<BloodInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[16]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BloodInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BloodInfo(BloodInfo other) : this() {
+      userId_ = other.userId_;
+      bloodValue_ = other.bloodValue_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BloodInfo Clone() {
+      return new BloodInfo(this);
+    }
+
+    /// <summary>Field number for the "UserId" field.</summary>
+    public const int UserIdFieldNumber = 1;
+    private long userId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long UserId {
+      get { return userId_; }
+      set {
+        userId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "BloodValue" field.</summary>
+    public const int BloodValueFieldNumber = 2;
+    private int bloodValue_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int BloodValue {
+      get { return bloodValue_; }
+      set {
+        bloodValue_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as BloodInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(BloodInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (UserId != other.UserId) return false;
+      if (BloodValue != other.BloodValue) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (UserId != 0L) hash ^= UserId.GetHashCode();
+      if (BloodValue != 0) hash ^= BloodValue.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (UserId != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(UserId);
+      }
+      if (BloodValue != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(BloodValue);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (UserId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserId);
+      }
+      if (BloodValue != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BloodValue);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(BloodInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.UserId != 0L) {
+        UserId = other.UserId;
+      }
+      if (other.BloodValue != 0) {
+        BloodValue = other.BloodValue;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            UserId = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            BloodValue = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class BloodInfoList : pb::IMessage<BloodInfoList> {
+    private static readonly pb::MessageParser<BloodInfoList> _parser = new pb::MessageParser<BloodInfoList>(() => new BloodInfoList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<BloodInfoList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[17]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BloodInfoList() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BloodInfoList(BloodInfoList other) : this() {
+      bloods_ = other.bloods_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BloodInfoList Clone() {
+      return new BloodInfoList(this);
+    }
+
+    /// <summary>Field number for the "Bloods" field.</summary>
+    public const int BloodsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::MO.Protocol.BloodInfo> _repeated_bloods_codec
+        = pb::FieldCodec.ForMessage(10, global::MO.Protocol.BloodInfo.Parser);
+    private readonly pbc::RepeatedField<global::MO.Protocol.BloodInfo> bloods_ = new pbc::RepeatedField<global::MO.Protocol.BloodInfo>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::MO.Protocol.BloodInfo> Bloods {
+      get { return bloods_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as BloodInfoList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(BloodInfoList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!bloods_.Equals(other.bloods_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= bloods_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      bloods_.WriteTo(output, _repeated_bloods_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += bloods_.CalculateSize(_repeated_bloods_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(BloodInfoList other) {
+      if (other == null) {
+        return;
+      }
+      bloods_.Add(other.bloods_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            bloods_.AddEntriesFrom(input, _repeated_bloods_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   /// <summary>
   ///ÕÊº“÷∏¡Ó
   /// </summary>
@@ -2474,7 +2733,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[16]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2650,7 +2909,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[17]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2762,7 +3021,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[18]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2781,6 +3040,7 @@ namespace MO.Protocol {
     public S2C100010(S2C100010 other) : this() {
       frameCount_ = other.frameCount_;
       commands_ = other.commands_.Clone();
+      commandResult_ = other.commandResult_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2809,6 +3069,17 @@ namespace MO.Protocol {
       get { return commands_; }
     }
 
+    /// <summary>Field number for the "CommandResult" field.</summary>
+    public const int CommandResultFieldNumber = 3;
+    private pb::ByteString commandResult_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString CommandResult {
+      get { return commandResult_; }
+      set {
+        commandResult_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as S2C100010);
@@ -2824,6 +3095,7 @@ namespace MO.Protocol {
       }
       if (FrameCount != other.FrameCount) return false;
       if(!commands_.Equals(other.commands_)) return false;
+      if (CommandResult != other.CommandResult) return false;
       return true;
     }
 
@@ -2832,6 +3104,7 @@ namespace MO.Protocol {
       int hash = 1;
       if (FrameCount != 0) hash ^= FrameCount.GetHashCode();
       hash ^= commands_.GetHashCode();
+      if (CommandResult.Length != 0) hash ^= CommandResult.GetHashCode();
       return hash;
     }
 
@@ -2847,6 +3120,10 @@ namespace MO.Protocol {
         output.WriteInt32(FrameCount);
       }
       commands_.WriteTo(output, _repeated_commands_codec);
+      if (CommandResult.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteBytes(CommandResult);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2856,6 +3133,9 @@ namespace MO.Protocol {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(FrameCount);
       }
       size += commands_.CalculateSize(_repeated_commands_codec);
+      if (CommandResult.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(CommandResult);
+      }
       return size;
     }
 
@@ -2868,6 +3148,9 @@ namespace MO.Protocol {
         FrameCount = other.FrameCount;
       }
       commands_.Add(other.commands_);
+      if (other.CommandResult.Length != 0) {
+        CommandResult = other.CommandResult;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2884,6 +3167,10 @@ namespace MO.Protocol {
           }
           case 18: {
             commands_.AddEntriesFrom(input, _repeated_commands_codec);
+            break;
+          }
+          case 26: {
+            CommandResult = input.ReadBytes();
             break;
           }
         }

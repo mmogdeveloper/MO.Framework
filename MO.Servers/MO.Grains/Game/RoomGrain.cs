@@ -79,6 +79,9 @@ namespace MO.Grains.Game
 
         private void DoCommand(CommandInfo commad)
         {
+            if (commad.CommandId == (int)CommandType.Transform)
+                return;
+
             foreach (var player in _players)
             {
                 if (player.Key == commad.UserId)
@@ -117,12 +120,13 @@ namespace MO.Grains.Game
                         skillAttack = DemoValue.SkillZAttack;
                     }
 
-                    var x = (float)(Math.Cos(Math.PI * (_players[commad.UserId].Rotate.Y / 180)));
-                    var z = (float)(Math.Sin(Math.PI * (_players[commad.UserId].Rotate.Y / 180)));
+                    var x = (float)(Math.Sin(Math.PI * (_players[commad.UserId].Rotate.Y / 180)));
+                    var z = (float)(Math.Cos(Math.PI * (_players[commad.UserId].Rotate.Y / 180)));
 
                     var destination = new Vector3(x, 0, z) * skillDistance;
                     var skilldestination = Vector3.Add(_players[commad.UserId].Position, destination);
                     var distance = Vector3.Distance(skilldestination, player.Value.Position);
+                    Console.WriteLine("{0},{1}", distance, skillAttackDistance);
                     if (distance <= skillAttackDistance)
                     {
                         player.Value.CurBlood -= skillAttack;

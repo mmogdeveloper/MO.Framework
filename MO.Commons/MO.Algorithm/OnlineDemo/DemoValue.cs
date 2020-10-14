@@ -8,7 +8,7 @@ namespace MO.Algorithm.OnlineDemo
     {
         public const int MaxBlood = 1300;
 
-        public const int BigSkillAttackDistance = 14;
+        public const int BigSkillAttackDistance = 7;
         public const int BigSkillAttack = 200;
 
         public const int SkillCDistance = 10;

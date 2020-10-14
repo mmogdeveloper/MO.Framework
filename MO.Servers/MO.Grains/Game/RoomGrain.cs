@@ -82,6 +82,10 @@ namespace MO.Grains.Game
             if (commad.CommandId == (int)CommandType.Transform)
                 return;
 
+            PlayerData commandPlayer;
+            if (!_players.TryGetValue(commad.UserId, out commandPlayer))
+                return;
+
             foreach (var player in _players)
             {
                 if (player.Key == commad.UserId)
@@ -89,7 +93,7 @@ namespace MO.Grains.Game
 
                 if (commad.CommandId == (int)CommandType.BigSkill)
                 {
-                    var distance = Vector3.Distance(_players[commad.UserId].Position, player.Value.Position);
+                    var distance = Vector3.Distance(commandPlayer.Position, player.Value.Position);
                     if (distance <= DemoValue.BigSkillAttackDistance)
                     {
                         player.Value.CurBlood -= DemoValue.BigSkillAttack;
@@ -120,11 +124,11 @@ namespace MO.Grains.Game
                         skillAttack = DemoValue.SkillZAttack;
                     }
 
-                    var x = (float)(Math.Sin(Math.PI * (_players[commad.UserId].Rotate.Y / 180)));
-                    var z = (float)(Math.Cos(Math.PI * (_players[commad.UserId].Rotate.Y / 180)));
+                    var x = (float)(Math.Sin(Math.PI * (commandPlayer.Rotate.Y / 180)));
+                    var z = (float)(Math.Cos(Math.PI * (commandPlayer.Rotate.Y / 180)));
 
                     var destination = new Vector3(x, 0, z) * skillDistance;
-                    var skilldestination = Vector3.Add(_players[commad.UserId].Position, destination);
+                    var skilldestination = Vector3.Add(commandPlayer.Position, destination);
                     var distance = Vector3.Distance(skilldestination, player.Value.Position);
                     //Console.WriteLine("{0},{1}", distance, skillAttackDistance);
                     if (distance <= skillAttackDistance)
@@ -132,6 +136,12 @@ namespace MO.Grains.Game
                         player.Value.CurBlood -= skillAttack;
                         player.Value.BloodChanged = true;
                     }
+                }
+
+                if (player.Value.CurBlood == 0)
+                {
+                    player.Value.DeadCount++;
+                    commandPlayer.KillCount++;
                 }
             }
         }
@@ -154,21 +164,26 @@ namespace MO.Grains.Game
                 }
                 content.Commands.AddRange(commands);
             }
-            BloodInfoList bloodInfos = new BloodInfoList();
+            StateInfoList stateList = new StateInfoList();
             foreach (var player in _players)
             {
-                if (player.Value.BloodChanged)
+                stateList.StateInfos.Add(new StateInfo()
                 {
-                    bloodInfos.Bloods.Add(new BloodInfo()
-                    {
-                        UserId = player.Key,
-                        BloodValue = player.Value.CurBlood
-                    });
-                    player.Value.BloodChanged = false;
+                    UserId = player.Key,
+                    BloodValue = player.Value.CurBlood,
+                    KillCount = player.Value.KillCount,
+                    DeadCount = player.Value.DeadCount
+                });
+            }
+            content.CommandResult = stateList.ToByteString();
+            notify.Content = content.ToByteString();
+            foreach (var player in _players)
+            {
+                if (player.Value.CurBlood == 0)
+                {
+                    player.Value.Reset();
                 }
             }
-            content.CommandResult = bloodInfos.ToByteString();
-            notify.Content = content.ToByteString();
             RoomNotify(notify);
             return Task.CompletedTask;
         }

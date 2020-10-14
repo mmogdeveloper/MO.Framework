@@ -11,7 +11,7 @@ namespace MO.Grains.Game
         public Vector3 Position { get; private set; }
         public Vector3 Rotate { get; private set; }
 
-        public int MaxBlood { get; set; }
+        public int MaxBlood { get { return DemoValue.MaxBlood; } }
 
         public bool BloodChanged { get; set; }
         private int _curBlood;
@@ -27,10 +27,19 @@ namespace MO.Grains.Game
             }
         }
 
+        public int KillCount { get; set; }
+        public int DeadCount { get; set; }
+
+        public void Reset()
+        {
+            _curBlood = MaxBlood;
+            Position = new Vector3();
+            Rotate = new Vector3();
+        }
+
         public PlayerData(IUser user)
         {
             User = user;
-            MaxBlood = DemoValue.MaxBlood;
             _curBlood = MaxBlood;
         }
 

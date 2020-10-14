@@ -95,13 +95,15 @@ message TransformInfo{
 	float RZ = 6;
 }
 
-message BloodInfo{
+message StateInfo{
 	int64 UserId = 1;
 	int32 BloodValue = 2;
+	int32 KillCount = 3;
+	int32 DeadCount = 4;
 }
 
-message BloodInfoList{
-	repeated BloodInfo Bloods = 1;
+message StateInfoList{
+	repeated StateInfo StateInfos = 1;
 }
 
 //ÕÊº“÷∏¡Ó

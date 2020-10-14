@@ -96,8 +96,14 @@ namespace MO.Grains.Network
                     case 100001:
                         {
                             var req = C2S100001.Parser.ParseFrom(packet.Content);
-                            await _user.SetRoomId(req.RoomId);
-                            var room = GrainFactory.GetGrain<IRoom>(req.RoomId);
+                            var roomId = await _user.GetRoomId();
+                            if (roomId == 0)
+                            {
+                                roomId = req.RoomId;
+                                await _user.SetRoomId(roomId);
+                            }
+                            await _user.SetRoomId(roomId);
+                            var room = GrainFactory.GetGrain<IRoom>(roomId);
                             await room.PlayerEnterRoom(_user);
                         }
                         break;
@@ -116,6 +122,7 @@ namespace MO.Grains.Network
                             var roomId = await _user.GetRoomId();
                             var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
                             await curRoom.PlayerLeaveRoom(_user);
+                            await _user.SetRoomId(0);
                         }
                         break;
                     case 100007:

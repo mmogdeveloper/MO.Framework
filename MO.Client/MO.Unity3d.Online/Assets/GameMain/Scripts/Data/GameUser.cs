@@ -45,6 +45,7 @@ namespace MO.Unity3d.Data
             }
         }
         public int FrameCount { get; set; }
+        public int RoomId { get; set; }
 
         public void SendPackage(IMessage content)
         {

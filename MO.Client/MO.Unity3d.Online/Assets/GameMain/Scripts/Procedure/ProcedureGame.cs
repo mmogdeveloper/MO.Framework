@@ -27,8 +27,8 @@ namespace MO.Unity3d.Procedure
 
             //设置游戏场景摄像机视角
             Camera.main.transform.position = new Vector3(0, 10, -10);
-            Vector3 eulerAngles = new Vector3(30, 0, 0);
-            Camera.main.transform.Rotate(eulerAngles);
+            Vector3 eulerAngles = new Vector3(45, 0, 0);
+            Camera.main.transform.eulerAngles = eulerAngles;
 
             GameEntry.Scene.LoadScene("Assets/GameMain/Scenes/Game.unity");
             _formId = GameEntry.UI.OpenUIForm("Assets/GameMain/UI/UIForms/GameForm.prefab", "DefaultUIGroup", procedureOwner);

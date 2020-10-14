@@ -32,7 +32,7 @@ namespace MO.Unity3d.Entities
 				_playerData.ServerRX,
 				_playerData.ServerRY,
 				_playerData.ServerRZ);
-			transform.Rotate(eulerAngles);
+			transform.eulerAngles = eulerAngles;
 
 			if (_isSelf)
 			{
@@ -50,7 +50,13 @@ namespace MO.Unity3d.Entities
 				"Assets/GameMain/Entities/HP_Bar.prefab", "DefaultEntityGroup", _playerData);
 		}
 
-		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
+		protected internal override void OnHide(bool isShutdown, object userData)
+		{
+			base.OnHide(isShutdown, userData);
+			//GameEntry.Entity.HideEntity(_playerData.HPEntityId);
+		}
+
+        protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
 			//if (GameUser.Instance.JumpState)
 			//{
@@ -138,7 +144,7 @@ namespace MO.Unity3d.Entities
 			if (_playerData.ResetState == 1)
 			{
 				transform.position = new Vector3();
-				transform.Rotate(new Vector3());
+				transform.eulerAngles = new Vector3();
 				_playerData.ResetState = 2;
 			}
 			else

@@ -25,20 +25,19 @@ namespace MO.Unity3d.Entities
 		protected internal override void OnShow(object userData)
 		{
 			base.OnShow(userData);
-			transform.Rotate(new Vector3(_skillData.PlayerData.ServerRX, _skillData.PlayerData.ServerRY, _skillData.PlayerData.ServerRZ));
 			transform.position = new Vector3(_skillData.PlayerData.ServerX, _skillData.PlayerData.ServerY, _skillData.PlayerData.ServerZ);
-			transform.localScale = new Vector3();
+			transform.localScale = new Vector3(2, 2, 2);
 		}
 
 		protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
 			base.OnUpdate(elapseSeconds, realElapseSeconds);
 
-			if (transform.localScale.x >= 2.0f)
+			if (transform.localScale.x <= 0.1f)
 				return;
 
 			var scale = Time.deltaTime;
-			transform.localScale = transform.localScale + new Vector3(scale, scale, scale);
+			transform.localScale = transform.localScale - new Vector3(scale, scale, scale);
 		}
     }
 }

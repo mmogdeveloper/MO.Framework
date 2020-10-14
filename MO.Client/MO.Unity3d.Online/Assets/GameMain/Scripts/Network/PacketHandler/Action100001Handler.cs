@@ -22,6 +22,7 @@ namespace MO.Unity3d.Network.PacketHandler
         {
             Log.Info("{0},进入成功", GameUser.Instance.UserName);
             var rep = S2C100001.Parser.ParseFrom(((MOPacket)packet).Packet.Content);
+            GameUser.Instance.RoomId = rep.RoomId;
             foreach (var item in rep.UserPoints)
             {
                 if (GameUser.Instance.UserId == item.UserId)

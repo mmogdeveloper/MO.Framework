@@ -23,6 +23,16 @@ namespace MO.Unity3d.Network.PacketHandler
             {
                 GlobalGame.IsGameStart = false;
                 GameUser.Instance.Channel.Close();
+                GameUser.Instance.Players.Clear();
+            }
+            else
+            {
+                PlayerData player;
+                if (GameUser.Instance.Players.TryGetValue(rep.UserId, out player))
+                {
+                    GameUser.Instance.Players.Remove(rep.UserId);
+                    GameEntry.Entity.HideEntity(player.EntityId);
+                }
             }
         }
     }

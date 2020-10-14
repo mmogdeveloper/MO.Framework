@@ -67,12 +67,18 @@ namespace MO.Unity3d.Network.PacketHandler
                 }
             }
 
-            var bloodInfoList = BloodInfoList.Parser.ParseFrom(rep.CommandResult);
-            foreach (var bloodInfo in bloodInfoList.Bloods)
+            var stateInfoList = StateInfoList.Parser.ParseFrom(rep.CommandResult);
+            foreach (var stateInfo in stateInfoList.StateInfos)
             {
-                if (GameUser.Instance.Players.TryGetValue(bloodInfo.UserId, out player))
+                if (GameUser.Instance.Players.TryGetValue(stateInfo.UserId, out player))
                 {
-                    player.CurBlood = bloodInfo.BloodValue;
+                    player.CurBlood = stateInfo.BloodValue;
+                    if (player.CurBlood == 0)
+                    {
+                        player.Reset();
+                    }
+                    player.KillCount = stateInfo.KillCount;
+                    player.DeadCount = stateInfo.DeadCount;
                 }
             }
         }

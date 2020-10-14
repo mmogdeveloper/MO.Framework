@@ -21,7 +21,7 @@ namespace MO.Unity3d.Entities
 			_parent = GameEntry.Entity.GetEntity(_playerData.EntityId);
 			_sliderTransform = transform.Find("Slider");
 			_slider = GetComponentInChildren<Slider>();
-			_slider.maxValue = _playerData.TotalBlood;
+			_slider.maxValue = _playerData.MaxBlood;
 			_slider.minValue = 0;
 			_slider.value = _playerData.CurBlood;
 			GameEntry.Entity.AttachEntity(Entity, _parent);

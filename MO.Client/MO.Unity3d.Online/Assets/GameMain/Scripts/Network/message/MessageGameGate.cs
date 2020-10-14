@@ -41,15 +41,16 @@ namespace MO.Protocol {
             "AiABKAUiHAoJQzJTMTAwMDA3Eg8KB0NvbnRlbnQYASABKAkiLAoJUzJDMTAw",
             "MDA4Eg4KBlVzZXJJZBgBIAEoAxIPCgdDb250ZW50GAIgASgJIlQKDVRyYW5z",
             "Zm9ybUluZm8SCQoBWBgBIAEoAhIJCgFZGAIgASgCEgkKAVoYAyABKAISCgoC",
-            "UlgYBCABKAISCgoCUlkYBSABKAISCgoCUloYBiABKAIiLwoJQmxvb2RJbmZv",
-            "Eg4KBlVzZXJJZBgBIAEoAxISCgpCbG9vZFZhbHVlGAIgASgFIjcKDUJsb29k",
-            "SW5mb0xpc3QSJgoGQmxvb2RzGAEgAygLMhYuTU8uUHJvdG9jb2wuQmxvb2RJ",
-            "bmZvIkgKC0NvbW1hbmRJbmZvEg4KBlVzZXJJZBgBIAEoAxIRCglDb21tYW5k",
-            "SWQYAiABKAUSFgoOQ29tbWFuZENvbnRlbnQYAyABKAwiNwoJQzJTMTAwMDA5",
-            "EioKCENvbW1hbmRzGAEgAygLMhguTU8uUHJvdG9jb2wuQ29tbWFuZEluZm8i",
-            "YgoJUzJDMTAwMDEwEhIKCkZyYW1lQ291bnQYASABKAUSKgoIQ29tbWFuZHMY",
-            "AiADKAsyGC5NTy5Qcm90b2NvbC5Db21tYW5kSW5mbxIVCg1Db21tYW5kUmVz",
-            "dWx0GAMgASgMYgZwcm90bzM="));
+            "UlgYBCABKAISCgoCUlkYBSABKAISCgoCUloYBiABKAIiVQoJU3RhdGVJbmZv",
+            "Eg4KBlVzZXJJZBgBIAEoAxISCgpCbG9vZFZhbHVlGAIgASgFEhEKCUtpbGxD",
+            "b3VudBgDIAEoBRIRCglEZWFkQ291bnQYBCABKAUiOwoNU3RhdGVJbmZvTGlz",
+            "dBIqCgpTdGF0ZUluZm9zGAEgAygLMhYuTU8uUHJvdG9jb2wuU3RhdGVJbmZv",
+            "IkgKC0NvbW1hbmRJbmZvEg4KBlVzZXJJZBgBIAEoAxIRCglDb21tYW5kSWQY",
+            "AiABKAUSFgoOQ29tbWFuZENvbnRlbnQYAyABKAwiNwoJQzJTMTAwMDA5EioK",
+            "CENvbW1hbmRzGAEgAygLMhguTU8uUHJvdG9jb2wuQ29tbWFuZEluZm8iYgoJ",
+            "UzJDMTAwMDEwEhIKCkZyYW1lQ291bnQYASABKAUSKgoIQ29tbWFuZHMYAiAD",
+            "KAsyGC5NTy5Qcm90b2NvbC5Db21tYW5kSW5mbxIVCg1Db21tYW5kUmVzdWx0",
+            "GAMgASgMYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -69,8 +70,8 @@ namespace MO.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100007), global::MO.Protocol.C2S100007.Parser, new[]{ "Content" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100008), global::MO.Protocol.S2C100008.Parser, new[]{ "UserId", "Content" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.TransformInfo), global::MO.Protocol.TransformInfo.Parser, new[]{ "X", "Y", "Z", "RX", "RY", "RZ" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.BloodInfo), global::MO.Protocol.BloodInfo.Parser, new[]{ "UserId", "BloodValue" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.BloodInfoList), global::MO.Protocol.BloodInfoList.Parser, new[]{ "Bloods" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.StateInfo), global::MO.Protocol.StateInfo.Parser, new[]{ "UserId", "BloodValue", "KillCount", "DeadCount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.StateInfoList), global::MO.Protocol.StateInfoList.Parser, new[]{ "StateInfos" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.CommandInfo), global::MO.Protocol.CommandInfo.Parser, new[]{ "UserId", "CommandId", "CommandContent" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100009), global::MO.Protocol.C2S100009.Parser, new[]{ "Commands" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100010), global::MO.Protocol.S2C100010.Parser, new[]{ "FrameCount", "Commands", "CommandResult" }, null, null, null)
@@ -2469,10 +2470,10 @@ namespace MO.Protocol {
 
   }
 
-  public sealed partial class BloodInfo : pb::IMessage<BloodInfo> {
-    private static readonly pb::MessageParser<BloodInfo> _parser = new pb::MessageParser<BloodInfo>(() => new BloodInfo());
+  public sealed partial class StateInfo : pb::IMessage<StateInfo> {
+    private static readonly pb::MessageParser<StateInfo> _parser = new pb::MessageParser<StateInfo>(() => new StateInfo());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<BloodInfo> Parser { get { return _parser; } }
+    public static pb::MessageParser<StateInfo> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -2485,21 +2486,23 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BloodInfo() {
+    public StateInfo() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BloodInfo(BloodInfo other) : this() {
+    public StateInfo(StateInfo other) : this() {
       userId_ = other.userId_;
       bloodValue_ = other.bloodValue_;
+      killCount_ = other.killCount_;
+      deadCount_ = other.deadCount_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BloodInfo Clone() {
-      return new BloodInfo(this);
+    public StateInfo Clone() {
+      return new StateInfo(this);
     }
 
     /// <summary>Field number for the "UserId" field.</summary>
@@ -2524,13 +2527,35 @@ namespace MO.Protocol {
       }
     }
 
+    /// <summary>Field number for the "KillCount" field.</summary>
+    public const int KillCountFieldNumber = 3;
+    private int killCount_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as BloodInfo);
+    public int KillCount {
+      get { return killCount_; }
+      set {
+        killCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "DeadCount" field.</summary>
+    public const int DeadCountFieldNumber = 4;
+    private int deadCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DeadCount {
+      get { return deadCount_; }
+      set {
+        deadCount_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(BloodInfo other) {
+    public override bool Equals(object other) {
+      return Equals(other as StateInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(StateInfo other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -2539,6 +2564,8 @@ namespace MO.Protocol {
       }
       if (UserId != other.UserId) return false;
       if (BloodValue != other.BloodValue) return false;
+      if (KillCount != other.KillCount) return false;
+      if (DeadCount != other.DeadCount) return false;
       return true;
     }
 
@@ -2547,6 +2574,8 @@ namespace MO.Protocol {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
       if (BloodValue != 0) hash ^= BloodValue.GetHashCode();
+      if (KillCount != 0) hash ^= KillCount.GetHashCode();
+      if (DeadCount != 0) hash ^= DeadCount.GetHashCode();
       return hash;
     }
 
@@ -2565,6 +2594,14 @@ namespace MO.Protocol {
         output.WriteRawTag(16);
         output.WriteInt32(BloodValue);
       }
+      if (KillCount != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(KillCount);
+      }
+      if (DeadCount != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(DeadCount);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2576,11 +2613,17 @@ namespace MO.Protocol {
       if (BloodValue != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(BloodValue);
       }
+      if (KillCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(KillCount);
+      }
+      if (DeadCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DeadCount);
+      }
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(BloodInfo other) {
+    public void MergeFrom(StateInfo other) {
       if (other == null) {
         return;
       }
@@ -2589,6 +2632,12 @@ namespace MO.Protocol {
       }
       if (other.BloodValue != 0) {
         BloodValue = other.BloodValue;
+      }
+      if (other.KillCount != 0) {
+        KillCount = other.KillCount;
+      }
+      if (other.DeadCount != 0) {
+        DeadCount = other.DeadCount;
       }
     }
 
@@ -2608,16 +2657,24 @@ namespace MO.Protocol {
             BloodValue = input.ReadInt32();
             break;
           }
+          case 24: {
+            KillCount = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            DeadCount = input.ReadInt32();
+            break;
+          }
         }
       }
     }
 
   }
 
-  public sealed partial class BloodInfoList : pb::IMessage<BloodInfoList> {
-    private static readonly pb::MessageParser<BloodInfoList> _parser = new pb::MessageParser<BloodInfoList>(() => new BloodInfoList());
+  public sealed partial class StateInfoList : pb::IMessage<StateInfoList> {
+    private static readonly pb::MessageParser<StateInfoList> _parser = new pb::MessageParser<StateInfoList>(() => new StateInfoList());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<BloodInfoList> Parser { get { return _parser; } }
+    public static pb::MessageParser<StateInfoList> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -2630,53 +2687,53 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BloodInfoList() {
+    public StateInfoList() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BloodInfoList(BloodInfoList other) : this() {
-      bloods_ = other.bloods_.Clone();
+    public StateInfoList(StateInfoList other) : this() {
+      stateInfos_ = other.stateInfos_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BloodInfoList Clone() {
-      return new BloodInfoList(this);
+    public StateInfoList Clone() {
+      return new StateInfoList(this);
     }
 
-    /// <summary>Field number for the "Bloods" field.</summary>
-    public const int BloodsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::MO.Protocol.BloodInfo> _repeated_bloods_codec
-        = pb::FieldCodec.ForMessage(10, global::MO.Protocol.BloodInfo.Parser);
-    private readonly pbc::RepeatedField<global::MO.Protocol.BloodInfo> bloods_ = new pbc::RepeatedField<global::MO.Protocol.BloodInfo>();
+    /// <summary>Field number for the "StateInfos" field.</summary>
+    public const int StateInfosFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::MO.Protocol.StateInfo> _repeated_stateInfos_codec
+        = pb::FieldCodec.ForMessage(10, global::MO.Protocol.StateInfo.Parser);
+    private readonly pbc::RepeatedField<global::MO.Protocol.StateInfo> stateInfos_ = new pbc::RepeatedField<global::MO.Protocol.StateInfo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::MO.Protocol.BloodInfo> Bloods {
-      get { return bloods_; }
+    public pbc::RepeatedField<global::MO.Protocol.StateInfo> StateInfos {
+      get { return stateInfos_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as BloodInfoList);
+      return Equals(other as StateInfoList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(BloodInfoList other) {
+    public bool Equals(StateInfoList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!bloods_.Equals(other.bloods_)) return false;
+      if(!stateInfos_.Equals(other.stateInfos_)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= bloods_.GetHashCode();
+      hash ^= stateInfos_.GetHashCode();
       return hash;
     }
 
@@ -2687,22 +2744,22 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      bloods_.WriteTo(output, _repeated_bloods_codec);
+      stateInfos_.WriteTo(output, _repeated_stateInfos_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      size += bloods_.CalculateSize(_repeated_bloods_codec);
+      size += stateInfos_.CalculateSize(_repeated_stateInfos_codec);
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(BloodInfoList other) {
+    public void MergeFrom(StateInfoList other) {
       if (other == null) {
         return;
       }
-      bloods_.Add(other.bloods_);
+      stateInfos_.Add(other.stateInfos_);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2714,7 +2771,7 @@ namespace MO.Protocol {
             input.SkipLastField();
             break;
           case 10: {
-            bloods_.AddEntriesFrom(input, _repeated_bloods_codec);
+            stateInfos_.AddEntriesFrom(input, _repeated_stateInfos_codec);
             break;
           }
         }

@@ -135,35 +135,44 @@ namespace MO.Unity3d.Entities
 
 		private void FixedState()
 		{
-			//500ms误差修正玩家位置
-			var destDirection = new Vector3(_playerData.ServerRX, _playerData.ServerRY, _playerData.ServerRZ);
-			if (Vector3.Distance(transform.eulerAngles, destDirection) > _rotateSpeed / 2)
+			if (_playerData.ResetState == 1)
 			{
-				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), _rotateSpeed * Time.deltaTime);
+				transform.position = new Vector3();
+				transform.Rotate(new Vector3());
+				_playerData.ResetState = 2;
 			}
-
-			float distance = 0.0f;
-			float deltaSpeed = (_positionSpeed * Time.deltaTime);
-
-			var destPosition = new Vector3(_playerData.ServerX, _playerData.ServerY, _playerData.ServerZ);
-			distance = Vector3.Distance(destPosition, transform.position);
-
-			if (distance > _positionSpeed / 2)
+			else
 			{
-				Vector3 pos = transform.position;
+				//500ms误差修正玩家位置
+				var destDirection = new Vector3(_playerData.ServerRX, _playerData.ServerRY, _playerData.ServerRZ);
+				if (Vector3.Distance(transform.eulerAngles, destDirection) > _rotateSpeed / 2)
+				{
+					transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), _rotateSpeed * Time.deltaTime);
+				}
 
-				Vector3 movement = destPosition - pos;
-				movement.y = 0f;
-				movement.Normalize();
+				float distance = 0.0f;
+				float deltaSpeed = (_positionSpeed * Time.deltaTime);
 
-				movement *= deltaSpeed;
+				var destPosition = new Vector3(_playerData.ServerX, _playerData.ServerY, _playerData.ServerZ);
+				distance = Vector3.Distance(destPosition, transform.position);
 
-				if (distance > deltaSpeed || movement.magnitude > deltaSpeed)
-					pos += movement;
-				else
-					pos = destPosition;
+				if (distance > _positionSpeed / 2)
+				{
+					Vector3 pos = transform.position;
 
-				transform.position = pos;
+					Vector3 movement = destPosition - pos;
+					movement.y = 0f;
+					movement.Normalize();
+
+					movement *= deltaSpeed;
+
+					if (distance > deltaSpeed || movement.magnitude > deltaSpeed)
+						pos += movement;
+					else
+						pos = destPosition;
+
+					transform.position = pos;
+				}
 			}
 		}
 	}

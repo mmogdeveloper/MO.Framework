@@ -43,7 +43,13 @@ namespace MO.Unity3d.Data
         }
         public int RoomId { get; set; }
 
+        /// <summary>
+        /// 客户端移动位置
+        /// </summary>
         public Vector3 Position { get; set; }
+        /// <summary>
+        /// 客户端旋转角度
+        /// </summary>
         public Vector3 Rotate { get; set; }
     }
 }

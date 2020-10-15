@@ -79,6 +79,7 @@ message StateInfo{
 	int32 BloodValue = 2;
 	int32 KillCount = 3;
 	int32 DeadCount = 4;
+	TransformInfo Transform = 5;
 }
 
 message StateInfoList{

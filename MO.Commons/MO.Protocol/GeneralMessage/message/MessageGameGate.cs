@@ -37,16 +37,17 @@ namespace MO.Protocol {
             "MlMxMDAwMDcSDwoHQ29udGVudBgBIAEoCSIsCglTMkMxMDAwMDgSDgoGVXNl",
             "cklkGAEgASgDEg8KB0NvbnRlbnQYAiABKAkiZQoNVHJhbnNmb3JtSW5mbxIp",
             "CghQb3NpdGlvbhgBIAEoCzIXLk1PLlByb3RvY29sLk1zZ1ZlY3RvcjMSKQoI",
-            "Um90YXRpb24YAiABKAsyFy5NTy5Qcm90b2NvbC5Nc2dWZWN0b3IzIlUKCVN0",
-            "YXRlSW5mbxIOCgZVc2VySWQYASABKAMSEgoKQmxvb2RWYWx1ZRgCIAEoBRIR",
-            "CglLaWxsQ291bnQYAyABKAUSEQoJRGVhZENvdW50GAQgASgFIjsKDVN0YXRl",
-            "SW5mb0xpc3QSKgoKU3RhdGVJbmZvcxgBIAMoCzIWLk1PLlByb3RvY29sLlN0",
-            "YXRlSW5mbyJICgtDb21tYW5kSW5mbxIOCgZVc2VySWQYASABKAMSEQoJQ29t",
-            "bWFuZElkGAIgASgFEhYKDkNvbW1hbmRDb250ZW50GAMgASgMIjcKCUMyUzEw",
-            "MDAwORIqCghDb21tYW5kcxgBIAMoCzIYLk1PLlByb3RvY29sLkNvbW1hbmRJ",
-            "bmZvImIKCVMyQzEwMDAxMBISCgpGcmFtZUNvdW50GAEgASgFEioKCENvbW1h",
-            "bmRzGAIgAygLMhguTU8uUHJvdG9jb2wuQ29tbWFuZEluZm8SFQoNQ29tbWFu",
-            "ZFJlc3VsdBgDIAEoDGIGcHJvdG8z"));
+            "Um90YXRpb24YAiABKAsyFy5NTy5Qcm90b2NvbC5Nc2dWZWN0b3IzIoQBCglT",
+            "dGF0ZUluZm8SDgoGVXNlcklkGAEgASgDEhIKCkJsb29kVmFsdWUYAiABKAUS",
+            "EQoJS2lsbENvdW50GAMgASgFEhEKCURlYWRDb3VudBgEIAEoBRItCglUcmFu",
+            "c2Zvcm0YBSABKAsyGi5NTy5Qcm90b2NvbC5UcmFuc2Zvcm1JbmZvIjsKDVN0",
+            "YXRlSW5mb0xpc3QSKgoKU3RhdGVJbmZvcxgBIAMoCzIWLk1PLlByb3RvY29s",
+            "LlN0YXRlSW5mbyJICgtDb21tYW5kSW5mbxIOCgZVc2VySWQYASABKAMSEQoJ",
+            "Q29tbWFuZElkGAIgASgFEhYKDkNvbW1hbmRDb250ZW50GAMgASgMIjcKCUMy",
+            "UzEwMDAwORIqCghDb21tYW5kcxgBIAMoCzIYLk1PLlByb3RvY29sLkNvbW1h",
+            "bmRJbmZvImIKCVMyQzEwMDAxMBISCgpGcmFtZUNvdW50GAEgASgFEioKCENv",
+            "bW1hbmRzGAIgAygLMhguTU8uUHJvdG9jb2wuQ29tbWFuZEluZm8SFQoNQ29t",
+            "bWFuZFJlc3VsdBgDIAEoDGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -63,7 +64,7 @@ namespace MO.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100007), global::MO.Protocol.C2S100007.Parser, new[]{ "Content" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100008), global::MO.Protocol.S2C100008.Parser, new[]{ "UserId", "Content" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.TransformInfo), global::MO.Protocol.TransformInfo.Parser, new[]{ "Position", "Rotation" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.StateInfo), global::MO.Protocol.StateInfo.Parser, new[]{ "UserId", "BloodValue", "KillCount", "DeadCount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.StateInfo), global::MO.Protocol.StateInfo.Parser, new[]{ "UserId", "BloodValue", "KillCount", "DeadCount", "Transform" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.StateInfoList), global::MO.Protocol.StateInfoList.Parser, new[]{ "StateInfos" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.CommandInfo), global::MO.Protocol.CommandInfo.Parser, new[]{ "UserId", "CommandId", "CommandContent" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100009), global::MO.Protocol.C2S100009.Parser, new[]{ "Commands" }, null, null, null),
@@ -1946,6 +1947,7 @@ namespace MO.Protocol {
       bloodValue_ = other.bloodValue_;
       killCount_ = other.killCount_;
       deadCount_ = other.deadCount_;
+      Transform = other.transform_ != null ? other.Transform.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1997,6 +1999,17 @@ namespace MO.Protocol {
       }
     }
 
+    /// <summary>Field number for the "Transform" field.</summary>
+    public const int TransformFieldNumber = 5;
+    private global::MO.Protocol.TransformInfo transform_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::MO.Protocol.TransformInfo Transform {
+      get { return transform_; }
+      set {
+        transform_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as StateInfo);
@@ -2014,6 +2027,7 @@ namespace MO.Protocol {
       if (BloodValue != other.BloodValue) return false;
       if (KillCount != other.KillCount) return false;
       if (DeadCount != other.DeadCount) return false;
+      if (!object.Equals(Transform, other.Transform)) return false;
       return true;
     }
 
@@ -2024,6 +2038,7 @@ namespace MO.Protocol {
       if (BloodValue != 0) hash ^= BloodValue.GetHashCode();
       if (KillCount != 0) hash ^= KillCount.GetHashCode();
       if (DeadCount != 0) hash ^= DeadCount.GetHashCode();
+      if (transform_ != null) hash ^= Transform.GetHashCode();
       return hash;
     }
 
@@ -2050,6 +2065,10 @@ namespace MO.Protocol {
         output.WriteRawTag(32);
         output.WriteInt32(DeadCount);
       }
+      if (transform_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Transform);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2066,6 +2085,9 @@ namespace MO.Protocol {
       }
       if (DeadCount != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(DeadCount);
+      }
+      if (transform_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Transform);
       }
       return size;
     }
@@ -2086,6 +2108,12 @@ namespace MO.Protocol {
       }
       if (other.DeadCount != 0) {
         DeadCount = other.DeadCount;
+      }
+      if (other.transform_ != null) {
+        if (transform_ == null) {
+          transform_ = new global::MO.Protocol.TransformInfo();
+        }
+        Transform.MergeFrom(other.Transform);
       }
     }
 
@@ -2111,6 +2139,13 @@ namespace MO.Protocol {
           }
           case 32: {
             DeadCount = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            if (transform_ == null) {
+              transform_ = new global::MO.Protocol.TransformInfo();
+            }
+            input.ReadMessage(transform_);
             break;
           }
         }

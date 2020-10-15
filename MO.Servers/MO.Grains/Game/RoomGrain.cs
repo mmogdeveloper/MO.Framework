@@ -77,21 +77,18 @@ namespace MO.Grains.Game
             await grain.Update();
         }
 
-        private void DoCommand(CommandInfo commad)
+        private void DoCommand(CommandInfo command)
         {
-            if (commad.CommandId == (int)CommandType.Transform)
-                return;
-
             PlayerData commandPlayer;
-            if (!_players.TryGetValue(commad.UserId, out commandPlayer))
+            if (!_players.TryGetValue(command.UserId, out commandPlayer))
                 return;
 
             foreach (var player in _players)
             {
-                if (player.Key == commad.UserId)
+                if (player.Key == command.UserId)
                     continue;
 
-                if (commad.CommandId == (int)CommandType.BigSkill)
+                if (command.CommandId == (int)CommandType.BigSkill)
                 {
                     var distance = Vector3.Distance(commandPlayer.Position, player.Value.Position);
                     if (distance <= DemoValue.BigSkillAttackDistance)
@@ -105,19 +102,19 @@ namespace MO.Grains.Game
                     var skillDistance = 0;
                     var skillAttackDistance = 0;
                     var skillAttack = 0;
-                    if (commad.CommandId == (int)CommandType.SkillC)
+                    if (command.CommandId == (int)CommandType.SkillC)
                     {
                         skillDistance = DemoValue.SkillCDistance;
                         skillAttackDistance = DemoValue.SkillCAttackDistance;
                         skillAttack = DemoValue.SkillCAttack;
                     }
-                    else if (commad.CommandId == (int)CommandType.SkillX)
+                    else if (command.CommandId == (int)CommandType.SkillX)
                     {
                         skillDistance = DemoValue.SkillXDistance;
                         skillAttackDistance = DemoValue.SkillXAttackDistance;
                         skillAttack = DemoValue.SkillXAttack;
                     }
-                    else if (commad.CommandId == (int)CommandType.SkillZ)
+                    else if (command.CommandId == (int)CommandType.SkillZ)
                     {
                         skillDistance = DemoValue.SkillZDistance;
                         skillAttackDistance = DemoValue.SkillZAttackDistance;
@@ -159,6 +156,8 @@ namespace MO.Grains.Game
                 while (_commands.Count != 0)
                 {
                     var command = _commands.Dequeue();
+                    if (command.CommandId == (int)CommandType.Transform)
+                        continue;
                     DoCommand(command);
                     commands.Add(command);
                 }
@@ -167,12 +166,26 @@ namespace MO.Grains.Game
             StateInfoList stateList = new StateInfoList();
             foreach (var player in _players)
             {
+                var transform = new TransformInfo();
+                transform.Position = new MsgVector3()
+                {
+                    X = player.Value.Position.X,
+                    Y = player.Value.Position.Y,
+                    Z = player.Value.Position.Z
+                };
+                transform.Rotation = new MsgVector3()
+                {
+                    X = player.Value.Rotate.X,
+                    Y = player.Value.Rotate.Y,
+                    Z = player.Value.Rotate.Z
+                };
                 stateList.StateInfos.Add(new StateInfo()
                 {
                     UserId = player.Key,
                     BloodValue = player.Value.CurBlood,
                     KillCount = player.Value.KillCount,
-                    DeadCount = player.Value.DeadCount
+                    DeadCount = player.Value.DeadCount,
+                    Transform = transform
                 });
             }
             content.CommandResult = stateList.ToByteString();

@@ -32,35 +32,26 @@ namespace MO.Unity3d.Network.PacketHandler
             {
                 if (GameUser.Instance.Players.TryGetValue(command.UserId, out player))
                 {
-                    if (command.CommandId == (int)CommandType.Transform)
-                    {
-                        var transform = TransformInfo.Parser.ParseFrom(command.CommandContent);
-                        player.Position = new Vector3(transform.Position.X, transform.Position.Y, transform.Position.Z);
-                        player.Rotate = new Vector3(transform.Rotation.X, transform.Rotation.Y, transform.Rotation.Z);
-                    }
-                    else
-                    {
-                        if (command.UserId == GameUser.Instance.UserId)
-                            continue;
+                    if (command.UserId == GameUser.Instance.UserId)
+                        continue;
 
-                        switch (command.CommandId)
-                        {
-                            case (int)CommandType.BigSkill:
-                                player.ShowBigSkill();
-                                break;
-                            case (int)CommandType.Jump:
-                                player.Jump();
-                                break;
-                            case (int)CommandType.SkillC:
-                                player.ShowSkillC();
-                                break;
-                            case (int)CommandType.SkillX:
-                                player.ShowSkillX();
-                                break;
-                            case (int)CommandType.SkillZ:
-                                player.ShowSkillZ();
-                                break;
-                        }
+                    switch (command.CommandId)
+                    {
+                        case (int)CommandType.BigSkill:
+                            player.ShowBigSkill();
+                            break;
+                        case (int)CommandType.Jump:
+                            player.Jump();
+                            break;
+                        case (int)CommandType.SkillC:
+                            player.ShowSkillC();
+                            break;
+                        case (int)CommandType.SkillX:
+                            player.ShowSkillX();
+                            break;
+                        case (int)CommandType.SkillZ:
+                            player.ShowSkillZ();
+                            break;
                     }
                 }
             }
@@ -77,6 +68,15 @@ namespace MO.Unity3d.Network.PacketHandler
                     }
                     player.KillCount = stateInfo.KillCount;
                     player.DeadCount = stateInfo.DeadCount;
+
+                    player.Position = new Vector3(
+                        stateInfo.Transform.Position.X,
+                        stateInfo.Transform.Position.Y,
+                        stateInfo.Transform.Position.Z);
+                    player.Rotate = new Vector3(
+                        stateInfo.Transform.Rotation.X,
+                        stateInfo.Transform.Rotation.Y,
+                        stateInfo.Transform.Rotation.Z);
                 }
             }
         }

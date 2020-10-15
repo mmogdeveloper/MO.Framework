@@ -23,7 +23,7 @@ https://github.com/dotnet/orleans
 Dotnetty 网关socket通信  
 https://github.com/Azure/DotNetty  
 Entityframeworkcore 操作mysql  
-https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
+https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql  
 CSRedisCore 操作redis  
 https://github.com/2881099/csredis  
 Google.Protobuf 通信协议  

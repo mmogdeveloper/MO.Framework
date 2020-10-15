@@ -5,6 +5,7 @@ using Google.Protobuf;
 using MO.Protocol;
 using MO.Unity3d.Data;
 using MO.Unity3d.Network;
+using MO.Unity3d.UIExtension;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -25,9 +26,8 @@ namespace MO.Unity3d.Procedure
 
             GameEntry.Event.Subscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
             GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
-
-            GameEntry.Scene.LoadScene("Assets/GameMain/Scenes/Login.unity", this);
-            _formId = GameEntry.UI.OpenUIForm("Assets/GameMain/UI/UIForms/LoginForm.prefab", "DefaultUIGroup");
+            GameEntry.Scene.LoadLoginScene();
+            _formId = GameEntry.UI.OpenLoginForm();
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
@@ -35,8 +35,9 @@ namespace MO.Unity3d.Procedure
             base.OnLeave(procedureOwner, isShutdown);
             GameEntry.Event.Unsubscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
             GameEntry.Event.Unsubscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
-            GameEntry.Scene.UnloadScene("Assets/GameMain/Scenes/Login.unity");
+            GameEntry.Entity.HideAllLoadedEntities();
             GameEntry.UI.CloseUIForm(_formId);
+            GameEntry.Scene.UnLoadLoginScene();
         }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -62,7 +63,7 @@ namespace MO.Unity3d.Procedure
                 GameUser.Instance.Initiation(playerData);
                 GameUser.Instance.Token = rep1003.Token;
                 Log.Info("{0}登录成功", GameUser.Instance.UserName);
-                GameUser.Instance.Channel.Connect(IPAddress.Parse(rep1003.GateIP), rep1003.GatePort);
+                GlobalGame.Channel.Connect(IPAddress.Parse(rep1003.GateIP), rep1003.GatePort);
             }
         }
 

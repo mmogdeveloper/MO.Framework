@@ -25,7 +25,7 @@ namespace MO.Unity3d.Entities
 		protected internal override void OnShow(object userData)
 		{
 			base.OnShow(userData);
-			transform.position = new Vector3(_skillData.PlayerData.ServerX, _skillData.PlayerData.ServerY, _skillData.PlayerData.ServerZ);
+			transform.position = _skillData.PlayerData.Position;
 			transform.localScale = new Vector3(2, 2, 2);
 		}
 

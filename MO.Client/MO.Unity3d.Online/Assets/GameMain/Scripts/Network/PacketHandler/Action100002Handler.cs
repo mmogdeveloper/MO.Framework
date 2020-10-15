@@ -2,6 +2,7 @@
 using MO.Protocol;
 using MO.Unity3d.Data;
 using MO.Unity3d.Entities;
+using MO.Unity3d.UIExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,7 @@ namespace MO.Unity3d.Network.PacketHandler
                 newPlayer.UserId = rep.UserId;
                 newPlayer.UserName = rep.UserName;
                 GameUser.Instance.Players.Add(rep.UserId, newPlayer);
-                GameEntry.Entity.ShowEntity<PlayerEntity>(newPlayer.EntityId,
-                    "Assets/GameMain/Entities/Player.prefab", "DefaultEntityGroup", newPlayer);
+                newPlayer.ShowEntity();
             }
         }
     }

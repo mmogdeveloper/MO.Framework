@@ -1,13 +1,7 @@
-﻿using MO.Protocol;
-using MO.Unity3d.Data;
-using MO.Unity3d.Network;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using MO.Unity3d.Data;
+using MO.Unity3d.UIExtension;
 using UnityEngine;
 using UnityGameFramework.Runtime;
-using System.Collections;
 
 namespace MO.Unity3d.Entities
 {
@@ -27,12 +21,8 @@ namespace MO.Unity3d.Entities
 			_playerData = (PlayerData)userData;
 			_isSelf = _playerData.UserId == GameUser.Instance.UserId;
 
-			transform.position = new Vector3(_playerData.ServerX, _playerData.ServerY, _playerData.ServerZ);
-			Vector3 eulerAngles = new Vector3(
-				_playerData.ServerRX,
-				_playerData.ServerRY,
-				_playerData.ServerRZ);
-			transform.eulerAngles = eulerAngles;
+			transform.position = _playerData.Position;
+			transform.eulerAngles = _playerData.Rotate;
 
 			if (_isSelf)
 			{
@@ -45,9 +35,7 @@ namespace MO.Unity3d.Entities
 			{
 				GetComponent<Renderer>().material.color = Color.green;
 			}
-
-			GameEntry.Entity.ShowEntity<HPBarEntity>(_playerData.HPEntityId,
-				"Assets/GameMain/Entities/HP_Bar.prefab", "DefaultEntityGroup", _playerData);
+			_playerData.ShowHP();
 		}
 
 		protected internal override void OnHide(bool isShutdown, object userData)
@@ -102,11 +90,13 @@ namespace MO.Unity3d.Entities
 				}
 				var position = new Vector3(transform.position.x, 0, transform.position.z) + _offset;
 				Camera.main.transform.position = position;
+				GameUser.Instance.Position = transform.position;
+				GameUser.Instance.Rotate = transform.eulerAngles;
 			}
 			else
             {
-				var destDirection = new Vector3(_playerData.ServerRX, _playerData.ServerRY, _playerData.ServerRZ);
-				if (Vector3.Distance(transform.eulerAngles, destDirection) > 0.0004f)
+				var destDirection = _playerData.Rotate;
+				if (Vector3.Distance(transform.eulerAngles, _playerData.Rotate) > 0.0004f)
 				{
 					transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), _rotateSpeed * Time.deltaTime);
 				}
@@ -114,7 +104,7 @@ namespace MO.Unity3d.Entities
 				float distance = 0.0f;
 				float deltaSpeed = (_positionSpeed * Time.deltaTime);
 
-				var destPosition = new Vector3(_playerData.ServerX, _playerData.ServerY, _playerData.ServerZ);
+				var destPosition = _playerData.Position;
 				distance = Vector3.Distance(destPosition, transform.position);
 
 				if (distance > 0.01f)
@@ -150,7 +140,7 @@ namespace MO.Unity3d.Entities
 			else
 			{
 				//500ms误差修正玩家位置
-				var destDirection = new Vector3(_playerData.ServerRX, _playerData.ServerRY, _playerData.ServerRZ);
+				var destDirection = _playerData.Rotate;
 				if (Vector3.Distance(transform.eulerAngles, destDirection) > _rotateSpeed / 2)
 				{
 					transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(destDirection), _rotateSpeed * Time.deltaTime);
@@ -159,7 +149,7 @@ namespace MO.Unity3d.Entities
 				float distance = 0.0f;
 				float deltaSpeed = (_positionSpeed * Time.deltaTime);
 
-				var destPosition = new Vector3(_playerData.ServerX, _playerData.ServerY, _playerData.ServerZ);
+				var destPosition = _playerData.Position;
 				distance = Vector3.Distance(destPosition, transform.position);
 
 				if (distance > _positionSpeed / 2)

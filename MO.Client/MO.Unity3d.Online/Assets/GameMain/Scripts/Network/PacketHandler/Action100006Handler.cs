@@ -22,7 +22,8 @@ namespace MO.Unity3d.Network.PacketHandler
             if (rep.UserId == GameUser.Instance.UserId)
             {
                 GlobalGame.IsGameStart = false;
-                GameUser.Instance.Channel.Close();
+                GlobalGame.Channel.Close();
+                GlobalGame.FrameCount = 0;
                 GameUser.Instance.Players.Clear();
             }
             else

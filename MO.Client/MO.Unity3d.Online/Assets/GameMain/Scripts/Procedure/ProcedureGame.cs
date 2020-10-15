@@ -1,6 +1,7 @@
 ﻿using GameFramework.Event;
 using GameFramework.Procedure;
 using MO.Unity3d.Data;
+using MO.Unity3d.UIExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,16 +31,16 @@ namespace MO.Unity3d.Procedure
             Vector3 eulerAngles = new Vector3(45, 0, 0);
             Camera.main.transform.eulerAngles = eulerAngles;
 
-            GameEntry.Scene.LoadScene("Assets/GameMain/Scenes/Game.unity");
-            _formId = GameEntry.UI.OpenUIForm("Assets/GameMain/UI/UIForms/GameForm.prefab", "DefaultUIGroup", procedureOwner);
+            GameEntry.Scene.LoadGameScene();
+            _formId = GameEntry.UI.OpenGameForm();
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
-            GameEntry.Scene.UnloadScene("Assets/GameMain/Scenes/Game.unity");
-            GameEntry.UI.CloseUIForm(_formId);
             GameEntry.Entity.HideAllLoadedEntities();
+            GameEntry.UI.CloseUIForm(_formId);
+            GameEntry.Scene.UnLoadGameScene();
         }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)

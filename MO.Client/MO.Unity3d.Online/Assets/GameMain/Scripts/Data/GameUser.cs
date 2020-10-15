@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Text;
+using UnityEngine;
 
 namespace MO.Unity3d.Data
 {
@@ -16,14 +17,10 @@ namespace MO.Unity3d.Data
         {
             Instance = new GameUser();
         }
-
-        public INetworkChannel Channel { get; private set; }
         public Dictionary<long, PlayerData> Players { get; private set; }
         public PlayerData CurPlayer { get; private set; }
         public void Initiation(PlayerData playerData)
         {
-            if (Channel == null)
-                Channel = GameEntry.Network.CreateNetworkChannel("Global", ServiceType.Tcp, new NetworkChannelHelper());
             if (Players == null)
                 Players = new Dictionary<long, PlayerData>();
             else
@@ -44,12 +41,9 @@ namespace MO.Unity3d.Data
                 return _msgId;
             }
         }
-        public int FrameCount { get; set; }
         public int RoomId { get; set; }
 
-        public void SendPackage(IMessage content)
-        {
-            Channel.Send(content.BuildPacket());
-        }
+        public Vector3 Position { get; set; }
+        public Vector3 Rotate { get; set; }
     }
 }

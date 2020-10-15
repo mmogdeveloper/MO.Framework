@@ -33,7 +33,7 @@ namespace MO.Unity3d.UI
         public void OnExit()
         {
             C2S100005 content = new C2S100005();
-            GameUser.Instance.SendPackage(content);
+            GlobalGame.SendPackage(content);
         }
     }
 }

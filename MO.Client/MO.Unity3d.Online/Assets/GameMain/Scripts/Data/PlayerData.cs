@@ -1,6 +1,8 @@
-﻿using MO.Protocol;
+﻿using MO.Algorithm.OnlineDemo;
+using MO.Protocol;
 using MO.Unity3d.Entities;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace MO.Unity3d.Data
 {
@@ -17,16 +19,13 @@ namespace MO.Unity3d.Data
         public long UserId { get; set; }
         public string UserName { get; set; }
 
-        public float ServerX { get; set; }
-        public float ServerY { get; set; }
-        public float ServerZ { get; set; }
-        public float ServerRX { get; set; }
-        public float ServerRY { get; set; }
-        public float ServerRZ { get; set; }
+        public Vector3 Position { get; set; }
+        public Vector3 Rotate { get; set; }
+
         public int KillCount { get; set; }
         public int DeadCount { get; set; }
 
-        public int MaxBlood { get { return 1300; } }
+        public int MaxBlood { get { return DemoValue.MaxBlood; } }
         public int CurBlood { get; set; }
         public int EntityId { get { return (int)UserId * 100 + 1; } }
         public int HPEntityId { get { return (int)UserId * 100 + 2; } }
@@ -37,62 +36,17 @@ namespace MO.Unity3d.Data
         public byte JumpState { get; set; }
 
         public byte ResetState { get; set; }
-
-        private bool ShowSkill(int entityId, float distance)
-        {
-            if (GameEntry.Entity.HasEntity(entityId))
-                return false;
-
-            var skillData = new SkillData();
-            skillData.PlayerData = this;
-            skillData.Distance = distance;
-            GameEntry.Entity.ShowEntity<SkillEntity>(entityId,
-                "Assets/GameMain/Entities/Skill.prefab", "DefaultEntityGroup", skillData);
-            return true;
-        }
-
         public void Jump()
         {
             JumpState = 1;
-        }
-
-        public bool ShowSkillC()
-        {
-            return ShowSkill(SkillCEntityId, 10);
-        }
-
-        public bool ShowSkillX()
-        {
-            return ShowSkill(SkillXEntityId, 6);
-        }
-
-        public bool ShowSkillZ()
-        {
-            return ShowSkill(SkillZEntityId, 3);
-        }
-
-        public bool ShowBigSkill()
-        {
-            if (GameEntry.Entity.HasEntity(SkillBigEntityId))
-                return false;
-
-            var skillData = new SkillData();
-            skillData.PlayerData = this;
-            GameEntry.Entity.ShowEntity<BigSkillEntity>(SkillBigEntityId,
-                "Assets/GameMain/Entities/BigSkill.prefab", "DefaultEntityGroup", skillData);
-            return true;
         }
 
         public void Reset()
         {
             ResetState = 1;
             CurBlood = MaxBlood;
-            ServerX = 0;
-            ServerY = 0;
-            ServerZ = 0;
-            ServerRX = 0;
-            ServerRY = 0;
-            ServerRZ = 0;
+            Position = new Vector3();
+            Rotate = new Vector3();
         }
     }
 }

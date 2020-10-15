@@ -26,10 +26,10 @@ namespace MO.Unity3d.Network.PacketHandler
             PlayerData playerData;
             if (GameUser.Instance.Players.TryGetValue(rep.UserId, out playerData))
             {
-                GameEntry.Entity.ShowEntity<PlayerChatEntity>(
-                    GameEntry.Entity.GenerateSerialId(),
-                    "Assets/GameMain/Entities/PlayerChatMsg.prefab",
-                    "DefaultEntityGroup", new MsgUserData(playerData.UserName, rep.Content));
+                //GameEntry.Entity.ShowEntity<PlayerChatEntity>(
+                //    GameEntry.Entity.GenerateSerialId(),
+                //    "Assets/GameMain/Entities/PlayerChatMsg.prefab",
+                //    "DefaultEntityGroup", new MsgUserData(playerData.UserName, rep.Content));
             }
         }
     }

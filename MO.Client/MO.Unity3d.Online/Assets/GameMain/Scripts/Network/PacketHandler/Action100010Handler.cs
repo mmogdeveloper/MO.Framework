@@ -2,6 +2,8 @@
 using MO.Algorithm.OnlineDemo;
 using MO.Protocol;
 using MO.Unity3d.Data;
+using MO.Unity3d.UIExtension;
+using UnityEngine;
 using UnityGameFramework.Runtime;
 
 namespace MO.Unity3d.Network.PacketHandler
@@ -16,15 +18,15 @@ namespace MO.Unity3d.Network.PacketHandler
         public void Handle(object sender, Packet packet)
         {
             S2C100010 rep = S2C100010.Parser.ParseFrom(((MOPacket)packet).Packet.Content);
-            if (GameUser.Instance.FrameCount != 0)
+            if (GlobalGame.FrameCount != 0)
             {
-                var nextFrameCount = GameUser.Instance.FrameCount + 1;
+                var nextFrameCount = GlobalGame.FrameCount + 1;
                 if (nextFrameCount != rep.FrameCount)
                 {
                     Log.Info("丢帧");
                 }
             }
-            GameUser.Instance.FrameCount = rep.FrameCount;
+            GlobalGame.FrameCount = rep.FrameCount;
             PlayerData player;
             foreach (var command in rep.Commands)
             {
@@ -33,12 +35,8 @@ namespace MO.Unity3d.Network.PacketHandler
                     if (command.CommandId == (int)CommandType.Transform)
                     {
                         var transform = TransformInfo.Parser.ParseFrom(command.CommandContent);
-                        player.ServerX = transform.X;
-                        player.ServerY = transform.Y;
-                        player.ServerZ = transform.Z;
-                        player.ServerRX = transform.RX;
-                        player.ServerRY = transform.RY;
-                        player.ServerRZ = transform.RZ;
+                        player.Position = new Vector3(transform.X, transform.Y, transform.Z);
+                        player.Rotate = new Vector3(transform.RX, transform.RY, transform.RZ);
                     }
                     else
                     {

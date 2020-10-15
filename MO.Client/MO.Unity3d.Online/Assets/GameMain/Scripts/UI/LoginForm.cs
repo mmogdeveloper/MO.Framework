@@ -31,7 +31,8 @@ namespace MO.Unity3d.UI
             C2S1003 content = new C2S1003();
             content.DeviceId = txtUserName.text;
             content.MobileType = 1;
-            var url = string.Format("http://localhost:8001/api/c2s1003?data={0}",
+            var url = string.Format("{0}/api/c2s1003?data={1}",
+                GlobalGame.LoginUrl,
                 content.ToByteString().ToBase64());
             GameEntry.WebRequest.AddWebRequest(url, typeof(C2S1003));
         }

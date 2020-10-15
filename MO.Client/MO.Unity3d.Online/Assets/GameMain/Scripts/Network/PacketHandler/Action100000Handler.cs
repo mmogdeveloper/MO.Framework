@@ -20,7 +20,7 @@ namespace MO.Unity3d.Network.PacketHandler
         {
             Log.Info("{0},网关连接成功", GameUser.Instance.UserName);
             GlobalGame.IsGameStart = true;
-            GameUser.Instance.SendPackage(new C2S100001() { RoomId = GameUser.Instance.RoomId });
+            GlobalGame.SendPackage(new C2S100001() { RoomId = GameUser.Instance.RoomId });
         }
     }
 }

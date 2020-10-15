@@ -24,17 +24,17 @@ namespace MO.Unity3d.UI
             var textCom = this.GetComponentInChildren<InputField>();
             if (string.IsNullOrEmpty(textCom.text))
                 return;
-            GameEntry.Entity.ShowEntity<SelfChatEntity>(
-                GameEntry.Entity.GenerateSerialId(),
-                "Assets/GameMain/Entities/SelfChatMsg.prefab",
-                "DefaultEntityGroup", new MsgUserData(GameUser.Instance.UserName, textCom.text));
-            GameUser.Instance.SendPackage(new C2S100007() { Content = textCom.text });
+            //GameEntry.Entity.ShowEntity<SelfChatEntity>(
+            //    GameEntry.Entity.GenerateSerialId(),
+            //    "Assets/GameMain/Entities/SelfChatMsg.prefab",
+            //    "DefaultEntityGroup", new MsgUserData(GameUser.Instance.UserName, textCom.text));
+            GlobalGame.SendPackage(new C2S100007() { Content = textCom.text });
             textCom.text = "";
         }
 
         public void OnClose()
         {
-            GameUser.Instance.SendPackage(new C2S100005() { RoomId = 100000 });
+            GlobalGame.SendPackage(new C2S100005() { RoomId = 100000 });
         }
     }
 }

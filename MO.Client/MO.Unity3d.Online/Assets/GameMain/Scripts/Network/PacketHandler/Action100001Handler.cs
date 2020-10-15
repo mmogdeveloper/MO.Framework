@@ -1,11 +1,7 @@
 ﻿using GameFramework.Network;
 using MO.Protocol;
 using MO.Unity3d.Data;
-using MO.Unity3d.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using MO.Unity3d.UIExtension;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
@@ -27,16 +23,9 @@ namespace MO.Unity3d.Network.PacketHandler
             {
                 if (GameUser.Instance.UserId == item.UserId)
                 {
-                    GameUser.Instance.CurPlayer.ServerX = item.Vector.X;
-                    GameUser.Instance.CurPlayer.ServerY = item.Vector.Y;
-                    GameUser.Instance.CurPlayer.ServerZ = item.Vector.Z;
-                    GameUser.Instance.CurPlayer.ServerRX = item.Rotation.X;
-                    GameUser.Instance.CurPlayer.ServerRY = item.Rotation.Y;
-                    GameUser.Instance.CurPlayer.ServerRZ = item.Rotation.Z;
-                    GameEntry.Entity.ShowEntity<PlayerEntity>(
-                        GameUser.Instance.CurPlayer.EntityId,
-                        "Assets/GameMain/Entities/Self.prefab", "DefaultEntityGroup",
-                        GameUser.Instance.CurPlayer);
+                    GameUser.Instance.CurPlayer.Position = new Vector3(item.Vector.X, item.Vector.Y, item.Vector.Z);
+                    GameUser.Instance.CurPlayer.Rotate = new Vector3(item.Rotation.X, item.Rotation.Y, item.Rotation.Z);
+                    GameUser.Instance.CurPlayer.ShowEntity();
                 }
                 else
                 {
@@ -45,15 +34,10 @@ namespace MO.Unity3d.Network.PacketHandler
                         var newPlayer = new PlayerData();
                         newPlayer.UserId = item.UserId;
                         newPlayer.UserName = item.UserName;
-                        newPlayer.ServerX = item.Vector.X;
-                        newPlayer.ServerY = item.Vector.Y;
-                        newPlayer.ServerZ = item.Vector.Z;
-                        newPlayer.ServerRX = item.Rotation.X;
-                        newPlayer.ServerRY = item.Rotation.Y;
-                        newPlayer.ServerRZ = item.Rotation.Z;
+                        newPlayer.Position = new Vector3(item.Vector.X, item.Vector.Y, item.Vector.Z);
+                        newPlayer.Rotate = new Vector3(item.Rotation.X, item.Rotation.Y, item.Rotation.Z);
                         GameUser.Instance.Players.Add(item.UserId, newPlayer);
-                        GameEntry.Entity.ShowEntity<PlayerEntity>(newPlayer.EntityId,
-                            "Assets/GameMain/Entities/Player.prefab", "DefaultEntityGroup", newPlayer);
+                        newPlayer.ShowEntity();
                     }
                 }
             }

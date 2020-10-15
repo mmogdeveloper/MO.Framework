@@ -26,11 +26,11 @@ namespace MO.Unity3d.Entities
         {
             base.OnShow(userData);
 
-			var x = (float)(Math.Sin(Math.PI * (_skillData.PlayerData.ServerRY / 180)));
-			var z = (float)(Math.Cos(Math.PI * (_skillData.PlayerData.ServerRY / 180)));
+			var x = (float)(Math.Sin(Math.PI * (_skillData.PlayerData.Rotate.y / 180)));
+			var z = (float)(Math.Cos(Math.PI * (_skillData.PlayerData.Rotate.y / 180)));
 			
 			var destination = new Vector3(x, 0, z) * _skillData.Distance;
-			var skilldestination = new Vector3(_skillData.PlayerData.ServerX, _skillData.PlayerData.ServerY, _skillData.PlayerData.ServerZ) + destination;
+			var skilldestination = _skillData.PlayerData.Position + destination;
 			transform.position = skilldestination;
 
 			//transform.Rotate(new Vector3(_skillData.PlayerData.ServerRX, _skillData.PlayerData.ServerRY, _skillData.PlayerData.ServerRZ));

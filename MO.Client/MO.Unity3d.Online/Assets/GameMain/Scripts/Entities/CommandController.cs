@@ -9,12 +9,8 @@ namespace MO.Unity3d.Entities
 {
     public class CommandController : MonoBehaviour
     {
-		private float curX;
-		private float curY;
-		private float curZ;
-		private float curRX;
-		private float curRY;
-		private float curRZ;
+		private Vector3 position;
+		private Vector3 rotate;
 
 		private bool Compare(float x, float y)
 		{
@@ -27,28 +23,20 @@ namespace MO.Unity3d.Entities
 
 		void FixedUpdate()
 		{
-			if (!Compare(transform.position.x, curX) ||
-				!Compare(transform.position.y, curY) ||
-				!Compare(transform.position.z, curZ) ||
-				!Compare(transform.rotation.eulerAngles.x, curRX) ||
-				!Compare(transform.rotation.eulerAngles.y, curRY) ||
-				!Compare(transform.rotation.eulerAngles.z, curRZ))
+			if (Vector3.Distance(position, GameUser.Instance.Position) > 0.01f ||
+				Vector3.Distance(rotate, GameUser.Instance.Rotate) > 0.0004f)
 			{
-				curX = transform.position.x;
-				curY = transform.position.y;
-				curZ = transform.position.z;
-				curRX = transform.rotation.eulerAngles.x;
-				curRY = transform.rotation.eulerAngles.y;
-				curRZ = transform.rotation.eulerAngles.z;
+				position = GameUser.Instance.Position;
+				rotate = GameUser.Instance.Rotate;
 
 				var transformInfo = new TransformInfo()
 				{
-					X = curX,
-					Y = curY,
-					Z = curZ,
-					RX = curRX,
-					RY = curRY,
-					RZ = curRZ
+					X = position.x,
+					Y = position.y,
+					Z = position.z,
+					RX = rotate.x,
+					RY = rotate.y,
+					RZ = rotate.z
 				};
 				var command = new CommandInfo();
 				command.CommandId = (int)CommandType.Transform;
@@ -64,7 +52,7 @@ namespace MO.Unity3d.Entities
 					var command = GameUser.Instance.CurPlayer.SendCommands.Dequeue();
 					content.Commands.Add(command);
 				}
-				GameUser.Instance.SendPackage(content);
+				GlobalGame.SendPackage(content);
 			}
 		}
 	}

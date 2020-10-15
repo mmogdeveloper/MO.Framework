@@ -27,7 +27,7 @@ https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
 CSRedisCore 操作redis  
 https://github.com/2881099/csredis  
 Google.Protobuf 通信协议  
-https://github.com/protocolbuffers/protobuf  
+https://github.com/protocolbuffers/protobuf/tree/master/csharp  
 NLog 系统日志  
 https://github.com/NLog/NLog  
 #### 安装教程

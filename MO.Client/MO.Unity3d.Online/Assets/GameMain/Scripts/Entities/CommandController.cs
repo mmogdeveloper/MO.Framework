@@ -12,15 +12,6 @@ namespace MO.Unity3d.Entities
 		private Vector3 position;
 		private Vector3 rotate;
 
-		private bool Compare(float x, float y)
-		{
-			if (Math.Abs(x - y) < 0.00001)
-			{
-				return true;
-			}
-			return false;
-		}
-
 		void FixedUpdate()
 		{
 			if (Vector3.Distance(position, GameUser.Instance.Position) > 0.01f ||

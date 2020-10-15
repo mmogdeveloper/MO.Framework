@@ -35,8 +35,8 @@ namespace MO.Unity3d.Network.PacketHandler
                     if (command.CommandId == (int)CommandType.Transform)
                     {
                         var transform = TransformInfo.Parser.ParseFrom(command.CommandContent);
-                        player.Position = new Vector3(transform.X, transform.Y, transform.Z);
-                        player.Rotate = new Vector3(transform.RX, transform.RY, transform.RZ);
+                        player.Position = new Vector3(transform.Position.X, transform.Position.Y, transform.Position.Z);
+                        player.Rotate = new Vector3(transform.Rotation.X, transform.Rotation.Y, transform.Rotation.Z);
                     }
                     else
                     {

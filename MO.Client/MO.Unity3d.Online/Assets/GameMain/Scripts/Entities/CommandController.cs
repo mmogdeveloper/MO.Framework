@@ -22,12 +22,18 @@ namespace MO.Unity3d.Entities
 
 				var transformInfo = new TransformInfo()
 				{
-					X = position.x,
-					Y = position.y,
-					Z = position.z,
-					RX = rotate.x,
-					RY = rotate.y,
-					RZ = rotate.z
+					Position = new MsgVector3()
+					{
+						X = position.x,
+						Y = position.y,
+						Z = position.z
+					},
+					Rotation = new MsgVector3()
+					{
+						X = rotate.x,
+						Y = rotate.y,
+						Z = rotate.z
+					}
 				};
 				var command = new CommandInfo();
 				command.CommandId = (int)CommandType.Transform;

@@ -28,22 +28,16 @@ message MsgVector3{
 	float Z = 3;
 }
 
-message MsgRotation{
-	float X = 1;
-	float Y = 2;
-	float Z = 3;
-}
-
-message UserPoint{
+message UserTransform{
 	int64 UserId = 1;
 	string UserName = 2;
-	MsgVector3 Vector = 3;
-	MsgRotation Rotation = 4; 
+	MsgVector3 Position = 3;
+	MsgVector3 Rotation = 4; 
 }
 
 message S2C100001{
 	int32 RoomId = 1;
-	repeated UserPoint UserPoints = 2;
+	repeated UserTransform UserTransforms = 2;
 }
 
 //通知加入频道
@@ -51,17 +45,6 @@ message S2C100002{
 	int64 UserId = 1;
 	string UserName = 2;
 	int32 RoomId = 3;
-}
-
-//移动
-message C2S100003{
-	MsgVector3 Vector = 1;
-	MsgRotation Rotation = 2;
-}
-
-//通知移动
-message S2C100004{
-	repeated UserPoint UserPoints = 1;
 }
 
 //离开频道
@@ -87,12 +70,8 @@ message S2C100008{
 }
 
 message TransformInfo{
-	float X = 1;
-	float Y = 2;
-	float Z = 3;
-	float RX = 4;
-	float RY = 5;
-	float RZ = 6;
+	MsgVector3 Position = 1;
+	MsgVector3 Rotation = 2;
 }
 
 message StateInfo{

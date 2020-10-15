@@ -26,31 +26,27 @@ namespace MO.Protocol {
             "MSIqCgZTMkMxMDASDgoGVXNlcklkGAEgASgDEhAKCElzT25saW5lGAIgASgI",
             "IgsKCUMyUzEwMDAwMCIbCglDMlMxMDAwMDESDgoGUm9vbUlkGAEgASgFIi0K",
             "Ck1zZ1ZlY3RvcjMSCQoBWBgBIAEoAhIJCgFZGAIgASgCEgkKAVoYAyABKAIi",
-            "LgoLTXNnUm90YXRpb24SCQoBWBgBIAEoAhIJCgFZGAIgASgCEgkKAVoYAyAB",
-            "KAIiggEKCVVzZXJQb2ludBIOCgZVc2VySWQYASABKAMSEAoIVXNlck5hbWUY",
-            "AiABKAkSJwoGVmVjdG9yGAMgASgLMhcuTU8uUHJvdG9jb2wuTXNnVmVjdG9y",
-            "MxIqCghSb3RhdGlvbhgEIAEoCzIYLk1PLlByb3RvY29sLk1zZ1JvdGF0aW9u",
-            "IkcKCVMyQzEwMDAwMRIOCgZSb29tSWQYASABKAUSKgoKVXNlclBvaW50cxgC",
-            "IAMoCzIWLk1PLlByb3RvY29sLlVzZXJQb2ludCI9CglTMkMxMDAwMDISDgoG",
-            "VXNlcklkGAEgASgDEhAKCFVzZXJOYW1lGAIgASgJEg4KBlJvb21JZBgDIAEo",
-            "BSJgCglDMlMxMDAwMDMSJwoGVmVjdG9yGAEgASgLMhcuTU8uUHJvdG9jb2wu",
-            "TXNnVmVjdG9yMxIqCghSb3RhdGlvbhgCIAEoCzIYLk1PLlByb3RvY29sLk1z",
-            "Z1JvdGF0aW9uIjcKCVMyQzEwMDAwNBIqCgpVc2VyUG9pbnRzGAEgAygLMhYu",
-            "TU8uUHJvdG9jb2wuVXNlclBvaW50IhsKCUMyUzEwMDAwNRIOCgZSb29tSWQY",
-            "ASABKAUiKwoJUzJDMTAwMDA2Eg4KBlVzZXJJZBgBIAEoAxIOCgZSb29tSWQY",
-            "AiABKAUiHAoJQzJTMTAwMDA3Eg8KB0NvbnRlbnQYASABKAkiLAoJUzJDMTAw",
-            "MDA4Eg4KBlVzZXJJZBgBIAEoAxIPCgdDb250ZW50GAIgASgJIlQKDVRyYW5z",
-            "Zm9ybUluZm8SCQoBWBgBIAEoAhIJCgFZGAIgASgCEgkKAVoYAyABKAISCgoC",
-            "UlgYBCABKAISCgoCUlkYBSABKAISCgoCUloYBiABKAIiVQoJU3RhdGVJbmZv",
-            "Eg4KBlVzZXJJZBgBIAEoAxISCgpCbG9vZFZhbHVlGAIgASgFEhEKCUtpbGxD",
-            "b3VudBgDIAEoBRIRCglEZWFkQ291bnQYBCABKAUiOwoNU3RhdGVJbmZvTGlz",
-            "dBIqCgpTdGF0ZUluZm9zGAEgAygLMhYuTU8uUHJvdG9jb2wuU3RhdGVJbmZv",
-            "IkgKC0NvbW1hbmRJbmZvEg4KBlVzZXJJZBgBIAEoAxIRCglDb21tYW5kSWQY",
-            "AiABKAUSFgoOQ29tbWFuZENvbnRlbnQYAyABKAwiNwoJQzJTMTAwMDA5EioK",
-            "CENvbW1hbmRzGAEgAygLMhguTU8uUHJvdG9jb2wuQ29tbWFuZEluZm8iYgoJ",
-            "UzJDMTAwMDEwEhIKCkZyYW1lQ291bnQYASABKAUSKgoIQ29tbWFuZHMYAiAD",
-            "KAsyGC5NTy5Qcm90b2NvbC5Db21tYW5kSW5mbxIVCg1Db21tYW5kUmVzdWx0",
-            "GAMgASgMYgZwcm90bzM="));
+            "hwEKDVVzZXJUcmFuc2Zvcm0SDgoGVXNlcklkGAEgASgDEhAKCFVzZXJOYW1l",
+            "GAIgASgJEikKCFBvc2l0aW9uGAMgASgLMhcuTU8uUHJvdG9jb2wuTXNnVmVj",
+            "dG9yMxIpCghSb3RhdGlvbhgEIAEoCzIXLk1PLlByb3RvY29sLk1zZ1ZlY3Rv",
+            "cjMiTwoJUzJDMTAwMDAxEg4KBlJvb21JZBgBIAEoBRIyCg5Vc2VyVHJhbnNm",
+            "b3JtcxgCIAMoCzIaLk1PLlByb3RvY29sLlVzZXJUcmFuc2Zvcm0iPQoJUzJD",
+            "MTAwMDAyEg4KBlVzZXJJZBgBIAEoAxIQCghVc2VyTmFtZRgCIAEoCRIOCgZS",
+            "b29tSWQYAyABKAUiGwoJQzJTMTAwMDA1Eg4KBlJvb21JZBgBIAEoBSIrCglT",
+            "MkMxMDAwMDYSDgoGVXNlcklkGAEgASgDEg4KBlJvb21JZBgCIAEoBSIcCglD",
+            "MlMxMDAwMDcSDwoHQ29udGVudBgBIAEoCSIsCglTMkMxMDAwMDgSDgoGVXNl",
+            "cklkGAEgASgDEg8KB0NvbnRlbnQYAiABKAkiZQoNVHJhbnNmb3JtSW5mbxIp",
+            "CghQb3NpdGlvbhgBIAEoCzIXLk1PLlByb3RvY29sLk1zZ1ZlY3RvcjMSKQoI",
+            "Um90YXRpb24YAiABKAsyFy5NTy5Qcm90b2NvbC5Nc2dWZWN0b3IzIlUKCVN0",
+            "YXRlSW5mbxIOCgZVc2VySWQYASABKAMSEgoKQmxvb2RWYWx1ZRgCIAEoBRIR",
+            "CglLaWxsQ291bnQYAyABKAUSEQoJRGVhZENvdW50GAQgASgFIjsKDVN0YXRl",
+            "SW5mb0xpc3QSKgoKU3RhdGVJbmZvcxgBIAMoCzIWLk1PLlByb3RvY29sLlN0",
+            "YXRlSW5mbyJICgtDb21tYW5kSW5mbxIOCgZVc2VySWQYASABKAMSEQoJQ29t",
+            "bWFuZElkGAIgASgFEhYKDkNvbW1hbmRDb250ZW50GAMgASgMIjcKCUMyUzEw",
+            "MDAwORIqCghDb21tYW5kcxgBIAMoCzIYLk1PLlByb3RvY29sLkNvbW1hbmRJ",
+            "bmZvImIKCVMyQzEwMDAxMBISCgpGcmFtZUNvdW50GAEgASgFEioKCENvbW1h",
+            "bmRzGAIgAygLMhguTU8uUHJvdG9jb2wuQ29tbWFuZEluZm8SFQoNQ29tbWFu",
+            "ZFJlc3VsdBgDIAEoDGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -59,17 +55,14 @@ namespace MO.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100000), global::MO.Protocol.C2S100000.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100001), global::MO.Protocol.C2S100001.Parser, new[]{ "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.MsgVector3), global::MO.Protocol.MsgVector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.MsgRotation), global::MO.Protocol.MsgRotation.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.UserPoint), global::MO.Protocol.UserPoint.Parser, new[]{ "UserId", "UserName", "Vector", "Rotation" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100001), global::MO.Protocol.S2C100001.Parser, new[]{ "RoomId", "UserPoints" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.UserTransform), global::MO.Protocol.UserTransform.Parser, new[]{ "UserId", "UserName", "Position", "Rotation" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100001), global::MO.Protocol.S2C100001.Parser, new[]{ "RoomId", "UserTransforms" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100002), global::MO.Protocol.S2C100002.Parser, new[]{ "UserId", "UserName", "RoomId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100003), global::MO.Protocol.C2S100003.Parser, new[]{ "Vector", "Rotation" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100004), global::MO.Protocol.S2C100004.Parser, new[]{ "UserPoints" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100005), global::MO.Protocol.C2S100005.Parser, new[]{ "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100006), global::MO.Protocol.S2C100006.Parser, new[]{ "UserId", "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.C2S100007), global::MO.Protocol.C2S100007.Parser, new[]{ "Content" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.S2C100008), global::MO.Protocol.S2C100008.Parser, new[]{ "UserId", "Content" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.TransformInfo), global::MO.Protocol.TransformInfo.Parser, new[]{ "X", "Y", "Z", "RX", "RY", "RZ" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.TransformInfo), global::MO.Protocol.TransformInfo.Parser, new[]{ "Position", "Rotation" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.StateInfo), global::MO.Protocol.StateInfo.Parser, new[]{ "UserId", "BloodValue", "KillCount", "DeadCount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.StateInfoList), global::MO.Protocol.StateInfoList.Parser, new[]{ "StateInfos" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MO.Protocol.CommandInfo), global::MO.Protocol.CommandInfo.Parser, new[]{ "UserId", "CommandId", "CommandContent" }, null, null, null),
@@ -706,10 +699,10 @@ namespace MO.Protocol {
 
   }
 
-  public sealed partial class MsgRotation : pb::IMessage<MsgRotation> {
-    private static readonly pb::MessageParser<MsgRotation> _parser = new pb::MessageParser<MsgRotation>(() => new MsgRotation());
+  public sealed partial class UserTransform : pb::IMessage<UserTransform> {
+    private static readonly pb::MessageParser<UserTransform> _parser = new pb::MessageParser<UserTransform>(() => new UserTransform());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<MsgRotation> Parser { get { return _parser; } }
+    public static pb::MessageParser<UserTransform> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -722,196 +715,23 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MsgRotation() {
+    public UserTransform() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MsgRotation(MsgRotation other) : this() {
-      x_ = other.x_;
-      y_ = other.y_;
-      z_ = other.z_;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public MsgRotation Clone() {
-      return new MsgRotation(this);
-    }
-
-    /// <summary>Field number for the "X" field.</summary>
-    public const int XFieldNumber = 1;
-    private float x_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float X {
-      get { return x_; }
-      set {
-        x_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Y" field.</summary>
-    public const int YFieldNumber = 2;
-    private float y_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float Y {
-      get { return y_; }
-      set {
-        y_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Z" field.</summary>
-    public const int ZFieldNumber = 3;
-    private float z_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float Z {
-      get { return z_; }
-      set {
-        z_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as MsgRotation);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(MsgRotation other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (X != other.X) return false;
-      if (Y != other.Y) return false;
-      if (Z != other.Z) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (X != 0F) hash ^= X.GetHashCode();
-      if (Y != 0F) hash ^= Y.GetHashCode();
-      if (Z != 0F) hash ^= Z.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (X != 0F) {
-        output.WriteRawTag(13);
-        output.WriteFloat(X);
-      }
-      if (Y != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Y);
-      }
-      if (Z != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(Z);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (X != 0F) {
-        size += 1 + 4;
-      }
-      if (Y != 0F) {
-        size += 1 + 4;
-      }
-      if (Z != 0F) {
-        size += 1 + 4;
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(MsgRotation other) {
-      if (other == null) {
-        return;
-      }
-      if (other.X != 0F) {
-        X = other.X;
-      }
-      if (other.Y != 0F) {
-        Y = other.Y;
-      }
-      if (other.Z != 0F) {
-        Z = other.Z;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 13: {
-            X = input.ReadFloat();
-            break;
-          }
-          case 21: {
-            Y = input.ReadFloat();
-            break;
-          }
-          case 29: {
-            Z = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class UserPoint : pb::IMessage<UserPoint> {
-    private static readonly pb::MessageParser<UserPoint> _parser = new pb::MessageParser<UserPoint>(() => new UserPoint());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<UserPoint> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UserPoint() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UserPoint(UserPoint other) : this() {
+    public UserTransform(UserTransform other) : this() {
       userId_ = other.userId_;
       userName_ = other.userName_;
-      Vector = other.vector_ != null ? other.Vector.Clone() : null;
+      Position = other.position_ != null ? other.Position.Clone() : null;
       Rotation = other.rotation_ != null ? other.Rotation.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UserPoint Clone() {
-      return new UserPoint(this);
+    public UserTransform Clone() {
+      return new UserTransform(this);
     }
 
     /// <summary>Field number for the "UserId" field.</summary>
@@ -936,22 +756,22 @@ namespace MO.Protocol {
       }
     }
 
-    /// <summary>Field number for the "Vector" field.</summary>
-    public const int VectorFieldNumber = 3;
-    private global::MO.Protocol.MsgVector3 vector_;
+    /// <summary>Field number for the "Position" field.</summary>
+    public const int PositionFieldNumber = 3;
+    private global::MO.Protocol.MsgVector3 position_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::MO.Protocol.MsgVector3 Vector {
-      get { return vector_; }
+    public global::MO.Protocol.MsgVector3 Position {
+      get { return position_; }
       set {
-        vector_ = value;
+        position_ = value;
       }
     }
 
     /// <summary>Field number for the "Rotation" field.</summary>
     public const int RotationFieldNumber = 4;
-    private global::MO.Protocol.MsgRotation rotation_;
+    private global::MO.Protocol.MsgVector3 rotation_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::MO.Protocol.MsgRotation Rotation {
+    public global::MO.Protocol.MsgVector3 Rotation {
       get { return rotation_; }
       set {
         rotation_ = value;
@@ -960,11 +780,11 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as UserPoint);
+      return Equals(other as UserTransform);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(UserPoint other) {
+    public bool Equals(UserTransform other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -973,7 +793,7 @@ namespace MO.Protocol {
       }
       if (UserId != other.UserId) return false;
       if (UserName != other.UserName) return false;
-      if (!object.Equals(Vector, other.Vector)) return false;
+      if (!object.Equals(Position, other.Position)) return false;
       if (!object.Equals(Rotation, other.Rotation)) return false;
       return true;
     }
@@ -983,7 +803,7 @@ namespace MO.Protocol {
       int hash = 1;
       if (UserId != 0L) hash ^= UserId.GetHashCode();
       if (UserName.Length != 0) hash ^= UserName.GetHashCode();
-      if (vector_ != null) hash ^= Vector.GetHashCode();
+      if (position_ != null) hash ^= Position.GetHashCode();
       if (rotation_ != null) hash ^= Rotation.GetHashCode();
       return hash;
     }
@@ -1003,9 +823,9 @@ namespace MO.Protocol {
         output.WriteRawTag(18);
         output.WriteString(UserName);
       }
-      if (vector_ != null) {
+      if (position_ != null) {
         output.WriteRawTag(26);
-        output.WriteMessage(Vector);
+        output.WriteMessage(Position);
       }
       if (rotation_ != null) {
         output.WriteRawTag(34);
@@ -1022,8 +842,8 @@ namespace MO.Protocol {
       if (UserName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserName);
       }
-      if (vector_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Vector);
+      if (position_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
       }
       if (rotation_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Rotation);
@@ -1032,7 +852,7 @@ namespace MO.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(UserPoint other) {
+    public void MergeFrom(UserTransform other) {
       if (other == null) {
         return;
       }
@@ -1042,15 +862,15 @@ namespace MO.Protocol {
       if (other.UserName.Length != 0) {
         UserName = other.UserName;
       }
-      if (other.vector_ != null) {
-        if (vector_ == null) {
-          vector_ = new global::MO.Protocol.MsgVector3();
+      if (other.position_ != null) {
+        if (position_ == null) {
+          position_ = new global::MO.Protocol.MsgVector3();
         }
-        Vector.MergeFrom(other.Vector);
+        Position.MergeFrom(other.Position);
       }
       if (other.rotation_ != null) {
         if (rotation_ == null) {
-          rotation_ = new global::MO.Protocol.MsgRotation();
+          rotation_ = new global::MO.Protocol.MsgVector3();
         }
         Rotation.MergeFrom(other.Rotation);
       }
@@ -1073,15 +893,15 @@ namespace MO.Protocol {
             break;
           }
           case 26: {
-            if (vector_ == null) {
-              vector_ = new global::MO.Protocol.MsgVector3();
+            if (position_ == null) {
+              position_ = new global::MO.Protocol.MsgVector3();
             }
-            input.ReadMessage(vector_);
+            input.ReadMessage(position_);
             break;
           }
           case 34: {
             if (rotation_ == null) {
-              rotation_ = new global::MO.Protocol.MsgRotation();
+              rotation_ = new global::MO.Protocol.MsgVector3();
             }
             input.ReadMessage(rotation_);
             break;
@@ -1099,7 +919,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[7]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1117,7 +937,7 @@ namespace MO.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S2C100001(S2C100001 other) : this() {
       roomId_ = other.roomId_;
-      userPoints_ = other.userPoints_.Clone();
+      userTransforms_ = other.userTransforms_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1136,14 +956,14 @@ namespace MO.Protocol {
       }
     }
 
-    /// <summary>Field number for the "UserPoints" field.</summary>
-    public const int UserPointsFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::MO.Protocol.UserPoint> _repeated_userPoints_codec
-        = pb::FieldCodec.ForMessage(18, global::MO.Protocol.UserPoint.Parser);
-    private readonly pbc::RepeatedField<global::MO.Protocol.UserPoint> userPoints_ = new pbc::RepeatedField<global::MO.Protocol.UserPoint>();
+    /// <summary>Field number for the "UserTransforms" field.</summary>
+    public const int UserTransformsFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::MO.Protocol.UserTransform> _repeated_userTransforms_codec
+        = pb::FieldCodec.ForMessage(18, global::MO.Protocol.UserTransform.Parser);
+    private readonly pbc::RepeatedField<global::MO.Protocol.UserTransform> userTransforms_ = new pbc::RepeatedField<global::MO.Protocol.UserTransform>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::MO.Protocol.UserPoint> UserPoints {
-      get { return userPoints_; }
+    public pbc::RepeatedField<global::MO.Protocol.UserTransform> UserTransforms {
+      get { return userTransforms_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1160,7 +980,7 @@ namespace MO.Protocol {
         return true;
       }
       if (RoomId != other.RoomId) return false;
-      if(!userPoints_.Equals(other.userPoints_)) return false;
+      if(!userTransforms_.Equals(other.userTransforms_)) return false;
       return true;
     }
 
@@ -1168,7 +988,7 @@ namespace MO.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (RoomId != 0) hash ^= RoomId.GetHashCode();
-      hash ^= userPoints_.GetHashCode();
+      hash ^= userTransforms_.GetHashCode();
       return hash;
     }
 
@@ -1183,7 +1003,7 @@ namespace MO.Protocol {
         output.WriteRawTag(8);
         output.WriteInt32(RoomId);
       }
-      userPoints_.WriteTo(output, _repeated_userPoints_codec);
+      userTransforms_.WriteTo(output, _repeated_userTransforms_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1192,7 +1012,7 @@ namespace MO.Protocol {
       if (RoomId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
       }
-      size += userPoints_.CalculateSize(_repeated_userPoints_codec);
+      size += userTransforms_.CalculateSize(_repeated_userTransforms_codec);
       return size;
     }
 
@@ -1204,7 +1024,7 @@ namespace MO.Protocol {
       if (other.RoomId != 0) {
         RoomId = other.RoomId;
       }
-      userPoints_.Add(other.userPoints_);
+      userTransforms_.Add(other.userTransforms_);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1220,7 +1040,7 @@ namespace MO.Protocol {
             break;
           }
           case 18: {
-            userPoints_.AddEntriesFrom(input, _repeated_userPoints_codec);
+            userTransforms_.AddEntriesFrom(input, _repeated_userTransforms_codec);
             break;
           }
         }
@@ -1239,7 +1059,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[8]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1406,278 +1226,6 @@ namespace MO.Protocol {
   }
 
   /// <summary>
-  ///移动
-  /// </summary>
-  public sealed partial class C2S100003 : pb::IMessage<C2S100003> {
-    private static readonly pb::MessageParser<C2S100003> _parser = new pb::MessageParser<C2S100003>(() => new C2S100003());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<C2S100003> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[9]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S100003() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S100003(C2S100003 other) : this() {
-      Vector = other.vector_ != null ? other.Vector.Clone() : null;
-      Rotation = other.rotation_ != null ? other.Rotation.Clone() : null;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public C2S100003 Clone() {
-      return new C2S100003(this);
-    }
-
-    /// <summary>Field number for the "Vector" field.</summary>
-    public const int VectorFieldNumber = 1;
-    private global::MO.Protocol.MsgVector3 vector_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::MO.Protocol.MsgVector3 Vector {
-      get { return vector_; }
-      set {
-        vector_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Rotation" field.</summary>
-    public const int RotationFieldNumber = 2;
-    private global::MO.Protocol.MsgRotation rotation_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::MO.Protocol.MsgRotation Rotation {
-      get { return rotation_; }
-      set {
-        rotation_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as C2S100003);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(C2S100003 other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Vector, other.Vector)) return false;
-      if (!object.Equals(Rotation, other.Rotation)) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (vector_ != null) hash ^= Vector.GetHashCode();
-      if (rotation_ != null) hash ^= Rotation.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (vector_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Vector);
-      }
-      if (rotation_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Rotation);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (vector_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Vector);
-      }
-      if (rotation_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Rotation);
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(C2S100003 other) {
-      if (other == null) {
-        return;
-      }
-      if (other.vector_ != null) {
-        if (vector_ == null) {
-          vector_ = new global::MO.Protocol.MsgVector3();
-        }
-        Vector.MergeFrom(other.Vector);
-      }
-      if (other.rotation_ != null) {
-        if (rotation_ == null) {
-          rotation_ = new global::MO.Protocol.MsgRotation();
-        }
-        Rotation.MergeFrom(other.Rotation);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 10: {
-            if (vector_ == null) {
-              vector_ = new global::MO.Protocol.MsgVector3();
-            }
-            input.ReadMessage(vector_);
-            break;
-          }
-          case 18: {
-            if (rotation_ == null) {
-              rotation_ = new global::MO.Protocol.MsgRotation();
-            }
-            input.ReadMessage(rotation_);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
-  ///通知移动
-  /// </summary>
-  public sealed partial class S2C100004 : pb::IMessage<S2C100004> {
-    private static readonly pb::MessageParser<S2C100004> _parser = new pb::MessageParser<S2C100004>(() => new S2C100004());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<S2C100004> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[10]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C100004() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C100004(S2C100004 other) : this() {
-      userPoints_ = other.userPoints_.Clone();
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S2C100004 Clone() {
-      return new S2C100004(this);
-    }
-
-    /// <summary>Field number for the "UserPoints" field.</summary>
-    public const int UserPointsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::MO.Protocol.UserPoint> _repeated_userPoints_codec
-        = pb::FieldCodec.ForMessage(10, global::MO.Protocol.UserPoint.Parser);
-    private readonly pbc::RepeatedField<global::MO.Protocol.UserPoint> userPoints_ = new pbc::RepeatedField<global::MO.Protocol.UserPoint>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::MO.Protocol.UserPoint> UserPoints {
-      get { return userPoints_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as S2C100004);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(S2C100004 other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!userPoints_.Equals(other.userPoints_)) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= userPoints_.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      userPoints_.WriteTo(output, _repeated_userPoints_codec);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      size += userPoints_.CalculateSize(_repeated_userPoints_codec);
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(S2C100004 other) {
-      if (other == null) {
-        return;
-      }
-      userPoints_.Add(other.userPoints_);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 10: {
-            userPoints_.AddEntriesFrom(input, _repeated_userPoints_codec);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
   ///离开频道
   /// </summary>
   public sealed partial class C2S100005 : pb::IMessage<C2S100005> {
@@ -1687,7 +1235,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[11]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1807,7 +1355,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[12]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1955,7 +1503,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[13]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2075,7 +1623,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[14]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2220,7 +1768,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[15]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2237,12 +1785,8 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TransformInfo(TransformInfo other) : this() {
-      x_ = other.x_;
-      y_ = other.y_;
-      z_ = other.z_;
-      rX_ = other.rX_;
-      rY_ = other.rY_;
-      rZ_ = other.rZ_;
+      Position = other.position_ != null ? other.Position.Clone() : null;
+      Rotation = other.rotation_ != null ? other.Rotation.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2250,69 +1794,25 @@ namespace MO.Protocol {
       return new TransformInfo(this);
     }
 
-    /// <summary>Field number for the "X" field.</summary>
-    public const int XFieldNumber = 1;
-    private float x_;
+    /// <summary>Field number for the "Position" field.</summary>
+    public const int PositionFieldNumber = 1;
+    private global::MO.Protocol.MsgVector3 position_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float X {
-      get { return x_; }
+    public global::MO.Protocol.MsgVector3 Position {
+      get { return position_; }
       set {
-        x_ = value;
+        position_ = value;
       }
     }
 
-    /// <summary>Field number for the "Y" field.</summary>
-    public const int YFieldNumber = 2;
-    private float y_;
+    /// <summary>Field number for the "Rotation" field.</summary>
+    public const int RotationFieldNumber = 2;
+    private global::MO.Protocol.MsgVector3 rotation_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float Y {
-      get { return y_; }
+    public global::MO.Protocol.MsgVector3 Rotation {
+      get { return rotation_; }
       set {
-        y_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Z" field.</summary>
-    public const int ZFieldNumber = 3;
-    private float z_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float Z {
-      get { return z_; }
-      set {
-        z_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "RX" field.</summary>
-    public const int RXFieldNumber = 4;
-    private float rX_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float RX {
-      get { return rX_; }
-      set {
-        rX_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "RY" field.</summary>
-    public const int RYFieldNumber = 5;
-    private float rY_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float RY {
-      get { return rY_; }
-      set {
-        rY_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "RZ" field.</summary>
-    public const int RZFieldNumber = 6;
-    private float rZ_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float RZ {
-      get { return rZ_; }
-      set {
-        rZ_ = value;
+        rotation_ = value;
       }
     }
 
@@ -2329,24 +1829,16 @@ namespace MO.Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (X != other.X) return false;
-      if (Y != other.Y) return false;
-      if (Z != other.Z) return false;
-      if (RX != other.RX) return false;
-      if (RY != other.RY) return false;
-      if (RZ != other.RZ) return false;
+      if (!object.Equals(Position, other.Position)) return false;
+      if (!object.Equals(Rotation, other.Rotation)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (X != 0F) hash ^= X.GetHashCode();
-      if (Y != 0F) hash ^= Y.GetHashCode();
-      if (Z != 0F) hash ^= Z.GetHashCode();
-      if (RX != 0F) hash ^= RX.GetHashCode();
-      if (RY != 0F) hash ^= RY.GetHashCode();
-      if (RZ != 0F) hash ^= RZ.GetHashCode();
+      if (position_ != null) hash ^= Position.GetHashCode();
+      if (rotation_ != null) hash ^= Rotation.GetHashCode();
       return hash;
     }
 
@@ -2357,52 +1849,24 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (X != 0F) {
-        output.WriteRawTag(13);
-        output.WriteFloat(X);
+      if (position_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Position);
       }
-      if (Y != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Y);
-      }
-      if (Z != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(Z);
-      }
-      if (RX != 0F) {
-        output.WriteRawTag(37);
-        output.WriteFloat(RX);
-      }
-      if (RY != 0F) {
-        output.WriteRawTag(45);
-        output.WriteFloat(RY);
-      }
-      if (RZ != 0F) {
-        output.WriteRawTag(53);
-        output.WriteFloat(RZ);
+      if (rotation_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Rotation);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (X != 0F) {
-        size += 1 + 4;
+      if (position_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
       }
-      if (Y != 0F) {
-        size += 1 + 4;
-      }
-      if (Z != 0F) {
-        size += 1 + 4;
-      }
-      if (RX != 0F) {
-        size += 1 + 4;
-      }
-      if (RY != 0F) {
-        size += 1 + 4;
-      }
-      if (RZ != 0F) {
-        size += 1 + 4;
+      if (rotation_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Rotation);
       }
       return size;
     }
@@ -2412,23 +1876,17 @@ namespace MO.Protocol {
       if (other == null) {
         return;
       }
-      if (other.X != 0F) {
-        X = other.X;
+      if (other.position_ != null) {
+        if (position_ == null) {
+          position_ = new global::MO.Protocol.MsgVector3();
+        }
+        Position.MergeFrom(other.Position);
       }
-      if (other.Y != 0F) {
-        Y = other.Y;
-      }
-      if (other.Z != 0F) {
-        Z = other.Z;
-      }
-      if (other.RX != 0F) {
-        RX = other.RX;
-      }
-      if (other.RY != 0F) {
-        RY = other.RY;
-      }
-      if (other.RZ != 0F) {
-        RZ = other.RZ;
+      if (other.rotation_ != null) {
+        if (rotation_ == null) {
+          rotation_ = new global::MO.Protocol.MsgVector3();
+        }
+        Rotation.MergeFrom(other.Rotation);
       }
     }
 
@@ -2440,28 +1898,18 @@ namespace MO.Protocol {
           default:
             input.SkipLastField();
             break;
-          case 13: {
-            X = input.ReadFloat();
+          case 10: {
+            if (position_ == null) {
+              position_ = new global::MO.Protocol.MsgVector3();
+            }
+            input.ReadMessage(position_);
             break;
           }
-          case 21: {
-            Y = input.ReadFloat();
-            break;
-          }
-          case 29: {
-            Z = input.ReadFloat();
-            break;
-          }
-          case 37: {
-            RX = input.ReadFloat();
-            break;
-          }
-          case 45: {
-            RY = input.ReadFloat();
-            break;
-          }
-          case 53: {
-            RZ = input.ReadFloat();
+          case 18: {
+            if (rotation_ == null) {
+              rotation_ = new global::MO.Protocol.MsgVector3();
+            }
+            input.ReadMessage(rotation_);
             break;
           }
         }
@@ -2477,7 +1925,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[16]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2678,7 +2126,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[17]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2790,7 +2238,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[18]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2966,7 +2414,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[19]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3078,7 +2526,7 @@ namespace MO.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[20]; }
+      get { return global::MO.Protocol.MessageGameGateReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

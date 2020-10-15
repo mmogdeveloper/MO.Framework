@@ -107,15 +107,6 @@ namespace MO.Grains.Network
                             await room.PlayerEnterRoom(_user);
                         }
                         break;
-                    case 100003:
-                        {
-                            var req = C2S100003.Parser.ParseFrom(packet.Content);
-                            var roomId = await _user.GetRoomId();
-                            var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
-                            await curRoom.PlayerGo(_user, req.Vector.X, req.Vector.Y, req.Vector.Z,
-                                req.Rotation.X, req.Rotation.Y, req.Rotation.Z);
-                        }
-                        break;
                     case 100005:
                         {
                             var req = C2S100005.Parser.ParseFrom(packet.Content);

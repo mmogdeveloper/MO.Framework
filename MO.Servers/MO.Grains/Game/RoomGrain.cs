@@ -213,18 +213,18 @@ namespace MO.Grains.Game
                     PlayerData player = null;
                     if (_players.TryGetValue(item.Key, out player))
                     {
-                        var userPoint = new UserPoint();
+                        var userPoint = new UserTransform();
                         userPoint.UserId = item.Key;
                         userPoint.UserName = await player.User.GetUserName();
-                        userPoint.Vector = new MsgVector3();
-                        userPoint.Vector.X = player.Position.X;
-                        userPoint.Vector.Y = player.Position.Y;
-                        userPoint.Vector.Z = player.Position.Z;
-                        userPoint.Rotation = new MsgRotation();
+                        userPoint.Position = new MsgVector3();
+                        userPoint.Position.X = player.Position.X;
+                        userPoint.Position.Y = player.Position.Y;
+                        userPoint.Position.Z = player.Position.Z;
+                        userPoint.Rotation = new MsgVector3();
                         userPoint.Rotation.X = player.Rotate.X;
                         userPoint.Rotation.Y = player.Rotate.Y;
                         userPoint.Rotation.Z = player.Rotate.Z;
-                        content.UserPoints.Add(userPoint);
+                        content.UserTransforms.Add(userPoint);
                     }
                 }
                 MOMsg msg = new MOMsg();
@@ -263,16 +263,6 @@ namespace MO.Grains.Game
             return Task.CompletedTask;
         }
 
-        public Task PlayerGo(IUser user, float x, float y, float z,
-            float rx, float ry, float rz)
-        {
-            if (_players.ContainsKey(user.GetPrimaryKeyLong()))
-            {
-                _players[user.GetPrimaryKeyLong()].SetLocation(x, y, z, rx, ry, rz);
-            }
-            return Task.CompletedTask;
-        }
-
         public async Task PlayerSendMsg(IUser user, string msg)
         {
             S2C100008 content = new S2C100008();
@@ -294,12 +284,12 @@ namespace MO.Grains.Game
                     if (_players.ContainsKey(user.GetPrimaryKeyLong()))
                     {
                         _players[user.GetPrimaryKeyLong()].SetLocation(
-                            commandInfo.X,
-                            commandInfo.Y,
-                            commandInfo.Z,
-                            commandInfo.RX,
-                            commandInfo.RY,
-                            commandInfo.RZ);
+                            commandInfo.Position.X,
+                            commandInfo.Position.Y,
+                            commandInfo.Position.Z,
+                            commandInfo.Rotation.X,
+                            commandInfo.Rotation.Y,
+                            commandInfo.Rotation.Z);
                     }
                 }
             }

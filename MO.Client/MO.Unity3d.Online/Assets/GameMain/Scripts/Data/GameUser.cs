@@ -1,12 +1,4 @@
-﻿using GameFramework.Network;
-using Google.Protobuf;
-using MO.Unity3d.Network;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace MO.Unity3d.Data
 {
@@ -42,14 +34,5 @@ namespace MO.Unity3d.Data
             }
         }
         public int RoomId { get; set; }
-
-        /// <summary>
-        /// 客户端移动位置
-        /// </summary>
-        public Vector3 Position { get; set; }
-        /// <summary>
-        /// 客户端旋转角度
-        /// </summary>
-        public Vector3 Rotate { get; set; }
     }
 }

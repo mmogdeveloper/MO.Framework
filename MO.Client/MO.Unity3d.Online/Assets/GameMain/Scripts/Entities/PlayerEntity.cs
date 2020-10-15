@@ -90,8 +90,6 @@ namespace MO.Unity3d.Entities
 				}
 				var position = new Vector3(transform.position.x, 0, transform.position.z) + _offset;
 				Camera.main.transform.position = position;
-				GameUser.Instance.Position = transform.position;
-				GameUser.Instance.Rotate = transform.eulerAngles;
 			}
 			else
             {

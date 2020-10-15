@@ -17,12 +17,19 @@ Algorithm:基本逻辑模块
 
 框架使用了  
 Orleans 分布式基础  
+https://github.com/dotnet/orleans  
+英文文档:https://dotnet.github.io/orleans/  
+中文文档:https://orleans.azurewebsites.net/  
 Dotnetty 网关socket通信  
+https://github.com/Azure/DotNetty  
 Entityframeworkcore 操作mysql  
+https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
 CSRedisCore 操作redis  
+https://github.com/2881099/csredis  
 Google.Protobuf 通信协议  
+https://github.com/protocolbuffers/protobuf  
 NLog 系统日志  
-
+https://github.com/NLog/NLog  
 #### 安装教程
 
 

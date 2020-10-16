@@ -32,5 +32,7 @@ namespace MO.Algorithm.OnlineDemo
         public const float JumpCD = 30f;
         public const float JumpDistance = 5f;
         public const float JumpAnimationTime = 0.5f;
+
+        public const float MapSize = 15f;
     }
 }

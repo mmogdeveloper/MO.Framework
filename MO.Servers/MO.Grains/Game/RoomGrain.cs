@@ -83,6 +83,26 @@ namespace MO.Grains.Game
             playerData.JumpTime.AddSeconds(DemoValue.JumpAnimationTime) > DateTime.Now;
         }
 
+        private float LimitSize(float x)
+        {
+            if (x > DemoValue.MapSize)
+            {
+                return DemoValue.MapSize;
+            }
+            if (x < -DemoValue.MapSize)
+            {
+                return -DemoValue.MapSize;
+            }
+            return x;
+        }
+
+        private Vector3 LimitSquare(Vector3 position)
+        {
+            position.X = LimitSize(position.X);
+            position.Z = LimitSize(position.Z);
+            return position;
+        }
+
         private bool DoCommand(CommandInfo command)
         {
             PlayerData commandPlayer;
@@ -103,6 +123,7 @@ namespace MO.Grains.Game
                 var z = (float)(Math.Cos(Math.PI * (commandPlayer.Rotate.Y / 180)));
                 var jumpVector = new Vector3(x, 0, z) * DemoValue.JumpDistance;
                 var destination = Vector3.Add(commandPlayer.Position, jumpVector);
+                destination = LimitSquare(destination);
                 var position = new MsgVector3();
                 position.X = destination.X;
                 position.Y = destination.Y;
@@ -119,6 +140,7 @@ namespace MO.Grains.Game
                 var positionDistance = Vector3.Distance(commandPlayer.Position, position);
                 var rotateDistance = Vector3.Distance(commandPlayer.Rotate, rotate);
 
+                position = LimitSquare(position);
                 //Console.WriteLine("Transform:{0}-{1}-{2}", commandInfo.Position.X, commandInfo.Position.Y, commandInfo.Position.Z);
 
                 if (positionDistance > DemoValue.PositionSpeed / 2)

@@ -33,8 +33,16 @@ namespace MO.Unity3d.Data
         public int SkillXEntityId { get { return (int)UserId * 100 + 6; } }
         public int SkillZEntityId { get { return (int)UserId * 100 + 7; } }
         public int SkillBigEntityId { get { return (int)UserId * 100 + 8; } }
-        public byte JumpState { get; set; }
 
+        public float PositionSpeed { get { return DemoValue.PositionSpeed; } }
+        public float RotateSpeed { get { return DemoValue.RotateSpeed; } }
+
+        //public Vector3 JumpPosition { get; private set; }
+        public float JumpAnimationTime { get { return DemoValue.JumpAnimationTime; } }
+        public float JumpDistance { get { return DemoValue.JumpDistance; } }
+
+        public bool IsMoved { get; set; }
+        public byte JumpState { get; set; }
         public byte ResetState { get; set; }
         public void Jump()
         {

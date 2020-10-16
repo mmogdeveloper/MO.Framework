@@ -6,7 +6,6 @@
       <Resource Name="Entities/HP_Bar" LoadType="0" Packed="False" />
       <Resource Name="Entities/Player" LoadType="0" Packed="False" />
       <Resource Name="Entities/PlayerChatMsg" LoadType="0" Packed="False" />
-      <Resource Name="Entities/Self" LoadType="0" Packed="False" />
       <Resource Name="Entities/SelfChatMsg" LoadType="0" Packed="False" />
       <Resource Name="Entities/Skill" LoadType="0" Packed="False" />
       <Resource Name="Materials/Distort" LoadType="0" Packed="False" />
@@ -89,7 +88,6 @@
       <Asset Guid="8dfb1bd0429f29140a6aa80fdeeb001c" ResourceName="Textures/Skills/DistortionSwirl2" />
       <Asset Guid="91165df292374a449aa2861e8982a7bb" ResourceName="Textures/Skills/Distortion3" />
       <Asset Guid="971559d7813aeb04d83173dd400c14e2" ResourceName="Textures/Skills/DistortionExplosion" />
-      <Asset Guid="9cf2350f606e4e648aad8ba9c39fb514" ResourceName="Entities/Self" />
       <Asset Guid="9ec9b3b7ce6a7074e840cd0297bbb969" ResourceName="Materials/SkullFire" />
       <Asset Guid="a90a2fe3e5bb7144e90070f3cdf7a8ae" ResourceName="Textures/Skills/Fire1" />
       <Asset Guid="a92c26ea197213340b0e2ba800eaf04e" ResourceName="Textures/Skills/TeleportParticles2" />

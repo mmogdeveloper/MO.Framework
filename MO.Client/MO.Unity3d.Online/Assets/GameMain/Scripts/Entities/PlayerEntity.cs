@@ -52,6 +52,15 @@ namespace MO.Unity3d.Entities
 			//GameEntry.Entity.HideEntity(_playerData.HPEntityId);
 		}
 
+		private float limitSize(float x)
+		{
+			if (x > DemoValue.MapSize)
+				return DemoValue.MapSize;
+			if (x < -DemoValue.MapSize)
+				return -DemoValue.MapSize;
+			return x;
+		}
+
         protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
 		{
 			//if (GameUser.Instance.JumpState)
@@ -95,7 +104,11 @@ namespace MO.Unity3d.Entities
 						Vector3 destDirection = new Vector3(eulerAngles.x, 0, eulerAngles.y);
 						Quaternion quaternion = Quaternion.LookRotation(destDirection);
 						transform.rotation = quaternion;
-						transform.position += transform.forward * Time.deltaTime * _positionSpeed;
+
+						var tmpPosition = transform.position + transform.forward * Time.deltaTime * _positionSpeed;
+						tmpPosition.x = limitSize(tmpPosition.x);
+						tmpPosition.z = limitSize(tmpPosition.z);
+						transform.position = tmpPosition;
 						AddTransformCommand();
 					}
 				}

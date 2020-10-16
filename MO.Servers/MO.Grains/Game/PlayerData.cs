@@ -8,8 +8,8 @@ namespace MO.Grains.Game
     public class PlayerData
     {
         public IUser User { get; }
-        public Vector3 Position { get; private set; }
-        public Vector3 Rotate { get; private set; }
+        public Vector3 Position { get; set; }
+        public Vector3 Rotate { get; set; }
 
         public int MaxBlood { get { return DemoValue.MaxBlood; } }
 
@@ -30,6 +30,12 @@ namespace MO.Grains.Game
         public int KillCount { get; set; }
         public int DeadCount { get; set; }
 
+        public DateTime JumpTime { get; set; }
+        public DateTime BigSkillTime { get; set; }
+        public DateTime SkillCTime { get; set; }
+        public DateTime SkillXTime { get; set; }
+        public DateTime SkillZTime { get; set; }
+
         public void Reset()
         {
             _curBlood = MaxBlood;
@@ -41,13 +47,11 @@ namespace MO.Grains.Game
         {
             User = user;
             _curBlood = MaxBlood;
-        }
-
-        public void SetLocation(float x, float y, float z,
-            float rx, float ry, float rz)
-        {
-            Position = new Vector3(x, y, z);
-            Rotate = new Vector3(rx, ry, rz);
+            JumpTime = DateTime.MinValue;
+            BigSkillTime = DateTime.MinValue;
+            SkillCTime = DateTime.MinValue;
+            SkillXTime = DateTime.MinValue;
+            SkillZTime = DateTime.MinValue;
         }
     }
 }

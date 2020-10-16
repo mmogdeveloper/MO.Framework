@@ -47,7 +47,7 @@ namespace MO.Grains.Game
         {
             //自定义加载数据
             await _roomInfo.ReadStateAsync();
-            
+
             //定时器
             _reminder = RegisterTimer(
                 OnTimerCallback,
@@ -77,62 +77,115 @@ namespace MO.Grains.Game
             await grain.Update();
         }
 
-        private void DoCommand(CommandInfo command)
+        private bool IsJumping(PlayerData playerData)
+        {
+            return playerData.JumpTime < DateTime.Now &&
+            playerData.JumpTime.AddSeconds(DemoValue.JumpAnimationTime) > DateTime.Now;
+        }
+
+        private bool DoCommand(CommandInfo command)
         {
             PlayerData commandPlayer;
             if (!_players.TryGetValue(command.UserId, out commandPlayer))
-                return;
+                return false;
+
+            var skillDistance = 0f;
+            var skillAttackDistance = 0f;
+            var skillAttack = 0;
+
+            if (command.CommandId == (int)CommandType.Jump)
+            {
+                if (commandPlayer.JumpTime.AddSeconds(DemoValue.JumpCD) > DateTime.Now)
+                    return false;
+                commandPlayer.JumpTime = DateTime.Now;
+
+                var x = (float)(Math.Sin(Math.PI * (commandPlayer.Rotate.Y / 180)));
+                var z = (float)(Math.Cos(Math.PI * (commandPlayer.Rotate.Y / 180)));
+                var jumpVector = new Vector3(x, 0, z) * DemoValue.JumpDistance;
+                var destination = Vector3.Add(commandPlayer.Position, jumpVector);
+                var position = new MsgVector3();
+                position.X = destination.X;
+                position.Y = destination.Y;
+                position.Z = destination.Z;
+                commandPlayer.Position = destination;
+                Console.WriteLine("Jump:{0}-{1}-{2}", position.X, position.Y, position.Z);
+                return true;
+            }
+            else if (command.CommandId == (int)CommandType.Transform)
+            {
+                var commandInfo = TransformInfo.Parser.ParseFrom(command.CommandContent);
+                var position = new Vector3(commandInfo.Position.X, commandInfo.Position.Y, commandInfo.Position.Z);
+                var rotate = new Vector3(commandInfo.Rotation.X, commandInfo.Rotation.Y, commandInfo.Rotation.Z);
+                var positionDistance = Vector3.Distance(commandPlayer.Position, position);
+                var rotateDistance = Vector3.Distance(commandPlayer.Rotate, rotate);
+
+                Console.WriteLine("Transform:{0}-{1}-{2}", commandInfo.Position.X, commandInfo.Position.Y, commandInfo.Position.Z);
+
+                if (positionDistance > DemoValue.PositionSpeed / 2)
+                    return false;
+                if (position.Y != 0)
+                    return false;
+                commandPlayer.Position = position;
+                commandPlayer.Rotate = rotate;
+            }
+            else if (command.CommandId == (int)CommandType.BigSkill)
+            {
+                if (commandPlayer.BigSkillTime.AddSeconds(DemoValue.BigSkillAttackCD) > DateTime.Now)
+                    return false;
+                commandPlayer.BigSkillTime = DateTime.Now;
+                skillAttackDistance = DemoValue.BigSkillAttackDistance;
+                skillAttack = DemoValue.BigSkillAttack;
+            }
+            else
+            {
+                if (command.CommandId == (int)CommandType.SkillC)
+                {
+                    if (commandPlayer.SkillCTime.AddSeconds(DemoValue.SkillCAttackCD) > DateTime.Now)
+                        return false;
+                    commandPlayer.SkillCTime = DateTime.Now;
+                    skillDistance = DemoValue.SkillCDistance;
+                    skillAttackDistance = DemoValue.SkillCAttackDistance;
+                    skillAttack = DemoValue.SkillCAttack;
+                }
+                else if (command.CommandId == (int)CommandType.SkillX)
+                {
+                    if (commandPlayer.SkillXTime.AddSeconds(DemoValue.SkillXAttackCD) > DateTime.Now)
+                        return false;
+                    commandPlayer.SkillXTime = DateTime.Now;
+                    skillDistance = DemoValue.SkillXDistance;
+                    skillAttackDistance = DemoValue.SkillXAttackDistance;
+                    skillAttack = DemoValue.SkillXAttack;
+                }
+                else if (command.CommandId == (int)CommandType.SkillZ)
+                {
+                    if (commandPlayer.SkillZTime.AddSeconds(DemoValue.SkillZAttackCD) > DateTime.Now)
+                        return false;
+                    commandPlayer.SkillZTime = DateTime.Now;
+                    skillDistance = DemoValue.SkillZDistance;
+                    skillAttackDistance = DemoValue.SkillZAttackDistance;
+                    skillAttack = DemoValue.SkillZAttack;
+                }
+            }
 
             foreach (var player in _players)
             {
                 if (player.Key == command.UserId)
                     continue;
 
-                if (command.CommandId == (int)CommandType.BigSkill)
-                {
-                    var distance = Vector3.Distance(commandPlayer.Position, player.Value.Position);
-                    if (distance <= DemoValue.BigSkillAttackDistance)
-                    {
-                        player.Value.CurBlood -= DemoValue.BigSkillAttack;
-                        player.Value.BloodChanged = true;
-                    }
-                }
-                else
-                {
-                    var skillDistance = 0;
-                    var skillAttackDistance = 0;
-                    var skillAttack = 0;
-                    if (command.CommandId == (int)CommandType.SkillC)
-                    {
-                        skillDistance = DemoValue.SkillCDistance;
-                        skillAttackDistance = DemoValue.SkillCAttackDistance;
-                        skillAttack = DemoValue.SkillCAttack;
-                    }
-                    else if (command.CommandId == (int)CommandType.SkillX)
-                    {
-                        skillDistance = DemoValue.SkillXDistance;
-                        skillAttackDistance = DemoValue.SkillXAttackDistance;
-                        skillAttack = DemoValue.SkillXAttack;
-                    }
-                    else if (command.CommandId == (int)CommandType.SkillZ)
-                    {
-                        skillDistance = DemoValue.SkillZDistance;
-                        skillAttackDistance = DemoValue.SkillZAttackDistance;
-                        skillAttack = DemoValue.SkillZAttack;
-                    }
+                if (IsJumping(player.Value))
+                    continue;
 
-                    var x = (float)(Math.Sin(Math.PI * (commandPlayer.Rotate.Y / 180)));
-                    var z = (float)(Math.Cos(Math.PI * (commandPlayer.Rotate.Y / 180)));
+                var x = (float)(Math.Sin(Math.PI * (commandPlayer.Rotate.Y / 180)));
+                var z = (float)(Math.Cos(Math.PI * (commandPlayer.Rotate.Y / 180)));
 
-                    var destination = new Vector3(x, 0, z) * skillDistance;
-                    var skilldestination = Vector3.Add(commandPlayer.Position, destination);
-                    var distance = Vector3.Distance(skilldestination, player.Value.Position);
-                    //Console.WriteLine("{0},{1}", distance, skillAttackDistance);
-                    if (distance <= skillAttackDistance)
-                    {
-                        player.Value.CurBlood -= skillAttack;
-                        player.Value.BloodChanged = true;
-                    }
+                var destination = new Vector3(x, 0, z) * skillDistance;
+                var skilldestination = Vector3.Add(commandPlayer.Position, destination);
+                var distance = Vector3.Distance(skilldestination, player.Value.Position);
+                //Console.WriteLine("{0},{1}", distance, skillAttackDistance);
+                if (distance <= skillAttackDistance)
+                {
+                    player.Value.CurBlood -= skillAttack;
+                    player.Value.BloodChanged = true;
                 }
 
                 if (player.Value.CurBlood == 0)
@@ -141,6 +194,7 @@ namespace MO.Grains.Game
                     commandPlayer.KillCount++;
                 }
             }
+            return true;
         }
 
         public Task Update()
@@ -156,10 +210,12 @@ namespace MO.Grains.Game
                 while (_commands.Count != 0)
                 {
                     var command = _commands.Dequeue();
-                    if (command.CommandId == (int)CommandType.Transform)
-                        continue;
-                    DoCommand(command);
-                    commands.Add(command);
+                    if (DoCommand(command))
+                    {
+                        if (command.CommandId == (int)CommandType.Transform)
+                            continue;
+                        commands.Add(command);
+                    }
                 }
                 content.Commands.AddRange(commands);
             }
@@ -203,6 +259,8 @@ namespace MO.Grains.Game
 
         public Task RoomNotify(MOMsg msg)
         {
+            if (_players.Count == 0)
+                return Task.CompletedTask;
             return _stream.OnNextAsync(msg);
         }
 
@@ -289,23 +347,12 @@ namespace MO.Grains.Game
 
         public Task PlayerCommand(IUser user, List<CommandInfo> commands)
         {
-            foreach (var command in commands)
-            {
-                if (command.CommandId == (int)CommandType.Transform)
-                {
-                    var commandInfo = TransformInfo.Parser.ParseFrom(command.CommandContent);
-                    if (_players.ContainsKey(user.GetPrimaryKeyLong()))
-                    {
-                        _players[user.GetPrimaryKeyLong()].SetLocation(
-                            commandInfo.Position.X,
-                            commandInfo.Position.Y,
-                            commandInfo.Position.Z,
-                            commandInfo.Rotation.X,
-                            commandInfo.Rotation.Y,
-                            commandInfo.Rotation.Z);
-                    }
-                }
-            }
+            PlayerData commandPlayer;
+            if (!_players.TryGetValue(user.GetPrimaryKeyLong(), out commandPlayer))
+                return Task.CompletedTask;
+
+            if (IsJumping(commandPlayer))
+                return Task.CompletedTask;
 
             commands.ForEach(m =>
             {

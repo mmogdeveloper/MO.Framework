@@ -108,7 +108,7 @@ namespace MO.Grains.Game
                 position.Y = destination.Y;
                 position.Z = destination.Z;
                 commandPlayer.Position = destination;
-                Console.WriteLine("Jump:{0}-{1}-{2}", position.X, position.Y, position.Z);
+                //Console.WriteLine("Jump:{0}-{1}-{2}", position.X, position.Y, position.Z);
                 return true;
             }
             else if (command.CommandId == (int)CommandType.Transform)
@@ -119,7 +119,7 @@ namespace MO.Grains.Game
                 var positionDistance = Vector3.Distance(commandPlayer.Position, position);
                 var rotateDistance = Vector3.Distance(commandPlayer.Rotate, rotate);
 
-                Console.WriteLine("Transform:{0}-{1}-{2}", commandInfo.Position.X, commandInfo.Position.Y, commandInfo.Position.Z);
+                //Console.WriteLine("Transform:{0}-{1}-{2}", commandInfo.Position.X, commandInfo.Position.Y, commandInfo.Position.Z);
 
                 if (positionDistance > DemoValue.PositionSpeed / 2)
                     return false;

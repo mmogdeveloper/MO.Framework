@@ -18,6 +18,7 @@
       <Resource Name="Materials/SkullFire" LoadType="0" Packed="False" />
       <Resource Name="Materials/Trail" LoadType="0" Packed="False" />
       <Resource Name="Prefabs/Joystick" LoadType="0" Packed="False" />
+      <Resource Name="Prefabs/Map" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Game" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Launcher" LoadType="0" Packed="False" />
       <Resource Name="Scenes/Login" LoadType="0" Packed="False" />
@@ -95,6 +96,7 @@
       <Asset Guid="c097008e0c4a18b4587a81f65fadc0e8" ResourceName="Textures/tips_blueboard" />
       <Asset Guid="c4451041c8c8ed1479b1df629317e170" ResourceName="Textures/button_close02" />
       <Asset Guid="c5495e46b5a4131498ff3c898f84c50c" ResourceName="Textures/Skills/Distortion4" />
+      <Asset Guid="c81258efd979b0c4fa8dbe8339e16071" ResourceName="Prefabs/Map" />
       <Asset Guid="d2381268c77b1fe48b1693cbdceb0274" ResourceName="Textures/Skills/Distortion1" />
       <Asset Guid="d67b20024488f3e418f32397c57bbb08" ResourceName="Textures/Skills/TeleportParticles" />
       <Asset Guid="d8b32009f0e17634780fdaafd23dc03e" ResourceName="Entities/HP_Bar" />

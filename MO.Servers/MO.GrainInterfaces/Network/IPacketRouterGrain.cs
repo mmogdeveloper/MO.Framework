@@ -6,7 +6,6 @@ namespace MO.GrainInterfaces.Network
 {
     public interface IPacketRouterGrain : IGrainWithIntegerKey
     {
-        //Task SetObserver(IPacketObserver observer);
         Task SendPacket(MOMsg packet);
         Task Disconnect();
     }

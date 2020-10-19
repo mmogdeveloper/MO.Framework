@@ -16,14 +16,14 @@ using System.Threading.Tasks;
 
 namespace MO.Grains.Game
 {
-    public class RoomInfo
-    {
-        public Int32 GameId { get; set; }
-    }
+    //public class RoomInfo
+    //{
+    //    public Int32 GameId { get; set; }
+    //}
 
     public class RoomGrain : Grain, IRoomGrain
     {
-        private readonly IPersistentState<RoomInfo> _roomInfo;
+        //private readonly IPersistentState<RoomInfo> _roomInfo;
         private readonly Dictionary<long, PlayerData> _players;
         private readonly ILogger _logger;
 
@@ -33,10 +33,10 @@ namespace MO.Grains.Game
         private Int32 _frameCount;
 
         public RoomGrain(
-            [PersistentState("RoomInfo", StorageProviders.DefaultProviderName)] IPersistentState<RoomInfo> roomInfo,
+            //[PersistentState("RoomInfo", StorageProviders.DefaultProviderName)] IPersistentState<RoomInfo> roomInfo,
             ILogger<RoomGrain> logger)
         {
-            _roomInfo = roomInfo;
+            //_roomInfo = roomInfo;
             _logger = logger;
             _players = new Dictionary<long, PlayerData>();
             _commands = new Queue<CommandInfo>();
@@ -46,7 +46,7 @@ namespace MO.Grains.Game
         public override async Task OnActivateAsync()
         {
             //自定义加载数据
-            await _roomInfo.ReadStateAsync();
+            //await _roomInfo.ReadStateAsync();
 
             //定时器
             _reminder = RegisterTimer(
@@ -66,7 +66,7 @@ namespace MO.Grains.Game
                 _reminder.Dispose();
 
             //回写数据
-            await _roomInfo.WriteStateAsync();
+            //await _roomInfo.WriteStateAsync();
             await base.OnDeactivateAsync();
         }
 
@@ -308,7 +308,7 @@ namespace MO.Grains.Game
                     {
                         var userPoint = new UserTransform();
                         userPoint.UserId = item.Key;
-                        userPoint.UserName = await player.User.GetUserName();
+                        userPoint.UserName = await player.User.GetNickName();
                         userPoint.Position = new MsgVector3();
                         userPoint.Position.X = player.Position.X;
                         userPoint.Position.Y = player.Position.Y;
@@ -329,7 +329,7 @@ namespace MO.Grains.Game
                 S2C100002 content = new S2C100002();
                 content.UserId = user.GetPrimaryKeyLong();
                 content.RoomId = (int)this.GetPrimaryKeyLong();
-                content.UserName = await user.GetUserName();
+                content.UserName = await user.GetNickName();
                 MOMsg msg = new MOMsg();
                 msg.ActionId = 100002;
                 msg.Content = content.ToByteString();

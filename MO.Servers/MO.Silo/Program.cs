@@ -37,6 +37,7 @@ namespace MO.Silo
                 })
                 .ConfigureServices(services =>
                 {
+                    services.AddHostedService<TaskService>();
                     services.AddDbContext<MODataContext>(options =>
                     {
                         options.UseMySql(Configuration.GetConnectionString("MOData"));
@@ -47,9 +48,12 @@ namespace MO.Silo
                     });
 
                     //初始化数据库
-                    services.BuildServiceProvider().GetService<MODataContext>().Database.Migrate();
-                    services.BuildServiceProvider().GetService<MORecordContext>().Database.Migrate();
+                    //services.BuildServiceProvider().GetService<MODataContext>().Database.Migrate();
+                    //services.BuildServiceProvider().GetService<MORecordContext>().Database.Migrate();
 
+                    services.AddSingleton<MODataContext>();
+                    services.AddSingleton<MORecordContext>();
+                    //services.AddSingleton(services.BuildServiceProvider().GetService<MORecordContext>());
                     //DataRedis.Initialization(Configuration.GetConnectionString("DataRedis"));
 
                     services.Configure<ConsoleLifetimeOptions>(options =>

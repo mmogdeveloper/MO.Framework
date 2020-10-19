@@ -60,7 +60,7 @@ namespace MO.Login.Controllers
 
             //将玩家踢出游戏
             var userGrain = _client.GetGrain<IUserGrain>(userId);
-            userGrain.SetUserName(req1003.DeviceId);
+            userGrain.SetNickName(req1003.DeviceId);
             userGrain.Kick().Wait();
             var token = CryptoHelper.MD5_Encrypt($"{userId}{Guid.NewGuid()}{DateTime.UtcNow.Ticks}");
             var tokenGtain = _client.GetGrain<ITokenGrain>(userId);

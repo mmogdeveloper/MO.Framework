@@ -39,20 +39,6 @@ namespace MO.Grains.Network
             return base.OnActivateAsync();
         }
 
-        //public Task SetObserver(IPacketObserver observer)
-        //{
-        //    _observer = observer;
-        //    return Task.CompletedTask;
-        //}
-
-        //private void Notify(MOMsg packet)
-        //{
-        //    if (_observer != null)
-        //    {
-        //        _observer.SendPacket(packet);
-        //    }
-        //}
-
         public async Task SendPacket(MOMsg packet)
         {
             //_watch.Restart();

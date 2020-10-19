@@ -51,6 +51,8 @@ namespace MO.Silo
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
+            OnDataTimerCallback(null);
+            OnRecordTimerCallback(null);
             _dataUpdateTimer.Dispose();
             _recordUpdateTimer.Dispose();
             return Task.CompletedTask;

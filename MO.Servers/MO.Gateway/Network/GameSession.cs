@@ -29,6 +29,7 @@ namespace MO.Gateway.Network
         private IPacketObserver _packetObserverRef;
         private IChannelHandlerContext _context;
         private IPacketRouterGrain _router;
+        private IUserGrain _user;
         private ITokenGrain _tokenGrain;
         private bool _IsInit;
         private long _userId;
@@ -84,8 +85,9 @@ namespace MO.Gateway.Network
                     _token = tokenInfo.Token;
                     _packetObserver = new OutcomingPacketObserver(this);
                     _router = _client.GetGrain<IPacketRouterGrain>(_userId);
+                    _user = _client.GetGrain<IUserGrain>(_userId);
                     _packetObserverRef = _client.CreateObjectReference<IPacketObserver>(_packetObserver).Result;
-                    _router.SetObserver(_packetObserverRef).Wait();
+                    _user.BindPacketObserver(_packetObserverRef).Wait();
                     _IsInit = true;
                 }
                 else

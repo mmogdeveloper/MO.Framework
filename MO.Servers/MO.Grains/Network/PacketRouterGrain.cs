@@ -20,7 +20,7 @@ namespace MO.Grains.Network
     //[Reentrant]
     internal partial class PacketRouterGrain : Grain, IPacketRouterGrain
     {
-        private IPacketObserver _observer;
+        //private IPacketObserver _observer;
         private IGlobalWorldGrain _globalWorld;
         private IRoomGrain _curRoom;
         private IUserGrain _user;
@@ -39,19 +39,19 @@ namespace MO.Grains.Network
             return base.OnActivateAsync();
         }
 
-        public Task SetObserver(IPacketObserver observer)
-        {
-            _observer = observer;
-            return Task.CompletedTask;
-        }
+        //public Task SetObserver(IPacketObserver observer)
+        //{
+        //    _observer = observer;
+        //    return Task.CompletedTask;
+        //}
 
-        private void Notify(MOMsg packet)
-        {
-            if (_observer != null)
-            {
-                _observer.SendPacket(packet);
-            }
-        }
+        //private void Notify(MOMsg packet)
+        //{
+        //    if (_observer != null)
+        //    {
+        //        _observer.SendPacket(packet);
+        //    }
+        //}
 
         public async Task SendPacket(MOMsg packet)
         {
@@ -60,7 +60,7 @@ namespace MO.Grains.Network
             {
                 //登录绑定
                 _user = GrainFactory.GetGrain<IUserGrain>(packet.UserId);
-                await _user.BindPacketObserver(_observer);
+                //await _user.BindPacketObserver(_observer);
                 await _globalWorld.PlayerEnterGlobalWorld(_user);
                 var roomId = await _user.GetRoomId();
                 if (roomId != 0)
@@ -80,13 +80,13 @@ namespace MO.Grains.Network
                     };
                     await _curRoom.RoomNotify(message);
                 }
-                Notify(packet.ParseResult());
+                await _user.Notify(packet.ParseResult());
             }
             else
             {
                 if (_user == null)
                 {
-                    Notify(packet.ParseResult(MOErrorType.Hidden, "用户未登录"));
+                    await _user.Notify(packet.ParseResult(MOErrorType.Hidden, "用户未登录"));
                     return;
                 }
 
@@ -106,7 +106,7 @@ namespace MO.Grains.Network
                 {
                     if (_curRoom == null)
                     {
-                        Notify(packet.ParseResult(MOErrorType.Hidden, "房间信息不存在"));
+                        await _user.Notify(packet.ParseResult(MOErrorType.Hidden, "房间信息不存在"));
                         return;
                     }
 

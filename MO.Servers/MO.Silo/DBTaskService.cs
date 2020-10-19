@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MO.Model.Context;
 using System;
@@ -25,6 +26,10 @@ namespace MO.Silo
             _logger = logger;
             _dataContext = dataContext;
             _recordContext = recordContext;
+
+            //初始化数据库
+            _dataContext.Database.Migrate();
+            _recordContext.Database.Migrate();
         }
 
         public Task StartAsync(CancellationToken cancellationToken)

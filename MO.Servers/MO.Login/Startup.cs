@@ -51,10 +51,6 @@ namespace MO.Login
                 app.UseDeveloperExceptionPage();
             }
 
-            //初始化数据库
-            dataContext.Database.Migrate();
-            recordContext.Database.Migrate();
-
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();

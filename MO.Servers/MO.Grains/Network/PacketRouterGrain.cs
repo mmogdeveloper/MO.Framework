@@ -24,12 +24,10 @@ namespace MO.Grains.Network
         private IGlobalWorldGrain _globalWorld;
         private IRoomGrain _curRoom;
         private IUserGrain _user;
-        private Stopwatch _watch;
         private ILogger _logger;
 
         public PacketRouterGrain(ILogger<PacketRouterGrain> logger)
         {
-            _watch = new Stopwatch();
             _logger = logger;
         }
 
@@ -41,12 +39,10 @@ namespace MO.Grains.Network
 
         public async Task SendPacket(MOMsg packet)
         {
-            //_watch.Restart();
             if (packet.ActionId == 100000)
             {
                 //登录绑定
                 _user = GrainFactory.GetGrain<IUserGrain>(packet.UserId);
-                //await _user.BindPacketObserver(_observer);
                 await _globalWorld.PlayerEnterGlobalWorld(_user);
                 if (_curRoom != null)
                 {
@@ -114,8 +110,6 @@ namespace MO.Grains.Network
                     }
                 }
             }
-            //_watch.Stop();
-            //Console.WriteLine($"执行时间：{packet.UserId} {_watch.ElapsedMilliseconds} ms");
         }
 
         public async Task Disconnect()

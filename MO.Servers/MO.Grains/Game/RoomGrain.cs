@@ -21,7 +21,7 @@ namespace MO.Grains.Game
         public Int32 GameId { get; set; }
     }
 
-    public class RoomGrain : Grain, IRoom
+    public class RoomGrain : Grain, IRoomGrain
     {
         private readonly IPersistentState<RoomInfo> _roomInfo;
         private readonly Dictionary<long, PlayerData> _players;
@@ -73,7 +73,7 @@ namespace MO.Grains.Game
         private async Task OnTimerCallback(object obj)
         {
             //non-Reentrant 调用
-            var grain = this.AsReference<IRoom>();
+            var grain = this.AsReference<IRoomGrain>();
             await grain.Update();
         }
 
@@ -286,12 +286,12 @@ namespace MO.Grains.Game
             return _stream.OnNextAsync(msg);
         }
 
-        public async Task Reconnect(IUser user)
+        public async Task Reconnect(IUserGrain user)
         {
             await user.SubscribeRoom(_stream.Guid);
         }
 
-        public async Task PlayerEnterRoom(IUser user)
+        public async Task PlayerEnterRoom(IUserGrain user)
         {
             if (!_players.ContainsKey(user.GetPrimaryKeyLong()))
                 _players[user.GetPrimaryKeyLong()] = new PlayerData(user);
@@ -337,7 +337,7 @@ namespace MO.Grains.Game
             }
         }
 
-        public async Task PlayerLeaveRoom(IUser user)
+        public async Task PlayerLeaveRoom(IUserGrain user)
         {
             S2C100006 content = new S2C100006();
             content.UserId = user.GetPrimaryKeyLong();
@@ -351,12 +351,12 @@ namespace MO.Grains.Game
             await user.UnsubscribeRoom();
         }
 
-        public Task PlayerReady(IUser user)
+        public Task PlayerReady(IUserGrain user)
         {
             return Task.CompletedTask;
         }
 
-        public async Task PlayerSendMsg(IUser user, string msg)
+        public async Task PlayerSendMsg(IUserGrain user, string msg)
         {
             S2C100008 content = new S2C100008();
             content.UserId = user.GetPrimaryKeyLong();
@@ -367,7 +367,7 @@ namespace MO.Grains.Game
             await RoomNotify(notify);
         }
 
-        public Task PlayerCommand(IUser user, List<CommandInfo> commands)
+        public Task PlayerCommand(IUserGrain user, List<CommandInfo> commands)
         {
             PlayerData commandPlayer;
             if (!_players.TryGetValue(user.GetPrimaryKeyLong(), out commandPlayer))

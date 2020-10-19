@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MO.Grains.User
 {
     [Reentrant]
-    public class TokenGrain : Grain, IToken
+    public class TokenGrain : Grain, ITokenGrain
     {
         private TokenInfo _tokenInfo;
 

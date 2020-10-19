@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MO.Grains.User
 {
-    public class UserIdFactoryGrain : Grain, IUserIdFactory
+    public class UserIdFactoryGrain : Grain, IUserIdFactoryGrain
     {
         private readonly ILogger _logger;
         private readonly IPersistentState<Int64> _curUserId;

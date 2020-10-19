@@ -16,7 +16,7 @@ namespace MO.GrainInterfaces.User
     /// 房间内Balance账号Id (UserId<<24 + RoomId)
     /// </summary>
     /// <typeparam name="TBalance"></typeparam>
-    public interface IAccount<TBalance> : IGrainWithIntegerKey
+    public interface IAccountGrain<TBalance> : IGrainWithIntegerKey
         where TBalance : Balance
     {
         /// <summary>

@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace MO.Grains.Game
 {
-    public class HallGrain : Grain, IHall
+    public class HallGrain : Grain, IHallGrain
     {
         private readonly ILogger _logger;
-        private readonly Dictionary<long, IUser> _userDict;
+        private readonly Dictionary<long, IUserGrain> _userDict;
         private readonly IAsyncStream<MOMsg> _stream;
         private readonly MODataContext _dataContext;
 
@@ -23,7 +23,7 @@ namespace MO.Grains.Game
         {
             _logger = logger;
             _dataContext = dataContext;
-            _userDict = new Dictionary<long, IUser>();
+            _userDict = new Dictionary<long, IUserGrain>();
             var streamProvider = this.GetStreamProvider(StreamProviders.JobsProvider);
             _stream = streamProvider.GetStream<MOMsg>(Guid.NewGuid(), StreamProviders.Namespaces.ChunkSender);
         }
@@ -38,13 +38,13 @@ namespace MO.Grains.Game
             return base.OnDeactivateAsync();
         }
 
-        public Task<Guid> JoinHall(IUser user)
+        public Task<Guid> JoinHall(IUserGrain user)
         {
             _userDict[user.GetPrimaryKeyLong()] = user;
             return Task.FromResult(_stream.Guid);
         }
 
-        public Task<Guid> LeaveHall(IUser user)
+        public Task<Guid> LeaveHall(IUserGrain user)
         {
             _userDict.Remove(user.GetPrimaryKeyLong());
             return Task.FromResult(_stream.Guid);

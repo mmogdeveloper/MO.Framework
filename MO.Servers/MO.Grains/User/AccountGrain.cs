@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MO.Grains.User
 {
-    public class AccountGrain<TBalance> : Grain, IAccount<TBalance>
+    public class AccountGrain<TBalance> : Grain, IAccountGrain<TBalance>
         where TBalance : Balance, new()
     {
         private readonly ITransactionalState<TBalance> _balance;

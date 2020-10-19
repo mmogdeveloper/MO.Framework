@@ -52,7 +52,7 @@ namespace MO.Api.Controllers
             }
 
             var ip = HttpContext.Connection.RemoteIpAddress.ToString();
-            var tokenGrain = client.GetGrain<IToken>(userId);
+            var tokenGrain = client.GetGrain<ITokenGrain>(userId);
             var tokenInfo = tokenGrain.GetToken().Result;
             if (tokenInfo.Token != token ||
                 tokenInfo.IP != ip ||

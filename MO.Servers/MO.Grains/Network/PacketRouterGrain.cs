@@ -18,12 +18,12 @@ namespace MO.Grains.Network
     /// Packet router grain. It send different packet to partial class by its session state.
     /// </summary>
     //[Reentrant]
-    internal partial class PacketRouterGrain : Grain, IPacketRouter
+    internal partial class PacketRouterGrain : Grain, IPacketRouterGrain
     {
         private IPacketObserver _observer;
-        private IGlobalWorld _globalWorld;
-        private IRoom _curRoom;
-        private IUser _user;
+        private IGlobalWorldGrain _globalWorld;
+        private IRoomGrain _curRoom;
+        private IUserGrain _user;
         private Stopwatch _watch;
         private ILogger _logger;
 
@@ -35,7 +35,7 @@ namespace MO.Grains.Network
 
         public override Task OnActivateAsync()
         {
-            _globalWorld = GrainFactory.GetGrain<IGlobalWorld>(0);
+            _globalWorld = GrainFactory.GetGrain<IGlobalWorldGrain>(0);
             return base.OnActivateAsync();
         }
 
@@ -59,13 +59,13 @@ namespace MO.Grains.Network
             if (packet.ActionId == 100000)
             {
                 //登录绑定
-                _user = GrainFactory.GetGrain<IUser>(packet.UserId);
+                _user = GrainFactory.GetGrain<IUserGrain>(packet.UserId);
                 await _user.BindPacketObserver(_observer);
                 await _globalWorld.PlayerEnterGlobalWorld(_user);
                 var roomId = await _user.GetRoomId();
                 if (roomId != 0)
                 {
-                    _curRoom = GrainFactory.GetGrain<IRoom>(roomId);
+                    _curRoom = GrainFactory.GetGrain<IRoomGrain>(roomId);
                     await _curRoom.Reconnect(_user);
                     //通知上线
                     var message = new MOMsg()
@@ -99,7 +99,7 @@ namespace MO.Grains.Network
                         roomId = req.RoomId;
                         await _user.SetRoomId(roomId);
                     }
-                    _curRoom = GrainFactory.GetGrain<IRoom>(roomId);
+                    _curRoom = GrainFactory.GetGrain<IRoomGrain>(roomId);
                     await _curRoom.PlayerEnterRoom(_user);
                 }
                 else

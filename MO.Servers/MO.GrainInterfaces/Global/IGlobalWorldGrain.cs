@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Global
 {
-    public interface IGlobalWorld : IGrainWithIntegerKey
+    public interface IGlobalWorldGrain : IGrainWithIntegerKey
     {
         Task Notify(MOMsg msg);
         Task<int> GetCount();
-        Task PlayerEnterGlobalWorld(IUser user);
-        Task PlayerLeaveGlobalWorld(IUser user);
+        Task PlayerEnterGlobalWorld(IUserGrain user);
+        Task PlayerLeaveGlobalWorld(IUserGrain user);
     }
 }

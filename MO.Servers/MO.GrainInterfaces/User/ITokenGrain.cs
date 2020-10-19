@@ -13,7 +13,7 @@ namespace MO.GrainInterfaces.User
         public DateTime LastTime { get; set; }
     }
 
-    public interface IToken : IGrainWithIntegerKey
+    public interface ITokenGrain : IGrainWithIntegerKey
     {
         Task SetToken(string token, string ip);
         Task<TokenInfo> GetToken();

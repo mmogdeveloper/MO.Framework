@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Game
 {
-    public interface IHall : IGrainWithIntegerKey
+    public interface IHallGrain : IGrainWithIntegerKey
     {
-        Task<Guid> JoinHall(IUser user);
-        Task<Guid> LeaveHall(IUser user);
+        Task<Guid> JoinHall(IUserGrain user);
+        Task<Guid> LeaveHall(IUserGrain user);
         Task HallNotify(MOMsg msg);
     }
 }

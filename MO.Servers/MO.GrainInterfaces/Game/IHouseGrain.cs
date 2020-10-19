@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Game
 {
-    public interface IHouse : IGrainWithIntegerKey
+    public interface IHouseGrain : IGrainWithIntegerKey
     {
-        Task AddUser(IUser user);
-        Task RemoveUser(IUser user);
+        Task AddUser(IUserGrain user);
+        Task RemoveUser(IUserGrain user);
         Task HouseNotify(MOMsg msg);
     }
 }

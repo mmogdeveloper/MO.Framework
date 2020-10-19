@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Game
 {
-    public interface ISeat : IGrainWithIntegerKey
+    public interface ISeatGrain : IGrainWithIntegerKey
     {
-        Task SitDown(IUser user);
-        Task SitUp(IUser user);
+        Task SitDown(IUserGrain user);
+        Task SitUp(IUserGrain user);
     }
 }

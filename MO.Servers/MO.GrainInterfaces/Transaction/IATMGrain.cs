@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Transaction
 {
-    public interface IATM : IGrainWithIntegerKey
+    public interface IATMGrain : IGrainWithIntegerKey
     {
         /// <summary>
         /// 转账
@@ -28,6 +28,6 @@ namespace MO.GrainInterfaces.Transaction
         /// <param name="amountToTransfer"></param>
         /// <returns></returns>
         [Transaction(TransactionOption.Create)]
-        Task Transfer<TBalance>(IAccount<TBalance> fromAccount, IAccount<TBalance> toAccount, ulong amountToTransfer) where TBalance : Balance;
+        Task Transfer<TBalance>(IAccountGrain<TBalance> fromAccount, IAccountGrain<TBalance> toAccount, ulong amountToTransfer) where TBalance : Balance;
     }
 }

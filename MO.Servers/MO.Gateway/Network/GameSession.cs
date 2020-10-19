@@ -28,8 +28,8 @@ namespace MO.Gateway.Network
         private OutcomingPacketObserver _packetObserver;
         private IPacketObserver _packetObserverRef;
         private IChannelHandlerContext _context;
-        private IPacketRouter _router;
-        private IToken _tokenGrain;
+        private IPacketRouterGrain _router;
+        private ITokenGrain _tokenGrain;
         private bool _IsInit;
         private long _userId;
         private string _token;
@@ -72,7 +72,7 @@ namespace MO.Gateway.Network
                 //同步初始化
                 if (!_IsInit)
                 {
-                    _tokenGrain = _client.GetGrain<IToken>(packet.UserId);
+                    _tokenGrain = _client.GetGrain<ITokenGrain>(packet.UserId);
                     var tokenInfo = _tokenGrain.GetToken().Result;
                     if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                     {
@@ -83,7 +83,7 @@ namespace MO.Gateway.Network
                     _userId = packet.UserId;
                     _token = tokenInfo.Token;
                     _packetObserver = new OutcomingPacketObserver(this);
-                    _router = _client.GetGrain<IPacketRouter>(_userId);
+                    _router = _client.GetGrain<IPacketRouterGrain>(_userId);
                     _packetObserverRef = _client.CreateObjectReference<IPacketObserver>(_packetObserver).Result;
                     _router.SetObserver(_packetObserverRef).Wait();
                     _IsInit = true;

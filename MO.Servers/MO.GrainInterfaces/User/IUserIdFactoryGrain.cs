@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.User
 {
-    public interface IUserIdFactory : IGrainWithIntegerKey
+    public interface IUserIdFactoryGrain : IGrainWithIntegerKey
     {
         Task<Int64> GetNewUserId();
     }

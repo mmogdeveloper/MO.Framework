@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.User
 {
-    public interface IUser : IGrainWithIntegerKey
+    public interface IUserGrain : IGrainWithIntegerKey
     {
         Task BindPacketObserver(IPacketObserver observer);
         Task UnbindPacketObserver();

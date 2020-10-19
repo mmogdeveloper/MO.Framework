@@ -7,7 +7,7 @@ namespace MO.Grains.Game
 {
     public class PlayerData
     {
-        public IUser User { get; }
+        public IUserGrain User { get; }
         public Vector3 Position { get; set; }
         public Vector3 Rotate { get; set; }
 
@@ -43,7 +43,7 @@ namespace MO.Grains.Game
             Rotate = new Vector3();
         }
 
-        public PlayerData(IUser user)
+        public PlayerData(IUserGrain user)
         {
             User = user;
             _curBlood = MaxBlood;

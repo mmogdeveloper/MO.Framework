@@ -43,7 +43,7 @@ namespace MO.Login.Controllers
             if (user == null || user.UserId == 0)
             {
                 //注册账号
-                var userIdFactory = _client.GetGrain<IUserIdFactory>(default(Int64));
+                var userIdFactory = _client.GetGrain<IUserIdFactoryGrain>(default(Int64));
                 userId = userIdFactory.GetNewUserId().Result;
                 user = new GameUser();
                 user.UserId = userId;
@@ -59,11 +59,11 @@ namespace MO.Login.Controllers
             }
 
             //将玩家踢出游戏
-            var userGrain = _client.GetGrain<IUser>(userId);
+            var userGrain = _client.GetGrain<IUserGrain>(userId);
             userGrain.SetUserName(req1003.DeviceId);
             userGrain.Kick().Wait();
             var token = CryptoHelper.MD5_Encrypt($"{userId}{Guid.NewGuid()}{DateTime.UtcNow.Ticks}");
-            var tokenGtain = _client.GetGrain<IToken>(userId);
+            var tokenGtain = _client.GetGrain<ITokenGrain>(userId);
             tokenGtain.SetToken(token, HttpContext.Connection.RemoteIpAddress.ToString()).Wait();
 
             _recordContext.Add(new LoginRecord()

@@ -14,16 +14,16 @@ namespace MO.Grains.Global
     /// <summary>
     /// 数据统计
     /// </summary>
-    public class GlobalWorldGrain : Grain, IGlobalWorld
+    public class GlobalWorldGrain : Grain, IGlobalWorldGrain
     {
         private readonly ILogger _logger;
-        private readonly Dictionary<long, IUser> _userDict;
+        private readonly Dictionary<long, IUserGrain> _userDict;
         private IAsyncStream<MOMsg> _stream;
 
         public GlobalWorldGrain(ILogger<GlobalWorldGrain> logger)
         {
             _logger = logger;
-            _userDict = new Dictionary<long, IUser>();
+            _userDict = new Dictionary<long, IUserGrain>();
         }
 
         public override Task OnActivateAsync()
@@ -43,13 +43,13 @@ namespace MO.Grains.Global
             return Task.FromResult(_userDict.Count);
         }
 
-        public async Task PlayerEnterGlobalWorld(IUser user)
+        public async Task PlayerEnterGlobalWorld(IUserGrain user)
         {
             _userDict[user.GetPrimaryKeyLong()] = user;
             await user.SubscribeGlobal(_stream.Guid);
         }
 
-        public async Task PlayerLeaveGlobalWorld(IUser user)
+        public async Task PlayerLeaveGlobalWorld(IUserGrain user)
         {
             _userDict.Remove(user.GetPrimaryKeyLong());
             await user.UnsubscribeGlobal();

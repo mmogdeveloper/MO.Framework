@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MO.Grains.Game
 {
-    public class RoomFactoryGrain : Grain, IRoomFactory
+    public class RoomFactoryGrain : Grain, IRoomFactoryGrain
     {
         public async Task<int> CreateRoom(ProtoRoomInfo roomInfo)
         {

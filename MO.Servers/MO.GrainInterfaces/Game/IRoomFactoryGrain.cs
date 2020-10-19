@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Game
 {
-    public interface IRoomFactory : IGrainWithIntegerKey
+    public interface IRoomFactoryGrain : IGrainWithIntegerKey
     {
         Task<int> CreateRoom(ProtoRoomInfo roomInfo);
         Task ReleaseRoom(int roomId);

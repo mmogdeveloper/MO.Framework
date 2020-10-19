@@ -23,7 +23,7 @@ namespace MO.Grains.User
         public string HeadIcon { get; set; }
     }
 
-    public class UserGrain : Grain, IUser, IAsyncObserver<MOMsg>
+    public class UserGrain : Grain, IUserGrain, IAsyncObserver<MOMsg>
     {
         private readonly IPersistentState<LocationState> _location;
         private readonly IPersistentState<UserInfoState> _userinfo;

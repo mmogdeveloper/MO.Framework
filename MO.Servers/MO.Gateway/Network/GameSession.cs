@@ -22,7 +22,7 @@ namespace MO.Gateway.Network
     {
         private readonly IClusterClient _client;
         private readonly ILogger _logger;
-        private readonly Guid _sessionId;
+        //private readonly Guid _sessionId;
         private readonly IConfiguration _configuration;
 
         private OutcomingPacketObserver _packetObserver;
@@ -42,7 +42,7 @@ namespace MO.Gateway.Network
             _logger = loggerFactory.CreateLogger<GameSession>();
             _configuration = configuration;
             _context = context;
-            _sessionId = Guid.NewGuid();
+            //_sessionId = Guid.NewGuid();
             _md5Key = _configuration.GetValue<string>("MD5Key");
         }
 
@@ -83,7 +83,7 @@ namespace MO.Gateway.Network
                     _userId = packet.UserId;
                     _token = tokenInfo.Token;
                     _packetObserver = new OutcomingPacketObserver(this);
-                    _router = _client.GetGrain<IPacketRouter>(_sessionId);
+                    _router = _client.GetGrain<IPacketRouter>(_userId);
                     _packetObserverRef = _client.CreateObjectReference<IPacketObserver>(_packetObserver).Result;
                     _router.SetObserver(_packetObserverRef).Wait();
                     _IsInit = true;

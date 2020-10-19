@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Network
 {
-    public interface IPacketRouter : IGrainWithGuidKey
+    public interface IPacketRouter : IGrainWithIntegerKey
     {
         Task SetObserver(IPacketObserver observer);
         Task SendPacket(MOMsg packet);

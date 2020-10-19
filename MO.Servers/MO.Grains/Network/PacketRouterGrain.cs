@@ -22,7 +22,7 @@ namespace MO.Grains.Network
     {
         private IPacketObserver _observer;
         private IGlobalWorld _globalWorld;
-        private IRoomFactory _roomFactory;
+        private IRoom _curRoom;
         private IUser _user;
         private Stopwatch _watch;
         private ILogger _logger;
@@ -36,7 +36,6 @@ namespace MO.Grains.Network
         public override Task OnActivateAsync()
         {
             _globalWorld = GrainFactory.GetGrain<IGlobalWorld>(0);
-            _roomFactory = GrainFactory.GetGrain<IRoomFactory>(0);
             return base.OnActivateAsync();
         }
 
@@ -66,8 +65,8 @@ namespace MO.Grains.Network
                 var roomId = await _user.GetRoomId();
                 if (roomId != 0)
                 {
-                    var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
-                    await curRoom.Reconnect(_user);
+                    _curRoom = GrainFactory.GetGrain<IRoom>(roomId);
+                    await _curRoom.Reconnect(_user);
                     //通知上线
                     var message = new MOMsg()
                     {
@@ -79,7 +78,7 @@ namespace MO.Grains.Network
                             IsOnline = true
                         }.ToByteString()
                     };
-                    await curRoom.RoomNotify(message);
+                    await _curRoom.RoomNotify(message);
                 }
                 Notify(packet.ParseResult());
             }
@@ -91,47 +90,48 @@ namespace MO.Grains.Network
                     return;
                 }
 
-                switch (packet.ActionId)
+                if (packet.ActionId == 100001)
                 {
-                    case 100001:
-                        {
-                            var req = C2S100001.Parser.ParseFrom(packet.Content);
-                            var roomId = await _user.GetRoomId();
-                            if (roomId == 0)
+                    var req = C2S100001.Parser.ParseFrom(packet.Content);
+                    var roomId = await _user.GetRoomId();
+                    if (roomId == 0)
+                    {
+                        roomId = req.RoomId;
+                        await _user.SetRoomId(roomId);
+                    }
+                    _curRoom = GrainFactory.GetGrain<IRoom>(roomId);
+                    await _curRoom.PlayerEnterRoom(_user);
+                }
+                else
+                {
+                    if (_curRoom == null)
+                    {
+                        Notify(packet.ParseResult(MOErrorType.Hidden, "房间信息不存在"));
+                        return;
+                    }
+
+                    switch (packet.ActionId)
+                    {
+                        case 100005:
                             {
-                                roomId = req.RoomId;
-                                await _user.SetRoomId(roomId);
+                                await _curRoom.PlayerLeaveRoom(_user);
+                                await _user.SetRoomId(0);
+                                _curRoom = null;
                             }
-                            await _user.SetRoomId(roomId);
-                            var room = GrainFactory.GetGrain<IRoom>(roomId);
-                            await room.PlayerEnterRoom(_user);
-                        }
-                        break;
-                    case 100005:
-                        {
-                            var req = C2S100005.Parser.ParseFrom(packet.Content);
-                            var roomId = await _user.GetRoomId();
-                            var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
-                            await curRoom.PlayerLeaveRoom(_user);
-                            await _user.SetRoomId(0);
-                        }
-                        break;
-                    case 100007:
-                        {
-                            var req = C2S100007.Parser.ParseFrom(packet.Content);
-                            var roomId = await _user.GetRoomId();
-                            var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
-                            await curRoom.PlayerSendMsg(_user, req.Content);
-                        }
-                        break;
-                    case 100009:
-                        {
-                            var req = C2S100009.Parser.ParseFrom(packet.Content);
-                            var roomId = await _user.GetRoomId();
-                            var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
-                            await curRoom.PlayerCommand(_user, req.Commands.ToList());
-                        }
-                        break;
+                            break;
+                        case 100007:
+                            {
+                                var req = C2S100007.Parser.ParseFrom(packet.Content);
+                                await _curRoom.PlayerSendMsg(_user, req.Content);
+                            }
+                            break;
+                        case 100009:
+                            {
+                                var req = C2S100009.Parser.ParseFrom(packet.Content);
+                                await _curRoom.PlayerCommand(_user, req.Commands.ToList());
+                            }
+                            break;
+                    }
                 }
             }
             //_watch.Stop();
@@ -144,11 +144,8 @@ namespace MO.Grains.Network
             {
                 await _user.UnbindPacketObserver();
                 await _globalWorld.PlayerLeaveGlobalWorld(_user);
-
-                var roomId = await _user.GetRoomId();
-                if (roomId != 0)
+                if (_curRoom != null)
                 {
-                    var curRoom = GrainFactory.GetGrain<IRoom>(roomId);
                     //通知离线
                     var message = new MOMsg()
                     {
@@ -160,7 +157,7 @@ namespace MO.Grains.Network
                             IsOnline = false
                         }.ToByteString()
                     };
-                    await curRoom.RoomNotify(message);
+                    await _curRoom.RoomNotify(message);
                 }
             }
         }

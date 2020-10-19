@@ -12,9 +12,9 @@ MO.Gate:支持socket和websocket
 MO.Silo,MO.Interfaces,MO.Grains:基于Orleans的分布式服务  
   
 MO.Model:基于entityframeworkcore模块  
-MO.Protocol:基于proto3的协议  
-MO.Common:基本工具模块  
-MO.Algorithm:基本逻辑模块  
+MO.Protocol:基于proto3的协议  (与客户端共享代码)   
+MO.Common:基本工具模块  (与客户端共享代码)  
+MO.Algorithm:基本逻辑模块  (与客户端共享代码)  
 
 框架使用了  
 Orleans  

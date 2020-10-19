@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MO.Model.Context;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@ namespace MO.Silo
         private readonly MORecordContext _recordContext;
         private Timer _dataUpdateTimer;
         private Timer _recordUpdateTimer;
+        private int _isDataUpdateRunning;
+        private int _isRecordUpdateRunning;
 
         public TaskService(
             ILogger<TaskService> logger,
@@ -33,19 +36,41 @@ namespace MO.Silo
 
         private void OnDataTimerCallback(object sender)
         {
-            int count = _dataContext.SaveChanges();
-            if (count != 0)
+            if (Interlocked.CompareExchange(ref _isDataUpdateRunning, 1, 0) == 0)
             {
-                _logger.LogInformation("dataContext update {0}", count);
+                try
+                {
+                    int count = _dataContext.SaveChanges();
+                    if (count != 0)
+                    {
+                        _logger.LogInformation("dataContext update {0}", count);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("{0},{1}", ex.Message, ex.StackTrace);
+                }
+                Interlocked.Exchange(ref _isDataUpdateRunning, 0);
             }
         }
 
         private void OnRecordTimerCallback(object sender)
         {
-            int count = _recordContext.SaveChanges();
-            if (count != 0)
+            if (Interlocked.CompareExchange(ref _isRecordUpdateRunning, 1, 0) == 0)
             {
-                _logger.LogInformation("recordContext update {0}", count);
+                try
+                {
+                    int count = _recordContext.SaveChanges();
+                    if (count != 0)
+                    {
+                        _logger.LogInformation("recordContext update {0}", count);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("{0},{1}", ex.Message, ex.StackTrace);
+                }
+                Interlocked.Exchange(ref _isRecordUpdateRunning, 0);
             }
         }
 

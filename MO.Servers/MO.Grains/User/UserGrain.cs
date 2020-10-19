@@ -177,7 +177,6 @@ namespace MO.Grains.User
         private MODataContext _dataContext;
         private readonly ILogger _logger;
 
-        private int _roomId;
         private GameUser _gameUser;
         private IPacketObserver _observer;
         private StreamSubscriptionHandle<MOMsg> _globalHandler;
@@ -288,17 +287,6 @@ namespace MO.Grains.User
                 await _roomHandler.UnsubscribeAsync();
                 _roomHandler = null;
             }
-        }
-
-        public Task SetRoomId(int roomId)
-        {
-            _roomId = roomId;
-            return Task.CompletedTask;
-        }
-
-        public Task<int> GetRoomId()
-        {
-            return Task.FromResult(_roomId);
         }
 
         public Task SetNickName(string nickName)

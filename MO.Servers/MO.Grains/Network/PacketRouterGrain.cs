@@ -48,10 +48,8 @@ namespace MO.Grains.Network
                 _user = GrainFactory.GetGrain<IUserGrain>(packet.UserId);
                 //await _user.BindPacketObserver(_observer);
                 await _globalWorld.PlayerEnterGlobalWorld(_user);
-                var roomId = await _user.GetRoomId();
-                if (roomId != 0)
+                if (_curRoom != null)
                 {
-                    _curRoom = GrainFactory.GetGrain<IRoomGrain>(roomId);
                     await _curRoom.Reconnect(_user);
                     //通知上线
                     var message = new MOMsg()
@@ -79,13 +77,10 @@ namespace MO.Grains.Network
                 if (packet.ActionId == 100001)
                 {
                     var req = C2S100001.Parser.ParseFrom(packet.Content);
-                    var roomId = await _user.GetRoomId();
-                    if (roomId == 0)
+                    if (_curRoom == null)
                     {
-                        roomId = req.RoomId;
-                        await _user.SetRoomId(roomId);
+                        _curRoom = GrainFactory.GetGrain<IRoomGrain>(req.RoomId);
                     }
-                    _curRoom = GrainFactory.GetGrain<IRoomGrain>(roomId);
                     await _curRoom.PlayerEnterRoom(_user);
                 }
                 else
@@ -101,7 +96,6 @@ namespace MO.Grains.Network
                         case 100005:
                             {
                                 await _curRoom.PlayerLeaveRoom(_user);
-                                await _user.SetRoomId(0);
                                 _curRoom = null;
                             }
                             break;

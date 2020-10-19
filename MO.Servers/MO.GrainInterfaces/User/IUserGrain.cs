@@ -20,9 +20,6 @@ namespace MO.GrainInterfaces.User
         Task SubscribeRoom(Guid streamId);
         Task UnsubscribeRoom();
 
-        Task SetRoomId(int roomId);
-        Task<int> GetRoomId();
-
         Task SetNickName(string nickName);
         Task<string> GetNickName();
     }

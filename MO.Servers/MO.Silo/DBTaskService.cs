@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MO.Silo
 {
-    public class TaskService : IHostedService
+    public class DBTaskService : IHostedService
     {
         private readonly ILogger _logger;
         private readonly MODataContext _dataContext;
@@ -17,8 +17,8 @@ namespace MO.Silo
         private int _isDataUpdateRunning;
         private int _isRecordUpdateRunning;
 
-        public TaskService(
-            ILogger<TaskService> logger,
+        public DBTaskService(
+            ILogger<DBTaskService> logger,
             MODataContext dataContext,
             MORecordContext recordContext)
         {

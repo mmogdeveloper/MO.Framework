@@ -37,7 +37,7 @@ namespace MO.Silo
                 })
                 .ConfigureServices(services =>
                 {
-                    services.AddHostedService<TaskService>();
+                    services.AddHostedService<DBTaskService>();
                     services.AddDbContext<MODataContext>(options =>
                     {
                         options.UseMySql(Configuration.GetConnectionString("MOData"));

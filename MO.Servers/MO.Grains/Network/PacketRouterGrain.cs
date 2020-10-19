@@ -143,6 +143,7 @@ namespace MO.Grains.Network
             if (_user != null)
             {
                 await _user.UnbindPacketObserver();
+                await _user.UnsubscribeRoom();
                 await _globalWorld.PlayerLeaveGlobalWorld(_user);
                 if (_curRoom != null)
                 {

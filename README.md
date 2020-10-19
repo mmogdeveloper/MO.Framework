@@ -6,29 +6,30 @@
 #### 软件架构
 基于dotnetcore3.1,Orleans,Dotnetty跨平台的分布式游戏框架  
 模块分为:  
-Login:登录服务器  
-Api:http服务器  
-Gate:支持socket和websocket  
-Silo:基于Orleans的分布式服务  
-Model:基于entityframeworkcore模块  
-Protocol:基于proto3的协议  
-Common:基本工具模块  
-Algorithm:基本逻辑模块  
+MO.Login:登录服务器  
+MO.Api:http服务器  
+MO.Gate:支持socket和websocket  
+MO.Silo,MO.Interfaces,MO.Grains:基于Orleans的分布式服务  
+  
+MO.Model:基于entityframeworkcore模块  
+MO.Protocol:基于proto3的协议  
+MO.Common:基本工具模块  
+MO.Algorithm:基本逻辑模块  
 
 框架使用了  
-Orleans 分布式基础  
+Orleans  
 https://github.com/dotnet/orleans  
 英文文档:https://dotnet.github.io/orleans/  
 中文文档:https://orleans.azurewebsites.net/  
-Dotnetty 网关socket通信  
+Dotnetty  
 https://github.com/Azure/DotNetty  
-Entityframeworkcore 操作mysql  
+Entityframeworkcore  
 https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql  
-CSRedisCore 操作redis  
+CSRedisCore  
 https://github.com/2881099/csredis  
-Google.Protobuf 通信协议  
+Google.Protobuf  
 https://github.com/protocolbuffers/protobuf/tree/master/csharp  
-NLog 系统日志  
+NLog  
 https://github.com/NLog/NLog  
 #### 安装教程
 

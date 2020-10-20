@@ -3,14 +3,16 @@ using System;
 using MO.Model.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MO.Model.Migrations.MOData
 {
     [DbContext(typeof(MODataContext))]
-    partial class MODataContextModelSnapshot : ModelSnapshot
+    [Migration("20201020032602_InitMODataV8")]
+    partial class InitMODataV8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

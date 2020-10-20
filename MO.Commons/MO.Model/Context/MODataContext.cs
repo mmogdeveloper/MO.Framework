@@ -23,6 +23,12 @@ namespace MO.Model.Context
             modelBuilder.Entity<GameUser>().ToTable("GameUser");
             modelBuilder.Entity<PhoneCode>().ToTable("PhoneCode");
             modelBuilder.Entity<ServerConfig>().ToTable("ServerConfig");
+            modelBuilder.Entity<ServerConfig>().Property(m => m.ApiIP).HasDefaultValue("127.0.0.1");
+            modelBuilder.Entity<ServerConfig>().Property(m => m.ApiPort).HasDefaultValue(8000);
+            modelBuilder.Entity<ServerConfig>().Property(m => m.GateIP).HasDefaultValue("127.0.0.1");
+            modelBuilder.Entity<ServerConfig>().Property(m => m.GatePort).HasDefaultValue(9001);
+            modelBuilder.Entity<ServerConfig>().Property(m => m.LoginIP).HasDefaultValue("127.0.0.1");
+            modelBuilder.Entity<ServerConfig>().Property(m => m.LoginPort).HasDefaultValue(8001);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MO.Model.Context;
+using Newtonsoft.Json;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,9 +28,24 @@ namespace MO.Silo
             _dataContext = dataContext;
             _recordContext = recordContext;
 
+            _dataContext.ChangeTracker.Tracked += ChangeTracker_Tracked;
+            _dataContext.ChangeTracker.StateChanged += ChangeTracker_StateChanged;
+            _dataContext.ChangeTracker.Tracked += ChangeTracker_Tracked;
+            _dataContext.ChangeTracker.StateChanged += ChangeTracker_StateChanged;
+
             //初始化数据库
             _dataContext.Database.Migrate();
             _recordContext.Database.Migrate();
+        }
+
+        private void ChangeTracker_StateChanged(object sender, Microsoft.EntityFrameworkCore.ChangeTracking.EntityStateChangedEventArgs e)
+        {
+            _logger.LogInformation("{0},{1},{2},{3}", e.OldState, e.NewState, e.Entry.State, JsonConvert.SerializeObject(e.Entry.Entity));
+        }
+
+        private void ChangeTracker_Tracked(object sender, Microsoft.EntityFrameworkCore.ChangeTracking.EntityTrackedEventArgs e)
+        {
+            _logger.LogInformation("{0},{1}", e.Entry.State, JsonConvert.SerializeObject(e.Entry.Entity));
         }
 
         public Task StartAsync(CancellationToken cancellationToken)

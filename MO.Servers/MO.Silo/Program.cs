@@ -31,8 +31,8 @@ namespace MO.Silo
                 .ConfigureLogging(builder =>
                 {
                     //builder.AddConsole();//可替换成NLog
-                    builder.ClearProviders();
-                    builder.SetMinimumLevel(LogLevel.Trace);
+                    //builder.ClearProviders();
+                    //builder.SetMinimumLevel(LogLevel.Trace);
                     builder.AddNLog();
                 })
                 .ConfigureServices(services =>

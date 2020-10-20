@@ -30,8 +30,8 @@ namespace MO.Silo
 
             _dataContext.ChangeTracker.Tracked += ChangeTracker_Tracked;
             _dataContext.ChangeTracker.StateChanged += ChangeTracker_StateChanged;
-            _dataContext.ChangeTracker.Tracked += ChangeTracker_Tracked;
-            _dataContext.ChangeTracker.StateChanged += ChangeTracker_StateChanged;
+            _recordContext.ChangeTracker.Tracked += ChangeTracker_Tracked;
+            _recordContext.ChangeTracker.StateChanged += ChangeTracker_StateChanged;
 
             //初始化数据库
             _dataContext.Database.Migrate();

@@ -45,10 +45,13 @@ namespace MO.Silo
             {
                 try
                 {
-                    int count = _dataContext.SaveChanges();
-                    if (count != 0)
+                    if (_dataContext.ChangeTracker.HasChanges())
                     {
-                        _logger.LogInformation("dataContext update {0}", count);
+                        int count = _dataContext.SaveChanges();
+                        if (count != 0)
+                        {
+                            _logger.LogInformation("dataContext update {0}", count);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -65,10 +68,13 @@ namespace MO.Silo
             {
                 try
                 {
-                    int count = _recordContext.SaveChanges();
-                    if (count != 0)
+                    if (_recordContext.ChangeTracker.HasChanges())
                     {
-                        _logger.LogInformation("recordContext update {0}", count);
+                        int count = _recordContext.SaveChanges();
+                        if (count != 0)
+                        {
+                            _logger.LogInformation("recordContext update {0}", count);
+                        }
                     }
                 }
                 catch (Exception ex)

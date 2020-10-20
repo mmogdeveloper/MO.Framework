@@ -50,7 +50,7 @@ namespace MO.Silo
                         int count = _dataContext.SaveChanges();
                         if (count != 0)
                         {
-                            _logger.LogInformation("dataContext update {0}", count);
+                            _logger.LogInformation("dataContext SaveChanges {0}", count);
                         }
                     }
                 }
@@ -73,7 +73,7 @@ namespace MO.Silo
                         int count = _recordContext.SaveChanges();
                         if (count != 0)
                         {
-                            _logger.LogInformation("recordContext update {0}", count);
+                            _logger.LogInformation("recordContext SaveChanges {0}", count);
                         }
                     }
                 }

@@ -45,7 +45,7 @@ namespace MO.Silo
 
         private void ChangeTracker_Tracked(object sender, Microsoft.EntityFrameworkCore.ChangeTracking.EntityTrackedEventArgs e)
         {
-            _logger.LogInformation("ChangeTracker_Tracked:{0},{1},{3}", e.Entry.Entity.GetType().Name, e.Entry.State, JsonConvert.SerializeObject(e.Entry.Entity));
+            _logger.LogInformation("ChangeTracker_Tracked:{0},{1},{2}", e.Entry.Entity.GetType().Name, e.Entry.State, JsonConvert.SerializeObject(e.Entry.Entity));
         }
 
         public Task StartAsync(CancellationToken cancellationToken)

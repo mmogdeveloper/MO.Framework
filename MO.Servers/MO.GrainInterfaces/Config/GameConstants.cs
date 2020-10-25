@@ -10,6 +10,6 @@
         /// <summary>
         /// Token过期时间
         /// </summary>
-        public const int TOKENEXPIRE = 30;
+        public const int TOKENEXPIRE = 60;
     }
 }

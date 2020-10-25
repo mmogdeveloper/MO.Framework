@@ -33,7 +33,7 @@ namespace MO.Gateway.Network
         private ITokenGrain _tokenGrain;
         private bool _IsInit;
         private long _userId;
-        private string _token;
+        //private string _token;
         private string _md5Key;
 
         public GameSession(IClusterClient client, ILoggerFactory loggerFactory,
@@ -57,7 +57,7 @@ namespace MO.Gateway.Network
         {
             try
             {
-                //Stopwatch watch = new Stopwatch();
+                //System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
                 //watch.Restart();
                 //md5签名验证
                 var sign = packet.Sign;
@@ -82,7 +82,7 @@ namespace MO.Gateway.Network
                         return;
                     }
                     _userId = packet.UserId;
-                    _token = tokenInfo.Token;
+                    //_token = tokenInfo.Token;
                     _packetObserver = new OutcomingPacketObserver(this);
                     _router = _client.GetGrain<IPacketRouterGrain>(_userId);
                     _user = _client.GetGrain<IUserGrain>(_userId);
@@ -92,7 +92,14 @@ namespace MO.Gateway.Network
                 }
                 else
                 {
-                    if (_userId != packet.UserId || _token != packet.Token)
+                    //if (_userId != packet.UserId || _token != packet.Token)
+                    //{
+                    //    await DispatchOutcomingPacket(packet.ParseResult(MOErrorType.Hidden, "Token验证失败"));
+                    //    await Close();
+                    //    return;
+                    //}
+                    var tokenInfo = _tokenGrain.GetToken().Result;
+                    if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                     {
                         await DispatchOutcomingPacket(packet.ParseResult(MOErrorType.Hidden, "Token验证失败"));
                         await Close();

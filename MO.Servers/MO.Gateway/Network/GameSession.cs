@@ -22,7 +22,6 @@ namespace MO.Gateway.Network
     {
         private readonly IClusterClient _client;
         private readonly ILogger _logger;
-        //private readonly Guid _sessionId;
         private readonly IConfiguration _configuration;
 
         private OutcomingPacketObserver _packetObserver;
@@ -33,7 +32,6 @@ namespace MO.Gateway.Network
         private ITokenGrain _tokenGrain;
         private bool _IsInit;
         private long _userId;
-        //private string _token;
         private string _md5Key;
 
         public GameSession(IClusterClient client, ILoggerFactory loggerFactory,
@@ -43,7 +41,6 @@ namespace MO.Gateway.Network
             _logger = loggerFactory.CreateLogger<GameSession>();
             _configuration = configuration;
             _context = context;
-            //_sessionId = Guid.NewGuid();
             _md5Key = _configuration.GetValue<string>("MD5Key");
         }
 
@@ -57,9 +54,6 @@ namespace MO.Gateway.Network
         {
             try
             {
-                //System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
-                //watch.Restart();
-                //md5签名验证
                 var sign = packet.Sign;
                 packet.Sign = string.Empty;
                 var data = packet.ToByteString();
@@ -82,22 +76,15 @@ namespace MO.Gateway.Network
                         return;
                     }
                     _userId = packet.UserId;
-                    //_token = tokenInfo.Token;
                     _packetObserver = new OutcomingPacketObserver(this);
                     _router = _client.GetGrain<IPacketRouterGrain>(_userId);
                     _user = _client.GetGrain<IUserGrain>(_userId);
-                    _packetObserverRef = _client.CreateObjectReference<IPacketObserver>(_packetObserver).Result;
+                    _packetObserverRef = _client.CreateObjectReference<IPacketObserver>(_packetObserver);
                     _user.BindPacketObserver(_packetObserverRef).Wait();
                     _IsInit = true;
                 }
                 else
                 {
-                    //if (_userId != packet.UserId || _token != packet.Token)
-                    //{
-                    //    await DispatchOutcomingPacket(packet.ParseResult(MOErrorType.Hidden, "Token验证失败"));
-                    //    await Close();
-                    //    return;
-                    //}
                     var tokenInfo = _tokenGrain.GetToken().Result;
                     if (tokenInfo.Token != packet.Token || tokenInfo.LastTime.AddSeconds(GameConstants.TOKENEXPIRE) < DateTime.Now)
                     {
@@ -116,9 +103,6 @@ namespace MO.Gateway.Network
                 }
 
                 await _router.SendPacket(packet);
-
-                //watch.Stop();
-                //Console.WriteLine($"{packet.UserId} {watch.ElapsedMilliseconds}ms");
             }
             catch (Exception ex)
             {
@@ -165,14 +149,14 @@ namespace MO.Gateway.Network
                 this.session = session;
             }
 
-            public async void Close(MOMsg packet = null)
+            public async Task Close(MOMsg packet = null)
             {
                 if (packet != null)
                     await session.DispatchOutcomingPacket(packet);
                 await session.Close();
             }
 
-            public async void SendPacket(MOMsg packet)
+            public async Task SendPacket(MOMsg packet)
             {
                 await session.DispatchOutcomingPacket(packet);
             }

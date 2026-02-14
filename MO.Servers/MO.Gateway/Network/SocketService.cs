@@ -37,61 +37,8 @@ namespace MO.Gateway.Network
             _logger = _loggerFactory.CreateLogger<SocketService>();
         }
 
-        //public void Test(IRoom room)
-        //{
-        //    Task.Run(() =>
-        //    {
-        //        while (true)
-        //        {
-        //            room.RoomNotify(new MOMsg() { ActionId = 100 });
-        //            Task.Delay(1000).Wait();
-        //        }
-        //    });
-        //}
-
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            //测试
-            /*
-            List<IGlobalWorld> worldList = new List<IGlobalWorld>();
-            for (int i = 0; i < 100; i++)
-            {
-                worldList.Add(_client.GetGrain<IGlobalWorld>(i));
-            }
-
-            for (int i = 0; i < 10000; i++)
-            {
-                var user = _client.GetGrain<IUser>(i);
-                int index = Math.Abs(user.GetHashCode() % worldList.Count);
-                await worldList[index].AddUser(user);
-            }
-
-            Console.WriteLine("开始");
-
-            await Task.Run(() =>
-            {
-                foreach (var item in worldList)
-                {
-                    Task.Run(() =>
-                    {
-                        item.GlobalNotify(new ProtoMessage.MOStreamMsg() { ActionId = 10000 });
-                    });
-                }
-            });
-            */
-
-            //var user1 = _client.GetGrain<IUser>(1);
-            //var user2 = _client.GetGrain<IUser>(2);
-            //var roomFactory = _client.GetGrain<IRoomFactory>(0);
-            //int roomId = await roomFactory.CreateRoom(new ProtoRoomInfo() { });
-            //var room = _client.GetGrain<IRoom>(roomId);
-            //await room.PlayerEnterRoom(user1);
-            //await room.PlayerEnterRoom(user2);
-            //Test(room);
-            //await Task.Delay(10000);
-            //await room.PlayerLeaveRoom(user1);
-            //return;
-
             IPAddress ip_address = IPAddress.Parse(_config.GetSection("GatewayConfig")["socket_ip_address"]);
             int port = int.Parse(_config.GetSection("GatewayConfig")["socket_port"]);
             var dispatcher = new DispatcherEventLoopGroup();
@@ -103,11 +50,9 @@ namespace MO.Gateway.Network
 
             _bootstrap
                 .Option(ChannelOption.SoBacklog, 100)
-                //.Handler(new LoggingHandler("SRV-LSTN"))
                 .ChildHandler(new ActionChannelInitializer<IChannel>(channel =>
                 {
                     IChannelPipeline pipeline = channel.Pipeline;
-                    //pipeline.AddLast(new LoggingHandler("SRV-CONN"));
                     pipeline.AddLast(new LengthFieldPrepender(
                     ByteOrder.LittleEndian, 2, 0, false));
                     pipeline.AddLast(new LengthFieldBasedFrameDecoder(

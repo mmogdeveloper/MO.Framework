@@ -1,7 +1,6 @@
-﻿using MO.GrainInterfaces.Network;
+using MO.GrainInterfaces.Network;
 using MO.Protocol;
 using Orleans;
-using System;
 using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.User
@@ -14,10 +13,10 @@ namespace MO.GrainInterfaces.User
         Task Notify(MOMsg packet);
         Task Kick();
 
-        Task SubscribeGlobal(Guid streamId);
+        Task SubscribeGlobal(string streamId);
         Task UnsubscribeGlobal();
 
-        Task SubscribeRoom(Guid streamId);
+        Task SubscribeRoom(string streamId);
         Task UnsubscribeRoom();
 
         Task SetNickName(string nickName);

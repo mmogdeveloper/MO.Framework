@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MO;
 using MO.Gateway.Network;
 using NLog.Extensions.Logging;
-using Orleans;
-using Orleans.Hosting;
 using System.IO;
 
 namespace MO.Gateway
@@ -20,12 +19,9 @@ namespace MO.Gateway
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
+                .UseOrleansClusterClient()
                 .ConfigureServices(services =>
                 {
-                    services.AddSingleton<ClusterHostedService>();
-                    services.AddSingleton<IHostedService>(_ => _.GetService<ClusterHostedService>());
-                    services.AddSingleton(_ => _.GetService<ClusterHostedService>().Client);
-
                     services.AddHostedService<WebSocketService>();
                     services.AddHostedService<SocketService>();
                     services.Configure<ConsoleLifetimeOptions>(options =>
@@ -40,7 +36,6 @@ namespace MO.Gateway
                 })
                 .ConfigureLogging(builder =>
                 {
-                    //builder.AddConsole();
                     builder.ClearProviders();
                     builder.SetMinimumLevel(LogLevel.Trace);
                     builder.AddNLog();

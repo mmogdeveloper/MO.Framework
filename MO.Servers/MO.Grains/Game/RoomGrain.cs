@@ -1,4 +1,4 @@
-﻿using Google.Protobuf;
+using Google.Protobuf;
 using Microsoft.Extensions.Logging;
 using MO.Algorithm.OnlineDemo;
 using MO.GrainInterfaces;
@@ -10,69 +10,59 @@ using Orleans.Runtime;
 using Orleans.Streams;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Numerics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MO.Grains.Game
 {
-    //public class RoomInfo
-    //{
-    //    public Int32 GameId { get; set; }
-    //}
-
     public class RoomGrain : Grain, IRoomGrain
     {
-        //private readonly IPersistentState<RoomInfo> _roomInfo;
         private readonly Dictionary<long, PlayerData> _players;
         private readonly ILogger _logger;
 
         private IAsyncStream<MOMsg> _stream;
-        private IDisposable _reminder;
+        private IGrainTimer _reminder;
         private Queue<CommandInfo> _commands;
         private Int32 _frameCount;
+        private string _streamKey;
 
-        public RoomGrain(
-            //[PersistentState("RoomInfo", StorageProviders.DefaultProviderName)] IPersistentState<RoomInfo> roomInfo,
-            ILogger<RoomGrain> logger)
+        public RoomGrain(ILogger<RoomGrain> logger)
         {
-            //_roomInfo = roomInfo;
             _logger = logger;
             _players = new Dictionary<long, PlayerData>();
             _commands = new Queue<CommandInfo>();
             _frameCount = 0;
         }
 
-        public override async Task OnActivateAsync()
+        public override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
-            //自定义加载数据
-            //await _roomInfo.ReadStateAsync();
-
-            //定时器
-            _reminder = RegisterTimer(
+            _reminder = this.RegisterGrainTimer(
                 OnTimerCallback,
-                this,
-                TimeSpan.FromSeconds(1),
-                TimeSpan.FromMilliseconds(100));
+                (object)null,
+                new GrainTimerCreationOptions
+                {
+                    DueTime = TimeSpan.FromSeconds(1),
+                    Period = TimeSpan.FromMilliseconds(100),
+                    Interleave = true
+                });
 
             var streamProvider = this.GetStreamProvider(StreamProviders.JobsProvider);
-            _stream = streamProvider.GetStream<MOMsg>(Guid.NewGuid(), StreamProviders.Namespaces.ChunkSender);
-            await base.OnActivateAsync();
+            _streamKey = Guid.NewGuid().ToString("N");
+            _stream = streamProvider.GetStream<MOMsg>(StreamId.Create(StreamProviders.Namespaces.ChunkSender, _streamKey));
+            await base.OnActivateAsync(cancellationToken);
         }
 
-        public override async Task OnDeactivateAsync()
+        public override async Task OnDeactivateAsync(DeactivationReason reason, CancellationToken cancellationToken)
         {
             if (_reminder != null)
                 _reminder.Dispose();
 
-            //回写数据
-            //await _roomInfo.WriteStateAsync();
-            await base.OnDeactivateAsync();
+            await base.OnDeactivateAsync(reason, cancellationToken);
         }
 
         private async Task OnTimerCallback(object obj)
         {
-            //non-Reentrant 调用
             var grain = this.AsReference<IRoomGrain>();
             await grain.Update();
         }
@@ -129,7 +119,6 @@ namespace MO.Grains.Game
                 position.Y = destination.Y;
                 position.Z = destination.Z;
                 commandPlayer.Position = destination;
-                //Console.WriteLine("Jump:{0}-{1}-{2}", position.X, position.Y, position.Z);
                 return true;
             }
             else if (command.CommandId == (int)CommandType.Transform)
@@ -141,7 +130,6 @@ namespace MO.Grains.Game
                 var rotateDistance = Vector3.Distance(commandPlayer.Rotate, rotate);
 
                 position = LimitSquare(position);
-                //Console.WriteLine("Transform:{0}-{1}-{2}", commandInfo.Position.X, commandInfo.Position.Y, commandInfo.Position.Z);
 
                 if (positionDistance > DemoValue.PositionSpeed / 2)
                     return false;
@@ -203,7 +191,6 @@ namespace MO.Grains.Game
                 var destination = new Vector3(x, 0, z) * skillDistance;
                 var skilldestination = Vector3.Add(commandPlayer.Position, destination);
                 var distance = Vector3.Distance(skilldestination, player.Value.Position);
-                //Console.WriteLine("{0},{1}", distance, skillAttackDistance);
                 if (distance <= skillAttackDistance)
                 {
                     player.Value.CurBlood -= skillAttack;
@@ -288,7 +275,7 @@ namespace MO.Grains.Game
 
         public async Task Reconnect(IUserGrain user)
         {
-            await user.SubscribeRoom(_stream.Guid);
+            await user.SubscribeRoom(_streamKey);
         }
 
         public async Task PlayerEnterRoom(IUserGrain user)
@@ -296,7 +283,7 @@ namespace MO.Grains.Game
             if (!_players.ContainsKey(user.GetPrimaryKeyLong()))
                 _players[user.GetPrimaryKeyLong()] = new PlayerData(user);
 
-            await user.SubscribeRoom(_stream.Guid);
+            await user.SubscribeRoom(_streamKey);
 
             {
                 S2C100001 content = new S2C100001();

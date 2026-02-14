@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MO.Model.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MO.Model.Context
 {

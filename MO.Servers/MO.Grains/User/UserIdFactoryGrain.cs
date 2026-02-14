@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using MO.GrainInterfaces.Config;
 using MO.Common;
 using MO.GrainInterfaces;
@@ -6,8 +6,7 @@ using MO.GrainInterfaces.User;
 using Orleans;
 using Orleans.Runtime;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MO.Grains.User
@@ -18,22 +17,22 @@ namespace MO.Grains.User
         private readonly IPersistentState<Int64> _curUserId;
         public UserIdFactoryGrain(
             [PersistentState("CurUserId", StorageProviders.DefaultProviderName)] IPersistentState<Int64> curUserId,
-            ILogger<UserGrain> logger)
+            ILogger<UserIdFactoryGrain> logger)
         {
             _curUserId = curUserId;
             _logger = logger;
         }
 
-        public override Task OnActivateAsync()
+        public override Task OnActivateAsync(CancellationToken cancellationToken)
         {
             _curUserId.ReadStateAsync();
-            return base.OnActivateAsync();
+            return base.OnActivateAsync(cancellationToken);
         }
 
-        public override Task OnDeactivateAsync()
+        public override Task OnDeactivateAsync(DeactivationReason reason, CancellationToken cancellationToken)
         {
             _curUserId.WriteStateAsync();
-            return base.OnDeactivateAsync();
+            return base.OnDeactivateAsync(reason, cancellationToken);
         }
 
         public async Task<Int64> GetNewUserId()

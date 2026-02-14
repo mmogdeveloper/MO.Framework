@@ -1,11 +1,12 @@
-﻿using MO.Protocol;
+using MO.Protocol;
 using Orleans;
+using System.Threading.Tasks;
 
 namespace MO.GrainInterfaces.Network
 {
     public interface IPacketObserver : IGrainObserver
     {
-        void SendPacket(MOMsg packet);
-        void Close(MOMsg packet = null);
+        Task SendPacket(MOMsg packet);
+        Task Close(MOMsg packet = null);
     }
 }

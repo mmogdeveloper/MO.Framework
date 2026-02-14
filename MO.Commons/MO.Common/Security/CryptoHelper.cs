@@ -294,7 +294,6 @@ namespace MO.Common.Security
             CryptoStream cryptoStream = new CryptoStream(memoryStream, dESCryptoServiceProvider.CreateDecryptor(), CryptoStreamMode.Write);
             cryptoStream.Write(array, 0, array.Length);
             cryptoStream.FlushFinalBlock();
-            new StringBuilder();
             return Encoding.Default.GetString(memoryStream.ToArray());
         }
 

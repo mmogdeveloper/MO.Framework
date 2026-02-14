@@ -1,4 +1,4 @@
-﻿using Google.Protobuf;
+using Google.Protobuf;
 using Microsoft.Extensions.Logging;
 using MO.Algorithm.Enum;
 using MO.GrainInterfaces.Extensions;
@@ -8,19 +8,14 @@ using MO.GrainInterfaces.Network;
 using MO.GrainInterfaces.User;
 using MO.Protocol;
 using Orleans;
-using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MO.Grains.Network
 {
-    /// <summary>
-    /// Packet router grain. It send different packet to partial class by its session state.
-    /// </summary>
-    //[Reentrant]
     internal partial class PacketRouterGrain : Grain, IPacketRouterGrain
     {
-        //private IPacketObserver _observer;
         private IGlobalWorldGrain _globalWorld;
         private IRoomGrain _curRoom;
         private IUserGrain _user;
@@ -31,23 +26,21 @@ namespace MO.Grains.Network
             _logger = logger;
         }
 
-        public override Task OnActivateAsync()
+        public override Task OnActivateAsync(CancellationToken cancellationToken)
         {
             _globalWorld = GrainFactory.GetGrain<IGlobalWorldGrain>(0);
-            return base.OnActivateAsync();
+            return base.OnActivateAsync(cancellationToken);
         }
 
         public async Task SendPacket(MOMsg packet)
         {
             if (packet.ActionId == 100000)
             {
-                //登录绑定
                 _user = GrainFactory.GetGrain<IUserGrain>(packet.UserId);
                 await _globalWorld.PlayerEnterGlobalWorld(_user);
                 if (_curRoom != null)
                 {
                     await _curRoom.Reconnect(_user);
-                    //通知上线
                     var message = new MOMsg()
                     {
                         ActionId = 100,
@@ -121,7 +114,6 @@ namespace MO.Grains.Network
                 await _globalWorld.PlayerLeaveGlobalWorld(_user);
                 if (_curRoom != null)
                 {
-                    //通知离线
                     var message = new MOMsg()
                     {
                         ActionId = 100,

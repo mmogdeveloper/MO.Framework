@@ -22,7 +22,6 @@ namespace MO.Common.Security
             this.desCopy = new DesCopy();
         }
 
-        //private static DESAlgorithmNew instance = null;
         private static byte[] PC1_Table = { 57, 49, 41, 33, 25, 17, 9, 1, 58,
 			50, 42, 34, 26, 18, 10, 2, 59, 51, 43, 35, 27, 19, 11, 3, 60, 52,
 			44, 36, 63, 55, 47, 39, 31, 23, 15, 7, 62, 54, 46, 38, 30, 22, 14,
@@ -295,10 +294,10 @@ namespace MO.Common.Security
         {
             int OutIndex = 0;
             int InIndex = 0;
-            for (int i = 0, j, k; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
-                j = (inbte[InIndex + 0] << 1) + inbte[InIndex + 5];
-                k = (inbte[InIndex + 1] << 3) + (inbte[InIndex + 2] << 2)
+                int j = (inbte[InIndex + 0] << 1) + inbte[InIndex + 5];
+                int k = (inbte[InIndex + 1] << 3) + (inbte[InIndex + 2] << 2)
                         + (inbte[InIndex + 3] << 1) + inbte[InIndex + 4];
                 byte2Bit(outby, outIndex + OutIndex, S_BOXSINGLE, i * 4 * 16 + j * 16
                         + k, 4);
@@ -345,15 +344,12 @@ namespace MO.Common.Security
 
         private void rotateL(byte[] inb, int startIndex, int len, int loop)
         {
-            //System.arraycopy(inb, startIndex, ROTATEL_TMP, 0, loop);
-
             this.desCopy.Copy(inb, startIndex, ref ROTATEL_TMP, 0, loop);
 
             for (int i = 0; i < len - loop; i++)
             {
                 inb[startIndex + i] = inb[startIndex + i + loop];
             }
-            //System.arraycopy(ROTATEL_TMP, 0, inb, startIndex + len - loop, loop);
             this.desCopy.Copy(ROTATEL_TMP, 0, ref inb, startIndex + len - loop, loop);
         }
         /// <summary>

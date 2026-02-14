@@ -17,32 +17,30 @@ namespace MO.Login
             _configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ConsoleLifetimeOptions>(options =>
             {
                 options.SuppressStatusMessages = true;
             });
-            services.AddSingleton<ClusterHostedService>();
-            services.AddSingleton<IHostedService>(_ => _.GetService<ClusterHostedService>());
-            services.AddSingleton(_ => _.GetService<ClusterHostedService>().Client);
             services.AddControllers(options =>
             {
                 options.Filters.Add<GlobalExceptionFilter>();
             });
+
+            var moDataConn = _configuration.GetConnectionString("MOData");
             services.AddDbContext<MODataContext>(options =>
             {
-                options.UseMySql(_configuration.GetConnectionString("MOData"));
+                options.UseMySql(moDataConn, ServerVersion.AutoDetect(moDataConn));
             });
+
+            var moRecordConn = _configuration.GetConnectionString("MORecord");
             services.AddDbContext<MORecordContext>(options =>
             {
-                options.UseMySql(_configuration.GetConnectionString("MORecord"));
+                options.UseMySql(moRecordConn, ServerVersion.AutoDetect(moRecordConn));
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
             MODataContext dataContext, MORecordContext recordContext)
         {

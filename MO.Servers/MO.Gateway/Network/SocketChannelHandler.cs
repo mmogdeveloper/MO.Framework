@@ -23,11 +23,6 @@ namespace MO.Gateway.Network
             _configuration = configuration;
         }
 
-        public override void ChannelActive(IChannelHandlerContext context)
-        {
-
-        }
-
         public override async void ChannelRead(IChannelHandlerContext context, object message)
         {
             try

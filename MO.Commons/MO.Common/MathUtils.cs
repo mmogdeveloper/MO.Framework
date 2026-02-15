@@ -184,33 +184,35 @@ namespace MO.Common
         /// <returns></returns>
         public static int IndexOf(byte[] bytes, int offset, int length, byte[] pattern)
         {
-            int index = -1;
-            int pos = offset;
+            if (bytes == null || pattern == null || pattern.Length == 0)
+                return -1;
+
             if (length > bytes.Length)
             {
                 length = bytes.Length;
             }
-            while (pos < length)
+
+            if (offset < 0 || offset >= bytes.Length || offset + pattern.Length > length)
+                return -1;
+
+            // 使用更高效的算法 - 暴力匹配的优化版本
+            int end = length - pattern.Length;
+            for (int i = offset; i <= end; i++)
             {
-                if (bytes[pos] == pattern[0])
+                bool found = true;
+                for (int j = 0; j < pattern.Length; j++)
                 {
-                    index = pos;
-                    for (int i = 1; i < pattern.Length; i++)
+                    if (bytes[i + j] != pattern[j])
                     {
-                        if (pos + i >= length || pattern[i] != bytes[pos + i])
-                        {
-                            index = -1;
-                            break;
-                        }
-                    }
-                    if (index > -1)
-                    {
+                        found = false;
                         break;
                     }
                 }
-                pos++;
+                if (found)
+                    return i;
             }
-            return index;
+
+            return -1;
         }
 
         /// <summary>
@@ -464,13 +466,13 @@ namespace MO.Common
             return false;
         }
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <param name="success"></param>
         /// <returns></returns>
-        public static bool TrySub(ushort a, ushort b, Action<uint> success)
+        public static bool TrySub(ushort a, ushort b, Action<ushort> success)
         {
             ushort decrement;
             return TrySub(a, b, success, out decrement);
@@ -484,19 +486,15 @@ namespace MO.Common
         /// <param name="success"></param>
         /// <param name="decrement"></param>
         /// <returns></returns>
-        public static bool TrySub(ushort a, ushort b, Action<uint> success, out ushort decrement)
+        public static bool TrySub(ushort a, ushort b, Action<ushort> success, out ushort decrement)
         {
             decrement = 0;
             if (a < b) return false;
 
-            int r = a - b;
-            if (r >= 0 && r <= a)
-            {
-                decrement = b;
-                success((ushort)r);
-                return true;
-            }
-            return false;
+            ushort r = (ushort)(a - b);
+            decrement = b;
+            success(r);
+            return true;
         }
 
         /// <summary>

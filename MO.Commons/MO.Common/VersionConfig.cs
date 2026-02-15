@@ -36,8 +36,15 @@ namespace MO.Common
         {
             get
             {
-                Interlocked.Exchange(ref _currversion, _currversion + 1 < _maxVersion ? _currversion + 1 : _minVersion);
-                return _currversion;
+                int original, newValue;
+                do
+                {
+                    original = _currversion;
+                    newValue = original + 1 < _maxVersion ? original + 1 : _minVersion;
+                }
+                while (Interlocked.CompareExchange(ref _currversion, newValue, original) != original);
+                
+                return newValue;
             }
         }
         /// <summary>

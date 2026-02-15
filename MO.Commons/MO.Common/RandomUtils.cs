@@ -441,21 +441,23 @@ namespace MO.Common
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static T[] RandomSort<T>(T[] source)
         {
-            int pos;
-            T temp;
-            var count = source.Length / 2;
-            for (int i = 0; i < count; i++)
+            if (source == null || source.Length <= 1)
+                return source;
+
+            int n = source.Length;
+            while (n > 1)
             {
-                temp = source[i];
-                pos = GetRandom(i + 1, source.Length);
-                source[i] = source[pos];
-                source[pos] = temp;
+                n--;
+                int k = GetRandom(0, n + 1);
+                T value = source[k];
+                source[k] = source[n];
+                source[n] = value;
             }
             return source;
         }
@@ -472,21 +474,23 @@ namespace MO.Common
             return RandomSort(source).Take(count).ToList();
         }
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static List<T> RandomSort<T>(List<T> source)
         {
-            int pos;
-            T temp;
-            var count = source.Count / 2;
-            for (int i = 0; i < count; i++)
+            if (source == null || source.Count <= 1)
+                return source;
+
+            int n = source.Count;
+            while (n > 1)
             {
-                temp = source[i];
-                pos = GetRandom(i + 1, source.Count);
-                source[i] = source[pos];
-                source[pos] = temp;
+                n--;
+                int k = GetRandom(0, n + 1);
+                T value = source[k];
+                source[k] = source[n];
+                source[n] = value;
             }
             return source;
         }

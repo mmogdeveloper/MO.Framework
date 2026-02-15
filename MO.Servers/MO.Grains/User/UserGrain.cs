@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MO.Algorithm.Enum;
 using MO.GrainInterfaces;
@@ -37,7 +38,14 @@ namespace MO.Grains.User
         public override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
             await base.OnActivateAsync(cancellationToken);
-            _gameUser = _dataContext.GameUsers.First(m => m.UserId == this.GetPrimaryKeyLong());
+            _gameUser = await _dataContext.GameUsers.FirstOrDefaultAsync(m => m.UserId == this.GetPrimaryKeyLong());
+            
+            if (_gameUser == null)
+            {
+                // 根据业务需求处理未找到用户的情况
+                // 例如，抛出异常或创建默认用户
+                throw new InvalidOperationException($"User with ID {this.GetPrimaryKeyLong()} not found.");
+            }
         }
 
         public override async Task OnDeactivateAsync(DeactivationReason reason, CancellationToken cancellationToken)

@@ -95,25 +95,22 @@ namespace MO.Common.Security
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
         public static string MD5_Encrypt(byte[] bytes)
         {
-            MD5 mD = new MD5CryptoServiceProvider();
-            byte[] array = mD.ComputeHash(bytes);
-            string text = null;
-            for (int i = 0; i < array.Length; i++)
+            using (MD5 md5Hash = MD5.Create())
             {
-                string text2 = array[i].ToString("x");
-                if (text2.Length == 1)
+                byte[] array = md5Hash.ComputeHash(bytes);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < array.Length; i++)
                 {
-                    text2 = "0" + text2;
+                    sb.Append(array[i].ToString("x2"));
                 }
-                text += text2;
+                return sb.ToString();
             }
-            return text;
         }
 
         /// <summary>
@@ -123,18 +120,30 @@ namespace MO.Common.Security
         /// <returns></returns>
         public static string ToFileMd5Hash(string fileName)
         {
-            String hashMD5 = String.Empty;
-            if (File.Exists(fileName))
+            if (string.IsNullOrEmpty(fileName) || !File.Exists(fileName))
             {
-                FileInfo fi = new FileInfo(fileName);
-                string str = "";
-                using (var sr = fi.OpenText())
-                {
-                    str = sr.ReadToEnd();
-                }
-                hashMD5 = ToMd5Hash(str);
+                return string.Empty;
             }
-            return hashMD5;
+
+            try
+            {
+                using (var fileStream = File.OpenRead(fileName))
+                using (var md5 = MD5.Create())
+                {
+                    byte[] hashBytes = md5.ComputeHash(fileStream);
+                    return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // 文件访问被拒绝
+                return string.Empty;
+            }
+            catch (IOException)
+            {
+                // IO错误，如文件被占用
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -148,37 +157,32 @@ namespace MO.Common.Security
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
         public static string ToMd5Hash(byte[] bytes)
         {
-            String hashMD5;
-
-            //计算文件的MD5值
-            MD5 calculator = MD5.Create();
-            Byte[] buffer = calculator.ComputeHash(bytes);
-            calculator.Clear();
-            //将字节数组转换成十六进制的字符串形式
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < buffer.Length; i++)
+            using (MD5 md5Hash = MD5.Create())
             {
-                stringBuilder.Append(buffer[i].ToString("x2"));
+                byte[] buffer = md5Hash.ComputeHash(bytes);
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i < buffer.Length; i++)
+                {
+                    stringBuilder.Append(buffer[i].ToString("x2"));
+                }
+                return stringBuilder.ToString();
             }
-            hashMD5 = stringBuilder.ToString();
-            return hashMD5;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="strpwd"></param>
         /// <returns></returns>
         public static string RegUser_MD5_Pwd(string strpwd)
         {
             string s = "fdjf,jkgfkl";
-            MD5 mD = new MD5CryptoServiceProvider();
             byte[] bytes = Encoding.Default.GetBytes(s);
             byte[] bytes2 = Encoding.Default.GetBytes(strpwd);
             byte[] array = new byte[bytes.Length + 4 + bytes2.Length];
@@ -196,18 +200,17 @@ namespace MO.Common.Security
                 array[i] = bytes[j];
                 i++;
             }
-            byte[] array2 = mD.ComputeHash(array);
-            string text = null;
-            for (i = 0; i < array2.Length; i++)
+            
+            using (MD5 md5 = MD5.Create())
             {
-                string text2 = array2[i].ToString("x");
-                if (text2.Length == 1)
+                byte[] array2 = md5.ComputeHash(array);
+                StringBuilder sb = new StringBuilder();
+                for (i = 0; i < array2.Length; i++)
                 {
-                    text2 = "0" + text2;
+                    sb.Append(array2[i].ToString("x2"));
                 }
-                text += text2;
+                return sb.ToString();
             }
-            return text;
         }
         /// <summary>
         /// 
@@ -329,44 +332,56 @@ namespace MO.Common.Security
         /// <returns></returns>
         public static string DES16_Decrypt(string toDecrypt, string privateKey, string privateIv)
         {
-            byte[] bKey = Encoding.UTF8.GetBytes(privateKey);
-            byte[] bIV = Encoding.UTF8.GetBytes(privateIv);
-            byte[] byteArray = Convert.FromBase64String(toDecrypt);
+            if (string.IsNullOrEmpty(toDecrypt) || string.IsNullOrEmpty(privateKey) || string.IsNullOrEmpty(privateIv))
+            {
+                return null;
+            }
 
-            string decrypt = null;
-            Rijndael aes = Rijndael.Create();
             try
             {
-                using (MemoryStream mStream = new MemoryStream())
+                byte[] bKey = Encoding.UTF8.GetBytes(privateKey);
+                byte[] bIV = Encoding.UTF8.GetBytes(privateIv);
+                byte[] byteArray = Convert.FromBase64String(toDecrypt);
+
+                using (Rijndael aes = Rijndael.Create())
                 {
-                    using (CryptoStream cStream = new CryptoStream(mStream, aes.CreateDecryptor(bKey, bIV), CryptoStreamMode.Write))
+                    using (MemoryStream mStream = new MemoryStream())
                     {
-                        cStream.Write(byteArray, 0, byteArray.Length);
-                        cStream.FlushFinalBlock();
-                        decrypt = Encoding.UTF8.GetString(mStream.ToArray());
+                        using (CryptoStream cStream = new CryptoStream(mStream, aes.CreateDecryptor(bKey, bIV), CryptoStreamMode.Write))
+                        {
+                            cStream.Write(byteArray, 0, byteArray.Length);
+                            cStream.FlushFinalBlock();
+                            return Encoding.UTF8.GetString(mStream.ToArray());
+                        }
                     }
                 }
             }
-            catch { }
-            aes.Clear();
-
-            return decrypt;
+            catch (Exception ex)
+            {
+                // 可以选择记录日志或按需处理异常
+                // Log exception if needed: Console.WriteLine($"Decryption failed: {ex.Message}");
+                return null; // 或者重新抛出异常，取决于业务需求
+            }
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
         public static string SHA1_Encrypt(string source)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(source);
-            SHA1CryptoServiceProvider sHa1CryptoServiceProvider = new SHA1CryptoServiceProvider();
-            byte[] value = sHa1CryptoServiceProvider.ComputeHash(bytes);
-            sHa1CryptoServiceProvider.Clear();
-            string text = BitConverter.ToString(value);
-            text = text.Replace("-", "");
-            return text.ToLower();
+            using (SHA1 sha1 = SHA1.Create())
+            {
+                byte[] value = sha1.ComputeHash(bytes);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < value.Length; i++)
+                {
+                    sb.Append(value[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
         }
 
         /// <summary>
